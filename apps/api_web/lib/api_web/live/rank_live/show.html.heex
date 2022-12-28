@@ -1,0 +1,46 @@
+<h1>Show Rank</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.rank_show_path(@socket, :show, @rank)}>
+    <.live_component
+      module={ApiWeb.RankLive.FormComponent}
+      id={@rank.id}
+      title={@page_title}
+      action={@live_action}
+      rank={@rank}
+      return_to={Routes.rank_show_path(@socket, :show, @rank)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Rank:</strong>
+    <%= @rank.rank_id %>
+  </li>
+
+  <li>
+    <strong>Rank title:</strong>
+    <%= @rank.rank_title %>
+  </li>
+
+  <li>
+    <strong>Rank min:</strong>
+    <%= @rank.rank_min %>
+  </li>
+
+  <li>
+    <strong>Rank special:</strong>
+    <%= @rank.rank_special %>
+  </li>
+
+  <li>
+    <strong>Rank image:</strong>
+    <%= @rank.rank_image %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.rank_show_path(@socket, :edit, @rank), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.rank_index_path(@socket, :index) %></span>

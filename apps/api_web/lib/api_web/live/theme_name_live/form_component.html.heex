@@ -1,0 +1,140 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="theme_name-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :themes_id %>
+    <%= number_input f, :themes_id %>
+    <%= error_tag f, :themes_id %>
+  
+    <%= label f, :tr_color1_name %>
+    <%= text_input f, :tr_color1_name %>
+    <%= error_tag f, :tr_color1_name %>
+  
+    <%= label f, :tr_color2_name %>
+    <%= text_input f, :tr_color2_name %>
+    <%= error_tag f, :tr_color2_name %>
+  
+    <%= label f, :tr_color3_name %>
+    <%= text_input f, :tr_color3_name %>
+    <%= error_tag f, :tr_color3_name %>
+  
+    <%= label f, :tr_class1_name %>
+    <%= text_input f, :tr_class1_name %>
+    <%= error_tag f, :tr_class1_name %>
+  
+    <%= label f, :tr_class2_name %>
+    <%= text_input f, :tr_class2_name %>
+    <%= error_tag f, :tr_class2_name %>
+  
+    <%= label f, :tr_class3_name %>
+    <%= text_input f, :tr_class3_name %>
+    <%= error_tag f, :tr_class3_name %>
+  
+    <%= label f, :th_color1_name %>
+    <%= text_input f, :th_color1_name %>
+    <%= error_tag f, :th_color1_name %>
+  
+    <%= label f, :th_color2_name %>
+    <%= text_input f, :th_color2_name %>
+    <%= error_tag f, :th_color2_name %>
+  
+    <%= label f, :th_color3_name %>
+    <%= text_input f, :th_color3_name %>
+    <%= error_tag f, :th_color3_name %>
+  
+    <%= label f, :th_class1_name %>
+    <%= text_input f, :th_class1_name %>
+    <%= error_tag f, :th_class1_name %>
+  
+    <%= label f, :th_class2_name %>
+    <%= text_input f, :th_class2_name %>
+    <%= error_tag f, :th_class2_name %>
+  
+    <%= label f, :th_class3_name %>
+    <%= text_input f, :th_class3_name %>
+    <%= error_tag f, :th_class3_name %>
+  
+    <%= label f, :td_color1_name %>
+    <%= text_input f, :td_color1_name %>
+    <%= error_tag f, :td_color1_name %>
+  
+    <%= label f, :td_color2_name %>
+    <%= text_input f, :td_color2_name %>
+    <%= error_tag f, :td_color2_name %>
+  
+    <%= label f, :td_color3_name %>
+    <%= text_input f, :td_color3_name %>
+    <%= error_tag f, :td_color3_name %>
+  
+    <%= label f, :td_class1_name %>
+    <%= text_input f, :td_class1_name %>
+    <%= error_tag f, :td_class1_name %>
+  
+    <%= label f, :td_class2_name %>
+    <%= text_input f, :td_class2_name %>
+    <%= error_tag f, :td_class2_name %>
+  
+    <%= label f, :td_class3_name %>
+    <%= text_input f, :td_class3_name %>
+    <%= error_tag f, :td_class3_name %>
+  
+    <%= label f, :fontface1_name %>
+    <%= text_input f, :fontface1_name %>
+    <%= error_tag f, :fontface1_name %>
+  
+    <%= label f, :fontface2_name %>
+    <%= text_input f, :fontface2_name %>
+    <%= error_tag f, :fontface2_name %>
+  
+    <%= label f, :fontface3_name %>
+    <%= text_input f, :fontface3_name %>
+    <%= error_tag f, :fontface3_name %>
+  
+    <%= label f, :fontsize1_name %>
+    <%= text_input f, :fontsize1_name %>
+    <%= error_tag f, :fontsize1_name %>
+  
+    <%= label f, :fontsize2_name %>
+    <%= text_input f, :fontsize2_name %>
+    <%= error_tag f, :fontsize2_name %>
+  
+    <%= label f, :fontsize3_name %>
+    <%= text_input f, :fontsize3_name %>
+    <%= error_tag f, :fontsize3_name %>
+  
+    <%= label f, :fontcolor1_name %>
+    <%= text_input f, :fontcolor1_name %>
+    <%= error_tag f, :fontcolor1_name %>
+  
+    <%= label f, :fontcolor2_name %>
+    <%= text_input f, :fontcolor2_name %>
+    <%= error_tag f, :fontcolor2_name %>
+  
+    <%= label f, :fontcolor3_name %>
+    <%= text_input f, :fontcolor3_name %>
+    <%= error_tag f, :fontcolor3_name %>
+  
+    <%= label f, :span_class1_name %>
+    <%= text_input f, :span_class1_name %>
+    <%= error_tag f, :span_class1_name %>
+  
+    <%= label f, :span_class2_name %>
+    <%= text_input f, :span_class2_name %>
+    <%= error_tag f, :span_class2_name %>
+  
+    <%= label f, :span_class3_name %>
+    <%= text_input f, :span_class3_name %>
+    <%= error_tag f, :span_class3_name %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

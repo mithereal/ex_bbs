@@ -1,0 +1,236 @@
+<h1>Show Theme</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.theme_show_path(@socket, :show, @theme)}>
+    <.live_component
+      module={ApiWeb.ThemeLive.FormComponent}
+      id={@theme.id}
+      title={@page_title}
+      action={@live_action}
+      theme={@theme}
+      return_to={Routes.theme_show_path(@socket, :show, @theme)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Themes:</strong>
+    <%= @theme.themes_id %>
+  </li>
+
+  <li>
+    <strong>Style name:</strong>
+    <%= @theme.style_name %>
+  </li>
+
+  <li>
+    <strong>Template name:</strong>
+    <%= @theme.template_name %>
+  </li>
+
+  <li>
+    <strong>Head stylesheet:</strong>
+    <%= @theme.head_stylesheet %>
+  </li>
+
+  <li>
+    <strong>Body background:</strong>
+    <%= @theme.body_background %>
+  </li>
+
+  <li>
+    <strong>Body bgcolor:</strong>
+    <%= @theme.body_bgcolor %>
+  </li>
+
+  <li>
+    <strong>Body text:</strong>
+    <%= @theme.body_text %>
+  </li>
+
+  <li>
+    <strong>Body link:</strong>
+    <%= @theme.body_link %>
+  </li>
+
+  <li>
+    <strong>Body vlink:</strong>
+    <%= @theme.body_vlink %>
+  </li>
+
+  <li>
+    <strong>Body alink:</strong>
+    <%= @theme.body_alink %>
+  </li>
+
+  <li>
+    <strong>Body hlink:</strong>
+    <%= @theme.body_hlink %>
+  </li>
+
+  <li>
+    <strong>Tr color1:</strong>
+    <%= @theme.tr_color1 %>
+  </li>
+
+  <li>
+    <strong>Tr color2:</strong>
+    <%= @theme.tr_color2 %>
+  </li>
+
+  <li>
+    <strong>Tr color3:</strong>
+    <%= @theme.tr_color3 %>
+  </li>
+
+  <li>
+    <strong>Tr class1:</strong>
+    <%= @theme.tr_class1 %>
+  </li>
+
+  <li>
+    <strong>Tr class2:</strong>
+    <%= @theme.tr_class2 %>
+  </li>
+
+  <li>
+    <strong>Tr class3:</strong>
+    <%= @theme.tr_class3 %>
+  </li>
+
+  <li>
+    <strong>Th color1:</strong>
+    <%= @theme.th_color1 %>
+  </li>
+
+  <li>
+    <strong>Th color2:</strong>
+    <%= @theme.th_color2 %>
+  </li>
+
+  <li>
+    <strong>Th color3:</strong>
+    <%= @theme.th_color3 %>
+  </li>
+
+  <li>
+    <strong>Th class1:</strong>
+    <%= @theme.th_class1 %>
+  </li>
+
+  <li>
+    <strong>Th class2:</strong>
+    <%= @theme.th_class2 %>
+  </li>
+
+  <li>
+    <strong>Th class3:</strong>
+    <%= @theme.th_class3 %>
+  </li>
+
+  <li>
+    <strong>Td color1:</strong>
+    <%= @theme.td_color1 %>
+  </li>
+
+  <li>
+    <strong>Td color2:</strong>
+    <%= @theme.td_color2 %>
+  </li>
+
+  <li>
+    <strong>Td color3:</strong>
+    <%= @theme.td_color3 %>
+  </li>
+
+  <li>
+    <strong>Td class1:</strong>
+    <%= @theme.td_class1 %>
+  </li>
+
+  <li>
+    <strong>Td class2:</strong>
+    <%= @theme.td_class2 %>
+  </li>
+
+  <li>
+    <strong>Td class3:</strong>
+    <%= @theme.td_class3 %>
+  </li>
+
+  <li>
+    <strong>Fontface1:</strong>
+    <%= @theme.fontface1 %>
+  </li>
+
+  <li>
+    <strong>Fontface2:</strong>
+    <%= @theme.fontface2 %>
+  </li>
+
+  <li>
+    <strong>Fontface3:</strong>
+    <%= @theme.fontface3 %>
+  </li>
+
+  <li>
+    <strong>Fontsize1:</strong>
+    <%= @theme.fontsize1 %>
+  </li>
+
+  <li>
+    <strong>Fontsize2:</strong>
+    <%= @theme.fontsize2 %>
+  </li>
+
+  <li>
+    <strong>Fontsize3:</strong>
+    <%= @theme.fontsize3 %>
+  </li>
+
+  <li>
+    <strong>Fontcolor1:</strong>
+    <%= @theme.fontcolor1 %>
+  </li>
+
+  <li>
+    <strong>Fontcolor2:</strong>
+    <%= @theme.fontcolor2 %>
+  </li>
+
+  <li>
+    <strong>Fontcolor3:</strong>
+    <%= @theme.fontcolor3 %>
+  </li>
+
+  <li>
+    <strong>Span class1:</strong>
+    <%= @theme.span_class1 %>
+  </li>
+
+  <li>
+    <strong>Span class2:</strong>
+    <%= @theme.span_class2 %>
+  </li>
+
+  <li>
+    <strong>Span class3:</strong>
+    <%= @theme.span_class3 %>
+  </li>
+
+  <li>
+    <strong>Img size poll:</strong>
+    <%= @theme.img_size_poll %>
+  </li>
+
+  <li>
+    <strong>Img size privmsg:</strong>
+    <%= @theme.img_size_privmsg %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.theme_show_path(@socket, :edit, @theme), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.theme_index_path(@socket, :index) %></span>

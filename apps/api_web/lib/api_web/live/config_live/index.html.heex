@@ -1,0 +1,41 @@
+<h1>Listing Config</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.config_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.ConfigLive.FormComponent}
+      id={@config.id || :new}
+      title={@page_title}
+      action={@live_action}
+      config={@config}
+      return_to={Routes.config_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Config name</th>
+      <th>Config value</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="config">
+    <%= for config <- @config_collection do %>
+      <tr id={"config-#{config.id}"}>
+        <td><%= config.config_name %></td>
+        <td><%= config.config_value %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.config_show_path(@socket, :show, config) %></span>
+          <span><%= live_patch "Edit", to: Routes.config_index_path(@socket, :edit, config) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: config.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Config", to: Routes.config_index_path(@socket, :new) %></span>

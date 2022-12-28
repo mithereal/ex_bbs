@@ -1,0 +1,45 @@
+<h1>Listing Smiles</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.smiles_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.SmilesLive.FormComponent}
+      id={@smiles.id || :new}
+      title={@page_title}
+      action={@live_action}
+      smiles={@smiles}
+      return_to={Routes.smiles_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Smilies</th>
+      <th>Code</th>
+      <th>Smile url</th>
+      <th>Emoticon</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="smiles">
+    <%= for smiles <- @smiles_collection do %>
+      <tr id={"smiles-#{smiles.id}"}>
+        <td><%= smiles.smilies_id %></td>
+        <td><%= smiles.code %></td>
+        <td><%= smiles.smile_url %></td>
+        <td><%= smiles.emoticon %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.smiles_show_path(@socket, :show, smiles) %></span>
+          <span><%= live_patch "Edit", to: Routes.smiles_index_path(@socket, :edit, smiles) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: smiles.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Smiles", to: Routes.smiles_index_path(@socket, :new) %></span>

@@ -1,0 +1,43 @@
+<h1>Listing Privmsgs text</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.priv_msg_text_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.PrivMsgTextLive.FormComponent}
+      id={@priv_msg_text.id || :new}
+      title={@page_title}
+      action={@live_action}
+      priv_msg_text={@priv_msg_text}
+      return_to={Routes.priv_msg_text_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Privmsgs text</th>
+      <th>Privmsgs bbcode uid</th>
+      <th>Privmsgs text</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="privmsgs_text">
+    <%= for priv_msg_text <- @privmsgs_text do %>
+      <tr id={"priv_msg_text-#{priv_msg_text.id}"}>
+        <td><%= priv_msg_text.privmsgs_text_id %></td>
+        <td><%= priv_msg_text.privmsgs_bbcode_uid %></td>
+        <td><%= priv_msg_text.privmsgs_text %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.priv_msg_text_show_path(@socket, :show, priv_msg_text) %></span>
+          <span><%= live_patch "Edit", to: Routes.priv_msg_text_index_path(@socket, :edit, priv_msg_text) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: priv_msg_text.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Priv msg text", to: Routes.priv_msg_text_index_path(@socket, :new) %></span>

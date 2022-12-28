@@ -1,0 +1,131 @@
+<h1>Listing Users</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.user_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.UserLive.FormComponent}
+      id={@user.id || :new}
+      title={@page_title}
+      action={@live_action}
+      user={@user}
+      return_to={Routes.user_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>User active</th>
+      <th>Username</th>
+      <th>User regdate</th>
+      <th>User password</th>
+      <th>User session time</th>
+      <th>User session page</th>
+      <th>User lastvisit</th>
+      <th>User email</th>
+      <th>User icq</th>
+      <th>User website</th>
+      <th>User occ</th>
+      <th>User from</th>
+      <th>User interests</th>
+      <th>User sig</th>
+      <th>User sig bbcode uid</th>
+      <th>User style</th>
+      <th>User aim</th>
+      <th>User yim</th>
+      <th>User msnm</th>
+      <th>User posts</th>
+      <th>User new privmsg</th>
+      <th>User unread privmsg</th>
+      <th>User last privmsg</th>
+      <th>User login tries</th>
+      <th>User last login try</th>
+      <th>User emailtime</th>
+      <th>User viewemail</th>
+      <th>User attachsig</th>
+      <th>User allowhtml</th>
+      <th>User allowbbcode</th>
+      <th>User allowsmile</th>
+      <th>User allow pm</th>
+      <th>User allowavatar</th>
+      <th>User allow viewonline</th>
+      <th>User rank</th>
+      <th>User avatar</th>
+      <th>User avatar type</th>
+      <th>User level</th>
+      <th>User lang</th>
+      <th>User timezone</th>
+      <th>User dateformat</th>
+      <th>User notify pm</th>
+      <th>User popup pm</th>
+      <th>User notify</th>
+      <th>User actkey</th>
+      <th>User newpasswd</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="users">
+    <%= for user <- @users do %>
+      <tr id={"user-#{user.id}"}>
+        <td><%= user.user_id %></td>
+        <td><%= user.user_active %></td>
+        <td><%= user.username %></td>
+        <td><%= user.user_regdate %></td>
+        <td><%= user.user_password %></td>
+        <td><%= user.user_session_time %></td>
+        <td><%= user.user_session_page %></td>
+        <td><%= user.user_lastvisit %></td>
+        <td><%= user.user_email %></td>
+        <td><%= user.user_icq %></td>
+        <td><%= user.user_website %></td>
+        <td><%= user.user_occ %></td>
+        <td><%= user.user_from %></td>
+        <td><%= user.user_interests %></td>
+        <td><%= user.user_sig %></td>
+        <td><%= user.user_sig_bbcode_uid %></td>
+        <td><%= user.user_style %></td>
+        <td><%= user.user_aim %></td>
+        <td><%= user.user_yim %></td>
+        <td><%= user.user_msnm %></td>
+        <td><%= user.user_posts %></td>
+        <td><%= user.user_new_privmsg %></td>
+        <td><%= user.user_unread_privmsg %></td>
+        <td><%= user.user_last_privmsg %></td>
+        <td><%= user.user_login_tries %></td>
+        <td><%= user.user_last_login_try %></td>
+        <td><%= user.user_emailtime %></td>
+        <td><%= user.user_viewemail %></td>
+        <td><%= user.user_attachsig %></td>
+        <td><%= user.user_allowhtml %></td>
+        <td><%= user.user_allowbbcode %></td>
+        <td><%= user.user_allowsmile %></td>
+        <td><%= user.user_allow_pm %></td>
+        <td><%= user.user_allowavatar %></td>
+        <td><%= user.user_allow_viewonline %></td>
+        <td><%= user.user_rank %></td>
+        <td><%= user.user_avatar %></td>
+        <td><%= user.user_avatar_type %></td>
+        <td><%= user.user_level %></td>
+        <td><%= user.user_lang %></td>
+        <td><%= user.user_timezone %></td>
+        <td><%= user.user_dateformat %></td>
+        <td><%= user.user_notify_pm %></td>
+        <td><%= user.user_popup_pm %></td>
+        <td><%= user.user_notify %></td>
+        <td><%= user.user_actkey %></td>
+        <td><%= user.user_newpasswd %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.user_show_path(@socket, :show, user) %></span>
+          <span><%= live_patch "Edit", to: Routes.user_index_path(@socket, :edit, user) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New User", to: Routes.user_index_path(@socket, :new) %></span>

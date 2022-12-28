@@ -1,0 +1,49 @@
+<h1>Listing Auth access</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.auth_access_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.AuthAccessLive.FormComponent}
+      id={@auth_access.id || :new}
+      title={@page_title}
+      action={@live_action}
+      auth_access={@auth_access}
+      return_to={Routes.auth_access_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Forum</th>
+      <th>Auth view</th>
+      <th>Auth read</th>
+      <th>Auth post</th>
+      <th>Auth reply</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="auth_access">
+    <%= for auth_access <- @auth_access_collection do %>
+      <tr id={"auth_access-#{auth_access.id}"}>
+        <td><%= auth_access.group_id %></td>
+        <td><%= auth_access.forum_id %></td>
+        <td><%= auth_access.auth_view %></td>
+        <td><%= auth_access.auth_read %></td>
+        <td><%= auth_access.auth_post %></td>
+        <td><%= auth_access.auth_reply %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.auth_access_show_path(@socket, :show, auth_access) %></span>
+          <span><%= live_patch "Edit", to: Routes.auth_access_index_path(@socket, :edit, auth_access) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: auth_access.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Auth access", to: Routes.auth_access_index_path(@socket, :new) %></span>

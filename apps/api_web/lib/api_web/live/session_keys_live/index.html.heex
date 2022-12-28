@@ -1,0 +1,45 @@
+<h1>Listing Sessions keys</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.session_keys_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.SessionKeysLive.FormComponent}
+      id={@session_keys.id || :new}
+      title={@page_title}
+      action={@live_action}
+      session_keys={@session_keys}
+      return_to={Routes.session_keys_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>User</th>
+      <th>Last ip</th>
+      <th>Last login</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sessions_keys">
+    <%= for session_keys <- @sessions_keys do %>
+      <tr id={"session_keys-#{session_keys.id}"}>
+        <td><%= session_keys.key_id %></td>
+        <td><%= session_keys.user_id %></td>
+        <td><%= session_keys.last_ip %></td>
+        <td><%= session_keys.last_login %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.session_keys_show_path(@socket, :show, session_keys) %></span>
+          <span><%= live_patch "Edit", to: Routes.session_keys_index_path(@socket, :edit, session_keys) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: session_keys.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Session keys", to: Routes.session_keys_index_path(@socket, :new) %></span>

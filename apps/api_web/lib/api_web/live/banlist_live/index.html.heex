@@ -1,0 +1,49 @@
+<h1>Listing Banlist</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.banlist_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.BanlistLive.FormComponent}
+      id={@banlist.id || :new}
+      title={@page_title}
+      action={@live_action}
+      banlist={@banlist}
+      return_to={Routes.banlist_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Group name</th>
+      <th>Group type</th>
+      <th>Group description</th>
+      <th>Group moderator</th>
+      <th>Group single user</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="banlist">
+    <%= for banlist <- @banlist_collection do %>
+      <tr id={"banlist-#{banlist.id}"}>
+        <td><%= banlist.group_id %></td>
+        <td><%= banlist.group_name %></td>
+        <td><%= banlist.group_type %></td>
+        <td><%= banlist.group_description %></td>
+        <td><%= banlist.group_moderator %></td>
+        <td><%= banlist.group_single_user %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.banlist_show_path(@socket, :show, banlist) %></span>
+          <span><%= live_patch "Edit", to: Routes.banlist_index_path(@socket, :edit, banlist) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: banlist.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Banlist", to: Routes.banlist_index_path(@socket, :new) %></span>

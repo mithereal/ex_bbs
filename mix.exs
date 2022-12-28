@@ -1,4 +1,4 @@
-defmodule Api.Umbrella.MixProject do
+defmodule Exbb2.MixProject do
   use Mix.Project
 
   def project do

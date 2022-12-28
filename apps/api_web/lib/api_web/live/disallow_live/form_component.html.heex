@@ -1,0 +1,24 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="disallow-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :disallow_id %>
+    <%= number_input f, :disallow_id %>
+    <%= error_tag f, :disallow_id %>
+  
+    <%= label f, :disallow_username %>
+    <%= text_input f, :disallow_username %>
+    <%= error_tag f, :disallow_username %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

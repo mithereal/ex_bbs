@@ -1,0 +1,41 @@
+<h1>Show Session keys</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.session_keys_show_path(@socket, :show, @session_keys)}>
+    <.live_component
+      module={ApiWeb.SessionKeysLive.FormComponent}
+      id={@session_keys.id}
+      title={@page_title}
+      action={@live_action}
+      session_keys={@session_keys}
+      return_to={Routes.session_keys_show_path(@socket, :show, @session_keys)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Key:</strong>
+    <%= @session_keys.key_id %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @session_keys.user_id %>
+  </li>
+
+  <li>
+    <strong>Last ip:</strong>
+    <%= @session_keys.last_ip %>
+  </li>
+
+  <li>
+    <strong>Last login:</strong>
+    <%= @session_keys.last_login %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.session_keys_show_path(@socket, :edit, @session_keys), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.session_keys_index_path(@socket, :index) %></span>

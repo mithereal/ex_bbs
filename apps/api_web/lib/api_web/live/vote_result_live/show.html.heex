@@ -1,0 +1,41 @@
+<h1>Show Vote result</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.vote_result_show_path(@socket, :show, @vote_result)}>
+    <.live_component
+      module={ApiWeb.VoteResultLive.FormComponent}
+      id={@vote_result.id}
+      title={@page_title}
+      action={@live_action}
+      vote_result={@vote_result}
+      return_to={Routes.vote_result_show_path(@socket, :show, @vote_result)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Vote:</strong>
+    <%= @vote_result.vote_id %>
+  </li>
+
+  <li>
+    <strong>Vote option:</strong>
+    <%= @vote_result.vote_option_id %>
+  </li>
+
+  <li>
+    <strong>Vote option text:</strong>
+    <%= @vote_result.vote_option_text %>
+  </li>
+
+  <li>
+    <strong>Vote result:</strong>
+    <%= @vote_result.vote_result %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.vote_result_show_path(@socket, :edit, @vote_result), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.vote_result_index_path(@socket, :index) %></span>

@@ -1,0 +1,49 @@
+<h1>Listing Group</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.groups_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.GroupsLive.FormComponent}
+      id={@groups.id || :new}
+      title={@page_title}
+      action={@live_action}
+      groups={@groups}
+      return_to={Routes.groups_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Group name</th>
+      <th>Group type</th>
+      <th>Group description</th>
+      <th>Group moderator</th>
+      <th>Group single user</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="group">
+    <%= for groups <- @group do %>
+      <tr id={"groups-#{groups.id}"}>
+        <td><%= groups.group_id %></td>
+        <td><%= groups.group_name %></td>
+        <td><%= groups.group_type %></td>
+        <td><%= groups.group_description %></td>
+        <td><%= groups.group_moderator %></td>
+        <td><%= groups.group_single_user %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.groups_show_path(@socket, :show, groups) %></span>
+          <span><%= live_patch "Edit", to: Routes.groups_index_path(@socket, :edit, groups) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: groups.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Groups", to: Routes.groups_index_path(@socket, :new) %></span>

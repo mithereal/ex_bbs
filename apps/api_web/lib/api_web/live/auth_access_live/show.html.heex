@@ -1,0 +1,51 @@
+<h1>Show Auth access</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.auth_access_show_path(@socket, :show, @auth_access)}>
+    <.live_component
+      module={ApiWeb.AuthAccessLive.FormComponent}
+      id={@auth_access.id}
+      title={@page_title}
+      action={@live_action}
+      auth_access={@auth_access}
+      return_to={Routes.auth_access_show_path(@socket, :show, @auth_access)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Group:</strong>
+    <%= @auth_access.group_id %>
+  </li>
+
+  <li>
+    <strong>Forum:</strong>
+    <%= @auth_access.forum_id %>
+  </li>
+
+  <li>
+    <strong>Auth view:</strong>
+    <%= @auth_access.auth_view %>
+  </li>
+
+  <li>
+    <strong>Auth read:</strong>
+    <%= @auth_access.auth_read %>
+  </li>
+
+  <li>
+    <strong>Auth post:</strong>
+    <%= @auth_access.auth_post %>
+  </li>
+
+  <li>
+    <strong>Auth reply:</strong>
+    <%= @auth_access.auth_reply %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.auth_access_show_path(@socket, :edit, @auth_access), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.auth_access_index_path(@socket, :index) %></span>

@@ -1,0 +1,36 @@
+<h1>Show Word</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.word_show_path(@socket, :show, @word)}>
+    <.live_component
+      module={ApiWeb.WordLive.FormComponent}
+      id={@word.id}
+      title={@page_title}
+      action={@live_action}
+      word={@word}
+      return_to={Routes.word_show_path(@socket, :show, @word)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Word:</strong>
+    <%= @word.word_id %>
+  </li>
+
+  <li>
+    <strong>Word:</strong>
+    <%= @word.word %>
+  </li>
+
+  <li>
+    <strong>Replacement:</strong>
+    <%= @word.replacement %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.word_show_path(@socket, :edit, @word), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.word_index_path(@socket, :index) %></span>

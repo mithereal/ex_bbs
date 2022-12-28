@@ -1,0 +1,104 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="forum-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :forum_id %>
+    <%= number_input f, :forum_id %>
+    <%= error_tag f, :forum_id %>
+  
+    <%= label f, :cat_id %>
+    <%= number_input f, :cat_id %>
+    <%= error_tag f, :cat_id %>
+  
+    <%= label f, :forum_name %>
+    <%= text_input f, :forum_name %>
+    <%= error_tag f, :forum_name %>
+  
+    <%= label f, :forum_desc %>
+    <%= text_input f, :forum_desc %>
+    <%= error_tag f, :forum_desc %>
+  
+    <%= label f, :forum_status %>
+    <%= number_input f, :forum_status %>
+    <%= error_tag f, :forum_status %>
+  
+    <%= label f, :forum_order %>
+    <%= number_input f, :forum_order %>
+    <%= error_tag f, :forum_order %>
+  
+    <%= label f, :forum_posts %>
+    <%= number_input f, :forum_posts %>
+    <%= error_tag f, :forum_posts %>
+  
+    <%= label f, :forum_topics %>
+    <%= number_input f, :forum_topics %>
+    <%= error_tag f, :forum_topics %>
+  
+    <%= label f, :forum_last_post_id %>
+    <%= number_input f, :forum_last_post_id %>
+    <%= error_tag f, :forum_last_post_id %>
+  
+    <%= label f, :prune_enable %>
+    <%= number_input f, :prune_enable %>
+    <%= error_tag f, :prune_enable %>
+  
+    <%= label f, :prune_next %>
+    <%= number_input f, :prune_next %>
+    <%= error_tag f, :prune_next %>
+  
+    <%= label f, :auth_view %>
+    <%= number_input f, :auth_view %>
+    <%= error_tag f, :auth_view %>
+  
+    <%= label f, :auth_read %>
+    <%= number_input f, :auth_read %>
+    <%= error_tag f, :auth_read %>
+  
+    <%= label f, :auth_post %>
+    <%= number_input f, :auth_post %>
+    <%= error_tag f, :auth_post %>
+  
+    <%= label f, :auth_reply %>
+    <%= number_input f, :auth_reply %>
+    <%= error_tag f, :auth_reply %>
+  
+    <%= label f, :auth_edit %>
+    <%= number_input f, :auth_edit %>
+    <%= error_tag f, :auth_edit %>
+  
+    <%= label f, :auth_delete %>
+    <%= number_input f, :auth_delete %>
+    <%= error_tag f, :auth_delete %>
+  
+    <%= label f, :auth_announce %>
+    <%= number_input f, :auth_announce %>
+    <%= error_tag f, :auth_announce %>
+  
+    <%= label f, :auth_sticky %>
+    <%= number_input f, :auth_sticky %>
+    <%= error_tag f, :auth_sticky %>
+  
+    <%= label f, :auth_pollcreate %>
+    <%= number_input f, :auth_pollcreate %>
+    <%= error_tag f, :auth_pollcreate %>
+  
+    <%= label f, :auth_vote %>
+    <%= number_input f, :auth_vote %>
+    <%= error_tag f, :auth_vote %>
+  
+    <%= label f, :auth_attachments %>
+    <%= number_input f, :auth_attachments %>
+    <%= error_tag f, :auth_attachments %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
