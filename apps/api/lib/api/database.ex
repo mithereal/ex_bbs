@@ -2885,4 +2885,27 @@ defmodule Api.Database do
   def change_word(%Word{} = word, attrs \\ %{}) do
     Word.changeset(word, attrs)
   end
+
+  import Ecto.Query, only: [from: 2]
+
+  def get_db_stat(type \\ "topiccount") do
+    case type do
+      "usercount" ->
+        {:ok, Repo.aggregate(User, :count)}
+
+      "newestuser" ->
+        query = "SELECT user_id, username
+				FROM  USERS_TABLE
+				WHERE user_id  <> ANONYMOUS
+				ORDER BY user_id DESC
+				LIMIT 1"
+
+        {:ok, Repo.query(query)}
+
+      _ ->
+        topics = Repo.aggregate(Topic, :count)
+        posts = Repo.aggregate(Post, :count)
+        {:ok, %{topics: topics, posts: posts}}
+    end
+  end
 end

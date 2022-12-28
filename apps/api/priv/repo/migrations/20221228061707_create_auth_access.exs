@@ -3,14 +3,16 @@ defmodule Api.Repo.Migrations.CreateAuthAccess do
 
   def change do
     create table(:auth_access) do
-      add :group_id, :integer
-      add :forum_id, :integer
-      add :auth_view, :integer
-      add :auth_read, :integer
-      add :auth_post, :integer
-      add :auth_reply, :integer
+      add(:group_id, :integer, null: false, default: 0)
+      add(:forum_id, :integer, null: false, default: 0)
+      add(:auth_view, :integer, null: false, default: 0)
+      add(:auth_read, :integer, null: false, default: 0)
+      add(:auth_post, :integer, null: false, default: 0)
+      add(:auth_reply, :integer, null: false, default: 0)
 
       timestamps()
     end
+
+    create(unique_index(:auth_access, [:group_id, :forum_id]))
   end
 end

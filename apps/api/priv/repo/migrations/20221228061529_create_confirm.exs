@@ -3,11 +3,13 @@ defmodule Api.Repo.Migrations.CreateConfirm do
 
   def change do
     create table(:confirm) do
-      add :confirm_id, :integer
-      add :session_id, :integer
-      add :code, :integer
+      add(:confirm_id, :integer)
+      add(:session_id, :integer)
+      add(:code, :integer)
 
       timestamps()
     end
+
+    create(unique_index(:confirm, [:session_id, :confirm_id]))
   end
 end
