@@ -7,7 +7,15 @@ defmodule Exbb2.MixProject do
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      releases: [
+        exbb2_umbrella: [
+          applications: [
+            api: :permanent,
+            api_web: :permanent
+          ]
+        ]
+      ]
     ]
   end
 
