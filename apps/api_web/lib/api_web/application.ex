@@ -29,4 +29,8 @@ defmodule ApiWeb.Application do
     ApiWeb.Endpoint.config_change(changed, removed)
     :ok
   end
+
+  @version ApiWeb.Mix.Project.config()[:version]
+
+  def version, do: @version
 end
