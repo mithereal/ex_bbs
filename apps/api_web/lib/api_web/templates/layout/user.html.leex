@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+    <meta name="author" content="@mithereal"/>
+    <meta name="description" content="<%= Application.get_env(:api, :description, "") %>"/>
+    <meta name="keywords" content="<%= Application.get_env(:api, :keywords, "") %>"/>
+    <meta name="robots" content="<%= Application.get_env(:api, :robots, "noindex, nofollow") %>"/>
+    <meta name="application-name" content="<%= Application.get_env(:api, :application_name, "") %>"/>
+    <meta name="msapplication-starturl" content="<%= ApiWeb.Endpoint.url() %>"/>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="theme-color" content="<%= Application.get_env(:api, :theme_color, "#4285f4") %>"/>
+
+    <meta property="og:type" content="<%= Application.get_env(:api, :og_type, "website") %>"/>
+    <meta property="og:title" content="<%= Application.get_env(:api, :og_title, "") %>"/>
+    <meta property="og:url" content="<%= ApiWeb.Endpoint.url() %>"/>
+    <meta property="og:image" content="<%= ApiWeb.Endpoint.url() %>/images/api_richSnippet.png"/>
+    <meta property="og:description" content="<%= Application.get_env(:api, :og_description, "") %>"/>
+    <meta property="og:locale" content="<%= Application.get_env(:api, :og_locale, "en_US") %>"/>
+
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "App", suffix: " · Phoenix Framework" %>
+
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/font-awesome/all.css") %>"/>
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/user.css") %>"/>
+
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/user.js") %>"></script>
+
+    <%= render "_apple_touch_header.html", assigns %>
+
+    <link rel="shortcut icon" href="<%= Routes.static_path(@conn, "/images/favicon.png") %>/"/>
+
+
+    <script type="text/javascript">
+        document.documentElement.classList.remove("no-js");
+    </script>
+
+    <script phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/modernizr_webp.js") %>"></script>
+
+</head>
+
+<body>
+
+<div
+        x-data="{ menuOpen: false }"
+        class="menu_button"
+>
+    <!-- start::Black overlay -->
+    <div :class="menuOpen ? 'block' : 'hidden'" @click="menuOpen = false"
+         class="black_overlay"></div>
+    <!-- end::Black overlay -->
+
+    <aside
+            :class="menuOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
+            class="main_menu"
+    >
+        <!-- start::Logo -->
+        <div class="logo">
+            <h1 class="logo_text">
+                Template
+            </h1>
+        </div>
+        <!-- end::Logo -->
+
+        <!-- start::Navigation -->
+        <nav class="navigation">
+            <!-- start::Menu link -->
+            <a
+                    x-data="{ linkHover: false }"
+                    @mouseover="linkHover = true"
+                    @mouseleave="linkHover = false"
+                    href="/home"
+                    class="menu_link"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition duration-200"
+                     :class="linkHover ? 'link_hover_text' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span
+                        class=""
+                        :class="linkHover ? 'link_hover_text' : ''"
+                >
+                            Dashboard
+                        </span>
+            </a>
+            <!-- end::Menu link -->
+
+            <!-- start::Menu link -->
+            <a
+                    x-data="{ linkHover: false }"
+                    @mouseover="linkHover = true"
+                    @mouseleave="linkHover = false"
+                    href="/user/projects"
+                    class="menu_link"
+            >
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition duration-200"
+                     :class="linkHover ? 'link_hover_text' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+
+                </svg>
+                <span
+                        class=""
+                        :class="linkHover ? 'link_hover_text' : ''"
+                >
+                            Github Projects
+                        </span>
+            </a>
+            <!-- end::Menu link -->
+
+            <!-- start::Menu link -->
+            <a
+                    x-data="{ linkHover: false }"
+                    @mouseover="linkHover = true"
+                    @mouseleave="linkHover = false"
+                    href="/user/products"
+                    class="menu_link"
+            >
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition duration-200"
+                     :class="linkHover ? 'link_hover_text' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path fill="none" d="M10.862,6.47H3.968v6.032h6.894V6.47z M10,11.641H4.83V7.332H10V11.641z M12.585,11.641h-0.861v0.861h0.861V11.641z M7.415,14.226h0.862v-0.862H7.415V14.226z M8.707,17.673h2.586c0.237,0,0.431-0.193,0.431-0.432c0-0.237-0.193-0.431-0.431-0.431H8.707c-0.237,0-0.431,0.193-0.431,0.431C8.276,17.479,8.47,17.673,8.707,17.673 M5.691,14.226h0.861v-0.862H5.691V14.226z M4.83,13.363H3.968v0.862H4.83V13.363z M16.895,4.746h-3.017V3.023h1.292c0.476,0,0.862-0.386,0.862-0.862V1.299c0-0.476-0.387-0.862-0.862-0.862H10c-0.476,0-0.862,0.386-0.862,0.862v0.862c0,0.476,0.386,0.862,0.862,0.862h1.293v1.723H3.106c-0.476,0-0.862,0.386-0.862,0.862v12.926c0,0.476,0.386,0.862,0.862,0.862h13.789c0.475,0,0.861-0.387,0.861-0.862V5.608C17.756,5.132,17.369,4.746,16.895,4.746 M10.862,2.161H10V1.299h0.862V2.161zM11.724,1.299h3.446v0.862h-3.446V1.299z M13.016,4.746h-0.861V3.023h0.861V4.746z M16.895,18.534H3.106v-2.585h13.789V18.534zM16.895,15.088H3.106v-9.48h13.789V15.088z M15.17,12.502h0.862v-0.861H15.17V12.502z M13.447,12.502h0.861v-0.861h-0.861V12.502zM15.17,10.778h0.862V9.917H15.17V10.778z M15.17,9.055h0.862V8.193H15.17V9.055z M16.032,6.47h-4.309v0.862h4.309V6.47zM14.309,8.193h-0.861v0.862h0.861V8.193z M12.585,8.193h-0.861v0.862h0.861V8.193z M13.447,14.226h2.585v-0.862h-2.585V14.226zM13.447,10.778h0.861V9.917h-0.861V10.778z M12.585,9.917h-0.861v0.861h0.861V9.917z"></path>
+
+                </svg>
+                <span
+                        class=""
+                        :class="linkHover ? 'link_hover_text' : ''"
+                >
+                          products
+                        </span>
+            </a>
+            <!-- end::Menu link -->
+        </nav>
+        <!-- end::Navigation -->
+    </aside>
+
+    <div class="main_container">
+
+       <%= render "_user_menu.html", assigns %>
+
+        <div class="page_container">
+            <%= @inner_content %>
+        </div>
+
+        <footer>
+            <div class="footer_container">
+                <span>&copy;2022 <script>window.location.hostname</script></span>
+                <div class="footer_links">
+                <span><%= link "Terms", to: Routes.page_path(@conn, :terms), title: "Terms"  %></span>
+                <span><%= link "Privacy", to: Routes.page_path(@conn, :privacy), title: "Privacy"  %></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+
+</body>
+</html>

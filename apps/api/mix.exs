@@ -39,7 +39,9 @@ defmodule Api.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:swoosh, "~> 1.3"},
       {:ecto, "~> 3.9"},
-      {:ecto_sql, "~> 3.9"}
+      {:ecto_sql, "~> 3.9"},
+      {:terminator, git: "https://github.com/data-twister/terminator.git"},
+
     ]
   end
 

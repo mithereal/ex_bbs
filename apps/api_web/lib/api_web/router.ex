@@ -36,4 +36,29 @@ defmodule ApiWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  alias ApiWeb.Plug.EnsureRole
+
+  pipeline :user do
+    plug(EnsureRole, [:admin, :user])
+  end
+
+  pipeline :admin do
+    plug(EnsureRole, [:admin])
+  end
+
+  pipeline :browser_with_no_csrf do
+    # plug :protect_from_forgery
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {ApiWeb.LayoutView, :user})
+    plug(:fetch_current_user)
+    plug :default_assigns
+  end
+
+  scope "/home", ApiWeb do
+    pipe_through([:user_browser, :require_authenticated_user])
+
+    live("/", UserDashboardLive)
+  end
 end
