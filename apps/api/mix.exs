@@ -41,7 +41,7 @@ defmodule Api.MixProject do
       {:ecto, "~> 3.9"},
       {:ecto_sql, "~> 3.9"},
       {:terminator, git: "https://github.com/data-twister/terminator.git"},
-
+      {:ice_cream, "~> 0.0.5", only: [:dev, :test]}
     ]
   end
 
