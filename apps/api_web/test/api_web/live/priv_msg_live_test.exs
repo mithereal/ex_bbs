@@ -2,7 +2,7 @@ defmodule ApiWeb.PrivMsgLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{privmsgs_attach_sig: 42, privmsgs_date: 42, privmsgs_enable_bbcode: 42, privmsgs_enable_html: 42, privmsgs_enable_smilies: 42, privmsgs_from_userid: 42, privmsgs_id: 42, privmsgs_ip: "some privmsgs_ip", privmsgs_subject: "some privmsgs_subject", privmsgs_to_userid: 42, privmsgs_type: 42}
   @update_attrs %{privmsgs_attach_sig: 43, privmsgs_date: 43, privmsgs_enable_bbcode: 43, privmsgs_enable_html: 43, privmsgs_enable_smilies: 43, privmsgs_from_userid: 43, privmsgs_id: 43, privmsgs_ip: "some updated privmsgs_ip", privmsgs_subject: "some updated privmsgs_subject", privmsgs_to_userid: 43, privmsgs_type: 43}

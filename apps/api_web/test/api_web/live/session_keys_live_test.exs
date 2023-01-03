@@ -2,7 +2,7 @@ defmodule ApiWeb.SessionKeysLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{key_id: "some key_id", last_ip: "some last_ip", last_login: 42, user_id: 42}
   @update_attrs %{key_id: "some updated key_id", last_ip: "some updated last_ip", last_login: 43, user_id: 43}

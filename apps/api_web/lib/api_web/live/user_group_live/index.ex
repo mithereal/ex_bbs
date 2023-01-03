@@ -1,8 +1,8 @@
 defmodule ApiWeb.UserGroupLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.UserGroup
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.UserGroup
 
   @impl true
   def mount(_params, _session, socket) do

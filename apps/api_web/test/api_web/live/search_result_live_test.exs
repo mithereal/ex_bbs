@@ -2,7 +2,7 @@ defmodule ApiWeb.SearchResultLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{search_array: "some search_array", search_id: 42, search_time: 42, session_id: 42}
   @update_attrs %{search_array: "some updated search_array", search_id: 43, search_time: 43, session_id: 43}

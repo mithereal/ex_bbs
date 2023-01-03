@@ -2,7 +2,7 @@ defmodule ApiWeb.RankLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{rank_id: 42, rank_image: "some rank_image", rank_min: 42, rank_special: 42, rank_title: "some rank_title"}
   @update_attrs %{rank_id: 43, rank_image: "some updated rank_image", rank_min: 43, rank_special: 43, rank_title: "some updated rank_title"}

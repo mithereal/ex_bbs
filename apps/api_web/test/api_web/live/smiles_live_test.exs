@@ -2,7 +2,7 @@ defmodule ApiWeb.SmilesLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{code: "some code", emoticon: "some emoticon", smile_url: "some smile_url", smilies_id: 42}
   @update_attrs %{code: "some updated code", emoticon: "some updated emoticon", smile_url: "some updated smile_url", smilies_id: 43}

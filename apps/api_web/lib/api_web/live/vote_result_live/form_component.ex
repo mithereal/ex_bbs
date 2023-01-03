@@ -1,7 +1,7 @@
 defmodule ApiWeb.VoteResultLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{vote_result: vote_result} = assigns, socket) do

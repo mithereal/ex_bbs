@@ -2,7 +2,7 @@ defmodule ApiWeb.SearchWordlistLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{word_common: "some word_common", word_id: 42, word_text: "some word_text"}
   @update_attrs %{word_common: "some updated word_common", word_id: 43, word_text: "some updated word_text"}

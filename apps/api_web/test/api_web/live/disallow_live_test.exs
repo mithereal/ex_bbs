@@ -2,7 +2,7 @@ defmodule ApiWeb.DisallowLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{disallow_id: 42, disallow_username: "some disallow_username"}
   @update_attrs %{disallow_id: 43, disallow_username: "some updated disallow_username"}

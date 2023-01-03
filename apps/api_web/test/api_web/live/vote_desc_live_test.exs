@@ -2,7 +2,7 @@ defmodule ApiWeb.VoteDescLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{topic_id: 42, vote_id: 42, vote_length: 42, vote_start: 42, vote_text: 42}
   @update_attrs %{topic_id: 43, vote_id: 43, vote_length: 43, vote_start: 43, vote_text: 43}

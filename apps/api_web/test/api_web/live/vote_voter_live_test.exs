@@ -2,7 +2,7 @@ defmodule ApiWeb.VoteVoterLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{vote_id: 42, vote_user_id: 42, vote_user_ip: "some vote_user_ip"}
   @update_attrs %{vote_id: 43, vote_user_id: 43, vote_user_ip: "some updated vote_user_ip"}

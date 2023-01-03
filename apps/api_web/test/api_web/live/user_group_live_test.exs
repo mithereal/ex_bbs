@@ -2,7 +2,7 @@ defmodule ApiWeb.UserGroupLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{group_id: 42, user_id: 42, user_pending: 42}
   @update_attrs %{group_id: 43, user_id: 43, user_pending: 43}

@@ -2,7 +2,7 @@ defmodule ApiWeb.ConfigLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{config_name: "some config_name", config_value: "some config_value"}
   @update_attrs %{config_name: "some updated config_name", config_value: "some updated config_value"}

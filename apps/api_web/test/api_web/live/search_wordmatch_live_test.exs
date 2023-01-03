@@ -2,7 +2,7 @@ defmodule ApiWeb.SearchWordmatchLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{post_id: 42, title_match: 42, word_id: 42}
   @update_attrs %{post_id: 43, title_match: 43, word_id: 43}

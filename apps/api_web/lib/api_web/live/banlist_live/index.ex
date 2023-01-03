@@ -1,8 +1,8 @@
 defmodule ApiWeb.BanlistLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.Banlist
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.Banlist
 
   @impl true
   def mount(_params, _session, socket) do

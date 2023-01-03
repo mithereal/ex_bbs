@@ -1,8 +1,8 @@
 defmodule ApiWeb.TopicWatchLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.TopicWatch
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.TopicWatch
 
   @impl true
   def mount(_params, _session, socket) do

@@ -1,7 +1,7 @@
 defmodule ApiWeb.PrivMsgTextLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{priv_msg_text: priv_msg_text} = assigns, socket) do

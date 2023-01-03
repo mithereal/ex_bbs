@@ -2,7 +2,7 @@ defmodule ApiWeb.PostTextLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{bbcode_uid: "some bbcode_uid", post_id: 42, post_subject: "some post_subject", post_text: "some post_text"}
   @update_attrs %{bbcode_uid: "some updated bbcode_uid", post_id: 43, post_subject: "some updated post_subject", post_text: "some updated post_text"}

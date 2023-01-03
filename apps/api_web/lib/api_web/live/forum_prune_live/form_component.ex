@@ -1,7 +1,7 @@
 defmodule ApiWeb.ForumPruneLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{forum_prune: forum_prune} = assigns, socket) do

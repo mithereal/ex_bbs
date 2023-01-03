@@ -1,7 +1,7 @@
 defmodule ApiWeb.SmilesLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{smiles: smiles} = assigns, socket) do

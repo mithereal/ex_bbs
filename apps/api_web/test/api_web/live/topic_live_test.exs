@@ -2,7 +2,7 @@ defmodule ApiWeb.TopicLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{forum_id: 42, topic_first_post_id: 42, topic_id: 42, topic_last_post_id: 42, topic_moved_id: 42, topic_poster: 42, topic_replies: 42, topic_status: 42, topic_time: 42, topic_title: "some topic_title", topic_type: 42, topic_views: 42, topic_vote: 42}
   @update_attrs %{forum_id: 43, topic_first_post_id: 43, topic_id: 43, topic_last_post_id: 43, topic_moved_id: 43, topic_poster: 43, topic_replies: 43, topic_status: 43, topic_time: 43, topic_title: "some updated topic_title", topic_type: 43, topic_views: 43, topic_vote: 43}

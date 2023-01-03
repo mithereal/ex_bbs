@@ -2,7 +2,7 @@ defmodule ApiWeb.GroupsLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{group_description: "some group_description", group_id: 42, group_moderator: 42, group_name: "some group_name", group_single_user: 42, group_type: 42}
   @update_attrs %{group_description: "some updated group_description", group_id: 43, group_moderator: 43, group_name: "some updated group_name", group_single_user: 43, group_type: 43}

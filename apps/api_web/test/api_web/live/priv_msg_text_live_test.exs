@@ -2,7 +2,7 @@ defmodule ApiWeb.PrivMsgTextLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{privmsgs_bbcode_uid: "some privmsgs_bbcode_uid", privmsgs_text: "some privmsgs_text", privmsgs_text_id: 42}
   @update_attrs %{privmsgs_bbcode_uid: "some updated privmsgs_bbcode_uid", privmsgs_text: "some updated privmsgs_text", privmsgs_text_id: 43}

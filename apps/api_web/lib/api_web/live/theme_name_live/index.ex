@@ -1,8 +1,8 @@
 defmodule ApiWeb.ThemeNameLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.ThemeName
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.ThemeName
 
   @impl true
   def mount(_params, _session, socket) do

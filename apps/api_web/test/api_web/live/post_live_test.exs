@@ -2,7 +2,7 @@ defmodule ApiWeb.PostLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{enable_bbcode: 42, enable_html: 42, enable_sig: 42, enable_smilies: 42, forum_id: 42, post_edit_count: 42, post_edit_time: 42, post_id: 42, post_time: 42, post_username: "some post_username", poster_id: 42, poster_ip: "some poster_ip", topic_id: 42}
   @update_attrs %{enable_bbcode: 43, enable_html: 43, enable_sig: 43, enable_smilies: 43, forum_id: 43, post_edit_count: 43, post_edit_time: 43, post_id: 43, post_time: 43, post_username: "some updated post_username", poster_id: 43, poster_ip: "some updated poster_ip", topic_id: 43}

@@ -1,7 +1,7 @@
 defmodule ApiWeb.RankLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{rank: rank} = assigns, socket) do

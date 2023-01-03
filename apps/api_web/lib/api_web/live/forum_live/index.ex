@@ -1,8 +1,8 @@
 defmodule ApiWeb.ForumLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.Forum
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.Forum
 
   @impl true
   def mount(_params, _session, socket) do

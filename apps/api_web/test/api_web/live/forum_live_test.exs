@@ -2,7 +2,7 @@ defmodule ApiWeb.ForumLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{auth_announce: 42, auth_attachments: 42, auth_delete: 42, auth_edit: 42, auth_pollcreate: 42, auth_post: 42, auth_read: 42, auth_reply: 42, auth_sticky: 42, auth_view: 42, auth_vote: 42, cat_id: 42, forum_desc: "some forum_desc", forum_id: 42, forum_last_post_id: 42, forum_name: "some forum_name", forum_order: 42, forum_posts: 42, forum_status: 42, forum_topics: 42, prune_enable: 42, prune_next: 42}
   @update_attrs %{auth_announce: 43, auth_attachments: 43, auth_delete: 43, auth_edit: 43, auth_pollcreate: 43, auth_post: 43, auth_read: 43, auth_reply: 43, auth_sticky: 43, auth_view: 43, auth_vote: 43, cat_id: 43, forum_desc: "some updated forum_desc", forum_id: 43, forum_last_post_id: 43, forum_name: "some updated forum_name", forum_order: 43, forum_posts: 43, forum_status: 43, forum_topics: 43, prune_enable: 43, prune_next: 43}

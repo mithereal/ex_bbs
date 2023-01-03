@@ -1,7 +1,7 @@
 defmodule ApiWeb.SearchWordmatchLive.Show do
   use ApiWeb, :live_view
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def mount(_params, _session, socket) do

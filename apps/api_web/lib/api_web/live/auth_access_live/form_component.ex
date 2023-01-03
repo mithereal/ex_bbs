@@ -1,7 +1,7 @@
 defmodule ApiWeb.AuthAccessLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{auth_access: auth_access} = assigns, socket) do

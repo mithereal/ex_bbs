@@ -1,8 +1,8 @@
 defmodule ApiWeb.AuthAccessLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.AuthAccess
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.AuthAccess
 
   @impl true
   def mount(_params, _session, socket) do

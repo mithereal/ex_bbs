@@ -1,12 +1,12 @@
-defmodule Api.DatabaseTest do
+defmodule Api.Bbs.SchemaTest do
   use Api.DataCase
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   describe "categories" do
-    alias Api.Database.Category
+    alias Api.Bbs.Schema.Category
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{cat_id: nil, cat_order: nil, cat_title: nil}
 
@@ -62,9 +62,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "banlist" do
-    alias Api.Database.Banlist
+    alias Api.Bbs.Schema.Banlist
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{group_description: nil, group_id: nil, group_moderator: nil, group_name: nil, group_single_user: nil, group_type: nil}
 
@@ -126,9 +126,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "groups" do
-    alias Api.Database.Group
+    alias Api.Bbs.Schema.Group
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{group_description: nil, group_id: nil, group_moderator: nil, group_name: nil, group_single_user: nil, group_type: nil}
 
@@ -190,9 +190,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "confirm" do
-    alias Api.Database.Confirm
+    alias Api.Bbs.Schema.Confirm
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{code: nil, confirm_id: nil, session_id: nil}
 
@@ -248,9 +248,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "auth_access" do
-    alias Api.Database.AuthAccess
+    alias Api.Bbs.Schema.AuthAccess
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{auth_post: nil, auth_read: nil, auth_reply: nil, auth_view: nil, forum_id: nil, group_id: nil}
 
@@ -312,9 +312,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "config" do
-    alias Api.Database.Config
+    alias Api.Bbs.Schema.Config
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{config_name: nil, config_value: nil}
 
@@ -368,9 +368,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "disallow" do
-    alias Api.Database.Disallow
+    alias Api.Bbs.Schema.Disallow
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{disallow_id: nil, disallow_username: nil}
 
@@ -424,9 +424,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "forums" do
-    alias Api.Database.Forum
+    alias Api.Bbs.Schema.Forum
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{auth_announce: nil, auth_attachments: nil, auth_delete: nil, auth_edit: nil, auth_pollcreate: nil, auth_post: nil, auth_read: nil, auth_reply: nil, auth_sticky: nil, auth_view: nil, auth_vote: nil, cat_id: nil, forum_desc: nil, forum_id: nil, forum_last_post_id: nil, forum_name: nil, forum_order: nil, forum_posts: nil, forum_status: nil, forum_topics: nil, prune_enable: nil, prune_next: nil}
 
@@ -520,9 +520,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "forum_prune" do
-    alias Api.Database.ForumPrune
+    alias Api.Bbs.Schema.ForumPrune
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{forum_id: nil, prune_days: nil, prune_freq: nil, prune_id: nil}
 
@@ -580,9 +580,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "posts" do
-    alias Api.Database.Post
+    alias Api.Bbs.Schema.Post
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{enable_bbcode: nil, enable_html: nil, enable_sig: nil, enable_smilies: nil, forum_id: nil, post_edit_count: nil, post_edit_time: nil, post_id: nil, post_time: nil, post_username: nil, poster_id: nil, poster_ip: nil, topic_id: nil}
 
@@ -658,9 +658,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "posts_text" do
-    alias Api.Database.PostText
+    alias Api.Bbs.Schema.PostText
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{bbcode_uid: nil, post_id: nil, post_subject: nil, post_text: nil}
 
@@ -718,9 +718,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "privmsgs" do
-    alias Api.Database.PrivMsg
+    alias Api.Bbs.Schema.PrivMsg
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{privmsgs_attach_sig: nil, privmsgs_date: nil, privmsgs_enable_bbcode: nil, privmsgs_enable_html: nil, privmsgs_enable_smilies: nil, privmsgs_from_userid: nil, privmsgs_id: nil, privmsgs_ip: nil, privmsgs_subject: nil, privmsgs_to_userid: nil, privmsgs_type: nil}
 
@@ -792,9 +792,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "privmsgs_text" do
-    alias Api.Database.PrivMsgText
+    alias Api.Bbs.Schema.PrivMsgText
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{privmsgs_bbcode_uid: nil, privmsgs_text: nil, privmsgs_text_id: nil}
 
@@ -850,9 +850,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "ranks" do
-    alias Api.Database.Rank
+    alias Api.Bbs.Schema.Rank
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{rank_id: nil, rank_image: nil, rank_min: nil, rank_special: nil, rank_title: nil}
 
@@ -912,9 +912,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "search_results" do
-    alias Api.Database.SearchResult
+    alias Api.Bbs.Schema.SearchResult
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{search_array: nil, search_id: nil, search_time: nil, session_id: nil}
 
@@ -972,9 +972,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "search_wordlist" do
-    alias Api.Database.SearchWordlist
+    alias Api.Bbs.Schema.SearchWordlist
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{word_common: nil, word_id: nil, word_text: nil}
 
@@ -1030,9 +1030,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "search_wordmatch" do
-    alias Api.Database.SearchWordmatch
+    alias Api.Bbs.Schema.SearchWordmatch
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{post_id: nil, title_match: nil, word_id: nil}
 
@@ -1088,9 +1088,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "sessions" do
-    alias Api.Database.Session
+    alias Api.Bbs.Schema.Session
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{session_admin: nil, session_id: nil, session_ip: nil, session_logged_in: nil, session_page: nil, session_start: nil, session_time: nil, session_user_id: nil}
 
@@ -1156,9 +1156,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "sessions_keys" do
-    alias Api.Database.SessionKeys
+    alias Api.Bbs.Schema.SessionKeys
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{key_id: nil, last_ip: nil, last_login: nil, user_id: nil}
 
@@ -1216,9 +1216,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "smiles" do
-    alias Api.Database.Smiles
+    alias Api.Bbs.Schema.Smiles
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{code: nil, emoticon: nil, smile_url: nil, smilies_id: nil}
 
@@ -1276,9 +1276,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "themes" do
-    alias Api.Database.Theme
+    alias Api.Bbs.Schema.Theme
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{tr_color3: nil, body_vlink: nil, img_size_privmsg: nil, td_color1: nil, fontcolor3: nil, body_background: nil, td_class3: nil, template_name: nil, tr_class2: nil, th_class3: nil, tr_color2: nil, tr_class3: nil, tr_class1: nil, fontface2: nil, th_color1: nil, th_class2: nil, themes_id: nil, td_class1: nil, body_text: nil, th_color2: nil, body_link: nil, tr_color1: nil, td_class2: nil, td_color2: nil, fontsize2: nil, fontface3: nil, fontcolor2: nil, body_bgcolor: nil, fontsize3: nil, fontface1: nil, fontcolor1: nil, span_class3: nil, span_class2: nil, th_color3: nil, body_alink: nil, td_color3: nil, fontsize1: nil, head_stylesheet: nil, style_name: nil, th_class1: nil, span_class1: nil, body_hlink: nil, img_size_poll: nil}
 
@@ -1414,9 +1414,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "themes_name" do
-    alias Api.Database.ThemeName
+    alias Api.Bbs.Schema.ThemeName
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{fontcolor1_name: nil, fontcolor2_name: nil, fontcolor3_name: nil, fontface1_name: nil, fontface2_name: nil, fontface3_name: nil, fontsize1_name: nil, fontsize2_name: nil, fontsize3_name: nil, span_class1_name: nil, span_class2_name: nil, span_class3_name: nil, td_class1_name: nil, td_class2_name: nil, td_class3_name: nil, td_color1_name: nil, td_color2_name: nil, td_color3_name: nil, th_class1_name: nil, th_class2_name: nil, th_class3_name: nil, th_color1_name: nil, th_color2_name: nil, th_color3_name: nil, themes_id: nil, tr_class1_name: nil, tr_class2_name: nil, tr_class3_name: nil, tr_color1_name: nil, tr_color2_name: nil, tr_color3_name: nil}
 
@@ -1528,9 +1528,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "topics" do
-    alias Api.Database.Topic
+    alias Api.Bbs.Schema.Topic
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{forum_id: nil, topic_first_post_id: nil, topic_id: nil, topic_last_post_id: nil, topic_moved_id: nil, topic_poster: nil, topic_replies: nil, topic_status: nil, topic_time: nil, topic_title: nil, topic_type: nil, topic_views: nil, topic_vote: nil}
 
@@ -1606,9 +1606,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "topics_watch" do
-    alias Api.Database.TopicWatch
+    alias Api.Bbs.Schema.TopicWatch
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{notify_status: nil, topic_id: nil, user_id: nil}
 
@@ -1664,9 +1664,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "user_group" do
-    alias Api.Database.UserGroup
+    alias Api.Bbs.Schema.UserGroup
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{group_id: nil, user_id: nil, user_pending: nil}
 
@@ -1722,9 +1722,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "users" do
-    alias Api.Database.User
+    alias Api.Bbs.Schema.User
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{user_login_tries: nil, user_timezone: nil, user_allowhtml: nil, user_posts: nil, user_occ: nil, user_allow_pm: nil, user_allowsmile: nil, user_interests: nil, user_website: nil, user_session_time: nil, user_emailtime: nil, user_avatar: nil, user_sig_bbcode_uid: nil, user_viewemail: nil, user_sig: nil, user_allowbbcode: nil, user_last_login_try: nil, user_aim: nil, user_lang: nil, user_allowavatar: nil, user_new_privmsg: nil, user_allow_viewonline: nil, user_from: nil, user_msnm: nil, user_id: nil, user_active: nil, user_attachsig: nil, user_avatar_type: nil, user_actkey: nil, user_level: nil, username: nil, user_regdate: nil, user_last_privmsg: nil, user_email: nil, user_unread_privmsg: nil, user_style: nil, user_session_page: nil, user_newpasswd: nil, user_password: nil, user_lastvisit: nil, user_popup_pm: nil, user_rank: nil, user_dateformat: nil, user_icq: nil, user_notify_pm: nil, user_notify: nil, user_yim: nil}
 
@@ -1868,9 +1868,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "vote_desc" do
-    alias Api.Database.VoteDesc
+    alias Api.Bbs.Schema.VoteDesc
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{topic_id: nil, vote_id: nil, vote_length: nil, vote_start: nil, vote_text: nil}
 
@@ -1930,9 +1930,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "vote_results" do
-    alias Api.Database.VoteResult
+    alias Api.Bbs.Schema.VoteResult
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{vote_id: nil, vote_option_id: nil, vote_option_text: nil, vote_result: nil}
 
@@ -1990,9 +1990,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "vote_voters" do
-    alias Api.Database.VoteVoter
+    alias Api.Bbs.Schema.VoteVoter
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{vote_id: nil, vote_user_id: nil, vote_user_ip: nil}
 
@@ -2048,9 +2048,9 @@ defmodule Api.DatabaseTest do
   end
 
   describe "words" do
-    alias Api.Database.Word
+    alias Api.Bbs.Schema.Word
 
-    import Api.DatabaseFixtures
+    import Api.Bbs.SchemaFixtures
 
     @invalid_attrs %{replacement: nil, word: nil, word_id: nil}
 

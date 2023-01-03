@@ -1,8 +1,8 @@
 defmodule ApiWeb.RankLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.Rank
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.Rank
 
   @impl true
   def mount(_params, _session, socket) do

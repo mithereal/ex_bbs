@@ -1,8 +1,8 @@
 defmodule ApiWeb.VoteVoterLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.VoteVoter
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.VoteVoter
 
   @impl true
   def mount(_params, _session, socket) do

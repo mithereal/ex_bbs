@@ -2,7 +2,7 @@ defmodule ApiWeb.AuthAccessLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{auth_post: 42, auth_read: 42, auth_reply: 42, auth_view: 42, forum_id: 42, group_id: 42}
   @update_attrs %{auth_post: 43, auth_read: 43, auth_reply: 43, auth_view: 43, forum_id: 43, group_id: 43}

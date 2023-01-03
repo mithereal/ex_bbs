@@ -2,7 +2,7 @@ defmodule ApiWeb.CategoryLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{cat_id: 42, cat_order: 42, cat_title: "some cat_title"}
   @update_attrs %{cat_id: 43, cat_order: 43, cat_title: "some updated cat_title"}

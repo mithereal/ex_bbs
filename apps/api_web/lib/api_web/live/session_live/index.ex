@@ -1,8 +1,8 @@
 defmodule ApiWeb.SessionLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.Session
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.Session
 
   @impl true
   def mount(_params, _session, socket) do

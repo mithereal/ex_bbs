@@ -1,7 +1,7 @@
 defmodule ApiWeb.WordLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{word: word} = assigns, socket) do

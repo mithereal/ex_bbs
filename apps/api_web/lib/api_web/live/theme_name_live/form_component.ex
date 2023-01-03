@@ -1,7 +1,7 @@
 defmodule ApiWeb.ThemeNameLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{theme_name: theme_name} = assigns, socket) do

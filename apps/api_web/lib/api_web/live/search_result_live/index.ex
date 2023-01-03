@@ -1,8 +1,8 @@
 defmodule ApiWeb.SearchResultLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.SearchResult
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.SearchResult
 
   @impl true
   def mount(_params, _session, socket) do

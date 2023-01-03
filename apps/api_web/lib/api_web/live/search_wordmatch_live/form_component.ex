@@ -1,7 +1,7 @@
 defmodule ApiWeb.SearchWordmatchLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Database
+  alias Api.Bbs.Schema
 
   @impl true
   def update(%{search_wordmatch: search_wordmatch} = assigns, socket) do

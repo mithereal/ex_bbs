@@ -1,8 +1,8 @@
 defmodule ApiWeb.PrivMsgTextLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Database
-  alias Api.Database.PrivMsgText
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.PrivMsgText
 
   @impl true
   def mount(_params, _session, socket) do

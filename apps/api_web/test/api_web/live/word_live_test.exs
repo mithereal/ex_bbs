@@ -2,7 +2,7 @@ defmodule ApiWeb.WordLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{replacement: "some replacement", word: "some word", word_id: 42}
   @update_attrs %{replacement: "some updated replacement", word: "some updated word", word_id: 43}

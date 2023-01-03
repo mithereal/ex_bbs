@@ -2,7 +2,7 @@ defmodule ApiWeb.ConfirmLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{code: 42, confirm_id: 42, session_id: 42}
   @update_attrs %{code: 43, confirm_id: 43, session_id: 43}

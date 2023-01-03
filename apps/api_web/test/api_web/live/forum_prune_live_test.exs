@@ -2,7 +2,7 @@ defmodule ApiWeb.ForumPruneLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{forum_id: 42, prune_days: 42, prune_freq: 42, prune_id: 42}
   @update_attrs %{forum_id: 43, prune_days: 43, prune_freq: 43, prune_id: 43}

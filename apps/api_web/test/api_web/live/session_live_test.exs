@@ -2,7 +2,7 @@ defmodule ApiWeb.SessionLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{session_admin: 42, session_id: "some session_id", session_ip: "some session_ip", session_logged_in: 42, session_page: 42, session_start: 42, session_time: 42, session_user_id: 42}
   @update_attrs %{session_admin: 43, session_id: "some updated session_id", session_ip: "some updated session_ip", session_logged_in: 43, session_page: 43, session_start: 43, session_time: 43, session_user_id: 43}

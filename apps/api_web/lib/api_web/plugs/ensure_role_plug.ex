@@ -13,7 +13,7 @@ defmodule ApiWeb.Plug.EnsureRole do
   """
   import Plug.Conn
 
-  alias Api.Database.User
+  alias Api.Bbs.Schema.User
   alias Phoenix.Controller
   alias Plug.Conn
 

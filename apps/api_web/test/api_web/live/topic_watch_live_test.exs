@@ -2,7 +2,7 @@ defmodule ApiWeb.TopicWatchLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.DatabaseFixtures
+  import Api.Bbs.SchemaFixtures
 
   @create_attrs %{notify_status: 42, topic_id: 42, user_id: 42}
   @update_attrs %{notify_status: 43, topic_id: 43, user_id: 43}
