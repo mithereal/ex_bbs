@@ -1,5 +1,68 @@
 defmodule ApiWeb.Router do
   use ApiWeb, :router
+  use ApiWeb, :user_auth
+
+  alias ApiWeb.Plug.EnsureRole
+
+
+  def default_assigns(conn, _opts) do
+    meta_pixel_id = Application.get_env(:api, :meta_pixel_id)
+
+    conn
+    |> assign(:meta_attrs, [])
+    |> assign(:manifest, nil)
+    |> assign(:meta_pixel_id, meta_pixel_id)
+    |> assign(:"Service-Worker-Allowed", "/js/")
+  end
+
+
+  pipeline :browser do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {ApiWeb.LayoutView, "root.html"})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:fetch_current_user)
+    plug :default_assigns
+  end
+
+  pipeline :admin_browser do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {ApiWeb.LayoutView, "admin.html"})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:fetch_current_user)
+    plug :default_assigns
+  end
+
+  pipeline :user_browser do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {ApiWeb.LayoutView, "user.html"})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:fetch_current_user)
+    plug :default_assigns
+  end
+
+  pipeline :pwa do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {ApiWeb.LayoutView, "pwa.html"})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:fetch_current_user)
+    plug :default_assigns
+  end
+
+  pipeline :auth do
+    plug Ueberauth
+  end
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -7,6 +70,24 @@ defmodule ApiWeb.Router do
 
   scope "/api", ApiWeb do
     pipe_through :api
+  end
+
+  scope "/page", ApiWeb do
+    pipe_through([:browser])
+
+  end
+
+  scope "/page", ApiWeb do
+    pipe_through([:pwa])
+
+    get("/pwa", PageController, :pwa)
+  end
+
+  scope "/auth", ApiWeb do
+    pipe_through [:browser_with_no_csrf, :redirect_if_user_is_authenticated]
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Enables LiveDashboard only for development

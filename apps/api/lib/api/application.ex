@@ -17,7 +17,4 @@ defmodule Api.Application do
     Supervisor.start_link(children, strategy: :one_for_one, name: Api.Supervisor)
   end
 
-  @version Api.Mix.Project.config()[:version]
-
-  def version, do: @version
 end

@@ -10,6 +10,11 @@ defmodule ApiWeb.Endpoint do
     signing_salt: "3tODQz8Y"
   ]
 
+  socket "/socket", ApiWeb.UserSocket,
+         websocket: true,
+         longpoll: true,
+         compress: false
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -20,7 +25,8 @@ defmodule ApiWeb.Endpoint do
     at: "/",
     from: :api_web,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only:
+      ~w(assets css fonts images js webfonts favicon.ico robots.txt service_worker.js cache_manifest.json pwa.json )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -43,5 +49,6 @@ defmodule ApiWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug ApiWeb.CORS
   plug ApiWeb.Router
 end

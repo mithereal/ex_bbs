@@ -41,6 +41,17 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_live_view" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry_metrics" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_live_dashboard" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ice_cream" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/postgrex" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/terminator" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/open_api_spex" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ueberauth" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/guardian_db" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/guardian" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jose" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/guardian_phoenix" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_attack" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/corsica" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

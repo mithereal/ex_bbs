@@ -42,12 +42,55 @@ defmodule ApiWeb do
     end
   end
 
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+          layout: {ApiWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+
+      import ApiWeb.LiveHelpers
+      import Phoenix.Component
+      alias Api.Accounts.User
+
+      @impl true
+      def handle_info(%{event: "logout_user", payload: %{user: %User{id: id}}}, socket) do
+        with %User{id: ^id} <- socket.assigns.current_user do
+          {:noreply,
+            socket
+            |> redirect(to: Routes.user_session_path(socket, :force_logout))}
+        else
+          _any -> {:noreply, socket}
+        end
+      end
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
+
+      import ApiWeb.LiveHelpers
+      alias Api.Accounts.User
+    end
+  end
+
+  def user_auth do
+    quote do
+      import ApiWeb.UserAuth
+    end
+  end
+
   def router do
     quote do
       use Phoenix.Router
 
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
@@ -60,6 +103,13 @@ defmodule ApiWeb do
 
   defp view_helpers do
     quote do
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
+      # Import LiveView helpers (live_render, live_component, live_patch, etc)
+      import Phoenix.LiveView.Helpers
+      import Phoenix.Component
+
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 

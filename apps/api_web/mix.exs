@@ -47,6 +47,11 @@ defmodule ApiWeb.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:open_api_spex, "~> 3.4"},
+      {:guardian, "~> 2.0"},
+      {:guardian_db, "~> 2.0"},
+      {:guardian_phoenix, "~> 2.0"},
+      {:plug_attack, "~> 0.4.2"},
+      {:corsica, "~> 1.1"},
     ]
   end
 

@@ -30,7 +30,4 @@ defmodule ApiWeb.Application do
     :ok
   end
 
-  @version ApiWeb.Mix.Project.config()[:version]
-
-  def version, do: @version
 end

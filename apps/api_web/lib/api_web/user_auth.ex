@@ -46,8 +46,6 @@ defmodule ApiWeb.UserAuth do
     |> put_session(:user_token, token)
     |> put_session(:current_user, current_user)
     |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
-    |> maybe_add_github_token(current_user, params)
-    |> maybe_add_cart(current_user, params)
     |> maybe_write_remember_me_cookie(token, params)
     |> redirect(to: user_return_to || signed_in_path(conn, role))
   end
@@ -67,32 +65,6 @@ defmodule ApiWeb.UserAuth do
   defp last_login(user) do
     data = %{user | last_login: DateTime.utc_now()}
     User.update_user(data)
-  end
-
-  defp maybe_add_github_token(conn, user, %{github_token: token}) do
-    user = %{user | github_token: token}
-
-    Plug.Conn.put_session(conn, :current_user, user)
-  end
-
-  defp maybe_add_github_token(conn, _user, _params) do
-    conn
-  end
-
-  defp maybe_add_cart(conn, user, %{cart: cart}) do
-    cart = ExCart.Cache.server_process(cart.id)
-
-    Enum.each(cart.items, fn x ->
-      product = Api.Products.get_product_by_slug!(x)
-      ExCart.Server.clear(cart)
-      ExCart.Server.add_item(cart, %ExCart.Item{sku: product.slug, price: product.price})
-    end)
-
-    conn
-  end
-
-  defp maybe_add_cart(conn, _user, _params) do
-    conn
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
