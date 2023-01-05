@@ -18,7 +18,7 @@ import Config
 # at the `config/runtime.exs`.
 config :api, ecto_repos: [Api.Repo]
 
-config :app, Api.Repo, migration_default_prefix: "phpbb_"
+config :api, Api.Repo, migration_default_prefix: "phpbb_"
 
 config :api, Api.Mailer, adapter: Swoosh.Adapters.Local
 

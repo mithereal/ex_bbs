@@ -2,7 +2,8 @@ defmodule ApiWeb.BanlistLive.Index do
   use ApiWeb, :live_view
 
   alias Api.Bbs
-  alias Api.Bbs.Banlist
+  alias Api.Bbs.Schema
+  alias Api.Bbs.Schema.Banlist
 
   @impl true
   def mount(_params, _session, socket) do
@@ -17,7 +18,7 @@ defmodule ApiWeb.BanlistLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Banlist")
-    |> assign(:banlist, Bbs.get_banlist!(id))
+    |> assign(:banlist, Schema.get_banlist!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -34,13 +35,13 @@ defmodule ApiWeb.BanlistLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    banlist = Bbs.get_banlist!(id)
-    {:ok, _} = Bbs.delete_banlist(banlist)
+    banlist = Schema.get_banlist!(id)
+    {:ok, _} = Schema.delete_banlist(banlist)
 
     {:noreply, assign(socket, :banlist_collection, list_banlist())}
   end
 
   defp list_banlist do
-    Bbs.list_banlist()
+    Schema.list_banlist()
   end
 end
