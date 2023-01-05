@@ -3,10 +3,10 @@ defmodule ApiWeb.PageLive do
 
   @impl true
   def mount(_params, session, socket) do
-    products =
-      Api.Product.Supervisor.list()
-      |> Enum.map(fn service ->
-        {_, data} = :ets.lookup(String.to_atom(service), :default) |> List.first()
+    forums =
+      Api.Bbs.Schema.list_forums()
+      |> Enum.map(fn forum ->
+        {_, data} = :ets.lookup(String.to_atom(forum), :default) |> List.first()
         data
       end)
 
@@ -15,7 +15,7 @@ defmodule ApiWeb.PageLive do
     {:ok,
      assign(socket,
        manifest: "/cache_manifest.json",
-       products: Enum.shuffle(products),
+       forums: forums,
        setting: settings
      )}
   end

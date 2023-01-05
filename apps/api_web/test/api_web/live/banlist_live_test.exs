@@ -2,11 +2,11 @@ defmodule ApiWeb.BanlistLiveTest do
   use ApiWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Api.Bbs.SchemaFixtures
+  import Api.BbsFixtures
 
-  @create_attrs %{group_description: "some group_description", group_id: 42, group_moderator: 42, group_name: "some group_name", group_single_user: 42, group_type: 42}
-  @update_attrs %{group_description: "some updated group_description", group_id: 43, group_moderator: 43, group_name: "some updated group_name", group_single_user: 43, group_type: 43}
-  @invalid_attrs %{group_description: nil, group_id: nil, group_moderator: nil, group_name: nil, group_single_user: nil, group_type: nil}
+  @create_attrs %{ban_email: "some ban_email", ban_id: 42, ban_ip: "some ban_ip", ban_userid: 42}
+  @update_attrs %{ban_email: "some updated ban_email", ban_id: 43, ban_ip: "some updated ban_ip", ban_userid: 43}
+  @invalid_attrs %{ban_email: nil, ban_id: nil, ban_ip: nil, ban_userid: nil}
 
   defp create_banlist(_) do
     banlist = banlist_fixture()
@@ -20,7 +20,7 @@ defmodule ApiWeb.BanlistLiveTest do
       {:ok, _index_live, html} = live(conn, Routes.banlist_index_path(conn, :index))
 
       assert html =~ "Listing Banlist"
-      assert html =~ banlist.group_description
+      assert html =~ banlist.ban_email
     end
 
     test "saves new banlist", %{conn: conn} do
@@ -42,7 +42,7 @@ defmodule ApiWeb.BanlistLiveTest do
         |> follow_redirect(conn, Routes.banlist_index_path(conn, :index))
 
       assert html =~ "Banlist created successfully"
-      assert html =~ "some group_description"
+      assert html =~ "some ban_email"
     end
 
     test "updates banlist in listing", %{conn: conn, banlist: banlist} do
@@ -64,7 +64,7 @@ defmodule ApiWeb.BanlistLiveTest do
         |> follow_redirect(conn, Routes.banlist_index_path(conn, :index))
 
       assert html =~ "Banlist updated successfully"
-      assert html =~ "some updated group_description"
+      assert html =~ "some updated ban_email"
     end
 
     test "deletes banlist in listing", %{conn: conn, banlist: banlist} do
@@ -82,7 +82,7 @@ defmodule ApiWeb.BanlistLiveTest do
       {:ok, _show_live, html} = live(conn, Routes.banlist_show_path(conn, :show, banlist))
 
       assert html =~ "Show Banlist"
-      assert html =~ banlist.group_description
+      assert html =~ banlist.ban_email
     end
 
     test "updates banlist within modal", %{conn: conn, banlist: banlist} do
@@ -104,7 +104,7 @@ defmodule ApiWeb.BanlistLiveTest do
         |> follow_redirect(conn, Routes.banlist_show_path(conn, :show, banlist))
 
       assert html =~ "Banlist updated successfully"
-      assert html =~ "some updated group_description"
+      assert html =~ "some updated ban_email"
     end
   end
 end

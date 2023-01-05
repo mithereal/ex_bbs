@@ -3,16 +3,14 @@ defmodule Api.Repo.Migrations.CreateBanlist do
 
   def change do
     create table(:banlist) do
-      add(:group_id, :integer, null: false)
-      add(:group_name, :string, null: false)
-      add(:group_type, :integer, null: false, default: 1)
-      add(:group_description, :string, null: false)
-      add(:group_moderator, :integer, null: false, default: 0)
-      add(:group_single_user, :integer, null: false, default: 0)
+      add(:ban_id, :integer, null: false)
+      add(:ban_userid, :integer, null: false)
+      add(:ban_ip, :string, null: false, default: 1)
+      add(:ban_email, :string, null: false)
 
       timestamps()
     end
 
-    create(unique_index(:groups, :group_id))
+    create(unique_index(:banlist, :ban_id))
   end
 end

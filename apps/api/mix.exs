@@ -40,6 +40,7 @@ defmodule Api.MixProject do
       {:swoosh, "~> 1.3"},
       {:ecto, "~> 3.9"},
       {:ecto_sql, "~> 3.9"},
+      {:postgrex, ">= 0.0.0"},
       {:terminator, git: "https://github.com/data-twister/terminator.git"},
       {:ice_cream, "~> 0.0.5", only: [:dev, :test]},
       {:ueberauth, "~> 0.10.3", override: true}

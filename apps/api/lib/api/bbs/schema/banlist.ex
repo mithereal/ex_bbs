@@ -3,12 +3,10 @@ defmodule Api.Bbs.Schema.Banlist do
   import Ecto.Changeset
 
   schema "banlist" do
-    field :group_description, :string
-    field :group_id, :integer
-    field :group_moderator, :integer
-    field :group_name, :string
-    field :group_single_user, :integer
-    field :group_type, :integer
+    field :ban_email, :string
+    field :ban_id, :integer
+    field :ban_ip, :string
+    field :ban_userid, :integer
 
     timestamps()
   end
@@ -16,7 +14,7 @@ defmodule Api.Bbs.Schema.Banlist do
   @doc false
   def changeset(banlist, attrs) do
     banlist
-    |> cast(attrs, [:group_id, :group_name, :group_type, :group_description, :group_moderator, :group_single_user])
-    |> validate_required([:group_id, :group_name, :group_type, :group_description, :group_moderator, :group_single_user])
+    |> cast(attrs, [:ban_id, :ban_userid, :ban_ip, :ban_email])
+    |> validate_required([:ban_id, :ban_userid, :ban_ip, :ban_email])
   end
 end

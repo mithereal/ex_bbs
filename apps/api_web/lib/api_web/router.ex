@@ -142,4 +142,38 @@ defmodule ApiWeb.Router do
 
     live("/", UserDashboardLive)
   end
+
+  scope "/", ApiWeb do
+    pipe_through([:browser, :redirect_if_user_is_authenticated])
+
+    live("/", PageLive)
+  end
+
+  scope "/page", ApiWeb do
+    pipe_through([:browser])
+
+    get("/contact", PageController, :contact)
+    get("/privacy", PageController, :privacy)
+    get("/terms", PageController, :terms)
+  end
+
+  scope "/page", ApiWeb do
+    pipe_through([:pwa])
+
+    get("/pwa", PageController, :pwa)
+  end
+
+  scope "/admin", ApiWeb do
+    pipe_through([:admin_browser, :require_authenticated_user, :admin])
+
+    live("/", AdminDashboardLive)
+
+    live "/banlist", BanlistLive.Index, :index
+    live "/banlist/new", BanlistLive.Index, :new
+    live "/banlist/:id/edit", BanlistLive.Index, :edit
+
+    live "/banlist/:id", BanlistLive.Show, :show
+    live "/banlist/:id/show/edit", BanlistLive.Show, :edit
+
+  end
 end

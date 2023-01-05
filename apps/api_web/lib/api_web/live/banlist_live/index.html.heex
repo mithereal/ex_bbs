@@ -16,12 +16,10 @@
 <table>
   <thead>
     <tr>
-      <th>Group</th>
-      <th>Group name</th>
-      <th>Group type</th>
-      <th>Group description</th>
-      <th>Group moderator</th>
-      <th>Group single user</th>
+      <th>Ban</th>
+      <th>Ban userid</th>
+      <th>Ban ip</th>
+      <th>Ban email</th>
 
       <th></th>
     </tr>
@@ -29,12 +27,10 @@
   <tbody id="banlist">
     <%= for banlist <- @banlist_collection do %>
       <tr id={"banlist-#{banlist.id}"}>
-        <td><%= banlist.group_id %></td>
-        <td><%= banlist.group_name %></td>
-        <td><%= banlist.group_type %></td>
-        <td><%= banlist.group_description %></td>
-        <td><%= banlist.group_moderator %></td>
-        <td><%= banlist.group_single_user %></td>
+        <td><%= banlist.ban_id %></td>
+        <td><%= banlist.ban_userid %></td>
+        <td><%= banlist.ban_ip %></td>
+        <td><%= banlist.ban_email %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.banlist_show_path(@socket, :show, banlist) %></span>

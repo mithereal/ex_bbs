@@ -1,7 +1,7 @@
 defmodule ApiWeb.BanlistLive.Show do
   use ApiWeb, :live_view
 
-  alias Api.Bbs.Schema
+  alias Api.Bbs
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,7 +13,7 @@ defmodule ApiWeb.BanlistLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:banlist, Database.get_banlist!(id))}
+     |> assign(:banlist, Bbs.get_banlist!(id))}
   end
 
   defp page_title(:show), do: "Show Banlist"
