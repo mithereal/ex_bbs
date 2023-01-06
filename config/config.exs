@@ -16,9 +16,16 @@ import Config
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :api, ecto_repos: [Api.Repo]
+#config :api, ecto_repos: [Api.Repo]
 
-config :api, Api.Repo, migration_default_prefix: "phpbb_"
+
+#config :api, Api.Repo
+#config :api, Api.Repo, migration_default_prefix: "phpbb_"
+
+config :api,
+       ecto_repos: [Api.Repo],
+       google_play_id: "",
+       meta_pixel_id: ""
 
 config :api, Api.Mailer, adapter: Swoosh.Adapters.Local
 

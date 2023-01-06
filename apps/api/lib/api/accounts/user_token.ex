@@ -12,7 +12,7 @@ defmodule Api.Accounts.UserToken do
   @change_email_validity_in_days 7
   @session_validity_in_days 60
 
-  schema "api_user_tokens" do
+  schema "system_api_user_tokens" do
     field :token, :binary
     field :context, :string
     field :sent_to, :string

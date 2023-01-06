@@ -39,6 +39,7 @@ defmodule ApiWeb.MixProject do
     [
       {:phoenix, "~> 1.6.2"},
       {:phoenix_live_dashboard, "~> 0.5"},
+      {:phoenix_html, "~> 3.0", override: true},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -52,6 +53,9 @@ defmodule ApiWeb.MixProject do
       {:guardian_phoenix, "~> 2.0"},
       {:plug_attack, "~> 0.4.2"},
       {:corsica, "~> 1.1"},
+      {:webp, git: "https://github.com/mithereal/ex_webp.git"},
+      {:tailwind, "~> 0.1.6", runtime: Mix.env() == :dev},
+      {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev}
     ]
   end
 

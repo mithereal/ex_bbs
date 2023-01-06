@@ -43,7 +43,9 @@ defmodule Api.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:terminator, git: "https://github.com/data-twister/terminator.git"},
       {:ice_cream, "~> 0.0.5", only: [:dev, :test]},
-      {:ueberauth, "~> 0.10.3", override: true}
+      {:ueberauth, "~> 0.10.3", override: true},
+      {:scrivener_ecto, "~> 2.0"},
+      {:faker, "~> 0.17.0", only: [:dev, :test], runtime: false},
     ]
   end
 

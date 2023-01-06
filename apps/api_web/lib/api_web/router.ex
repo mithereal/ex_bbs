@@ -176,4 +176,30 @@ defmodule ApiWeb.Router do
     live "/banlist/:id/show/edit", BanlistLive.Show, :edit
 
   end
+
+
+  scope "/user", ApiWeb do
+    pipe_through([:browser, :redirect_if_user_is_authenticated])
+
+    get("/register", UserRegistrationController, :new)
+    post("/register", UserRegistrationController, :create)
+    get("/log_in", UserSessionController, :new)
+    post("/log_in", UserSessionController, :create)
+    get("/reset_password", UserResetPasswordController, :new)
+    post("/reset_password", UserResetPasswordController, :create)
+    get("/reset_password/:token", UserResetPasswordController, :edit)
+    put("/reset_password/:token", UserResetPasswordController, :update)
+  end
+
+  scope "/user", ApiWeb do
+    pipe_through([:user_browser, :require_authenticated_user])
+
+    get("/force_logout", UserSessionController, :force_logout)
+    get("/log_out", UserSessionController, :delete)
+    delete("/log_out", UserSessionController, :delete)
+    get("/confirm", UserConfirmationController, :new)
+    post("/confirm", UserConfirmationController, :create)
+    get("/confirm/:token", UserConfirmationController, :confirm)
+    get("/profile", UserProfileController, :show)
+    post("/profile", UserProfileController, :update)
 end
