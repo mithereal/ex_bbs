@@ -4,6 +4,7 @@ defmodule Api.Pages.Page do
 
   schema "pages" do
     field :name, :string
+    field :data, :string
 
     timestamps()
   end
@@ -11,7 +12,7 @@ defmodule Api.Pages.Page do
   @doc false
   def changeset(page, attrs) do
     page
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :data])
     |> validate_required([:name])
   end
 end
