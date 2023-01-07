@@ -1,5 +1,5 @@
 config = url = Application.get_env(:api, ApiWeb.Endpoint)
-[{_, hostname}] = Keyword.get(url, :url)
+[host: hostname, port: port] = Keyword.get(url, :url)
 
 {:ok, user_1} =
   Api.Accounts.register_user(%{
@@ -7,7 +7,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     password: "123456789abc",
     password_confirmation: "123456789abc",
     username: "user1",
-    terms: "on",
+    terms: true,
     active: true,
     confirmed_at: DateTime.utc_now()
   })
@@ -18,7 +18,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     password: "123456789abc",
     password_confirmation: "123456789abc",
     username: "user2",
-    terms: "on",
+    terms: true,
     active: true,
     confirmed_at: DateTime.utc_now()
   })
@@ -29,7 +29,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     password: "123456789abc",
     password_confirmation: "123456789abc",
     username: "user3",
-    terms: "on",
+    terms: true,
     active: true,
     confirmed_at: DateTime.utc_now()
   })

@@ -1,6 +1,9 @@
 defmodule ApiWeb.CORS do
+  endpoint = Application.get_env(:api, ApiWeb.Endpoint)
+  origins = Keyword.get(endpoint, :origins) || "*"
+
   use Corsica.Router,
-    origins: Application.get_env(:api, :origins, []),
+    origins: origins,
     allow_credentials: Application.get_env(:api, :allow_credentials, true),
     max_age: Application.get_env(:api, :max_age, 600)
 

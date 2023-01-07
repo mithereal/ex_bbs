@@ -208,6 +208,11 @@ defmodule ApiWeb.Router do
     get("/pwa", PageController, :pwa)
   end
 
+  scope "/websockets", ApiWeb do
+    pipe_through([:pwa])
+
+  end
+
   scope "/auth", ApiWeb do
     pipe_through [:browser_with_no_csrf, :redirect_if_user_is_authenticated]
 

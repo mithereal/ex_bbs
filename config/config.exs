@@ -29,7 +29,7 @@ config :api, ApiWeb.Endpoint,
   session_signing_salt: signing_salt,
   session_key: session_key,
   session_store: :cookie,
-  origins: [hostname, "https://localhost", "https://127.0.0.1"],
+  origins: "*",
   allow_credentials: true,
   max_age: 600
 

@@ -200,7 +200,7 @@ defmodule Api.Accounts do
       |> Map.put(:active, true)
       |> Map.put(:confirmed_at, DateTime.utc_now())
 
-    %User{}
+    %User{terms: true}
     |> User.registration_changeset(params)
     |> Repo.insert()
     |> grant_role("admin")

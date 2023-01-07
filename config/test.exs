@@ -10,7 +10,7 @@ config :bcrypt_elixir, :log_rounds, 1
 config :api, Api.Repo,
   username: "postgres",
   password: "postgres",
-  database: "data-twister_com#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "exbbs#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   port: 55_432,
   pool: Ecto.Adapters.SQL.Sandbox
@@ -18,7 +18,7 @@ config :api, Api.Repo,
 config :terminator, Terminator.Repo,
   username: "postgres",
   password: "postgres",
-  database: "data-twister_com#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "exbbs#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   port: 55_432,
   pool: Ecto.Adapters.SQL.Sandbox

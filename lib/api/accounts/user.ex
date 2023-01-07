@@ -17,7 +17,7 @@ defmodule Api.Accounts.User do
     field(:last_login, :naive_datetime)
     field(:confirmed_at, :naive_datetime)
     field(:password_confirmation, :string, virtual: true)
-    field(:terms, :string, virtual: true)
+    field(:terms, :boolean, virtual: true)
 
     has_one(:account, Api.Accounts.Account)
     has_one(:profile, Api.Accounts.User.Profile)

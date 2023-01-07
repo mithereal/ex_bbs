@@ -11,6 +11,8 @@ defmodule ApiWeb.UserRegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    terms = Map.has_key?(user_params, "terms")
+    user_params = Map.put(user_params, "terms", terms)
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =
