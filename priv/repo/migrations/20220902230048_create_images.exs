@@ -5,7 +5,7 @@ defmodule Api.Repo.Migrations.CreateImages do
     create table(:images) do
       add :path, :string
       add :size, :string
-      add :name, :string
+      add :description, :string
       add :type, :string
       add :width, :float
       add :height, :float

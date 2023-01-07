@@ -4,7 +4,7 @@ defmodule Api.Images.Image do
 
   schema "images" do
     field(:height, :float)
-    field(:name, :string)
+    field(:description, :string)
     field(:path, :string)
     field(:size, :string)
     field(:type, :string)
@@ -16,7 +16,7 @@ defmodule Api.Images.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:path, :size, :name, :type, :width, :height])
+    |> cast(attrs, [:path, :size, :description, :type, :width, :height])
     |> validate_required([:path, :size, :name, :type, :width, :height])
   end
 end
