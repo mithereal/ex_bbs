@@ -52,8 +52,6 @@ defmodule Api.User.Server do
 
     load_and_authorize_performer(user)
 
-    EcCart.Cache.server_process(user.id)
-
     {:ok, initial_state}
   end
 

@@ -41,7 +41,6 @@ defmodule Api.MixProject do
       {:phoenix_html, "~> 3.0", override: true},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.17", override: true},
-      {:floki, ">= 0.30.0", only: :test, override: true},
       {:phoenix_live_dashboard, "~> 0.5"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.1.6", runtime: Mix.env() == :dev},
