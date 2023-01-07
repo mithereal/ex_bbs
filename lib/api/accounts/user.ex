@@ -167,6 +167,11 @@ defmodule Api.Accounts.User do
     Bcrypt.verify_pass(password, hashed_password)
   end
 
+  def valid_password?(%Api.Accounts.User{hashed_password: hashed_password}, password)
+      when byte_size(hashed_password) < 1 do
+    nil
+  end
+
   def valid_password?(_, _) do
     Bcrypt.no_user_verify()
     false

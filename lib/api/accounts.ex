@@ -77,7 +77,15 @@ defmodule Api.Accounts do
   def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
-    if User.valid_password?(user, password), do: user |> Repo.preload(performer: :roles)
+    case User.valid_password?(user, password) do
+      nil ->
+      default_password =  Keyword.get(repo, :default_user_password) || "exbbs"
+       User.change_user_password(user, default_password)
+       false
+      true -> user |> Repo.preload(performer: :roles)
+      false -> false
+    end
+
   end
 
   @doc """
