@@ -1,6 +1,6 @@
 # EX_BBS
 
-This is a drop in replacement for phpbb with configs for via heroku or fly.io
+This is a drop in replacement for phpbb with configs for heroku or fly.io
 
 [![Build Status](https://travis-ci.com/mithereal/ex_bbs.svg?branch=master)](https://travis-ci.com/mithereal/ex_bbs)
 
