@@ -46,7 +46,7 @@ url: [host: hostname]
  - user 1:  email: "user1@company.com", password: "123456789abc"
  - user 2:  email: "user2@company.com", password: "123456789abc"
 
-If you forget the password or other admin problems you can remove the admin user from the db, restart the app and it will automatically be recreated with defaults.
+If you forget the password or other admin problems you can either reset the admin password to null which will set it to the default password or remove the admin user from the db then restart the app and it will automatically be recreated with defaults including roles.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
