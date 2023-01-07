@@ -47,24 +47,22 @@ COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
 # Install / update  JavaScript dependencies
-RUN npm install --prefix ./api_web/assets
+RUN npm install --prefix ./assets
 
-COPY apps/api/priv apps/api/priv
-COPY apps/api_web/priv apps/api_web/priv
+COPY priv priv
 
-COPY apps/api/lib apps/api/lib
-COPY apps/api_web/lib apps/api_web/lib
+COPY lib lib
 
-COPY apps/api/assets apps/api/assets
-COPY apps/api_web/assets apps/api_web/assets
+COPY assets assets
 
 # compile assets
-RUN cd apps/api_web && mix assets.deploy
+RUN mix assets.deploy
 
-COPY apps apps
+COPY assets assets
 
 # Compile the release
 RUN mix compile
+
 
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
@@ -96,7 +94,7 @@ RUN chown nobody /app
 ENV MIX_ENV="prod"
 
 # Only copy the final release from the build stage
-COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/api_umbrella ./
+COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/api ./
 
 
 USER nobody

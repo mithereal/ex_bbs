@@ -1,32 +1,64 @@
 import Config
 
+config :api, ApiWeb.Endpoint,
+       url: [host: "localhost", port: 4000]
+     #  http: [ip: {0, 0, 0, 0}, port: 4000]
+#       https: [
+#         port: 4001,
+#         cipher_suite: :strong,
+#         keyfile: "priv/certs/self_signed-key.pem",
+#         certfile: "priv/certs/self_signed.pem"
+#       ]
+
+# Configure your database
+config :api, Api.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "data-twister_com",
+  hostname: "localhost",
+  port: 55_432,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+config :terminator, Terminator.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "data-twister_com",
+  hostname: "localhost",
+  port: 55_432,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
-config :api_web, ApiWeb.Endpoint,
-  # Binding to loopback ipv4 address prevents access from other machines.
-  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
-  check_origin: false,
-  code_reloader: true,
+# with webpack to recompile .js and .css sources.
+config :api, ApiWeb.Endpoint,
+  http: [port: 4001],
+  https: [
+    port: 4000,
+    cipher_suite: :strong,
+    certfile: "priv/cert/selfsigned.pem",
+    keyfile: "priv/cert/selfsigned_key.pem"
+  ],
   debug_errors: true,
-  secret_key_base: "Os4GxdHd4ramrneH0DTfktHub2LrCmwHPoeamoq+IoAB0draGOyWLm5kI6jkJ7af",
+  code_reloader: true,
+  check_origin: false,
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    webp: {Webp, :run, [:default, []]},
+    asset_copy: {Phoenix.Copy, :watch, [:default]},
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    esbuild_user: {Esbuild, :install_and_run, [:user, ~w(--sourcemap=inline --watch)]},
+    esbuild_admin: {Esbuild, :install_and_run, [:admin, ~w(--sourcemap=inline --watch)]},
+    dart_sass: {DartSass, :install_and_run, [:default, ~w(--watch)]},
+    dart_sass_user: {DartSass, :install_and_run, [:user, ~w(--watch)]},
+    dart_sass_admin: {DartSass, :install_and_run, [:admin, ~w(--watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
+    tailwind_user: {Tailwind, :install_and_run, [:user, ~w(--watch)]},
+    tailwind_admin: {Tailwind, :install_and_run, [:admin, ~w(--watch)]}
   ]
-
-config :api, Api.Repo,
-       username: "postgres",
-       password: "postgres",
-       database: "phpbb2",
-       hostname: "localhost",
-       port: 55_432,
-       show_sensitive_data_on_connection_error: true,
-       pool_size: 10
 
 # ## SSL Support
 #
@@ -52,12 +84,40 @@ config :api, Api.Repo,
 # configured to run both http and https servers on
 # different ports.
 
+# Watch static and templates for browser reloading.
+config :api, ApiWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/api_web/(live|views)/.*(ex)$",
+      ~r"lib/api_web/templates/.*(eex)$"
+    ]
+  ]
+
+config :api, Api.Mailer,
+       adapter: Swoosh.Adapters.SMTP,
+       relay: "127.0.0.1",
+       username: "postgresql",
+       password: "postgresql",
+       ssl: false,
+       tls: :always,
+       auth: :always,
+       port: 1024,
+         #       dkim: [
+         #         s: "default", d: "data-twister.com",
+         #         private_key: {:pem_plain, File.read!("priv/certs/self_signed-key.pem")}
+         #       ],
+       retries: 2,
+       no_mx_lookups: false
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
-
-# Initialize plugs at runtime for faster development compilation
-config :phoenix, :plug_init_mode, :runtime
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Initialize plugs at runtime for faster development compilation
+config :phoenix, :plug_init_mode, :runtime
+
