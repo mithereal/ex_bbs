@@ -1,0 +1,27 @@
+{
+  "name": "EX_BBS - A Drop in replacement for phpbb",
+  "description": "A Drop in replacement for phpbb",
+  "repository": "https://github.com/mithereal/ex_bbs",
+  "logo": "",
+  "keywords": ["phoenix", "elixir", "liveview" ],
+  "addons": [ "heroku-postgresql"],
+  "env": {
+    "MIX_ENV": "prod",
+    "OTP_COOKIE": {
+      "description": "The OTP Secret",
+      "generator": "secret"
+    },
+    "SECRET_KEY_BASE": {
+      "description": "The Application Secret",
+      "generator": "secret"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir.git"
+    },
+    {
+      "url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static.git"
+    }
+  ]
+}

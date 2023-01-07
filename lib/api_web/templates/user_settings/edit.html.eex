@@ -1,0 +1,113 @@
+<!-- start:Page content -->
+<div class="h-full bg-gray-200 p-8">
+    <div
+            x-data="{ activeTab: 'profile' }"
+            class="bg-white flex flex-col md:flex-row rounded-lg"
+    >
+        <div class="w-full md:w-1/3 xl:w-1/4">
+            <button
+                    @click="activeTab = 'profile'"
+                    class="w-full flex flex-col text-left p-8 border-l border-t border-b border-gray-300 rounded-tl-lg rounded-tr-lg md:rounded-tr-none"
+                    :class=" activeTab === 'profile' ? 'bg-white border-r md:border-r-0' : 'bg-gray-100 border-r'"
+            >
+                <span class="text-gray-900">Profile Information</span>
+                <span class="text-sm text-gray-500">Update your account's profile information and email address.</span>
+            </button>
+            <button
+                    @click="activeTab = 'password'"
+                    class="w-full flex flex-col text-left p-8 border-l border-b border-gray-300"
+                    :class=" activeTab === 'password' ? 'bg-white border-r md:border-r-0' : 'bg-gray-100 border-r'"
+            >
+                <span class="text-gray-900">Update Password</span>
+                <span class="text-sm text-gray-500">Ensure your account is using a long, random password to stay secure.</span>
+            </button>
+            <button
+                    @click="activeTab = 'delete_account'"
+                    class="w-full flex flex-col text-left p-8 border-l border-b border-gray-300 md:rounded-bl-lg"
+                    :class=" activeTab === 'delete_account' ? 'bg-white border-r md:border-r-0' : 'bg-gray-100 border-r'"
+            >
+                <span class="text-gray-900">Delete Account</span>
+                <span class="text-sm text-gray-500">Permanently delete your account.</span>
+            </button>
+        </div>
+        <div class="w-full md:w-2/3 xl:w-3/4 py-8 px-16 flex flex-col items-start justify-start border-t border-r border-b border-gray-300 md:rounded-tr-lg rounded-br-lg">
+            <div
+                    x-show="activeTab === 'profile'"
+                    class="w-full md:w-3/4 xl:w-1/2"
+            >
+                <%= form_for @email_changeset, Routes.user_settings_path(@conn, :update_email), fn f -> %>
+                <div class="flex flex-col space-y-8">
+                    <div class="flex flex-col space-y-2">
+                        <label for="name" class="text-sm text-gray-500">Email</label>
+                        <%= email_input f, :email, required: true, class: "py-2 text-gray-900 border-gray-300 focus:border-primary focus:outline-none focus:ring-0 rounded-lg", autocomplete: "off", value: "#{@current_user.email}" %>
+                    </div>
+
+                    <div class="flex flex-col space-y-2">
+                        <label for="name" class="text-sm text-gray-500">Project Connectors</label>
+
+
+                            <%=  if(is_nil(@current_user.github_uid)) do %>
+
+                        <div class="text-sm">
+                            <a href="/auth/github" class="flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded">
+                                <%= raw  Octicons.to_svg(:"mark-github") %>
+                                <span>Link Github</span>
+                            </a>
+                        </div>
+                            <% else %>
+                        <div class="text-sm flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100  rounded">
+
+                                <%= raw  Octicons.to_svg(:"mark-github") %>
+                                <span>Github</span>
+
+                        </div>
+
+                            <%  end %>
+
+                    </div>
+                    <div>
+                        <button class="w-32 bg-primary hover:bg-primary-dark rounded-lg py-1.5 text-gray-200 text-sm uppercase hover:shadow-xl transition duration-150">Save</button>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            <div
+                    x-show="activeTab === 'password'"
+                    class="w-full md:w-3/4 xl:w-1/2"
+            >
+                <%= form_for @password_changeset, Routes.user_settings_path(@conn, :update_password), fn f -> %>
+                <div class="flex flex-col space-y-8">
+                    <div class="flex flex-col space-y-2">
+                        <label for="current_password" class="text-sm text-gray-500">Current Password</label>
+                        <%= password_input f, :current_password,  name: "current_password", id: "current_password", class: "py-2 text-gray-900 border-gray-300 focus:border-primary focus:outline-none focus:ring-0 rounded-lg", autocomplete: "off" %>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="new_password" class="text-sm text-gray-500">New Password</label>
+                        <%= password_input f, :current_password,  name: "current_password", id: "current_password", class: "py-2 text-gray-900 border-gray-300 focus:border-primary focus:outline-none focus:ring-0 rounded-lg", autocomplete: "off" %>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="confirm_password" class="text-sm text-gray-500">Confirm Password</label>
+                        <%= password_input f, :password_confirmation,  name: "confirm_password", id: "confirm_password", class: "py-2 text-gray-900 border-gray-300 focus:border-primary focus:outline-none focus:ring-0 rounded-lg", autocomplete: "off" %>
+                    </div>
+                    <div>
+                        <button class="w-32 bg-primary hover:bg-primary-dark rounded-lg py-1.5 text-gray-200 text-sm uppercase hover:shadow-xl transition duration-150">Save</button>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+
+            <div
+                    x-show="activeTab === 'delete_account'"
+                    class="w-full md:w-3/4 xl:w-1/2"
+            >
+                <p class="text-sm text-gray-500">Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.</p>
+                <form class="mt-8">
+                    <div>
+                        <button class="bg-red-600 hover:bg-red-700 rounded-lg px-8 py-1.5 text-gray-100 text-sm uppercase hover:shadow-xl transition duration-150">Delete Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:Page content -->

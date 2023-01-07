@@ -1,0 +1,41 @@
+<h1>Show Setting</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.setting_show_path(@socket, :show, @setting)}>
+    <.live_component
+      module={ApiWeb.SettingLive.FormComponent}
+      id={@setting.id}
+      title={@page_title}
+      action={@live_action}
+      setting={@setting}
+      return_to={Routes.setting_show_path(@socket, :show, @setting)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @setting.name %>
+  </li>
+
+  <li>
+    <strong>Key:</strong>
+    <%= @setting.key %>
+  </li>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @setting.value %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @setting.type %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.setting_show_path(@socket, :edit, @setting), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.setting_index_path(@socket, :index) %></span>

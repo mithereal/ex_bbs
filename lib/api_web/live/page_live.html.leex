@@ -1,0 +1,77 @@
+<div
+        x-data="{ menuOpen: false }"
+        class="flex min-h-screen custom-scrollbar"
+>
+    <!-- start::Black overlay -->
+    <div class="lg:pl-16 w-full flex flex-col">
+
+        <!-- start:Page content -->
+        <div class="h-full bg-gray-200 p-8">
+            <div class="flex flex-col xl:flex-row space-y-12 xl:space-y-0 xl:space-x-4">
+
+                <div class="w-full xl:w-4/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4" id="product_grid">
+                    <%= for product <- @products  do %>
+
+                    <div class="flex flex-col items-center justify-center space-y-3">
+                        <div
+                                x-data="{ showBtn: false }"
+                                class="relative overflow-hidden"
+                                @mouseenter="showBtn = true"
+                                @mouseleave="showBtn = false"
+
+                        >
+
+                            <%= if(is_nil(product.main_image)) do %>
+                            <img
+
+                                    class="w-[<%= @setting.main_image.width %>px] h-[<%= @setting.main_image.height %>px] transition duration-500"
+                                    :class="showBtn ? 'scale-125' : ''"
+                                    src="/images/products/product_placeholder.jpg"
+                                    alt="<%= product.name %>"
+                            >
+
+                            <% else %>
+                            <img
+
+                                    class="w-[<%= @setting.main_image.width %>px] h-[<%= @setting.main_image.height %>px] transition duration-500"
+                                    :class="showBtn ? 'scale-125' : ''"
+                                    src="/images/products/<%= product.main_image.path %>"
+                                    alt="<%= product.name %>"
+                            >
+
+
+                            <% end %>
+                            <div
+                                    x-show="showBtn"
+                                    x-cloak
+                                    x-transition.enter.duration.500ms
+                                    x-transition.leave.duration.300ms
+                                    class="absolute w-full h-full top-0 left-0 z-10 bg-black bg-opacity-40 flex items-end justify-center"
+                            >
+                                <div class="mb-8 space-x-3">
+                                    <button class="bg-gray-100 hover:bg-primary text-primary hover:text-gray-100 p-2.5 rounded-full transition duration-200" title="Add To Cart"  @click="alert('clicked')">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center space-y-1">
+                            <a href="./catalog/<%= product.name  %>" class="text-gray-900 hover:text-primary"><%= product.name  %></a>
+
+                            <span class="text-xl text-primary font-bold">$ <%= product.price  %></span>
+                            <span class="text-sm text-secondary"><%= product.description  %></span>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end:Page content -->
+    </div>
+
+</div>

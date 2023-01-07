@@ -1,56 +1,39 @@
-# This file is responsible for configuring your umbrella
-# and **all applications** and their dependencies with the
-# help of the Config module.
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Mix.Config module.
 #
-# Note that all applications in your umbrella share the
-# same configuration and dependencies, which is why they
-# all use the same configuration file. If you want different
-# configurations or dependencies per app, it is best to
-# move said applications out of the umbrella.
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
+
+# General application configuration
 import Config
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-#config :api, ecto_repos: [Api.Repo]
+config :api, :generators, context_app: :api
 
-
-#config :api, Api.Repo
-#config :api, Api.Repo, migration_default_prefix: "phpbb_"
+signing_salt = "4532fds242"
+session_key = "fsdfsdce54"
+secret_key_base = "4rIGvcjT1Li5zkXo0ZIEjoaSKzDfhCiMVKvgOjinBRT2J1wJxUkNsCGlZd0PfD8+"
+hostname = "localhost"
 
 config :api,
-       ecto_repos: [Api.Repo],
-       google_play_id: "",
-       meta_pixel_id: ""
-
-config :api, Api.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
-
-config :api_web,
-  generators: [context_app: :api]
+  ecto_repos: [Api.Repo],
+  google_play_id: "",
+  meta_pixel_id: ""
 
 # Configures the endpoint
-config :api_web, ApiWeb.Endpoint,
-  url: [host: "localhost"],
-  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(json), layout: false],
+config :api, ApiWeb.Endpoint,
+  url: [host: hostname],
+  secret_key_base: secret_key_base,
+  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Api.PubSub,
-  live_view: [signing_salt: "uCo/6Ezs"]
+  live_view: [signing_salt: signing_salt],
+  session_signing_salt: signing_salt,
+  session_key: session_key,
+  session_store: :cookie,
+  origins: [hostname, "https://localhost", "https://127.0.0.1"],
+  allow_credentials: true,
+  max_age: 600
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.12.18",
-  default: [
-    args:
-      ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../apps/api_web/assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
+config :tesla, adapter: Tesla.Adapter.Hackney
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -60,6 +43,104 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :phoenix,
+  static_compressors: [Webp.Compressor]
+
+config :dart_sass,
+  version: "1.49.11",
+  default: [
+    args: ~w(css/root.scss css/root.css.tailwind),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  user: [
+    args: ~w(css/user.scss css/user.css.tailwind),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  admin: [
+    args: ~w(css/admin.scss css/admin.css.tailwind),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
+config :esbuild,
+  version: "0.12.18",
+  default: [
+    args:
+      ~w(js/root.js --bundle --target=es2017 --outdir=../priv/static/js --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
+  user: [
+    args:
+      ~w(js/user.js --bundle --target=es2017 --outdir=../priv/static/js --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
+  admin: [
+    args:
+      ~w(js/admin.js --bundle --target=es2017 --outdir=../priv/static/js --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+config :tailwind,
+  version: "3.1.6",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/root.css.tailwind
+      --output=../priv/static/css/root.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  user: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/user.css.tailwind
+      --output=../priv/static/css/user.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  admin: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/admin.css.tailwind
+      --output=../priv/static/css/admin.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
+config :phoenix_copy,
+  default: [
+    source: Path.expand("../assets/static/", __DIR__),
+    destination: Path.expand("../priv/static/", __DIR__)
+  ]
+
+config :webp,
+  image_extensions: [".png", ".jpg", ".jpeg"],
+  path: "/usr/bin/cwebp",
+  location: Path.expand("../assets/static/images", __DIR__),
+  destination: Path.expand("../assets/static/images", __DIR__),
+  default: [
+    location: Path.expand("../assets/static/images", __DIR__),
+    destination: Path.expand("../assets/static/images", __DIR__)
+  ]
+
+config :ueberauth, Ueberauth, providers: []
+
+config :swoosh, :api_client, false
+
+config :api, Api.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "",
+  username: "",
+  password: "",
+  ssl: false,
+  tls: :always,
+  auth: :always,
+  port: 1025,
+  retries: 2,
+  no_mx_lookups: false
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{config_env()}.exs"
+import_config "#{Mix.env()}.exs"

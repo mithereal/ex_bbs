@@ -1,0 +1,231 @@
+@import "./base.css";
+@layer base {
+  body {
+    background: theme("colors.primary");
+  }
+  body.dark {
+    background: theme("colors.primary-dark");
+  }
+}
+.navigation {
+  @apply py-10 custom-scrollbar;
+}
+
+.navigation > span {
+  @apply ml-3 transition duration-200;
+}
+
+.black_overlay {
+  @apply fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden;
+}
+
+.main_menu {
+  @apply fixed z-30 inset-y-0 left-0 w-64 transition duration-300 bg-secondary overflow-y-auto lg:translate-x-0 lg:inset-0 custom-scrollbar;
+}
+
+.logo {
+  @apply flex items-center justify-center bg-black bg-opacity-30 h-16;
+}
+
+.logo_text {
+  @apply text-gray-100 text-lg font-bold uppercase tracking-widest;
+}
+
+.menu_button {
+  @apply flex min-h-screen custom-scrollbar;
+}
+
+.menu_link {
+  @apply flex items-center text-gray-400 px-6 py-3 cursor-pointer hover:bg-black hover:bg-opacity-30 transition duration-200;
+}
+
+.main_container {
+  @apply lg:pl-64 w-full flex flex-col;
+}
+
+.main_container .menu {
+  @apply flex flex-col;
+}
+
+.menu {
+  @apply flex flex-col;
+}
+
+.page_container {
+  @apply h-full bg-gray-200 p-8;
+}
+
+.footer_container {
+  @apply flex justify-between items-center h-16 py-4 px-6 bg-white;
+}
+
+.footer_links {
+  @apply flex justify-end items-center py-4 px-6 bg-white;
+}
+
+.footer_links > span {
+  @apply flex px-6 bg-white;
+}
+
+.footer_container > span {
+  @apply flex px-6 bg-white;
+}
+
+.mobile_menu_header {
+  @apply flex justify-between items-baseline h-16 py-4 px-6 bg-white;
+  background: theme("colors.primary");
+  color: white;
+}
+.mobile_menu_header.dark {
+  background: theme("colors.primary-dark");
+}
+
+.menu_items {
+  @apply flex;
+}
+
+.menu_items_right {
+  @apply flex items-center;
+}
+
+.menu_button_alt {
+  @apply text-gray-500 hover:text-primary focus:outline-none lg:hidden transition duration-200;
+}
+
+.profile_avatar {
+  @apply w-10 rounded-full;
+}
+
+.sub_menu {
+  @apply absolute right-0 w-40 top-11 border border-gray-300 z-20;
+}
+
+.sub_menu_items {
+  @apply bg-white rounded;
+}
+
+.sub_menu_link {
+  @apply flex items-center justify-between py-2 px-3 hover:bg-gray-100 bg-opacity-20;
+}
+
+.sub_menu_item {
+  @apply text-sm ml-3;
+}
+
+.sub_menu_item > p {
+  @apply text-gray-600 font-bold capitalize;
+}
+
+.log_out_button {
+  @apply text-sm ml-3 text-gray-600 font-bold capitalize;
+}
+
+.profile_container {
+  @apply h-full bg-gray-200 p-8;
+}
+
+.profile_background {
+  @apply bg-white rounded-lg shadow-xl pb-8;
+}
+
+.profile_image_container {
+  @apply w-full h-[250px];
+}
+
+.profile_image {
+  @apply w-full h-full rounded-tl-lg rounded-tr-lg;
+}
+
+.profile_avatar_image {
+  @apply w-40 border-4 border-white rounded-full;
+}
+
+.profile_avatar_container {
+  @apply flex flex-col items-center -mt-20;
+}
+
+.profile_avatar_data {
+  @apply flex items-center space-x-2 mt-2;
+}
+
+.profile_avatar_span {
+  @apply bg-blue-500 rounded-full p-1;
+}
+
+.profile_city_state {
+  @apply text-sm text-gray-500;
+}
+
+.profile_about_container {
+  @apply my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4;
+}
+
+.profile_about_text {
+  @apply mt-2 text-gray-700;
+}
+
+.profile_text_heading {
+  @apply text-xl text-gray-900 font-bold;
+}
+
+.profile_text_heading_shadow {
+  @apply flex-1 bg-white rounded-lg shadow-xl p-8;
+}
+
+.profile_text_heading_container {
+  @apply flex flex-col w-full 2xl:w-2/3;
+}
+
+.profile_avatar_data {
+  @apply flex items-center space-x-2 mt-2;
+}
+
+.profile_avatar_data_text {
+  @apply text-2xl;
+}
+
+.profile_ul {
+  @apply mt-2 text-gray-700;
+}
+
+.personal_info {
+  @apply text-xl text-gray-900 font-bold;
+}
+
+.profile_about_info_container {
+  @apply flex-1 bg-white rounded-lg shadow-xl p-8;
+}
+
+.profile_list_y_bordered {
+  @apply flex border-y py-2;
+}
+
+.profile_list_bordered {
+  @apply flex border-b py-2;
+}
+
+.profile_info_heading {
+  @apply font-bold w-24;
+}
+
+.profile_info_text {
+  @apply text-gray-700;
+}
+
+.profile_about_info_container_text {
+  @apply flex-1 bg-white rounded-lg shadow-xl p-8;
+}
+
+.profile_image_container {
+  @apply w-full h-[250px];
+}
+
+.link_hover_text {
+  @apply text-gray-100;
+}
+
+.menu_container_button_svg {
+  @apply w-6 h-6;
+}
+
+/*# sourceMappingURL=user.css.tailwind.map */

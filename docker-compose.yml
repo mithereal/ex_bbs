@@ -2,18 +2,19 @@ version: "3"
 services:
   database:
     image: postgres:14-alpine
-    container_name: phpbb
+    container_name: exbbs
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=phpbb
+      - POSTGRES_DB=exbbs
     networks:
       - default
     ports:
       - 55432:5432
     volumes:
-      - phpbb-db-data:/var/lib/postgresql/data
+      - exbbs-data:/var/lib/postgresql/data
+
 networks:
   default:
 volumes:
-  phpbb-db-data:
+  exbbs-data:
