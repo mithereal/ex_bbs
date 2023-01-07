@@ -1,10 +1,10 @@
-# Api
+# EX_BBS
 
-This is a liveview with auth demo useful for a starter application, the application frontend is split between roles, terminator is used for managing roles, deployable via heroku or fly.io
+This is a drop in replacement for phpbb with configs for via heroku or fly.io
 
-[![Build Status](https://travis-ci.com/mithereal/phoenix_liveview_skeleton.svg?branch=master)](https://travis-ci.com/mithereal/phoenix_liveview_skeleton)
+[![Build Status](https://travis-ci.com/mithereal/ex_bbs.svg?branch=master)](https://travis-ci.com/mithereal/ex_bbs)
 
-[![Inline docs](http://inch-ci.org/github/mithereal/phoenix_liveview_skeleton.svg)](http://inch-ci.org/github/mithereal/phoenix_liveview_skeleton)
+[![Inline docs](http://inch-ci.org/github/mithereal/ex_bbs.svg)](http://inch-ci.org/github/mithereal/ex_bbs)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -23,8 +23,8 @@ To setup your server:
   * Install certbot (lets encrypt)
   * a basic nginx configuration with websockets and environment vars is located in the server directory with port forwarding 80:443 to the phoenix app, you need to configure for custom application name, and/or after you run certbot enable the comment block if you need ssl.
   * This configuration allows you to demo the app locally with url name forwarding to the local server to duplicate the prod app.
-  * You can install Self Signed Certificates into the browser by running 
-    phoenix_liveview_skeleton/etc/certs/mkcert --install
+  * You can install Self Signed Certificates into the browser by running
+    ex_bbs/etc/certs/mkcert --install
   
   
 To start your Phoenix server:
@@ -32,6 +32,8 @@ To start your Phoenix server:
   * Setup the application `mix setup`
   * Install Node.js dependencies with `npm install` inside the `assets` directory
   * Start Phoenix endpoint with `mix phx.server`
+
+You can also start development server by using docker-compose up -d 
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -42,7 +44,7 @@ config :api, ApiWeb.Endpoint,
 url: [host: hostname]
 
  visit [`localhost:4000`](http://localhost:4000/login) in separate private  browser windows.
- - admin:  email: "admin@hostname", password: "mohap"
+ - admin:  email: "admin@hostname", password: "exbbs"
  - user 1:  email: "user1@company.com", password: "123456789abc"
  - user 2:  email: "user2@company.com", password: "123456789abc"
 
@@ -57,3 +59,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+  * PHPBB: https://phpbb.com/
