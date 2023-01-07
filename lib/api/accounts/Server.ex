@@ -52,10 +52,6 @@ defmodule Api.User.Server do
 
     load_and_authorize_performer(user)
 
-    {:ok, pid} = EcCart.ServerSupervisor.start_cart()
-
-    initial_state = %{initial_state | cart: pid}
-
     EcCart.Cache.server_process(user.id)
 
     {:ok, initial_state}
