@@ -1,0 +1,27 @@
+{
+  "name": "Phoenix Liveview Sample",
+  "description": "A Phoenix Liveview Sample with Auth",
+  "repository": "https://github.com/mithereal/phoenix_liveview_skeleton",
+  "logo": "",
+  "keywords": ["phoenix", "elixir", "liveview" ],
+  "addons": [ "heroku-postgresql"],
+  "env": {
+    "MIX_ENV": "prod",
+    "OTP_COOKIE": {
+      "description": "The OTP Secret",
+      "generator": "secret"
+    },
+    "SECRET_KEY_BASE": {
+      "description": "The Application Secret",
+      "generator": "secret"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir.git"
+    },
+    {
+      "url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static.git"
+    }
+  ]
+}

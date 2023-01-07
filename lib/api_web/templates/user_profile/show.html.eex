@@ -1,0 +1,67 @@
+<div class="profile_container">
+
+    <div class="profile_background">
+
+        <div class="profile_image_container">
+            <img src="/images/profile-background.jpg" class="w-full h-full rounded-tl-lg rounded-tr-lg">
+        </div>
+
+        <div class="profile_avatar_container">
+            <img src="<%= Exgravatar.gravatar_url @conn.assigns.current_user.email %>" class="profile_avatar_image">
+            <div class="profile_avatar_data">
+                <p class="profile_avatar_data_text"><%= @data.name %></p>
+                <span class="profile_avatar_span" title="Avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+            </div>
+            <p class="profile_city_state"><%= @data.city %> <%= @data.state %></p>
+        </div>
+
+    </div>
+
+    <div class="profile_about_container">
+        <div class="profile_about_info_container">
+            <div class="profile_about_info_container_text">
+                <h4 class="personal_info">Personal Info</h4>
+                <ul class="profile_ul">
+                    <li class="profile_list_y_bordered">
+                        <span class="profile_info_heading">Full name:</span>
+                        <span class="profile_info_text"><%= @data.name %></span>
+                    </li>
+                    <li class="profile_list_bordered">
+                        <span class="profile_info_heading">Phone:</span>
+                        <span class="profile_info_text"><%= @data.phone %></span>
+                    </li>
+                    <li class="profile_list_bordered">
+                        <span class="profile_info_heading">Joined:</span>
+                        <span class="profile_info_text"><%= @data.inserted_at %></span>
+                    </li>
+                    <li class="profile_list_bordered">
+                        <span class="profile_info_heading">Mobile:</span>
+                        <span class="profile_info_text"><%= @data.phone_alt %></span>
+                    </li>
+                    <li class="profile_list_bordered">
+                        <span class="profile_info_heading">Email:</span>
+                        <span class="profile_info_text"><%= @conn.assigns.current_user.email %></span>
+                    </li>
+                    <li class="profile_list_bordered">
+                        <span class="profile_info_heading">Location:</span>
+                        <span class="profile_info_text"><%= @data.address %>  <%= @data.city %> <%= @data.state %> <%= @data.zip %></span>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="profile_text_heading_container">
+            <div class="profile_text_heading_shadow">
+                <h4 class="profile_text_heading">About</h4>
+                <p class="profile_about_text"><%= @data.about %></p>
+            </div>
+
+        </div>
+    </div>
+
+</div>

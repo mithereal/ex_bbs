@@ -1,0 +1,96 @@
+@import "./base.css";
+
+:root {
+--valid: lime;
+--invalid: red;
+--focus: yellow;
+}
+
+.container{
+@apply flex flex-col
+}
+
+.footer_container {
+     @apply flex justify-between items-center h-16 py-4 px-6 bg-white;
+}
+
+.footer_links {
+     @apply flex justify-end items-center py-4 px-6 bg-white;
+}
+
+.footer_links > span {
+     @apply flex px-6 bg-white;
+}
+
+.footer_container > span {
+     @apply flex px-6 bg-white;
+}
+
+.root_menu_header{
+@apply flex justify-between items-center h-16 py-4 px-6 bg-white
+}
+.root_menu_items_header{
+@apply flex items-baseline h-8 py-4 bg-white
+}
+
+.root_logo{
+@apply w-1/2
+}
+.menu_container{
+@apply flex  gap-2
+}
+.menu_button_container{
+@apply flex  gap-2
+}
+.menu_container_button{
+@apply text-gray-500 hover:text-primary focus:outline-none lg:hidden transition duration-200 px-8
+}
+.menu_container_button_svg{
+@apply w-6 h-6
+}
+.sign_in{
+@apply bg-primary hover:bg-primary-dark rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl  transition duration-150 uppercase
+}
+.sign_up{
+@apply bg-primary-dark hover:bg-primary rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase
+}
+.contact{
+@apply  px-4 py-2  uppercase
+}
+
+.no-webp .img-class {
+background-image: url("../images/img.png");
+background-repeat: no-repeat;
+left: 100px;
+position: absolute;
+height: 411px;
+width: 745px;
+}
+.webp .img-class {
+background-image: url("../images/img.webp");
+background-repeat: no-repeat;
+left: 100px;
+position: absolute;
+height: 411px;
+width: 745px;
+}
+
+.email_input:has(input){
+// border: 3px solid red;
+}
+
+.black_overlay{
+@apply lg:pl-16 w-full flex flex-col
+}
+
+.root_menu_shopping_cart_header{
+width: 25px;
+height: 25px;
+visibility: hidden;
+}
+
+.root_menu_shopping_cart_header_active{
+width: 25px;
+height: 25px;
+visibility: visible;
+}
