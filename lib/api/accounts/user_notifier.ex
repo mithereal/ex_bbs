@@ -41,7 +41,7 @@ defmodule Api.Accounts.UserNotifier do
   @doc """
   Deliver instructions to reset a user password.
   """
-  def deliver_reset_password_instructions(user, url, :debug) do
+  def deliver_reset_password_instructions(user, url, mode \\ :debug) do
     deliver(user.email, """
 
     ==============================
@@ -61,7 +61,7 @@ defmodule Api.Accounts.UserNotifier do
   @doc """
   Deliver instructions to update a user email.
   """
-  def deliver_update_email_instructions(user, url, :debug) do
+  def deliver_update_email_instructions(user, url, mode \\ :debug) do
     deliver(user.email, """
 
     ==============================
@@ -90,15 +90,14 @@ defmodule Api.Accounts.UserNotifier do
   end
 
   #  use Bamboo
-  #  def deliver_confirmation_instructions(user, url) do
-  #    new_email()
-  #    |> subject("Welcome to " <> @app_name)
-  #    |> to(user.email)
-  #    |> from(@from)
-  #    |> put_text_layout(false)
-  #    |> render("welcome.html", %{username: user.username})
-  #    |> premail()
-  #  end
+    def deliver_confirmation_instructions(user, url) do
+      new()
+      |> subject("Welcome to " <> @app_name)
+      |> to(user.email)
+      |> from(@from)
+      |>  Phoenix.Controller.render("welcome.html", %{username: user.username})
+      |> premail()
+    end
 
   defp premail(email) do
     html = Premailex.to_inline_css(email.html_body)

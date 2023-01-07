@@ -98,6 +98,9 @@ defmodule Api.Accounts do
     Repo.get!(User, id) |> Repo.preload(performer: :roles)
   end
 
+  def get_user(id) do
+    Repo.get(User, id) |> Repo.preload(performer: :roles)
+  end
   ## User registration
 
   @doc """
