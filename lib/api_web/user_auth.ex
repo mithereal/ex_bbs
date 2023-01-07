@@ -119,7 +119,6 @@ defmodule ApiWeb.UserAuth do
     jwt = Guardian.Plug.current_token(conn)
 
     # ApiWeb.Guardian.revoke(jwt)
-    ## maybe log out github
 
     conn
     |> renew_session()
@@ -144,7 +143,6 @@ defmodule ApiWeb.UserAuth do
     jwt = Guardian.Plug.current_token(conn)
 
     # ApiWeb.Guardian.revoke(jwt)
-    ## maybe log out github
 
     conn
     |> renew_session()
