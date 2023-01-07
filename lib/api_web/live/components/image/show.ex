@@ -1,7 +1,7 @@
 defmodule ApiWeb.ImageLive.Show do
   use ApiWeb, :live_view
 
-  alias Api.Products
+  alias Api.Images
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,7 +13,7 @@ defmodule ApiWeb.ImageLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:image, Products.get_image!(id))}
+     |> assign(:image, Images.get_image!(id))}
   end
 
   defp page_title(:show), do: "Show Image"

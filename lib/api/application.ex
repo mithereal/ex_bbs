@@ -5,8 +5,6 @@ defmodule Api.Application do
 
   use Application
 
-  alias Api.Products
-
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
@@ -33,7 +31,6 @@ defmodule Api.Application do
     Supervisor.start_link(children, opts)
     |> setup_role_tables()
     |> create_default_users()
-    |> load_top_products()
   end
 
   def setup_role_tables(response) do
@@ -70,28 +67,22 @@ defmodule Api.Application do
   end
 
   def create_default_users(response) do
-    config = url = Application.get_env(:api, ApiWeb.Endpoint)
+    url = Application.get_env(:api, ApiWeb.Endpoint)
     [{_, hostname}, {_, _port}] = Keyword.get(url, :url)
 
+    default_username =  Keyword.get(url, :default_admin_username) || "admin"
+    default_password =  Keyword.get(url, :default_admin_password) || "exbbs"
+
     Api.Accounts.register_admin(%{
-      email: "admin@" <> hostname,
-      password: "mohap",
-      password_confirmation: "mohap",
-      username: "admin",
-      terms: "on"
+      email: default_username <> "@" <> hostname,
+      password: default_password,
+      password_confirmation: default_password,
+      username: default_username
     })
 
     response
   end
 
-  def load_top_products(response) do
-    Products.list_top_products()
-    |> Enum.each(fn p ->
-      Api.Product.Supervisor.start(p)
-    end)
-
-    response
-  end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.

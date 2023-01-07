@@ -1,4 +1,4 @@
-# Data-Twister.com Website
+# exbbs Website
 
 ## Background
 
@@ -6,4 +6,4 @@
 
 ```
 
-an elixir store to manage downloadable products and be a front to my business
+a drop in replacement for phpbb

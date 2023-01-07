@@ -1,8 +1,8 @@
 defmodule ApiWeb.ImageLive.Index do
   use ApiWeb, :live_view
 
-  alias Api.Products
-  alias Api.Products.Image
+  alias Api.Images
+  alias Api.Images.Image
 
   @impl true
   def mount(_params, _session, socket) do
@@ -17,7 +17,7 @@ defmodule ApiWeb.ImageLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Image")
-    |> assign(:image, Products.get_image!(id))
+    |> assign(:image, Images.get_image!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -34,13 +34,13 @@ defmodule ApiWeb.ImageLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    image = Products.get_image!(id)
-    {:ok, _} = Products.delete_image(image)
+    image = Images.get_image!(id)
+    {:ok, _} = Images.delete_image(image)
 
     {:noreply, assign(socket, :images, list_images())}
   end
 
   defp list_images do
-    Products.list_images()
+    Images.list_images()
   end
 end

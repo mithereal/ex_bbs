@@ -10,14 +10,7 @@ defmodule Api.Repo.Migrations.CreateImages do
       add :width, :float
       add :height, :float
 
-      add :product_id, references(:products, on_delete: :nothing)
-
       timestamps()
-    end
-
-    alter table(:products) do
-      add :main_image_id, references(:images, on_delete: :nothing)
-      add :images, references(:images, on_delete: :nothing)
     end
   end
 end

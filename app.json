@@ -1,7 +1,7 @@
 {
-  "name": "Phoenix Liveview Sample",
-  "description": "A Phoenix Liveview Sample with Auth",
-  "repository": "https://github.com/mithereal/phoenix_liveview_skeleton",
+  "name": "EX_BBS - A Drop in replacement for phpbb",
+  "description": "A Drop in replacement for phpbb",
+  "repository": "https://github.com/mithereal/ex_bbs",
   "logo": "",
   "keywords": ["phoenix", "elixir", "liveview" ],
   "addons": [ "heroku-postgresql"],

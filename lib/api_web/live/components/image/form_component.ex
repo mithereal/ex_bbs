@@ -1,7 +1,7 @@
 defmodule ApiWeb.ImageLive.FormComponent do
   use ApiWeb, :live_component
 
-  alias Api.Products
+  alias Api.Images
 
   @impl true
   def update(%{image: image} = assigns, socket) do
@@ -17,7 +17,7 @@ defmodule ApiWeb.ImageLive.FormComponent do
   def handle_event("validate", %{"image" => image_params}, socket) do
     changeset =
       socket.assigns.image
-      |> Products.change_image(image_params)
+      |> Images.change_image(image_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -28,7 +28,7 @@ defmodule ApiWeb.ImageLive.FormComponent do
   end
 
   defp save_image(socket, :edit, image_params) do
-    case Products.update_image(socket.assigns.image, image_params) do
+    case Images.update_image(socket.assigns.image, image_params) do
       {:ok, _image} ->
         {:noreply,
          socket
