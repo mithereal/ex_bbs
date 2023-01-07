@@ -4,8 +4,6 @@ This is a drop in replacement for phpbb with configs for heroku or fly.io
 
 [![Build Status](https://travis-ci.com/mithereal/ex_bbs.svg?branch=master)](https://travis-ci.com/mithereal/ex_bbs)
 
-[![Inline docs](http://inch-ci.org/github/mithereal/ex_bbs.svg)](http://inch-ci.org/github/mithereal/ex_bbs)
-
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Enable ipv6 support on docker
