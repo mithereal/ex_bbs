@@ -38,7 +38,7 @@ defmodule ApiWeb.AuthController do
         conn =
           conn
           |> put_flash(:info, "Successfully authenticated.")
-          |> UserAuth.log_in_user(user, %{github_token: auth.credentials.token})
+          |> UserAuth.log_in_user(user, %{token: auth.credentials.token})
 
       {:error, reason} ->
         conn

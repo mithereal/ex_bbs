@@ -5,7 +5,6 @@ defmodule Api.Accounts.Account do
   schema "accounts" do
     field(:hash, :string)
     field(:email, :string)
-    field(:github_uid, :string)
 
     has_one(:admin_user, Api.Accounts.User)
     has_many(:users, Api.Accounts.User)
@@ -18,7 +17,7 @@ defmodule Api.Accounts.Account do
     hash = hash_id()
 
     account
-    |> cast(attrs, [:hash, :email, :github_uid])
+    |> cast(attrs, [:hash, :email])
     |> put_change(:hash, hash)
     |> validate_required([:hash, :email])
   end

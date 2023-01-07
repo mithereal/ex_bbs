@@ -615,8 +615,7 @@ defmodule Api.Accounts do
       terms: "on",
       confirmed_at: DateTime.utc_now(),
       password: password,
-      password_confirmation: password,
-      github_uid: auth.uid
+      password_confirmation: password
     }
 
     case get_user_by_email(auth.info.email) do
@@ -638,7 +637,6 @@ defmodule Api.Accounts do
     case get_user_by_email(auth.email) do
       nil ->
         user = register_user(auth)
-        User.update_user(user, %{github_uid: auth.uid})
 
       reply ->
         reply

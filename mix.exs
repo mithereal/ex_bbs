@@ -38,7 +38,7 @@ defmodule Api.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.0", override: true},
+      {:phoenix_html, "~> 3.2", override: true},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.17", override: true},
       {:phoenix_live_dashboard, "~> 0.5"},

@@ -42,29 +42,6 @@
                         <%= email_input f, :email, required: true, class: "py-2 text-gray-900 border-gray-300 focus:border-primary focus:outline-none focus:ring-0 rounded-lg", autocomplete: "off", value: "#{@current_user.email}" %>
                     </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <label for="name" class="text-sm text-gray-500">Project Connectors</label>
-
-
-                            <%=  if(is_nil(@current_user.github_uid)) do %>
-
-                        <div class="text-sm">
-                            <a href="/auth/github" class="flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100 hover:bg-gray-200 rounded">
-                                <%= raw  Octicons.to_svg(:"mark-github") %>
-                                <span>Link Github</span>
-                            </a>
-                        </div>
-                            <% else %>
-                        <div class="text-sm flex items-center justify-center space-x-2 text-gray-600 my-2 py-2 bg-gray-100  rounded">
-
-                                <%= raw  Octicons.to_svg(:"mark-github") %>
-                                <span>Github</span>
-
-                        </div>
-
-                            <%  end %>
-
-                    </div>
                     <div>
                         <button class="w-32 bg-primary hover:bg-primary-dark rounded-lg py-1.5 text-gray-200 text-sm uppercase hover:shadow-xl transition duration-150">Save</button>
                     </div>

@@ -17,9 +17,7 @@ defmodule Api.Accounts.User do
     field(:last_login, :naive_datetime)
     field(:confirmed_at, :naive_datetime)
     field(:password_confirmation, :string, virtual: true)
-    field(:github_uid, :integer)
     field(:terms, :string, virtual: true)
-    field(:github_token, :string, virtual: true)
 
     has_one(:account, Api.Accounts.Account)
     has_one(:profile, Api.Accounts.User.Profile)
@@ -45,7 +43,6 @@ defmodule Api.Accounts.User do
         :password,
         :password_confirmation,
         :terms,
-        :github_uid,
         :confirmed_at,
         :last_login,
         :uid,
@@ -63,7 +60,7 @@ defmodule Api.Accounts.User do
   def changeset(schema, attrs) do
     changeset =
       schema
-      |> cast(attrs, [:email, :password, :github_uid, :account_id])
+      |> cast(attrs, [:email, :password, :account_id])
       |> validate_email()
       |> validate_password()
   end
