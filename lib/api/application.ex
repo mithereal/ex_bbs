@@ -70,8 +70,10 @@ defmodule Api.Application do
     url = Application.get_env(:api, ApiWeb.Endpoint)
     [{_, hostname}, {_, _port}] = Keyword.get(url, :url)
 
-    default_username =  Keyword.get(url, :default_admin_username) || "admin"
-    default_password =  Keyword.get(url, :default_admin_password) || "exbbs"
+    repo = Application.get_env(:api, Api.Repo)
+
+    default_username =  Keyword.get(repo, :default_admin_username) || "admin"
+    default_password =  Keyword.get(repo, :default_admin_password) || "exbbs"
 
     Api.Accounts.register_admin(%{
       email: default_username <> "@" <> hostname,
