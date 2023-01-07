@@ -22,3 +22,14 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     active: true,
     confirmed_at: DateTime.utc_now()
   })
+
+{:ok, user_3} =
+  Api.Accounts.register_user(%{
+    email: "user3@" <> hostname,
+    password: "123456789abc",
+    password_confirmation: "123456789abc",
+    username: "user3",
+    terms: "on",
+    active: true,
+    confirmed_at: DateTime.utc_now()
+  })
