@@ -1,6 +1,6 @@
 # EX_BBS
 
-This is a drop in replacement for phpbb with configs for heroku or fly.io
+This is a drop in replacement for phpbb with configs for heroku and fly.io
 
 [![Build Status](https://travis-ci.com/mithereal/ex_bbs.svg?branch=master)](https://travis-ci.com/mithereal/ex_bbs)
 
@@ -46,7 +46,7 @@ url: [host: hostname]
  - user 1:  email: "user1@company.com", password: "123456789abc"
  - user 2:  email: "user2@company.com", password: "123456789abc"
 
-If you forget the password or other admin problems you can remove the admin user from the db, it will automatically be recreated with defaults.
+If you forget the password or other admin problems you can remove the admin user from the db, restart the app and it will automatically be recreated with defaults.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
