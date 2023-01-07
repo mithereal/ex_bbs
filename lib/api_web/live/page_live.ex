@@ -3,7 +3,6 @@ defmodule ApiWeb.PageLive do
 
   @impl true
   def mount(_params, session, socket) do
-
     {:ok,
      assign(socket,
        manifest: "/cache_manifest.json"

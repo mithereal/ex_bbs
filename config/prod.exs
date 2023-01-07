@@ -30,22 +30,21 @@ config :logger, level: :info
 config :phoenix,
   static_compressors: [Webp.Compressor]
 
-
 config :api, Api.Mailer,
-       adapter: Swoosh.Adapters.SMTP,
-       relay: System.get_env("RELAY_HOST"),
-       username:  System.get_env("RELAY_USERNAME"),
-       password:  System.get_env("RELAY_PASSWORD"),
-       ssl: false,
-       tls: :always,
-       auth: :always,
-       port: System.get_env("RELAY_PORT"),
-         #       dkim: [
-         #         s: "default", d: "data-twister.com",
-         #         private_key: {:pem_plain, File.read!("priv/certs/self_signed-key.pem")}
-         #       ],
-       retries: 2,
-       no_mx_lookups: false
+  adapter: Swoosh.Adapters.SMTP,
+  relay: System.get_env("RELAY_HOST"),
+  username: System.get_env("RELAY_USERNAME"),
+  password: System.get_env("RELAY_PASSWORD"),
+  ssl: false,
+  tls: :always,
+  auth: :always,
+  port: System.get_env("RELAY_PORT"),
+  #       dkim: [
+  #         s: "default", d: "data-twister.com",
+  #         private_key: {:pem_plain, File.read!("priv/certs/self_signed-key.pem")}
+  #       ],
+  retries: 2,
+  no_mx_lookups: false
 
 # ## SSL Support
 #

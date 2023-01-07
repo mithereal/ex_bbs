@@ -21,7 +21,7 @@ defmodule Api.Application do
       Api.User.Server.Supervisor,
       Api.Error.Server.Supervisor,
       # Start user Registry
-      {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor},
+      {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -72,8 +72,8 @@ defmodule Api.Application do
 
     repo = Application.get_env(:api, Api.Repo)
 
-    default_username =  Keyword.get(repo, :default_admin_username) || "admin"
-    default_password =  Keyword.get(repo, :default_admin_password) || "exbbs"
+    default_username = Keyword.get(repo, :default_admin_username) || "admin"
+    default_password = Keyword.get(repo, :default_admin_password) || "exbbs"
 
     Api.Accounts.register_admin(%{
       email: default_username <> "@" <> hostname,
@@ -84,7 +84,6 @@ defmodule Api.Application do
 
     response
   end
-
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.

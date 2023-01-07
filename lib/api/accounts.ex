@@ -77,15 +77,20 @@ defmodule Api.Accounts do
   def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
+
     case User.valid_password?(user, password) do
       nil ->
-      default_password =  Keyword.get(repo, :default_user_password) || "exbbs"
-       User.change_user_password(user, %{password: default_password})
-       false
-      true -> user |> Repo.preload(performer: :roles)
-      false -> false
-    end
+        repo = Application.get_env(:api, Api.Repo)
+        default_password = Keyword.get(repo, :default_user_password) || "exbbs"
+        User.change_user_password(user, %{password: default_password})
+        false
 
+      true ->
+        user |> Repo.preload(performer: :roles)
+
+      false ->
+        false
+    end
   end
 
   @doc """
@@ -109,6 +114,7 @@ defmodule Api.Accounts do
   def get_user(id) do
     Repo.get(User, id) |> Repo.preload(performer: :roles)
   end
+
   ## User registration
 
   @doc """
@@ -411,7 +417,12 @@ defmodule Api.Accounts do
     else
       {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
       Repo.insert!(user_token)
-      UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token), mode)
+
+      UserNotifier.deliver_confirmation_instructions(
+        user,
+        confirmation_url_fun.(encoded_token),
+        mode
+      )
     end
   end
 
@@ -452,7 +463,12 @@ defmodule Api.Accounts do
       when is_function(reset_password_url_fun, 1) do
     {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password")
     Repo.insert!(user_token)
-    UserNotifier.deliver_reset_password_instructions(user, reset_password_url_fun.(encoded_token), mode)
+
+    UserNotifier.deliver_reset_password_instructions(
+      user,
+      reset_password_url_fun.(encoded_token),
+      mode
+    )
   end
 
   @doc """

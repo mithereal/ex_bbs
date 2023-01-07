@@ -1,8 +1,7 @@
 import Config
 
-config :api, ApiWeb.Endpoint,
-       url: [host: "localhost", port: 4000]
-     #  http: [ip: {0, 0, 0, 0}, port: 4000]
+config :api, ApiWeb.Endpoint, url: [host: "localhost", port: 4000]
+#  http: [ip: {0, 0, 0, 0}, port: 4000]
 #       https: [
 #         port: 4001,
 #         cipher_suite: :strong,
@@ -38,12 +37,12 @@ config :terminator, Terminator.Repo,
 # with webpack to recompile .js and .css sources.
 config :api, ApiWeb.Endpoint,
   http: [port: 4001],
-#  https: [
-#    port: 4000,
-#    cipher_suite: :strong,
-#    certfile: "priv/cert/selfsigned.pem",
-#    keyfile: "priv/cert/selfsigned_key.pem"
-#  ],
+  #  https: [
+  #    port: 4000,
+  #    cipher_suite: :strong,
+  #    certfile: "priv/cert/selfsigned.pem",
+  #    keyfile: "priv/cert/selfsigned_key.pem"
+  #  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -97,20 +96,20 @@ config :api, ApiWeb.Endpoint,
   ]
 
 config :api, Api.Mailer,
-       adapter: Swoosh.Adapters.SMTP,
-       relay: "127.0.0.1",
-       username: "test",
-       password: "test",
-       ssl: false,
-       tls: :always,
-       auth: :always,
-       port: 1024,
-         #       dkim: [
-         #         s: "default", d: "data-twister.com",
-         #         private_key: {:pem_plain, File.read!("priv/certs/self_signed-key.pem")}
-         #       ],
-       retries: 2,
-       no_mx_lookups: false
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "127.0.0.1",
+  username: "test",
+  password: "test",
+  ssl: false,
+  tls: :always,
+  auth: :always,
+  port: 1024,
+  #       dkim: [
+  #         s: "default", d: "data-twister.com",
+  #         private_key: {:pem_plain, File.read!("priv/certs/self_signed-key.pem")}
+  #       ],
+  retries: 2,
+  no_mx_lookups: false
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -121,4 +120,3 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-

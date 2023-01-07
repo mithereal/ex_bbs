@@ -4,7 +4,6 @@ defmodule ApiWeb.Router do
 
   alias ApiWeb.Plug.EnsureRole
 
-
   def default_assigns(conn, _opts) do
     meta_pixel_id = Application.get_env(:api, :meta_pixel_id)
 
@@ -130,7 +129,6 @@ defmodule ApiWeb.Router do
 
     live "/images/:id", ImageLive.Show, :show
     live "/images/:id/show/edit", ImageLive.Show, :edit
-
   end
 
   scope "/user/settings", ApiWeb do
@@ -210,7 +208,6 @@ defmodule ApiWeb.Router do
 
   scope "/websockets", ApiWeb do
     pipe_through([:pwa])
-
   end
 
   scope "/auth", ApiWeb do
