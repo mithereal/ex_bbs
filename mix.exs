@@ -66,31 +66,24 @@ defmodule Api.MixProject do
       {:open_api_spex, "~> 3.4"},
       {:unzip, "~> 0.7.1"},
       {:earmark, "~> 1.4.3"},
-      {:csv, "~> 2.4"},
       {:decimal, "~> 2.0"},
-      {:stripity_stripe, "~> 2.13.0"},
       {:inflex, "~> 2.0.0"},
       {:sobelow, "~> 0.8", only: :dev},
-      {:ex_cart, git: "https://github.com/data-twister/ex_cart.git"},
       {:ecto_soft_delete, ">= 0.0.0"},
-      {:yaml_elixir, "~> 2.9"},
       {:webp, git: "https://github.com/mithereal/ex_webp.git"},
       {:faker, "~> 0.17.0", only: [:dev, :test], runtime: false},
       {:ueberauth, "~> 0.10.3", override: true},
-      {:ueberauth_github, "~> 0.8.1"},
       {:guardian, "~> 2.0"},
       {:guardian_db, "~> 2.0"},
       {:guardian_phoenix, "~> 2.0"},
-      {:phoenix_oauth2_provider, ">= 0.5.1"},
-      {:octicons, "~> 0.8.0"},
       {:phoenix_copy, "~> 0.1.1"},
-      {:tentacat, "~> 2.2"},
       {:dictionary, "~> 0.1.0"},
       {:swoosh, "~> 1.6"},
       {:gen_smtp, "~> 1.0"},
       {:phoenix_swoosh, "~> 1.0"},
       {:nanoid, "~> 2.0"},
-      {:ice_cream, "~> 0.0.5", only: [:dev, :test]}
+      {:ice_cream, "~> 0.0.5", only: [:dev, :test]},
+      {:premailex, "~> 0.3.16"}
     ]
   end
 
