@@ -80,7 +80,7 @@ defmodule Api.Accounts do
     case User.valid_password?(user, password) do
       nil ->
       default_password =  Keyword.get(repo, :default_user_password) || "exbbs"
-       User.change_user_password(user, default_password)
+       User.change_user_password(user, %{password: default_password})
        false
       true -> user |> Repo.preload(performer: :roles)
       false -> false
