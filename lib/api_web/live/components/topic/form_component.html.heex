@@ -1,0 +1,68 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="topic-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :topic_id %>
+    <%= number_input f, :topic_id %>
+    <%= error_tag f, :topic_id %>
+  
+    <%= label f, :forum_id %>
+    <%= number_input f, :forum_id %>
+    <%= error_tag f, :forum_id %>
+  
+    <%= label f, :topic_title %>
+    <%= text_input f, :topic_title %>
+    <%= error_tag f, :topic_title %>
+  
+    <%= label f, :topic_poster %>
+    <%= number_input f, :topic_poster %>
+    <%= error_tag f, :topic_poster %>
+  
+    <%= label f, :topic_time %>
+    <%= number_input f, :topic_time %>
+    <%= error_tag f, :topic_time %>
+  
+    <%= label f, :topic_views %>
+    <%= number_input f, :topic_views %>
+    <%= error_tag f, :topic_views %>
+  
+    <%= label f, :topic_replies %>
+    <%= number_input f, :topic_replies %>
+    <%= error_tag f, :topic_replies %>
+  
+    <%= label f, :topic_status %>
+    <%= number_input f, :topic_status %>
+    <%= error_tag f, :topic_status %>
+  
+    <%= label f, :topic_vote %>
+    <%= number_input f, :topic_vote %>
+    <%= error_tag f, :topic_vote %>
+  
+    <%= label f, :topic_type %>
+    <%= number_input f, :topic_type %>
+    <%= error_tag f, :topic_type %>
+  
+    <%= label f, :topic_first_post_id %>
+    <%= number_input f, :topic_first_post_id %>
+    <%= error_tag f, :topic_first_post_id %>
+  
+    <%= label f, :topic_last_post_id %>
+    <%= number_input f, :topic_last_post_id %>
+    <%= error_tag f, :topic_last_post_id %>
+  
+    <%= label f, :topic_moved_id %>
+    <%= number_input f, :topic_moved_id %>
+    <%= error_tag f, :topic_moved_id %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

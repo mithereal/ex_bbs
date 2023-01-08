@@ -1,0 +1,76 @@
+<h1>Show Priv msg</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.priv_msg_show_path(@socket, :show, @priv_msg)}>
+    <.live_component
+      module={ApiWeb.PrivMsgLive.FormComponent}
+      id={@priv_msg.id}
+      title={@page_title}
+      action={@live_action}
+      priv_msg={@priv_msg}
+      return_to={Routes.priv_msg_show_path(@socket, :show, @priv_msg)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Privmsgs:</strong>
+    <%= @priv_msg.privmsgs_id %>
+  </li>
+
+  <li>
+    <strong>Privmsgs type:</strong>
+    <%= @priv_msg.privmsgs_type %>
+  </li>
+
+  <li>
+    <strong>Privmsgs subject:</strong>
+    <%= @priv_msg.privmsgs_subject %>
+  </li>
+
+  <li>
+    <strong>Privmsgs from userid:</strong>
+    <%= @priv_msg.privmsgs_from_userid %>
+  </li>
+
+  <li>
+    <strong>Privmsgs to userid:</strong>
+    <%= @priv_msg.privmsgs_to_userid %>
+  </li>
+
+  <li>
+    <strong>Privmsgs date:</strong>
+    <%= @priv_msg.privmsgs_date %>
+  </li>
+
+  <li>
+    <strong>Privmsgs ip:</strong>
+    <%= @priv_msg.privmsgs_ip %>
+  </li>
+
+  <li>
+    <strong>Privmsgs enable bbcode:</strong>
+    <%= @priv_msg.privmsgs_enable_bbcode %>
+  </li>
+
+  <li>
+    <strong>Privmsgs enable html:</strong>
+    <%= @priv_msg.privmsgs_enable_html %>
+  </li>
+
+  <li>
+    <strong>Privmsgs enable smilies:</strong>
+    <%= @priv_msg.privmsgs_enable_smilies %>
+  </li>
+
+  <li>
+    <strong>Privmsgs attach sig:</strong>
+    <%= @priv_msg.privmsgs_attach_sig %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.priv_msg_show_path(@socket, :edit, @priv_msg), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.priv_msg_index_path(@socket, :index) %></span>

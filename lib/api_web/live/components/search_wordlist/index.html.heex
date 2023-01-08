@@ -1,0 +1,43 @@
+<h1>Listing Search wordlist</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.search_wordlist_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.SearchWordlistLive.FormComponent}
+      id={@search_wordlist.id || :new}
+      title={@page_title}
+      action={@live_action}
+      search_wordlist={@search_wordlist}
+      return_to={Routes.search_wordlist_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Word text</th>
+      <th>Word common</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="search_wordlist">
+    <%= for search_wordlist <- @search_wordlist_collection do %>
+      <tr id={"search_wordlist-#{search_wordlist.id}"}>
+        <td><%= search_wordlist.word_id %></td>
+        <td><%= search_wordlist.word_text %></td>
+        <td><%= search_wordlist.word_common %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.search_wordlist_show_path(@socket, :show, search_wordlist) %></span>
+          <span><%= live_patch "Edit", to: Routes.search_wordlist_index_path(@socket, :edit, search_wordlist) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: search_wordlist.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Search wordlist", to: Routes.search_wordlist_index_path(@socket, :new) %></span>

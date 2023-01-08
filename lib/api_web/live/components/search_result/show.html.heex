@@ -1,0 +1,41 @@
+<h1>Show Search result</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.search_result_show_path(@socket, :show, @search_result)}>
+    <.live_component
+      module={ApiWeb.SearchResultLive.FormComponent}
+      id={@search_result.id}
+      title={@page_title}
+      action={@live_action}
+      search_result={@search_result}
+      return_to={Routes.search_result_show_path(@socket, :show, @search_result)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Search:</strong>
+    <%= @search_result.search_id %>
+  </li>
+
+  <li>
+    <strong>Session:</strong>
+    <%= @search_result.session_id %>
+  </li>
+
+  <li>
+    <strong>Search time:</strong>
+    <%= @search_result.search_time %>
+  </li>
+
+  <li>
+    <strong>Search array:</strong>
+    <%= @search_result.search_array %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.search_result_show_path(@socket, :edit, @search_result), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.search_result_index_path(@socket, :index) %></span>

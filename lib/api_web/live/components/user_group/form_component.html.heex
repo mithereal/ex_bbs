@@ -1,0 +1,28 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="user_group-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :group_id %>
+    <%= number_input f, :group_id %>
+    <%= error_tag f, :group_id %>
+  
+    <%= label f, :user_id %>
+    <%= number_input f, :user_id %>
+    <%= error_tag f, :user_id %>
+  
+    <%= label f, :user_pending %>
+    <%= number_input f, :user_pending %>
+    <%= error_tag f, :user_pending %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

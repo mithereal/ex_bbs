@@ -2,13 +2,12 @@ defmodule Database.Repo.Migrations.CreateUserProfiles do
   use Ecto.Migration
 
   def change do
-    create table(:user_profiles) do
+    create table(:bbs_user_profiles) do
       add(:name, :string)
       add(:email, :string)
       add(:phone, :string)
       add(:phone_alt, :string)
       add(:address, :string)
-      add(:mailing_address, :string)
       add(:city, :string)
       add(:state, :string)
       add(:zip, :string)
@@ -18,8 +17,8 @@ defmodule Database.Repo.Migrations.CreateUserProfiles do
       timestamps()
     end
 
-    alter table(:user_profiles) do
-      add(:user_id, references(:users, on_delete: :nothing))
+    alter table(:bbs_user_profiles) do
+      add(:user_id, references(:bbs_users, on_delete: :nothing))
     end
   end
 

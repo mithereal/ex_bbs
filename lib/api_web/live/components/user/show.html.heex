@@ -1,0 +1,256 @@
+<h1>Show User</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.user_show_path(@socket, :show, @user)}>
+    <.live_component
+      module={ApiWeb.UserLive.FormComponent}
+      id={@user.id}
+      title={@page_title}
+      action={@live_action}
+      user={@user}
+      return_to={Routes.user_show_path(@socket, :show, @user)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @user.user_id %>
+  </li>
+
+  <li>
+    <strong>User active:</strong>
+    <%= @user.user_active %>
+  </li>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+
+  <li>
+    <strong>User regdate:</strong>
+    <%= @user.user_regdate %>
+  </li>
+
+  <li>
+    <strong>User password:</strong>
+    <%= @user.user_password %>
+  </li>
+
+  <li>
+    <strong>User session time:</strong>
+    <%= @user.user_session_time %>
+  </li>
+
+  <li>
+    <strong>User session page:</strong>
+    <%= @user.user_session_page %>
+  </li>
+
+  <li>
+    <strong>User lastvisit:</strong>
+    <%= @user.user_lastvisit %>
+  </li>
+
+  <li>
+    <strong>User email:</strong>
+    <%= @user.user_email %>
+  </li>
+
+  <li>
+    <strong>User icq:</strong>
+    <%= @user.user_icq %>
+  </li>
+
+  <li>
+    <strong>User website:</strong>
+    <%= @user.user_website %>
+  </li>
+
+  <li>
+    <strong>User occ:</strong>
+    <%= @user.user_occ %>
+  </li>
+
+  <li>
+    <strong>User from:</strong>
+    <%= @user.user_from %>
+  </li>
+
+  <li>
+    <strong>User interests:</strong>
+    <%= @user.user_interests %>
+  </li>
+
+  <li>
+    <strong>User sig:</strong>
+    <%= @user.user_sig %>
+  </li>
+
+  <li>
+    <strong>User sig bbcode uid:</strong>
+    <%= @user.user_sig_bbcode_uid %>
+  </li>
+
+  <li>
+    <strong>User style:</strong>
+    <%= @user.user_style %>
+  </li>
+
+  <li>
+    <strong>User aim:</strong>
+    <%= @user.user_aim %>
+  </li>
+
+  <li>
+    <strong>User yim:</strong>
+    <%= @user.user_yim %>
+  </li>
+
+  <li>
+    <strong>User msnm:</strong>
+    <%= @user.user_msnm %>
+  </li>
+
+  <li>
+    <strong>User posts:</strong>
+    <%= @user.user_posts %>
+  </li>
+
+  <li>
+    <strong>User new privmsg:</strong>
+    <%= @user.user_new_privmsg %>
+  </li>
+
+  <li>
+    <strong>User unread privmsg:</strong>
+    <%= @user.user_unread_privmsg %>
+  </li>
+
+  <li>
+    <strong>User last privmsg:</strong>
+    <%= @user.user_last_privmsg %>
+  </li>
+
+  <li>
+    <strong>User login tries:</strong>
+    <%= @user.user_login_tries %>
+  </li>
+
+  <li>
+    <strong>User last login try:</strong>
+    <%= @user.user_last_login_try %>
+  </li>
+
+  <li>
+    <strong>User emailtime:</strong>
+    <%= @user.user_emailtime %>
+  </li>
+
+  <li>
+    <strong>User viewemail:</strong>
+    <%= @user.user_viewemail %>
+  </li>
+
+  <li>
+    <strong>User attachsig:</strong>
+    <%= @user.user_attachsig %>
+  </li>
+
+  <li>
+    <strong>User allowhtml:</strong>
+    <%= @user.user_allowhtml %>
+  </li>
+
+  <li>
+    <strong>User allowbbcode:</strong>
+    <%= @user.user_allowbbcode %>
+  </li>
+
+  <li>
+    <strong>User allowsmile:</strong>
+    <%= @user.user_allowsmile %>
+  </li>
+
+  <li>
+    <strong>User allow pm:</strong>
+    <%= @user.user_allow_pm %>
+  </li>
+
+  <li>
+    <strong>User allowavatar:</strong>
+    <%= @user.user_allowavatar %>
+  </li>
+
+  <li>
+    <strong>User allow viewonline:</strong>
+    <%= @user.user_allow_viewonline %>
+  </li>
+
+  <li>
+    <strong>User rank:</strong>
+    <%= @user.user_rank %>
+  </li>
+
+  <li>
+    <strong>User avatar:</strong>
+    <%= @user.user_avatar %>
+  </li>
+
+  <li>
+    <strong>User avatar type:</strong>
+    <%= @user.user_avatar_type %>
+  </li>
+
+  <li>
+    <strong>User level:</strong>
+    <%= @user.user_level %>
+  </li>
+
+  <li>
+    <strong>User lang:</strong>
+    <%= @user.user_lang %>
+  </li>
+
+  <li>
+    <strong>User timezone:</strong>
+    <%= @user.user_timezone %>
+  </li>
+
+  <li>
+    <strong>User dateformat:</strong>
+    <%= @user.user_dateformat %>
+  </li>
+
+  <li>
+    <strong>User notify pm:</strong>
+    <%= @user.user_notify_pm %>
+  </li>
+
+  <li>
+    <strong>User popup pm:</strong>
+    <%= @user.user_popup_pm %>
+  </li>
+
+  <li>
+    <strong>User notify:</strong>
+    <%= @user.user_notify %>
+  </li>
+
+  <li>
+    <strong>User actkey:</strong>
+    <%= @user.user_actkey %>
+  </li>
+
+  <li>
+    <strong>User newpasswd:</strong>
+    <%= @user.user_newpasswd %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.user_show_path(@socket, :edit, @user), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.user_index_path(@socket, :index) %></span>

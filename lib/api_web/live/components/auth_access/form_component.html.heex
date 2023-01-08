@@ -1,0 +1,40 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="auth_access-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :group_id %>
+    <%= number_input f, :group_id %>
+    <%= error_tag f, :group_id %>
+  
+    <%= label f, :forum_id %>
+    <%= number_input f, :forum_id %>
+    <%= error_tag f, :forum_id %>
+  
+    <%= label f, :auth_view %>
+    <%= number_input f, :auth_view %>
+    <%= error_tag f, :auth_view %>
+  
+    <%= label f, :auth_read %>
+    <%= number_input f, :auth_read %>
+    <%= error_tag f, :auth_read %>
+  
+    <%= label f, :auth_post %>
+    <%= number_input f, :auth_post %>
+    <%= error_tag f, :auth_post %>
+  
+    <%= label f, :auth_reply %>
+    <%= number_input f, :auth_reply %>
+    <%= error_tag f, :auth_reply %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

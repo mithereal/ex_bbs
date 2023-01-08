@@ -1,0 +1,32 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="search_result-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :search_id %>
+    <%= number_input f, :search_id %>
+    <%= error_tag f, :search_id %>
+  
+    <%= label f, :session_id %>
+    <%= number_input f, :session_id %>
+    <%= error_tag f, :session_id %>
+  
+    <%= label f, :search_time %>
+    <%= number_input f, :search_time %>
+    <%= error_tag f, :search_time %>
+  
+    <%= label f, :search_array %>
+    <%= text_input f, :search_array %>
+    <%= error_tag f, :search_array %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

@@ -1,0 +1,45 @@
+<h1>Listing Posts text</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.post_text_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.PostTextLive.FormComponent}
+      id={@post_text.id || :new}
+      title={@page_title}
+      action={@live_action}
+      post_text={@post_text}
+      return_to={Routes.post_text_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Post</th>
+      <th>Bbcode uid</th>
+      <th>Post subject</th>
+      <th>Post text</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="posts_text">
+    <%= for post_text <- @posts_text do %>
+      <tr id={"post_text-#{post_text.id}"}>
+        <td><%= post_text.post_id %></td>
+        <td><%= post_text.bbcode_uid %></td>
+        <td><%= post_text.post_subject %></td>
+        <td><%= post_text.post_text %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.post_text_show_path(@socket, :show, post_text) %></span>
+          <span><%= live_patch "Edit", to: Routes.post_text_index_path(@socket, :edit, post_text) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: post_text.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Post text", to: Routes.post_text_index_path(@socket, :new) %></span>

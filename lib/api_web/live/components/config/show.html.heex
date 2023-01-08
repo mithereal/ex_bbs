@@ -1,0 +1,31 @@
+<h1>Show Config</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.config_show_path(@socket, :show, @config)}>
+    <.live_component
+      module={ApiWeb.ConfigLive.FormComponent}
+      id={@config.id}
+      title={@page_title}
+      action={@live_action}
+      config={@config}
+      return_to={Routes.config_show_path(@socket, :show, @config)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Config name:</strong>
+    <%= @config.config_name %>
+  </li>
+
+  <li>
+    <strong>Config value:</strong>
+    <%= @config.config_value %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.config_show_path(@socket, :edit, @config), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.config_index_path(@socket, :index) %></span>

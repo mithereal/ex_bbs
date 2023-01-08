@@ -1,0 +1,43 @@
+<h1>Listing User group</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.user_group_index_path(@socket, :index)}>
+    <.live_component
+      module={ApiWeb.UserGroupLive.FormComponent}
+      id={@user_group.id || :new}
+      title={@page_title}
+      action={@live_action}
+      user_group={@user_group}
+      return_to={Routes.user_group_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>User</th>
+      <th>User pending</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="user_group">
+    <%= for user_group <- @user_group_collection do %>
+      <tr id={"user_group-#{user_group.id}"}>
+        <td><%= user_group.group_id %></td>
+        <td><%= user_group.user_id %></td>
+        <td><%= user_group.user_pending %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.user_group_show_path(@socket, :show, user_group) %></span>
+          <span><%= live_patch "Edit", to: Routes.user_group_index_path(@socket, :edit, user_group) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user_group.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New User group", to: Routes.user_group_index_path(@socket, :new) %></span>

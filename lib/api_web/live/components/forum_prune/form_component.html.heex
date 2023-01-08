@@ -1,0 +1,32 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="forum_prune-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :prune_id %>
+    <%= number_input f, :prune_id %>
+    <%= error_tag f, :prune_id %>
+  
+    <%= label f, :forum_id %>
+    <%= number_input f, :forum_id %>
+    <%= error_tag f, :forum_id %>
+  
+    <%= label f, :prune_days %>
+    <%= number_input f, :prune_days %>
+    <%= error_tag f, :prune_days %>
+  
+    <%= label f, :prune_freq %>
+    <%= number_input f, :prune_freq %>
+    <%= error_tag f, :prune_freq %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

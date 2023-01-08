@@ -1,0 +1,176 @@
+<h1>Show Theme name</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.theme_name_show_path(@socket, :show, @theme_name)}>
+    <.live_component
+      module={ApiWeb.ThemeNameLive.FormComponent}
+      id={@theme_name.id}
+      title={@page_title}
+      action={@live_action}
+      theme_name={@theme_name}
+      return_to={Routes.theme_name_show_path(@socket, :show, @theme_name)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Themes:</strong>
+    <%= @theme_name.themes_id %>
+  </li>
+
+  <li>
+    <strong>Tr color1 name:</strong>
+    <%= @theme_name.tr_color1_name %>
+  </li>
+
+  <li>
+    <strong>Tr color2 name:</strong>
+    <%= @theme_name.tr_color2_name %>
+  </li>
+
+  <li>
+    <strong>Tr color3 name:</strong>
+    <%= @theme_name.tr_color3_name %>
+  </li>
+
+  <li>
+    <strong>Tr class1 name:</strong>
+    <%= @theme_name.tr_class1_name %>
+  </li>
+
+  <li>
+    <strong>Tr class2 name:</strong>
+    <%= @theme_name.tr_class2_name %>
+  </li>
+
+  <li>
+    <strong>Tr class3 name:</strong>
+    <%= @theme_name.tr_class3_name %>
+  </li>
+
+  <li>
+    <strong>Th color1 name:</strong>
+    <%= @theme_name.th_color1_name %>
+  </li>
+
+  <li>
+    <strong>Th color2 name:</strong>
+    <%= @theme_name.th_color2_name %>
+  </li>
+
+  <li>
+    <strong>Th color3 name:</strong>
+    <%= @theme_name.th_color3_name %>
+  </li>
+
+  <li>
+    <strong>Th class1 name:</strong>
+    <%= @theme_name.th_class1_name %>
+  </li>
+
+  <li>
+    <strong>Th class2 name:</strong>
+    <%= @theme_name.th_class2_name %>
+  </li>
+
+  <li>
+    <strong>Th class3 name:</strong>
+    <%= @theme_name.th_class3_name %>
+  </li>
+
+  <li>
+    <strong>Td color1 name:</strong>
+    <%= @theme_name.td_color1_name %>
+  </li>
+
+  <li>
+    <strong>Td color2 name:</strong>
+    <%= @theme_name.td_color2_name %>
+  </li>
+
+  <li>
+    <strong>Td color3 name:</strong>
+    <%= @theme_name.td_color3_name %>
+  </li>
+
+  <li>
+    <strong>Td class1 name:</strong>
+    <%= @theme_name.td_class1_name %>
+  </li>
+
+  <li>
+    <strong>Td class2 name:</strong>
+    <%= @theme_name.td_class2_name %>
+  </li>
+
+  <li>
+    <strong>Td class3 name:</strong>
+    <%= @theme_name.td_class3_name %>
+  </li>
+
+  <li>
+    <strong>Fontface1 name:</strong>
+    <%= @theme_name.fontface1_name %>
+  </li>
+
+  <li>
+    <strong>Fontface2 name:</strong>
+    <%= @theme_name.fontface2_name %>
+  </li>
+
+  <li>
+    <strong>Fontface3 name:</strong>
+    <%= @theme_name.fontface3_name %>
+  </li>
+
+  <li>
+    <strong>Fontsize1 name:</strong>
+    <%= @theme_name.fontsize1_name %>
+  </li>
+
+  <li>
+    <strong>Fontsize2 name:</strong>
+    <%= @theme_name.fontsize2_name %>
+  </li>
+
+  <li>
+    <strong>Fontsize3 name:</strong>
+    <%= @theme_name.fontsize3_name %>
+  </li>
+
+  <li>
+    <strong>Fontcolor1 name:</strong>
+    <%= @theme_name.fontcolor1_name %>
+  </li>
+
+  <li>
+    <strong>Fontcolor2 name:</strong>
+    <%= @theme_name.fontcolor2_name %>
+  </li>
+
+  <li>
+    <strong>Fontcolor3 name:</strong>
+    <%= @theme_name.fontcolor3_name %>
+  </li>
+
+  <li>
+    <strong>Span class1 name:</strong>
+    <%= @theme_name.span_class1_name %>
+  </li>
+
+  <li>
+    <strong>Span class2 name:</strong>
+    <%= @theme_name.span_class2_name %>
+  </li>
+
+  <li>
+    <strong>Span class3 name:</strong>
+    <%= @theme_name.span_class3_name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.theme_name_show_path(@socket, :edit, @theme_name), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.theme_name_index_path(@socket, :index) %></span>
