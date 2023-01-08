@@ -18,18 +18,6 @@ defmodule Api.System.Setting do
     |> validate_required([:name, :key, :value, :type])
   end
 
-  def load() do
-    ref =
-      :ets.new(:bbs_settings, [
-        :set,
-        :named_table,
-        :public,
-        read_concurrency: true,
-        write_concurrency: true
-      ])
-
-    :ets.insert(ref, {:default, defaults()})
-  end
 
   defp defaults() do
     [
@@ -110,16 +98,10 @@ defmodule Api.System.Setting do
         value: "250"
       },
       %{key: "topics_per_page", name: "topics_per_page", type: "integer", value: "20"},
+      %{key: "posts_per_page", name: "posts_per_page", type: "integer", value: "20"},
       %{key: "require_activation", name: "require_activation", type: "boolean", value: "false"},
       %{key: "max_attachments", name: "max_attachments", type: "integer", value: "20"},
-      %{key: "max_attachment_size", name: "max_attachments_size", type: "integer", value: "20"},
-      %{key: "max_attachments_pm", name: "max_attachments_pm", type: "integer", value: "20"},
-      %{
-        key: "max_attachments_pm_size",
-        name: "max_attachments_pm_size",
-        type: "integer",
-        value: "20"
-      }
+      %{key: "max_attachments_pm", name: "max_attachments_pm", type: "integer", value: "20"}
     ]
   end
 end

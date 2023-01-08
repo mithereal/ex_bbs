@@ -19,6 +19,7 @@ defmodule Api.Application do
       {Registry, keys: :unique, name: :user_registry},
       # Start the User supervisor
       Api.User.Server.Supervisor,
+      Api.System.Setting.Supervisor,
       Api.Error.Server.Supervisor,
       # Start user Registry
       {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
@@ -31,6 +32,7 @@ defmodule Api.Application do
     Supervisor.start_link(children, opts)
     |> setup_role_tables()
     |> create_default_users()
+    |> load_settings()
   end
 
   def setup_role_tables(response) do
@@ -82,6 +84,12 @@ defmodule Api.Application do
       username: default_username
     })
 
+    response
+  end
+
+  def load_settings(response) do
+    defaults = Api.System.Setting.defaults()
+    Api.System.Setting.Supervisor.start(defaults)
     response
   end
 
