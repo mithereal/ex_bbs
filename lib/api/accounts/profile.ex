@@ -24,7 +24,7 @@ defmodule Api.Accounts.User.Profile do
     field(:image, :string)
     field(:about, :string)
 
-    belongs_to(:user, User)
+    belongs_to(:user, User, type: :binary_id)
 
     timestamps()
   end

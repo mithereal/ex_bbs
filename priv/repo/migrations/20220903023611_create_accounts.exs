@@ -3,14 +3,14 @@ defmodule Api.Repo.Migrations.CreateAccounts do
 
   def change do
     create table(:bbs_accounts, primary_key: false) do
-      add :uuid, :uuid, primary_key: true
+      add :id, :uuid, primary_key: true
       add :hash, :string
       add :email, :string
 
       timestamps()
     end
     alter table(:bbs_users) do
-      add(:account_id, references(:bbs_accounts, on_delete: :nothing))
+      add(:account_id, references(:bbs_accounts, on_delete: :nothing, type: :uuid))
     end
   end
 end

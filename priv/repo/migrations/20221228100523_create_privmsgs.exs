@@ -3,14 +3,14 @@ defmodule Api.Repo.Migrations.CreatePrivmsgs do
 
   def change do
     create table(:bbs_privmsgs,primary_key: false) do
-      add :uuid, :uuid, primary_key: true
+      add :id, :uuid, primary_key: true
       add :type, :integer
       add :subject, :string
       add :date, :integer
       add :body, :string
 
-      add(:from_user_id, references(:bbs_users, on_delete: :nothing))
-      add(:to_user_id, references(:bbs_users, on_delete: :nothing))
+      add(:from_user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
+      add(:to_user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
 
       timestamps()
     end

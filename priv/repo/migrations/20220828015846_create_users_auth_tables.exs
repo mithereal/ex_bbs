@@ -5,7 +5,7 @@ defmodule Api.Repo.Migrations.CreateUsersAuthTables do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
     create table(:bbs_users, primary_key: false) do
-      add :uuid, :uuid, primary_key: true
+      add :id, :uuid, primary_key: true
       add :uid, :string
       add :email, :citext, null: false
       add :active, :boolean, default: false
@@ -20,7 +20,7 @@ defmodule Api.Repo.Migrations.CreateUsersAuthTables do
     create unique_index(:bbs_users, [:email])
 
     create table(:bbs_users_tokens) do
-      add :user_id, references(:bbs_users, on_delete: :delete_all), null: false
+      add :user_id, references(:bbs_users, on_delete: :delete_all, type: :uuid), null: false
       add :token, :binary, null: false
       add :context, :string, null: false
       add :sent_to, :string
