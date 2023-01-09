@@ -80,17 +80,24 @@ defmodule Api.Accounts do
 
     case User.valid_password?(user, password) do
       nil ->
-        repo = Application.get_env(:api, Api.Repo)
-        default_password = Keyword.get(repo, :default_user_password) || "exbbs"
-        User.change_user_password(user, %{password: default_password})
-        {:error, "Password Reset to Default"}
+        default_username = Keyword.get(repo, :default_admin_username) || "admin"
+        default_password = Keyword.get(repo, :default_admin_password) || "exbbs"
+
+        if default_username == user.username do
+          repo = Application.get_env(:api, Api.Repo)
+
+          User.change_user_password(user, %{password: default_password})
+          {:error, "Password Reset to Default"}
+        else
+          {:error, "Invalid email or password"}
+        end
 
       true ->
         user = user |> Repo.preload(performer: :roles)
         {:ok, user}
 
       false ->
-        {:error, "Password Reset to Default"}
+        {:error, "Invalid email or password"}
     end
   end
 
