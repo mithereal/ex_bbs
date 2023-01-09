@@ -3,16 +3,13 @@ defmodule Api.Repo.Migrations.CreateBanlist do
 
   def change do
     create table(:bbs_banlist) do
-      add :id, :uuid, primary_key: true, null: false
-      add(:titld, :string, null: false)
+      add(:title, :string, null: false)
+
+      add(:user_id, references(:bbs_users, on_delete: :nothing))
 
       timestamps()
     end
 
-    create(unique_index(:banlist, :id))
-  end
-
-  alter table(:bbs_banlist) do
-    add(:user_id, references(:bbs_users, on_delete: :nothing))
+    create(unique_index(:bbs_banlist, :id))
   end
 end

@@ -2,7 +2,7 @@ defmodule Api.Images.Image do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "images" do
+  schema "bbs_images" do
     field(:height, :float)
     field(:description, :string)
     field(:path, :string)

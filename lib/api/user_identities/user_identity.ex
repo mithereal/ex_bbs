@@ -3,7 +3,7 @@ defmodule Api.UserIdentities.UserIdentity do
 
   @moduledoc false
 
-  schema "user_identities" do
+  schema "bbs_user_identities" do
     timestamps()
   end
 end

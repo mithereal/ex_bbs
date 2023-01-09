@@ -6,7 +6,7 @@ defmodule Api.Accounts.User do
   alias Api.Repo
 
   @derive {Inspect, except: [:password]}
-  schema "users" do
+  schema "bbs_users" do
     field(:email, :string)
     field(:active, :boolean)
     field(:uid, :string)

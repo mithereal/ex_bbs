@@ -3,7 +3,6 @@ defmodule Api.Repo.Migrations.CreateRanks do
 
   def change do
     create table(:bbs_ranks) do
-      add :id, :uuid, primary_key: true, null: false
       add :title, :string
       add :image, :string
 

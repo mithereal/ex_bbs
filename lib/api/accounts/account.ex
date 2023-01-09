@@ -2,7 +2,7 @@ defmodule Api.Accounts.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "accounts" do
+  schema "bbs_accounts" do
     field(:hash, :string)
     field(:email, :string)
 

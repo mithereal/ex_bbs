@@ -2,7 +2,7 @@ defmodule Api.Pages.Page do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "pages" do
+  schema "bbs_pages" do
     field :name, :string
     field :data, :string
 

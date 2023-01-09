@@ -32,6 +32,7 @@ defmodule Api.Application do
     Supervisor.start_link(children, opts)
     |> setup_abilities()
     |> setup_role_tables()
+    |> create_default_settings()
     |> create_default_users()
     |> load_settings()
   end
@@ -66,8 +67,16 @@ defmodule Api.Application do
     response
   end
 
+  def create_default_settings(response) do
+    Api.System.Setting.defaults()
+    |> Enum.map(fn(x) ->
+    Api.System.create_setting(x)
+end)
+    response
+    end
+
   def load_settings(response) do
-    defaults = Api.System.Setting.defaults()
+    defaults = Api.Repo.all(Api.System.Setting)
 
     for setting <- defaults do
     #  Api.System.Setting.Server.add(setting)

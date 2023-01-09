@@ -11,7 +11,7 @@ defmodule Api.Accounts.User.Profile do
   @params ~w( name phone phone_alt address mailing_address city state zip image about)a
   @required_fields ~w(  )a
 
-  schema "user_profiles" do
+  schema "bbs_user_profiles" do
     field(:name, :string)
     field(:phone, :string)
     field(:email, :string)

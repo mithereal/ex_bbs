@@ -14,11 +14,9 @@ defmodule Database.Repo.Migrations.CreateUserProfiles do
       add(:image, :string)
       add(:about, :string)
 
-      timestamps()
-    end
-
-    alter table(:bbs_user_profiles) do
       add(:user_id, references(:bbs_users, on_delete: :nothing))
+
+      timestamps()
     end
   end
 
