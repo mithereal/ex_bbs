@@ -1,0 +1,8 @@
+   +c true
+   +C multi_time_warp
+   +sub true
+   +swt very_low
+   +swtdio very_low
+   +sbwt none
+   +sbwtdcpu none
+   +sbwtdio none
