@@ -1,5 +1,5 @@
 defmodule Api.Accounts.UserToken do
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.Query
 
   @hash_algorithm :sha256

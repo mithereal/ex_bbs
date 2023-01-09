@@ -1,5 +1,5 @@
 defmodule Api.Images.Image do
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.Changeset
 
   schema "bbs_images" do

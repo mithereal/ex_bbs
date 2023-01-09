@@ -1,5 +1,5 @@
 defmodule Api.Accounts.User do
-  use Ecto.Schema
+  use Api.Schema
 
   import Ecto.Changeset
 

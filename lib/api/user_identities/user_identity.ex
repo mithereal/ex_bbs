@@ -1,5 +1,5 @@
 defmodule Api.UserIdentities.UserIdentity do
-  use Ecto.Schema
+  use Api.Schema
 
   @moduledoc false
 

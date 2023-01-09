@@ -2,7 +2,8 @@ defmodule Api.Repo.Migrations.CreateGroups do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_groups) do
+    create table(:bbs_groups,primary_key: false) do
+      add :uuid, :uuid, primary_key: true
       add(:title, :string, null: false)
       add(:type, :integer, null: false, default: 1)
       add(:description, :string, null: false)

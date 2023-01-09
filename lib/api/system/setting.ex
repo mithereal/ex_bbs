@@ -1,5 +1,5 @@
 defmodule Api.System.Setting do
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.Changeset
 
   schema "bbs_settings" do

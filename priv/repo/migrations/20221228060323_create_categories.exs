@@ -2,7 +2,8 @@ defmodule Api.Repo.Migrations.CreateCategories do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_categories) do
+    create table(:bbs_categories,primary_key: false) do
+      add :uuid, :uuid, primary_key: true
       add :title, :string
       add :description, :string
       add :order, :integer

@@ -2,7 +2,8 @@ defmodule Api.Repo.Migrations.CreateAccounts do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_accounts) do
+    create table(:bbs_accounts, primary_key: false) do
+      add :uuid, :uuid, primary_key: true
       add :hash, :string
       add :email, :string
 
