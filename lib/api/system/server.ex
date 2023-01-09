@@ -8,6 +8,7 @@ defmodule Api.System.Setting.Server do
 
   require Logger
 
+  alias Api.System, as: SYSTEM
   @name :settings_server
 
   def child_spec(args) do
@@ -33,7 +34,7 @@ defmodule Api.System.Setting.Server do
   end
 
   def start_link(arg) do
-    GenServer.start_link(__MODULE__, arg,  name: @name)
+    GenServer.start_link(__MODULE__, arg, name: @name)
   end
 
   def shutdown() do
@@ -65,7 +66,8 @@ defmodule Api.System.Setting.Server do
     defaults = Api.Repo.all(Api.System.Setting)
 
     for d <- defaults do
-      :ets.insert(state, {d.key, d})
+      value = SYSTEM.to_type(d)
+      :ets.insert(state, {d.key, value})
     end
 
     {:noreply, state}

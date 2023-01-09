@@ -13,5 +13,6 @@ defmodule Api.Repo.Migrations.CreateSettings do
     end
 
     create unique_index(:bbs_settings, [:key])
+    create index(:bbs_settings, ["upper(type)"])
   end
 end

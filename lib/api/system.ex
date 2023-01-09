@@ -177,4 +177,24 @@ defmodule Api.System do
       |> Terminator.Repo.insert()
     end)
   end
+
+  def to_type(data) when data.type == "integer" do
+    String.to_integer(data.value)
+  end
+
+  def to_type(data) when data.type == "float" do
+    String.to_float(data.value)
+  end
+
+  def to_type(data) do
+    data.value
+  end
+
+  def to_type(data) when data.type == "boolean" do
+    if data.value == "true" || "TRUE" do
+      true
+    else
+      false
+    end
+  end
 end
