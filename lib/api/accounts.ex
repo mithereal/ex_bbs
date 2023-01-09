@@ -83,13 +83,14 @@ defmodule Api.Accounts do
         repo = Application.get_env(:api, Api.Repo)
         default_password = Keyword.get(repo, :default_user_password) || "exbbs"
         User.change_user_password(user, %{password: default_password})
-        false
+        {:error, "Password Reset to Default"}
 
       true ->
-        user |> Repo.preload(performer: :roles)
+        user = user |> Repo.preload(performer: :roles)
+        {:ok, user}
 
       false ->
-        false
+        {:error, "Password Reset to Default"}
     end
   end
 
