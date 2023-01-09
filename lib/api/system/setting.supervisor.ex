@@ -8,6 +8,7 @@ defmodule Api.System.Setting.Supervisor do
 
   alias Api.System.Setting.Server, as: SERVER
 
+@name __MODULE__
 
   def child_spec() do
     %{

@@ -19,7 +19,7 @@ defmodule Api.System.Setting do
   end
 
 
-  defp defaults() do
+  def defaults() do
     [
       %{key: "attachment_quota", name: "attachment quota", type: "integer", value: "52428800"},
       %{key: "avatar_filesize", name: "avatar_filesize", type: "integer", value: "262144"},

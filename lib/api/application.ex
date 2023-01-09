@@ -30,40 +30,19 @@ defmodule Api.Application do
     opts = [strategy: :one_for_one, name: Api.Supervisor]
 
     Supervisor.start_link(children, opts)
+    |> setup_abilities()
     |> setup_role_tables()
     |> create_default_users()
     |> load_settings()
   end
 
+  def setup_abilities(response) do
+    Api.System.default_abilities()
+    response
+  end
+
   def setup_role_tables(response) do
-    Terminator.Ability.build("delete_accounts", "Delete accounts of users")
-    |> Api.Repo.insert()
-
-    ability_delete = Api.Repo.get_by(Terminator.Ability, identifier: "delete_accounts")
-
-    Terminator.Ability.build("ban_accounts", "Ban users")
-    |> Api.Repo.insert()
-
-    ability_ban = Api.Repo.get_by(Terminator.Ability, identifier: "ban_accounts")
-
-    reply =
-      Terminator.Role.build("admin", [], "Site administrator")
-      |> Api.Repo.insert()
-
-    case reply do
-      {:ok, role} ->
-        Terminator.Role.grant(role, ability_delete)
-        |> Terminator.Role.grant(ability_ban)
-
-      error ->
-        error
-    end
-
-    Terminator.Role.build("user", [], "Site user")
-    |> Api.Repo.insert()
-
-    Terminator.Role.build("default", [], "Default Role")
-    |> Api.Repo.insert()
+    default_roles = Api.System.default_roles()
 
     response
   end
@@ -89,7 +68,11 @@ defmodule Api.Application do
 
   def load_settings(response) do
     defaults = Api.System.Setting.defaults()
-    Api.System.Setting.Supervisor.start(defaults)
+
+    for setting <- defaults do
+    #  Api.System.Setting.Server.add(setting)
+    end
+
     response
   end
 

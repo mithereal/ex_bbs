@@ -8,6 +8,42 @@ defmodule Api.System do
 
   alias Api.System.Setting
 
+  @default_abilities [
+    "delete_account",
+    "add_account",
+    "edit_account",
+    "ban_account",
+    "add_attachment",
+    "delete_attachment",
+    "delete_user_group",
+    "add_user_group",
+    "edit_user_group",
+    "edit_user_username",
+    "edit_user_password",
+    "edit_user_profile",
+    "edit_user_email",
+    "delete_user_pm",
+    "add_user_pm",
+    "edit_user_pm",
+    "delete_forum",
+    "add_forum",
+    "edit_forum",
+    "delete_topic",
+    "add_topic",
+    "edit_topic",
+    "delete_post",
+    "add_post",
+    "edit_post",
+    "approve_topic",
+    "approve_forum",
+    "approve_post",
+    "maintenance"
+  ]
+
+  @user_abilities ["add_post"]
+
+  @default_roles ["admin", "user"]
+
   @doc """
   Returns the list of settings.
 
@@ -100,5 +136,45 @@ defmodule Api.System do
   """
   def change_setting(%Setting{} = setting, attrs \\ %{}) do
     Setting.changeset(setting, attrs)
+  end
+
+  def default_roles() do
+    roles = Application.get_env(:api, :default_roles, @default_roles)
+
+    roles =
+      Enum.map(roles, fn x ->
+        Terminator.Role.build(x, [], "Site " <> String.capitalize(x))
+        |> Terminator.Repo.insert()
+      end)
+
+    all_abilities = Api.Repo.all(Terminator.Ability)
+    admin = Terminator.Repo.get_by(Terminator.Role, identifier: "admin")
+    user = Terminator.Repo.get_by(Terminator.Role, identifier: "user")
+
+    for ability <- all_abilities do
+
+      Terminator.Role.grant(admin, ability)
+    end
+
+    for ability <- @user_abilities do
+      ability = Terminator.Repo.get_by(Terminator.Ability, identifier: ability)
+      Terminator.Role.grant(user, ability)
+    end
+
+    roles
+  end
+
+  def default_abilities() do
+    abilities = Application.get_env(:api, :default_abilities, @default_abilities)
+
+    Enum.map(abilities, fn x ->
+      title =
+        String.split(x, "_")
+        |> Enum.map(fn x -> String.capitalize(x) end)
+        |> Enum.join(" ")
+
+      Terminator.Ability.build(x, title)
+      |> Terminator.Repo.insert()
+    end)
   end
 end

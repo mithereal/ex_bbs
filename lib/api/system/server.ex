@@ -8,8 +8,6 @@ defmodule Api.System.Setting.Server do
 
   require Logger
 
-  @registry_name :instance
-
   def child_spec(args) do
     %{
       id: __MODULE__,
@@ -20,24 +18,22 @@ defmodule Api.System.Setting.Server do
 
   @impl true
   def init(init_arg) do
-    ref =
-      :ets.new(:bbs_settings, [
-        :set,
-        :named_table,
-        :public,
-        read_concurrency: true,
-        write_concurrency: true
-      ])
+#    ref =
+#      :ets.new(:bbs_settings, [
+#        :set,
+#        :named_table,
+#        :public,
+#        read_concurrency: true,
+#        write_concurrency: true
+#      ])
+#
+#    :ets.insert(ref, {:default, init_arg})
 
-    :ets.insert(ref, {:default, init_arg})
-
-    {:ok, %{type: init_arg.type, ref: ref}}
+    {:ok}
   end
 
   def start_link(arg) do
-    name = via_tuple(arg.type)
-
-    GenServer.start_link(__MODULE__, arg, name: name)
+    GenServer.start_link(__MODULE__, arg)
   end
 
   def shutdown() do
@@ -61,15 +57,9 @@ defmodule Api.System.Setting.Server do
     {:stop, :normal, state}
   end
 
-  @doc false
-  def via_tuple(id, registry \\ @registry_name) do
-    {:via, Registry, {registry, id}}
-  end
-
   @impl true
   def handle_info({:DOWN, _ref, :process, _pid, _reason}, {names, refs}) do
     :ets.delete(names)
     {:noreply, {names, refs}}
   end
-
 end
