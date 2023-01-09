@@ -19,8 +19,8 @@ defmodule Api.Application do
       {Registry, keys: :unique, name: :user_registry},
       # Start the User supervisor
       Api.User.Server.Supervisor,
-      Api.System.Setting.Supervisor,
       Api.Error.Server.Supervisor,
+      Api.System.Setting.Server,
       # Start user Registry
       {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
     ]
@@ -76,11 +76,7 @@ end)
     end
 
   def load_settings(response) do
-    defaults = Api.Repo.all(Api.System.Setting)
-
-    for setting <- defaults do
-    #  Api.System.Setting.Server.add(setting)
-    end
+    Api.System.Setting.Server.load()
 
     response
   end

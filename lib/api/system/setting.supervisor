@@ -32,6 +32,7 @@ defmodule Api.System.Setting.Supervisor do
   end
 
   def start(opts \\ %{}) do
+
     child_spec = {SERVER, opts}
 
     {:ok, pid} = DynamicSupervisor.start_child(@name, child_spec)
