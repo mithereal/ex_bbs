@@ -11,5 +11,7 @@ defmodule Api.Repo.Migrations.CreateSettings do
 
       timestamps()
     end
+
+    create unique_index(:bbs_settings, [:key])
   end
 end

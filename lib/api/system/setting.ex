@@ -16,6 +16,7 @@ defmodule Api.System.Setting do
     setting
     |> cast(attrs, [:name, :key, :value, :type])
     |> validate_required([:name, :key, :value, :type])
+    |> unique_constraint(:key)
   end
 
 
