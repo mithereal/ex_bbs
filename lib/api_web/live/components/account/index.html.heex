@@ -17,7 +17,6 @@
 <table>
   <thead>
     <tr>
-      <th>Hash</th>
       <th>Key</th>
       <th>Type</th>
       <th>Active</th>
@@ -28,7 +27,6 @@
   <tbody id="accounts">
     <%= for account <- @accounts do %>
       <tr id={"account-#{account.id}"}>
-        <td><%= account.hash %></td>
         <td><%= account.key %></td>
         <td><%= account.type %></td>
         <td><%= account.active %></td>

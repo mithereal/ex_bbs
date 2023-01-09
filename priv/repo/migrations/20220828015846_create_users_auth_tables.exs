@@ -6,7 +6,6 @@ defmodule Api.Repo.Migrations.CreateUsersAuthTables do
 
     create table(:bbs_users, primary_key: false) do
       add :id, :uuid, primary_key: true
-      add :uid, :string
       add :email, :citext, null: false
       add :active, :boolean, default: false
       add :username, :string, null: false

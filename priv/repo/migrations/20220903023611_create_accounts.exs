@@ -4,7 +4,6 @@ defmodule Api.Repo.Migrations.CreateAccounts do
   def change do
     create table(:bbs_accounts, primary_key: false) do
       add :id, :uuid, primary_key: true
-      add :hash, :string
       add :email, :string
 
       timestamps()

@@ -3,7 +3,6 @@ defmodule Api.Accounts.Account do
   import Ecto.Changeset
 
   schema "bbs_accounts" do
-    field(:hash, :string)
     field(:email, :string)
 
     has_one(:admin_user, Api.Accounts.User)
@@ -14,15 +13,9 @@ defmodule Api.Accounts.Account do
 
   @doc false
   def changeset(account, attrs) do
-    hash = hash_id()
 
     account
-    |> cast(attrs, [:hash, :email])
-    |> put_change(:hash, hash)
-    |> validate_required([:hash, :email])
-  end
-
-  defp hash_id(number \\ 20) do
-    Base.encode64(:crypto.strong_rand_bytes(number))
+    |> cast(attrs, [:email])
+    |> validate_required([:email])
   end
 end
