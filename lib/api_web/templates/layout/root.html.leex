@@ -26,7 +26,6 @@
     <%= live_title_tag assigns[:page_title] || "App", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/root.css") %>"/>
 
-    <%= render "_dark_mode.js.html" %>
     <%= render "_apple_touch_header.html", assigns %>
 
     <style>[x-cloak] {
@@ -43,6 +42,9 @@
             src="<%= Routes.static_path(@conn, "/js/root.js") %>"></script>
     <script defer phx-track-static type="text/javascript"
             src="<%= Routes.static_path(@conn, "/js/service-worker.js") %>"></script>
+
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/applyTheme.js") %>"></script>
 
     <%= if @manifest do %>
     <link rel="manifest" href="<%= Routes.static_path(@conn, @manifest) %>">
