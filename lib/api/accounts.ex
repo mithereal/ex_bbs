@@ -80,6 +80,7 @@ defmodule Api.Accounts do
 
     case User.valid_password?(user, password) do
       nil ->
+        repo = Application.get_env(:api, Api.Repo)
         default_username = Keyword.get(repo, :default_admin_username) || "admin"
         default_password = Keyword.get(repo, :default_admin_password) || "exbbs"
 
