@@ -3,8 +3,8 @@ defmodule Api.Repo.Migrations.CreatePages do
 
   def change do
     create table(:bbs_pages) do
-      add :name, :string
-      add :data, :string
+      add :title, :string
+      add :content, :string
 
       timestamps()
     end

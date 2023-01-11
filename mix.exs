@@ -82,7 +82,8 @@ defmodule Api.MixProject do
       {:phoenix_swoosh, "~> 1.0"},
       {:nanoid, "~> 2.0"},
       {:ice_cream, "~> 0.0.5", only: [:dev, :test]},
-      {:premailex, "~> 0.3.16"}
+      {:premailex, "~> 0.3.16"},
+      {:ecto_autoslug_field, "~> 3.0"}
     ]
   end
 

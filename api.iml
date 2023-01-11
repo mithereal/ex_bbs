@@ -241,5 +241,6 @@
     <orderEntry type="library" name="hackney" level="project" />
     <orderEntry type="library" name="certifi" level="project" />
     <orderEntry type="library" name="ssl_verify_fun" level="project" />
+    <orderEntry type="library" name="ecto_autoslug_field" level="project" />
   </component>
 </module>
