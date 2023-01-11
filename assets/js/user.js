@@ -13,14 +13,18 @@
 //
 import "phoenix_html"
 import "../vendor/cdn"
-import '@ryangjchandler/spruce'
 import "phoenix_html"
-import {Socket} from "phoenix"
 
-import NProgress from "nprogress"
+import topbar from "../vendor/topbar"
+import "../vendor/alpine_cdn"
+import "../vendor/hammer"
+
+import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
+
 import {keepAlive} from "./utils";
+import {InitToast} from "./init_toast";
 
  if ('serviceWorker' in navigator) {
    window.addEventListener('load', () => {
@@ -35,10 +39,25 @@ Alpine.start();
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
 
-let hooks = {};
+let Hooks = {};
+
+Hooks.InitToast = InitToast
+
+Hooks.ConnectionStatus = {
+    mounted () {
+        window.connected = true
+    },
+    disconnected () {
+        window.connected = false
+    },
+    reconnected () {
+        window.connected = true
+    }
+}
+
     liveSocket = new LiveSocket("/live", Socket, {
     params: { _csrf_token: csrfToken },
-    hooks: hooks,
+    Hooks: Hooks,
     dom: {
         onBeforeElUpdated(from, to) {
             if (from._x_dataStack) {
@@ -48,8 +67,16 @@ let hooks = {};
     },
 });
 
-window.addEventListener("phx:page-loading-start", info => NProgress.start())
-window.addEventListener("phx:page-loading-stop", info => NProgress.done())
+// Show progress bar on live navigation and form submits
+topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+window.addEventListener("phx:page-loading-start", info => topbar.show())
+window.addEventListener("phx:page-loading-stop", info => topbar.hide())
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/js/service-worker.js');
+    });
+}
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

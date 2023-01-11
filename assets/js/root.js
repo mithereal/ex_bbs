@@ -121,23 +121,6 @@ if ('serviceWorker' in navigator) {
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
-let store = Alpine.store('cart')
-
-let channel = cartSocket.channel('cart:session', {id: cart_id})
-
-channel.join()
-.receive("ok",resp => {
-        channel.push('status', {id: cart_id})
-    })
-.receive("status",resp => {
-        console.log("status", resp)
-    })
-.receive("sync",resp => {
-        console.log("sync", resp)
-        let items_on_server = resp
-    })
-.receive("error", resp => { console.log("Unable to join", resp) })
-
 
 // expose liveSocket on window for web console debug logs and latency simulation:
 // >> liveSocket.enableDebug()

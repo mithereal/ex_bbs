@@ -112,6 +112,8 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_oauth2_provider" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/premailex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/floki" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/slugger" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_autoslug_field" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bcrypt_elixir" level="project" />
@@ -242,5 +244,6 @@
     <orderEntry type="library" name="certifi" level="project" />
     <orderEntry type="library" name="ssl_verify_fun" level="project" />
     <orderEntry type="library" name="ecto_autoslug_field" level="project" />
+    <orderEntry type="library" name="slugger" level="project" />
   </component>
 </module>
