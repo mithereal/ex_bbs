@@ -94,8 +94,10 @@
 
 <footer>
     <div class="footer_container">
-       <span>&copy;2022 - <script>document.write(/\d{4}/.exec(Date())[0])</script>
-        <a href="/" ><%= ApiWeb.Endpoint.url() %></span></a>
+        <div class="copyright">
+        &copy;2022-<script>document.write(/\d{4}/.exec(Date())[0] + '&nbsp;')</script>
+        <a href="/" > <%= ApiWeb.Endpoint.host() %></a>
+        </div>
         <div class="footer_links">
             <span><%= link "Terms", to: Routes.page_path(@conn, :terms), title: "Terms"  %></span>
             <span><%= link "Privacy", to: Routes.page_path(@conn, :privacy), title: "Privacy"  %></span>

@@ -12,8 +12,6 @@
 //     import socket from "./socket"
 //
 import "phoenix_html"
-import "../vendor/cdn"
-import "phoenix_html"
 
 import topbar from "../vendor/topbar"
 import "../vendor/alpine_cdn"
