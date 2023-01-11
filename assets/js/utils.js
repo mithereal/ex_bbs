@@ -77,4 +77,25 @@
      });
  }
 
+ export function clearListCookies()
+ {
+     let cookies = document.cookie.split(";");
+     for (let i = 0; i < cookies.length; i++)
+     {
+         let spcook =  cookies[i].split("=");
+         deleteCookie(spcook[0]);
+     }
+     export function deleteCookie(cookiename)
+     {
+         let d = new Date();
+         d.setDate(d.getDate() - 1);
+         let expires = ";expires="+d;
+         let name=cookiename;
+         //alert(name);
+         let value="";
+         document.cookie = name + "=" + value + expires + "; path=/acc/html";
+     }
+     window.location = ""; // TO REFRESH THE PAGE
+ }
+
 
