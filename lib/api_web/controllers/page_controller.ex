@@ -5,17 +5,17 @@ defmodule ApiWeb.PageController do
   alias Api.Pages.Page
 
   def privacy(conn, _params) do
-    page = %Page{}
+    page = Pages.get_page_by_slug("privacy")
     render(conn, "privacy.html", page: page)
   end
 
   def terms(conn, _params) do
-    page = %Page{}
+    page = Pages.get_page_by_slug("terms")
     render(conn, "terms.html", page: page)
   end
 
   def contact(conn, _params) do
-    page = %Page{}
+    page = Pages.get_page_by_slug("contact")
     render(conn, "contact.html",page: page)
   end
 

@@ -22,6 +22,32 @@ defmodule Api.Pages do
   end
 
   @doc """
+  Gets a single page by slug.
+
+  Raises `Ecto.NoResultsError` if the Page does not exist.
+
+  ## Examples
+
+      iex> get_page_by_slug("test")
+      %Page{}
+
+      iex> get_page_by_slug!(:"test")
+      %Page{}
+
+      iex> get_page_by_slug!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+
+  def get_page_by_slug(slug) do
+    Repo.get_by(Page, slug: slug)
+  end
+
+  def get_page_by_slug!(slug) do
+    Repo.get_by!(Page, slug: slug)
+  end
+
+  @doc """
   Gets a single page.
 
   Raises `Ecto.NoResultsError` if the Page does not exist.
