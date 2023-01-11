@@ -14,6 +14,11 @@ defmodule ApiWeb.PageController do
     render(conn, "terms.html", page: page)
   end
 
+  def faq(conn, _params) do
+    page = Pages.get_page_by_slug("faq")
+    render(conn, "faq.html", page: page)
+  end
+
   def contact(conn, _params) do
     page = Pages.get_page_by_slug("contact")
     render(conn, "contact.html", page: page)
