@@ -2,7 +2,7 @@ defmodule Api.Repo.Migrations.CreateForums do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_forums,primary_key: false) do
+    create table(:bbs_forums, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :title, :string
       add :description, :string
@@ -15,5 +15,4 @@ defmodule Api.Repo.Migrations.CreateForums do
       timestamps()
     end
   end
-
 end

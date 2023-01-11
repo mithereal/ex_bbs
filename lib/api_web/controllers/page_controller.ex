@@ -16,7 +16,7 @@ defmodule ApiWeb.PageController do
 
   def contact(conn, _params) do
     page = Pages.get_page_by_slug("contact")
-    render(conn, "contact.html",page: page)
+    render(conn, "contact.html", page: page)
   end
 
   def index(conn, _params) do

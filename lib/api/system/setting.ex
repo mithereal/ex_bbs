@@ -19,7 +19,6 @@ defmodule Api.System.Setting do
     |> unique_constraint(:key)
   end
 
-
   def defaults() do
     [
       %{key: "attachment_quota", name: "attachment quota", type: "integer", value: "52428800"},

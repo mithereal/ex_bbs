@@ -87,7 +87,11 @@ defmodule Api.Accounts do
         if default_username == user.username do
           repo = Application.get_env(:api, Api.Repo)
 
-          change_user_password(user, %{password: default_password, password_confirmation: default_password})
+          change_user_password(user, %{
+            password: default_password,
+            password_confirmation: default_password
+          })
+
           {:error, "Password Reset to Default"}
         else
           {:error, "Invalid email or password"}

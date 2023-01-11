@@ -6,7 +6,7 @@ defmodule Api.Repo.Migrations.CreateBanlist do
       add :id, :uuid, primary_key: true
       add(:title, :string, null: false)
 
-      add(:user_id, references(:bbs_users, on_delete: :nothing,type: :uuid))
+      add(:user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
 
       timestamps()
     end

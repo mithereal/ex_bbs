@@ -2,7 +2,7 @@ defmodule Api.Repo.Migrations.CreatePrivmsgs do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_privmsgs,primary_key: false) do
+    create table(:bbs_privmsgs, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :type, :integer
       add :subject, :string

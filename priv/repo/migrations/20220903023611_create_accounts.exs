@@ -8,6 +8,7 @@ defmodule Api.Repo.Migrations.CreateAccounts do
 
       timestamps()
     end
+
     alter table(:bbs_users) do
       add(:account_id, references(:bbs_accounts, on_delete: :nothing, type: :uuid))
     end

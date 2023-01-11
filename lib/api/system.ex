@@ -152,7 +152,6 @@ defmodule Api.System do
     user = Terminator.Repo.get_by(Terminator.Role, identifier: "user")
 
     for ability <- all_abilities do
-
       Terminator.Role.grant(admin, ability)
     end
 

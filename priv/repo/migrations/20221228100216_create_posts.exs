@@ -2,7 +2,7 @@ defmodule Api.Repo.Migrations.CreatePosts do
   use Ecto.Migration
 
   def change do
-    create table(:bbs_posts,primary_key: false) do
+    create table(:bbs_posts, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :username, :string
       add :edit_count, :integer
@@ -15,6 +15,5 @@ defmodule Api.Repo.Migrations.CreatePosts do
 
       timestamps()
     end
-
   end
 end

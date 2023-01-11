@@ -69,11 +69,12 @@ defmodule Api.Application do
 
   def create_default_settings(response) do
     Api.System.Setting.defaults()
-    |> Enum.map(fn(x) ->
-    Api.System.create_setting(x)
-end)
+    |> Enum.map(fn x ->
+      Api.System.create_setting(x)
+    end)
+
     response
-    end
+  end
 
   def load_settings(response) do
     Api.System.Setting.Server.load()
