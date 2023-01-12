@@ -230,7 +230,7 @@ defmodule Api.Accounts do
     %User{terms: true}
     |> User.registration_changeset(params)
     |> Repo.insert()
-    |> grant_role("admin")
+    |> grant_role("full_admin")
   end
 
   def logout_user(%User{} = user) do

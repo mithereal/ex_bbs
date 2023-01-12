@@ -186,9 +186,20 @@ defmodule Api.System do
 
   @user_abilities [
     "add_post"
-]
+  ]
 
-  @default_abilities  @system_abilities ++ @topic_abilities ++ @polls_abilities ++ @content_abilities ++ @post_abilities ++ @actions_abilities ++ @permissions_abilities ++ @user_and_groups_abilities ++ @posting_abilities ++ @form_abilities ++ @settings_abilities ++ @misc_abilities ++ @pm_abilities ++ @profile_abilities
+  @default_abilities @system_abilities ++
+                       @topic_abilities ++
+                       @polls_abilities ++
+                       @content_abilities ++
+                       @post_abilities ++
+                       @actions_abilities ++
+                       @permissions_abilities ++
+                       @user_and_groups_abilities ++
+                       @posting_abilities ++
+                       @form_abilities ++
+                       @settings_abilities ++
+                       @misc_abilities ++ @pm_abilities ++ @profile_abilities
 
   @default_roles [
     "standard_admin",
