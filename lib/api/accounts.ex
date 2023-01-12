@@ -144,8 +144,8 @@ defmodule Api.Accounts do
   """
   def register_user(attrs) do
     {:ok, account} = create_account(attrs)
-
-    params = Map.put(attrs, :uid, Ecto.UUID.generate()) |> Map.put(:account_id, account.id)
+IO.inspect(account)
+    params = Map.put(attrs, :uid, Ecto.UUID.generate()) |> Map.put(:account, account)
 
     %User{}
     |> User.registration_changeset(params)

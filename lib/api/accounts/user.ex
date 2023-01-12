@@ -10,7 +10,6 @@ defmodule Api.Accounts.User do
     field(:email, :string)
     field(:active, :boolean)
     field(:uid, :string)
-    field(:account_id, :integer)
     field(:username, :string)
     field(:password, :string, virtual: true)
     field(:hashed_password, :string)
@@ -45,8 +44,7 @@ defmodule Api.Accounts.User do
         :terms,
         :confirmed_at,
         :last_login,
-        :uid,
-        :account_id
+        :uid
       ])
       |> validate_email()
       |> validate_password()
@@ -60,7 +58,7 @@ defmodule Api.Accounts.User do
   def changeset(schema, attrs) do
     changeset =
       schema
-      |> cast(attrs, [:email, :password, :account_id])
+      |> cast(attrs, [:email, :password, :account])
       |> validate_email()
       |> validate_password()
   end
