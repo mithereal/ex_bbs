@@ -11,6 +11,7 @@ defmodule ApiWeb.Router do
     |> assign(:meta_attrs, [])
     |> assign(:manifest, nil)
     |> assign(:meta_pixel_id, meta_pixel_id)
+    |> assign(:last_visited, nil)
     |> assign(:"Service-Worker-Allowed", "/js/")
   end
 
@@ -92,6 +93,7 @@ defmodule ApiWeb.Router do
     get("/contact", PageController, :contact)
     get("/privacy", PageController, :privacy)
     get("/terms", PageController, :terms)
+    get("/faq", PageController, :faq)
   end
 
   scope "/user", ApiWeb do
@@ -198,6 +200,7 @@ defmodule ApiWeb.Router do
     get("/contact", PageController, :contact)
     get("/privacy", PageController, :privacy)
     get("/terms", PageController, :terms)
+    get("/faq", PageController, :faq)
   end
 
   scope "/page", ApiWeb do

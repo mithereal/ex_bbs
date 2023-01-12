@@ -196,4 +196,21 @@ defmodule Api.System do
       false
     end
   end
+
+  @doc """
+  Format Date.
+    This will take a native DateTime and turn it into a js datetime
+  ## Examples
+
+      iex> Stats.format_date(date)
+  """
+  def format_date(date) do
+    {:ok, date_string} = Timex.format(date, "{ISOdate}")
+
+    {:ok, h} = Timex.format(date, "{h24}")
+    {:ok, m} = Timex.format(date, "{m}")
+    {:ok, s} = Timex.format(date, "{s}")
+
+    sf_date_string = date_string <> "T" <> h <> ":" <> m <> ":" <> s <> "z"
+  end
 end

@@ -21,6 +21,7 @@ defmodule Api.Application do
       Api.User.Server.Supervisor,
       Api.Error.Server.Supervisor,
       Api.System.Setting.Server,
+      Api.System.HitCounter.Server,
       # Start user Registry
       {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
     ]
@@ -35,6 +36,7 @@ defmodule Api.Application do
     |> create_default_settings()
     |> create_default_users()
     |> load_settings()
+    |> load_counters()
   end
 
   def setup_abilities(response) do
@@ -76,6 +78,11 @@ defmodule Api.Application do
     response
   end
 
+  def load_counters(response) do
+    Api.System.HitCounter.Server.load()
+
+    response
+  end
   def load_settings(response) do
     Api.System.Setting.Server.load()
 

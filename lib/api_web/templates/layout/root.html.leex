@@ -55,13 +55,21 @@
      <% end %>
 
 </head>
-<body class="">
+<body class="root_body">
 
 <!-- start::Topbar -->
 <header class="container">
     <div class="root_menu_header">
         <div class="root_logo">
             <a href="/" ><img src="/images/logo.png" /> </a>
+        </div>
+
+        <div class="header_domain">
+
+        </div>
+
+        <div class="header_search">
+
         </div>
 
         <!-- start::Mobile menu button -->
@@ -78,29 +86,45 @@
 
         <!-- start::Right side top menu -->
         <div class="menu_button_container">
-            <div class="root_menu_items_header">
-                <%= link "Contact", to: Routes.page_path(@conn, :contact), class: "contact", title: "Contact" %>
-            </div>
-            <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Sign In" %>
-            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Sign Up" %>
+            <%= link "Contact", to: Routes.page_path(@conn, :contact), class: "contact", title: "Contact" %>
+            <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
+            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Register" %>
         </div>
         <!-- end::Right side top menu -->
 
     </div>
+    <div class="header_link_bar">
+        <%= link "FAQ", to: Routes.page_path(@conn, :faq), class: "faq", title: "FAQ" %>
+    </div>
+
+    <div class="breadcrumbs">
+        <%= link "Board Index", to: "/", class: "board_index", title: "Board Index" %>
+    </div>
+
+    <div class = "current_time"></div>
+
+    <div class = "last_visited"> <%= @last_visited  %></div>
 </header>
 <!-- end::Topbar -->
 
 <%= @inner_content %>
 
+
 <footer>
     <div class="footer_container">
+
+        <div class="footer_link_bar">
+            <button class="">Home</button>
+            <button class="">Delete Cookies</button>
+        </div>
+
         <div class="copyright">
         &copy;2022-<script>document.write(/\d{4}/.exec(Date())[0] + '&nbsp;')</script>
         <a href="/" > <%= ApiWeb.Endpoint.host() %></a>
         </div>
         <div class="footer_links">
-            <span><%= link "Terms", to: Routes.page_path(@conn, :terms), title: "Terms"  %></span>
             <span><%= link "Privacy", to: Routes.page_path(@conn, :privacy), title: "Privacy"  %></span>
+            <span><%= link "Terms", to: Routes.page_path(@conn, :terms), title: "Terms"  %></span>
         </div>
     </div>
 </footer>
