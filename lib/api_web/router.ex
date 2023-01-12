@@ -3,16 +3,20 @@ defmodule ApiWeb.Router do
   use ApiWeb, :user_auth
 
   alias ApiWeb.Plug.EnsureRole
+  alias ApiWeb.Plug.HitCounter
+  alias ApiWeb.Plug.MetaAttrs
+  alias ApiWeb.Plug.Pixel
+  alias ApiWeb.Plug.LastVisit
+  alias ApiWeb.Plug.Manifest
+  alias ApiWeb.Plug.ServiceWorker
 
-  def default_assigns(conn, _opts) do
-    meta_pixel_id = Application.get_env(:api, :meta_pixel_id)
-
-    conn
-    |> assign(:meta_attrs, [])
-    |> assign(:manifest, nil)
-    |> assign(:meta_pixel_id, meta_pixel_id)
-    |> assign(:last_visited, nil)
-    |> assign(:"Service-Worker-Allowed", "/js/")
+  pipeline :default_assigns do
+    plug MetaAttrs
+    plug Pixel
+    plug LastVisit
+    plug Manifest
+    plug HitCounter
+    plug ServiceWorker
   end
 
   pipeline :browser do
@@ -23,7 +27,6 @@ defmodule ApiWeb.Router do
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(:fetch_current_user)
-    plug :default_assigns
   end
 
   pipeline :admin_browser do
@@ -34,7 +37,6 @@ defmodule ApiWeb.Router do
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(:fetch_current_user)
-    plug :default_assigns
   end
 
   pipeline :user_browser do
@@ -78,7 +80,6 @@ defmodule ApiWeb.Router do
     plug(:fetch_live_flash)
     plug(:put_root_layout, {ApiWeb.LayoutView, :user})
     plug(:fetch_current_user)
-    plug :default_assigns
   end
 
   pipeline :auth do
@@ -88,7 +89,7 @@ defmodule ApiWeb.Router do
   ## Authentication routes
 
   scope "/user", ApiWeb do
-    pipe_through([:browser])
+    pipe_through([:browser, :default_assigns])
 
     get("/contact", PageController, :contact)
     get("/privacy", PageController, :privacy)
@@ -97,7 +98,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/user", ApiWeb do
-    pipe_through([:browser, :redirect_if_user_is_authenticated])
+    pipe_through([:browser, :default_assigns, :redirect_if_user_is_authenticated])
 
     get("/register", UserRegistrationController, :new)
     post("/register", UserRegistrationController, :create)
@@ -110,7 +111,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/user", ApiWeb do
-    pipe_through([:user_browser, :require_authenticated_user])
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     get("/force_logout", UserSessionController, :force_logout)
     get("/log_out", UserSessionController, :delete)
@@ -123,7 +124,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/user", ApiWeb do
-    pipe_through([:user_browser, :require_authenticated_user])
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     live "/images", ImageLive.Index, :index
     live "/images/new", ImageLive.Index, :new
@@ -134,7 +135,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/user/settings", ApiWeb do
-    pipe_through([:user_browser, :require_authenticated_user])
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     get("/", UserSettingsController, :edit)
     put("/update_password", UserSettingsController, :update_password)
@@ -143,13 +144,13 @@ defmodule ApiWeb.Router do
   end
 
   scope "/home", ApiWeb do
-    pipe_through([:user_browser, :require_authenticated_user])
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     live("/", UserDashboardLive)
   end
 
   scope "/admin", ApiWeb do
-    pipe_through([:admin_browser, :require_authenticated_user, :admin])
+    pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
     live("/", AdminDashboardLive)
     live("/analytics", AdminDashboardAnalyticsLive)
@@ -165,14 +166,14 @@ defmodule ApiWeb.Router do
   end
 
   scope "/admin", ApiWeb do
-    pipe_through([:admin_browser, :require_authenticated_user, :admin])
+    pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
     get("/accounts", AccountsController, :list)
     get("/profile/:email", UserProfileController, :show)
   end
 
   scope "/admin/settings", ApiWeb do
-    pipe_through([:admin_browser, :require_authenticated_user, :admin])
+    pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
     get("/", AdminSettingsController, :edit)
     put("/update_password", AdminSettingsController, :update_password)
@@ -182,20 +183,20 @@ defmodule ApiWeb.Router do
   end
 
   scope "/", ApiWeb do
-    pipe_through([:browser, :redirect_if_user_is_authenticated])
+    pipe_through([:browser, :default_assigns, :redirect_if_user_is_authenticated])
 
     live("/", PageLive)
   end
 
   scope "/", ApiWeb do
-    pipe_through([:browser])
+    pipe_through([:browser, :default_assigns])
 
     live("/", PageLive)
     get "/keep-alive", UserSessionController, :keep_alive
   end
 
   scope "/page", ApiWeb do
-    pipe_through([:browser])
+    pipe_through([:browser, :default_assigns])
 
     get("/contact", PageController, :contact)
     get("/privacy", PageController, :privacy)
@@ -204,7 +205,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/page", ApiWeb do
-    pipe_through([:pwa])
+    pipe_through([:pwa, :default_assigns])
 
     get("/pwa", PageController, :pwa)
   end
@@ -214,7 +215,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/auth", ApiWeb do
-    pipe_through [:browser_with_no_csrf, :redirect_if_user_is_authenticated]
+    pipe_through [:browser_with_no_csrf, :default_assigns, :redirect_if_user_is_authenticated]
 
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
