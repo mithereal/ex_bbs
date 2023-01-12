@@ -55,7 +55,6 @@ defmodule ApiWeb.UserAuth do
       :confirmed_at,
       :inserted_at,
       :active,
-      :uid,
       :account_id,
       :last_login,
       :account

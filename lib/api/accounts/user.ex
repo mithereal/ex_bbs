@@ -43,8 +43,7 @@ defmodule Api.Accounts.User do
         :password_confirmation,
         :terms,
         :confirmed_at,
-        :last_login,
-        :uid
+        :last_login
       ])
       |> validate_email()
       |> validate_password()

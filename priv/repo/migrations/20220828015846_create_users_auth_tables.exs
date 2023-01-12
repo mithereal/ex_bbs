@@ -11,7 +11,7 @@ defmodule Api.Repo.Migrations.CreateUsersAuthTables do
       add :username, :string, null: false
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
-      add :performer_id, references(Terminator.Performer.table())
+      add :performer_id, references(Terminator.Performer.table(), type: :uuid)
       add :last_login, :string, null: true
       timestamps()
     end

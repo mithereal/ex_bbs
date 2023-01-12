@@ -4,7 +4,7 @@
   <.modal return_to={Routes.setting_show_path(@socket, :show, @setting)}>
     <.live_component
       module={ApiWeb.SettingLive.FormComponent}
-      id={@setting.uuid}
+      id={@setting.id}
       title={@page_title}
       action={@live_action}
       setting={@setting}
