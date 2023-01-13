@@ -3,7 +3,6 @@ defmodule ApiWeb.Router do
   use ApiWeb, :user_auth
 
   alias ApiWeb.Plug.EnsureRole
-  alias ApiWeb.Plug.HitCounter
   alias ApiWeb.Plug.MetaAttrs
   alias ApiWeb.Plug.Pixel
   alias ApiWeb.Plug.LastVisit
@@ -15,7 +14,6 @@ defmodule ApiWeb.Router do
     plug Pixel
     plug LastVisit
     plug Manifest
-    plug HitCounter
     plug ServiceWorker
   end
 
