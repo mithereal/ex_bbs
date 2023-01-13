@@ -52,6 +52,9 @@
     <%= render "_meta_pixel.html", meta_pixel_id: @meta_pixel_id %>
      <% end %>
 
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/service-worker.js") %>"></script>
+
 </head>
 <body class="root_body">
 

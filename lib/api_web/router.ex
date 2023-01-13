@@ -5,15 +5,10 @@ defmodule ApiWeb.Router do
   alias ApiWeb.Plug.EnsureRole
   alias ApiWeb.Plug.MetaAttrs
   alias ApiWeb.Plug.Pixel
-  alias ApiWeb.Plug.LastVisit
-  alias ApiWeb.Plug.Manifest
-  alias ApiWeb.Plug.ServiceWorker
 
   pipeline :default_assigns do
     plug MetaAttrs
     plug Pixel
-    plug LastVisit
-    plug ServiceWorker
   end
 
   pipeline :browser do
@@ -116,22 +111,28 @@ defmodule ApiWeb.Router do
     get("/confirm", UserConfirmationController, :new)
     post("/confirm", UserConfirmationController, :create)
     get("/confirm/:token", UserConfirmationController, :confirm)
-    get("/profile", UserProfileController, :show)
-    post("/profile", UserProfileController, :update)
   end
 
-  scope "/user", ApiWeb do
+  scope "/profile", ApiWeb do
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
+    get("/", UserProfileController, :show)
+    get("/:id", UserProfileController, :show)
+    post("/", UserProfileController, :update)
+    end
+
+
+  scope "/gallery", ApiWeb do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
-    live "/images", ImageLive.Index, :index
-    live "/images/new", ImageLive.Index, :new
-    live "/images/:id/edit", ImageLive.Index, :edit
+    live "/", ImageLive.Index, :index
+    live "/image/new", ImageLive.Index, :new
+    live "/image/:id/edit", ImageLive.Index, :edit
 
-    live "/images/:id", ImageLive.Show, :show
-    live "/images/:id/show/edit", ImageLive.Show, :edit
+    live "/image/:id", ImageLive.Show, :show
+    live "/image/:id/show/edit", ImageLive.Show, :edit
   end
 
-  scope "/user/settings", ApiWeb do
+  scope "/settings", ApiWeb do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     get("/", UserSettingsController, :edit)
