@@ -13,7 +13,6 @@ defmodule ApiWeb.Router do
     plug MetaAttrs
     plug Pixel
     plug LastVisit
-    plug Manifest
     plug ServiceWorker
   end
 

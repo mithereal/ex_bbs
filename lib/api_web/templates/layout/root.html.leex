@@ -46,9 +46,7 @@
     <script defer phx-track-static type="text/javascript"
             src="<%= Routes.static_path(@conn, "/js/applyTheme.js") %>"></script>
 
-    <%= if @manifest do %>
-    <link rel="manifest" href="<%= Routes.static_path(@conn, @manifest) %>">
-    <% end %>
+    <link rel="manifest" href="<%= Routes.static_path(@conn, "/cache_manifest.json") %>">
 
     <%= if @meta_pixel_id do %>
     <%= render "_meta_pixel.html", meta_pixel_id: @meta_pixel_id %>
@@ -103,7 +101,7 @@
 
     <div class = "current_time"></div>
 
-    <div class = "last_visited"> <%= @last_visit  %></div>
+    <div class = "last_visited"></div>
 </header>
 <!-- end::Topbar -->
 

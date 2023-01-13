@@ -5,6 +5,7 @@ defmodule Api.Repo.Migrations.CreatePages do
     create table(:bbs_pages) do
       add :title, :string
       add :content, :string
+      add :slug, :string
 
       timestamps()
     end
