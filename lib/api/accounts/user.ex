@@ -52,6 +52,7 @@ defmodule Api.Accounts.User do
       |> validate_confirmation(:password, message: "Passwords dont match")
       |> create_username()
       |> create_performer()
+      |> create_account()
   end
 
   def changeset(schema, attrs) do
@@ -76,11 +77,22 @@ defmodule Api.Accounts.User do
     |> put_change(:performer_id, performer.id)
   end
 
+  defp create_account(%{valid?: true} = changeset) do
+    {:ok, account} = %Api.Accounts.Account{email: changeset.changes.email} |> Api.Repo.insert()
+
+    changeset
+    |> put_change(:account_id, account.id)
+  end
+
   defp create_role(changeset) do
     %{changeset | valid?: false}
   end
 
   defp create_performer(changeset) do
+    %{changeset | valid?: false}
+  end
+
+  defp create_account(changeset) do
     %{changeset | valid?: false}
   end
 

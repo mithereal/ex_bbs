@@ -144,11 +144,11 @@ defmodule Api.Accounts do
   """
   def register_user(attrs) do
     {:ok, account} = create_account(attrs)
-
-    params = Map.put(attrs, :account, account)
+#
+#    params = Map.put(attrs, :account, account)
 
     %User{}
-    |> User.registration_changeset(params)
+    |> User.registration_changeset(attrs)
     |> Repo.insert()
     |> grant_role("user")
   end
@@ -570,8 +570,8 @@ defmodule Api.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_account(attrs) do
-    params = %{email: attrs["email"], password: attrs["password"]}
+
+  def create_account(params) do
 
     %Account{}
     |> Account.changeset(params)

@@ -14,7 +14,7 @@ defmodule Api.Accounts.Account do
   @doc false
   def changeset(account, attrs) do
     account
-    |> cast(attrs, [:email])
+    |> cast(attrs, [:email, :admin_user_id])
     |> validate_required([:email])
   end
 end
