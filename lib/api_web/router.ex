@@ -116,8 +116,8 @@ defmodule ApiWeb.Router do
   scope "/profile", ApiWeb do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
     get("/", UserProfileController, :show)
-    get("/:id", UserProfileController, :show)
     post("/", UserProfileController, :update)
+    get("/:id", UserProfileController, :show)
     end
 
 
@@ -210,6 +210,7 @@ defmodule ApiWeb.Router do
 
   scope "/websockets", ApiWeb do
     pipe_through([:pwa])
+    get("/", PageController, :pwa)
   end
 
   scope "/auth", ApiWeb do
