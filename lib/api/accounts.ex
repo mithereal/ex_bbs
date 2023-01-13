@@ -571,7 +571,7 @@ defmodule Api.Accounts do
 
   """
   def create_account(attrs) do
-    params = %{email: attrs.email}
+    params = %{email: attrs["email"], password: attrs["password"]}
 
     %Account{}
     |> Account.changeset(params)

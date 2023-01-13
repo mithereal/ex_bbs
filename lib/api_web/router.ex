@@ -81,15 +81,6 @@ defmodule ApiWeb.Router do
   ## Authentication routes
 
   scope "/user", ApiWeb do
-    pipe_through([:browser, :default_assigns])
-
-    get("/contact", PageController, :contact)
-    get("/privacy", PageController, :privacy)
-    get("/terms", PageController, :terms)
-    get("/faq", PageController, :faq)
-  end
-
-  scope "/user", ApiWeb do
     pipe_through([:browser, :default_assigns, :redirect_if_user_is_authenticated])
 
     get("/register", UserRegistrationController, :new)
@@ -148,7 +139,10 @@ defmodule ApiWeb.Router do
   end
 
   scope "/admin", ApiWeb do
-    pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
+    pipe_through([:user_browser, :default_assigns, :require_authenticated_user, :admin])
+
+    resources "/performers", PerformerController
+    resources "/roles", RoleController
 
     live("/", AdminDashboardLive)
     live("/analytics", AdminDashboardAnalyticsLive)
