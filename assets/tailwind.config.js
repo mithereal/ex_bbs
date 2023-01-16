@@ -10,9 +10,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                "primary": "#1f4b8e",
+                "primary": "#d8dbe0",
                 "primary-dark": "#102a52",
-                "secondary": "#182430",
+                "secondary": "#adb1b4",
                 "secondary-dark": "#060C11",
                 "custom_scrollbar": "#182430",
                 "custom_scrollbar_thumb": "#888",

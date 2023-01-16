@@ -139,7 +139,7 @@ defmodule ApiWeb.Router do
   end
 
   scope "/admin", ApiWeb do
-    pipe_through([:user_browser, :default_assigns, :require_authenticated_user, :admin])
+    pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
     resources "/performers", PerformerController
     resources "/roles", RoleController

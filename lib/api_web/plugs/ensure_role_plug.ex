@@ -42,7 +42,6 @@ defmodule ApiWeb.Plug.EnsureRole do
   end
 
   defp user_has_role?(user, roles) when is_list(roles) do
-    IO.inspect(roles, label: "isatomole")
 
     roles
     |> Enum.map(fn role -> has_role?(user.performer, role) end)
