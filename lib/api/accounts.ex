@@ -222,7 +222,7 @@ defmodule Api.Accounts do
     {:ok, account} = create_account(attrs)
 
     params =
-      Map.put(attrs, :account_id, account.id)
+      Map.put(attrs, :account, account)
       |> Map.put(:active, true)
       |> Map.put(:confirmed_at, DateTime.utc_now())
 

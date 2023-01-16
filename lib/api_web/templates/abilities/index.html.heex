@@ -1,0 +1,30 @@
+<h1>Listing Abilities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Identifier</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for abilities <- @abilities do %>
+    <tr>
+      <td><%= abilities.id %></td>
+      <td><%= abilities.name %></td>
+      <td><%= abilities.identifier %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.abilities_path(@conn, :show, abilities) %></span>
+        <span><%= link "Edit", to: Routes.abilities_path(@conn, :edit, abilities) %></span>
+        <span><%= link "Delete", to: Routes.abilities_path(@conn, :delete, abilities), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Abilities", to: Routes.abilities_path(@conn, :new) %></span>

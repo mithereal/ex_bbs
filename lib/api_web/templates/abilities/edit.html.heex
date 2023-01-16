@@ -1,0 +1,5 @@
+<h1>Edit Abilities</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.abilities_path(@conn, :update, @abilities)) %>
+
+<span><%= link "Back", to: Routes.abilities_path(@conn, :index) %></span>

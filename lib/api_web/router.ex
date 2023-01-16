@@ -172,6 +172,7 @@ defmodule ApiWeb.Router do
     put("/update_email", AdminSettingsController, :update_email)
 
     resources "/system", SettingController
+    resources "/terminator", PerformerController
   end
 
   scope "/", ApiWeb do
@@ -185,6 +186,11 @@ defmodule ApiWeb.Router do
 
     live("/", PageLive)
     get "/keep-alive", UserSessionController, :keep_alive
+
+    resources "/performers", PerformerController
+    resources "/roles", RoleController
+    resources "/abilities", AbilitiesController
+    resources "/entities", EntitiesController
   end
 
   scope "/page", ApiWeb do
@@ -228,7 +234,7 @@ defmodule ApiWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through(:browser)
+      pipe_through([:browser, :default_assigns])
       live_dashboard("/developer", metrics: ApiWeb.Telemetry)
     end
   end

@@ -18,7 +18,7 @@ defmodule Api.Accounts.User do
     field(:password_confirmation, :string, virtual: true)
     field(:terms, :boolean, virtual: true)
 
-    has_one(:account, Api.Accounts.Account)
+    belongs_to(:account, Api.Accounts.Account)
     has_one(:profile, Api.Accounts.User.Profile)
     belongs_to(:performer, Terminator.Performer)
 

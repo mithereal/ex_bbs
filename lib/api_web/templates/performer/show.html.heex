@@ -1,0 +1,18 @@
+<h1>Show Performer</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @performer.id %>
+  </li>
+
+  <li>
+    <strong>Abilities:</strong>
+    <%= @performer.abilities %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.performer_path(@conn, :edit, @performer) %></span> |
+<span><%= link "Back", to: Routes.performer_path(@conn, :index) %></span>

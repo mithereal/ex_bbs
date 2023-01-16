@@ -1,0 +1,23 @@
+<h1>Show Entities</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @entities.id %>
+  </li>
+
+  <li>
+    <strong>Assoc type:</strong>
+    <%= @entities.assoc_type %>
+  </li>
+
+  <li>
+    <strong>Abilities:</strong>
+    <%= @entities.abilities %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.entities_path(@conn, :edit, @entities) %></span> |
+<span><%= link "Back", to: Routes.entities_path(@conn, :index) %></span>

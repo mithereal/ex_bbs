@@ -310,7 +310,12 @@ defmodule Api.System do
 
     roles =
       Enum.map(roles, fn x ->
-        Terminator.Role.build(x, [], String.capitalize(x))
+        title =
+          String.split(x, "_")
+          |> Enum.map(fn x -> String.capitalize(x) end)
+          |> Enum.join(" ")
+
+        Terminator.Role.build(x, [], title)
         |> Terminator.Repo.insert()
       end)
 

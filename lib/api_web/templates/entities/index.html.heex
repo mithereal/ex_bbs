@@ -1,0 +1,30 @@
+<h1>Listing Entities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Assoc type</th>
+      <th>Abilities</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for entities <- @entities do %>
+    <tr>
+      <td><%= entities.id %></td>
+      <td><%= entities.assoc_type %></td>
+      <td><%= entities.abilities %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.entities_path(@conn, :show, entities) %></span>
+        <span><%= link "Edit", to: Routes.entities_path(@conn, :edit, entities) %></span>
+        <span><%= link "Delete", to: Routes.entities_path(@conn, :delete, entities), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Entities", to: Routes.entities_path(@conn, :new) %></span>

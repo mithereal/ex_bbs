@@ -1,0 +1,28 @@
+<h1>Listing Performers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Abilities</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for performer <- @performers do %>
+    <tr>
+      <td><%= performer.id %></td>
+      <td><%= performer.abilities %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.performer_path(@conn, :show, performer) %></span>
+        <span><%= link "Edit", to: Routes.performer_path(@conn, :edit, performer) %></span>
+        <span><%= link "Delete", to: Routes.performer_path(@conn, :delete, performer), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Performer", to: Routes.performer_path(@conn, :new) %></span>

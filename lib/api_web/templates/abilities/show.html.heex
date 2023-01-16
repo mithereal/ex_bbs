@@ -1,0 +1,23 @@
+<h1>Show Abilities</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @abilities.id %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @abilities.name %>
+  </li>
+
+  <li>
+    <strong>Identifier:</strong>
+    <%= @abilities.identifier %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.abilities_path(@conn, :edit, @abilities) %></span> |
+<span><%= link "Back", to: Routes.abilities_path(@conn, :index) %></span>
