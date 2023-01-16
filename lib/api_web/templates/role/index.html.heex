@@ -15,7 +15,11 @@
 <%= for role <- @roles do %>
     <tr>
       <td><%= role.id %></td>
-      <td><%= role.abilities %></td>
+        <td>
+        <%= for a <- role.abilities do %>
+      <%= a %>
+        <% end %>
+        </td>
       <td><%= role.name %></td>
       <td><%= role.identifier %></td>
 
