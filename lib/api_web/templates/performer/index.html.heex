@@ -13,8 +13,11 @@
 <%= for performer <- @performers do %>
     <tr>
       <td><%= performer.id %></td>
-      <td><%= performer.abilities %></td>
-
+        <td>
+            <%= for a <- performer.abilities do %>
+            <%= a %>
+            <% end %>
+        </td>
       <td>
         <span><%= link "Show", to: Routes.performer_path(@conn, :show, performer) %></span>
         <span><%= link "Edit", to: Routes.performer_path(@conn, :edit, performer) %></span>

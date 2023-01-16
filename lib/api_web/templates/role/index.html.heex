@@ -17,12 +17,11 @@
       <td><%= role.id %></td>
         <td>
         <%= for a <- role.abilities do %>
-      <%= a %>
+        <%= a %>
         <% end %>
         </td>
       <td><%= role.name %></td>
       <td><%= role.identifier %></td>
-
       <td>
         <span><%= link "Show", to: Routes.role_path(@conn, :show, role) %></span>
         <span><%= link "Edit", to: Routes.role_path(@conn, :edit, role) %></span>

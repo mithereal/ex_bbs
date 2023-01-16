@@ -15,8 +15,11 @@
     <tr>
       <td><%= entities.id %></td>
       <td><%= entities.assoc_type %></td>
-      <td><%= entities.abilities %></td>
-
+        <td>
+            <%= for a <- entities.abilities do %>
+            <%= a %>
+            <% end %>
+        </td>
       <td>
         <span><%= link "Show", to: Routes.entities_path(@conn, :show, entities) %></span>
         <span><%= link "Edit", to: Routes.entities_path(@conn, :edit, entities) %></span>
