@@ -9,7 +9,6 @@ defmodule Api.Accounts.User do
   schema "bbs_users" do
     field(:email, :string)
     field(:active, :boolean)
-    field(:uid, :string)
     field(:username, :string)
     field(:password, :string, virtual: true)
     field(:hashed_password, :string)

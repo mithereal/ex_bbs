@@ -59,7 +59,7 @@ defmodule Api.Accounts do
 
   """
   def count_users() do
-    Repo.aggregate(from(i in "users"), :count, :id)
+    Repo.aggregate(from(i in "bbs_users"), :count)
   end
 
   @doc """

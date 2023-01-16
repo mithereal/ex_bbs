@@ -62,7 +62,7 @@ defmodule ApiWeb.Router do
   end
 
   pipeline :admin do
-    plug(EnsureRole, [:admin])
+    plug(EnsureRole, [:full_admin])
   end
 
   pipeline :browser_with_no_csrf do
