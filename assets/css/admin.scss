@@ -3,10 +3,10 @@
 @layer base {
 
     body {
-        background : theme('colors.primary');
+        background : theme('colors.primary-admin');
 
         &.dark {
-            background : theme('colors.primary-dark')
+            background : theme('colors.primary-admin-dark')
             }
     }
 }
@@ -82,11 +82,11 @@
 .mobile_menu_header {
     @apply flex justify-between items-baseline h-16 py-4 px-6 bg-white;
 
-        background: theme('colors.primary');
+        background: theme('colors.primary-admin');
             color: white;
 
          &.dark {
-                    background : theme('colors.primary-dark');
+                    background : theme('colors.primary-admin-dark');
 
                     }
 }

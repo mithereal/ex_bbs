@@ -1,10 +1,10 @@
 @import "./base.css";
 @layer base {
   body {
-    background: theme("colors.primary");
+    background: theme("colors.primary-admin");
   }
   body.dark {
-    background: theme("colors.primary-dark");
+    background: theme("colors.primary-admin-dark");
   }
 }
 .navigation {
@@ -73,11 +73,11 @@
 
 .mobile_menu_header {
   @apply flex justify-between items-baseline h-16 py-4 px-6 bg-white;
-  background: theme("colors.primary");
+  background: theme("colors.primary-admin");
   color: white;
 }
 .mobile_menu_header.dark {
-  background: theme("colors.primary-dark");
+  background: theme("colors.primary-admin-dark");
 }
 
 .menu_items {

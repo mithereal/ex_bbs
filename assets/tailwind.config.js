@@ -10,10 +10,14 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                "primary": "#d8dbe0",
+                "primary": "#5a88e3",
+                "primary-admin": "#b5b7bb",
                 "primary-dark": "#102a52",
-                "secondary": "#adb1b4",
+                "primary-admin-dark": "#102a52",
+                "secondary": "#3b3d3f",
+                "secondary-admin": "#0a0ad2",
                 "secondary-dark": "#060C11",
+                "secondary-admin-dark": "#060C11",
                 "custom_scrollbar": "#182430",
                 "custom_scrollbar_thumb": "#888",
                 "custom_scrollbar_thumb:hover": "#555",
