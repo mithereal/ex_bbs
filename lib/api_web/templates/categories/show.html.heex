@@ -1,0 +1,33 @@
+<h1>Show Categories</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @categories.id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @categories.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @categories.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @categories.status %>
+  </li>
+
+  <li>
+    <strong>Order:</strong>
+    <%= @categories.order %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.categories_path(@conn, :edit, @categories) %></span> |
+<span><%= link "Back", to: Routes.categories_path(@conn, :index) %></span>

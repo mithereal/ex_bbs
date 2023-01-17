@@ -177,6 +177,8 @@ defmodule ApiWeb.Router do
     resources "/abilities", AbilitiesController
     resources "/entities", EntitiesController
     resources "/forums", ForumsController
+    resources "/topics", TopicsController
+    resources "/posts", PostsController
   end
 
   scope "/", ApiWeb do

@@ -1,0 +1,5 @@
+<h1>Edit Forums</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.forums_path(@conn, :update, @forums)) %>
+
+<span><%= link "Back", to: Routes.forums_path(@conn, :index) %></span>

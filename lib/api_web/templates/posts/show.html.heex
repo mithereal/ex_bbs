@@ -1,0 +1,43 @@
+<h1>Show Posts</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @posts.id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @posts.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @posts.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @posts.status %>
+  </li>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @posts.username %>
+  </li>
+
+  <li>
+    <strong>Edit count:</strong>
+    <%= @posts.edit_count %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @posts.body %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @posts) %></span> |
+<span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>

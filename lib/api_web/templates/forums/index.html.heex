@@ -1,0 +1,20 @@
+<h1>Listing Forums</h1>
+
+<div class="forum_list">
+    <div class="forum_header">
+      <div class="forum_header">Topics</div>
+      <div class="forum_header">Posts</div>
+      <div class="forum_header">Last  Post</div>
+    </div>
+
+<%= for forums <- @forums do %>
+    <div class="forum">
+      <div class="forum_title"><%= forums.title %></div>
+      <div class="forum_description"><%= forums.description %></div>
+
+        <div><%= link "Show", to: Routes.forums_path(@conn, :show, forums) %></div>
+
+    </div>
+<% end %>
+</div>
+<span><%= link "New Forums", to: Routes.forums_path(@conn, :new) %></span>

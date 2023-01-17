@@ -1,0 +1,38 @@
+<h1>Listing Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Username</th>
+      <th>Edit count</th>
+      <th>Body</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for posts <- @posts do %>
+    <tr>
+      <td><%= posts.id %></td>
+      <td><%= posts.title %></td>
+      <td><%= posts.description %></td>
+      <td><%= posts.status %></td>
+      <td><%= posts.username %></td>
+      <td><%= posts.edit_count %></td>
+      <td><%= posts.body %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.posts_path(@conn, :show, posts) %></span>
+        <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, posts) %></span>
+        <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, posts), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Posts", to: Routes.posts_path(@conn, :new) %></span>

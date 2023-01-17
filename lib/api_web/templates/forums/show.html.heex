@@ -1,0 +1,33 @@
+<h1>Show Forums</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @forums.id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @forums.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @forums.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @forums.status %>
+  </li>
+
+  <li>
+    <strong>Order:</strong>
+    <%= @forums.order %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.forums_path(@conn, :edit, @forums) %></span> |
+<span><%= link "Back", to: Routes.forums_path(@conn, :index) %></span>
