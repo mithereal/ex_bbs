@@ -8,6 +8,7 @@ defmodule Database.Repo.Migrations.CreateUserProfiles do
       add(:phone, :string)
       add(:phone_alt, :string)
       add(:address, :string)
+      add(:mailing_address, :string)
       add(:city, :string)
       add(:state, :string)
       add(:zip, :string)

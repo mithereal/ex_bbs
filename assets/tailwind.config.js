@@ -14,6 +14,8 @@ module.exports = {
                 "primary-admin": "#b5b7bb",
                 "primary-dark": "#102a52",
                 "primary-admin-dark": "#102a52",
+                "primary-admin-navigation": "#b5b7bb",
+                "primary-admin-navigation-dark": "#b5b7bb",
                 "secondary": "#3b3d3f",
                 "secondary-admin": "#0a0ad2",
                 "secondary-dark": "#060C11",

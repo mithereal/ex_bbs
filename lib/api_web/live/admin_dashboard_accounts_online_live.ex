@@ -23,11 +23,13 @@ defmodule ApiWeb.AdminDashboardAccountsOnlineLive do
   def render(assigns) do
     ~L"""
 
+    <div class="container w-full mx-auto pt-20">
     <div class="grid grid-cols-3 md:grid-cols-3">
       <%=  for x <- @users do %>
        <%=  live_component(@socket,  ApiWeb.UserComponent, email: x) %>
        <% end %>
 
+    </div>
     </div>
     """
   end

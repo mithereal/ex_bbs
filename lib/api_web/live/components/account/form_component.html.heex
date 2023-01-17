@@ -1,4 +1,4 @@
-<div>
+<div class="container w-full mx-auto pt-20">
   <h2><%= @title %></h2>
 
   <.form
@@ -9,13 +9,10 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :key %>
-    <%= text_input f, :key %>
-    <%= error_tag f, :key %>
-  
-    <%= label f, :type %>
-    <%= text_input f, :type %>
-    <%= error_tag f, :type %>
+    <%= label f, :email %>
+    <%= text_input f, :email %>
+    <%= error_tag f, :email %>
+
   
     <%= label f, :active %>
     <%= text_input f, :active %>

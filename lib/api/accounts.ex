@@ -144,8 +144,8 @@ defmodule Api.Accounts do
   """
   def register_user(attrs) do
     {:ok, account} = create_account(attrs)
-#
-#    params = Map.put(attrs, :account, account)
+    #
+    #    params = Map.put(attrs, :account, account)
 
     %User{}
     |> User.registration_changeset(attrs)
@@ -556,7 +556,10 @@ defmodule Api.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_account!(id), do: Repo.get!(Account, id)
+  def get_account!(id),
+    do:
+      Repo.get!(Account, id)
+      |> Repo.preload(:admin_user)
 
   @doc """
   Creates a account.
@@ -572,7 +575,6 @@ defmodule Api.Accounts do
   """
 
   def create_account(params) do
-
     %Account{}
     |> Account.changeset(params)
     |> Repo.insert()

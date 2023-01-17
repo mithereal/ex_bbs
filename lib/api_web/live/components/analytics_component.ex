@@ -65,7 +65,7 @@ defmodule ApiWeb.AnalyticsComponent do
                                 <div class="rounded p-3 bg-red-600"><i class="fas fa-fire fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Flames</h5>
+                                <h5 class="font-bold uppercase text-gray-500">Errors</h5>
                                 <h3 class="font-bold text-3xl"><%= @total_errors  %>  <span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
@@ -378,7 +378,7 @@ defmodule ApiWeb.AnalyticsComponent do
                                 <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Flames</h5>
+                                <h5 class="font-bold uppercase text-gray-600">Errors</h5>
                                 <h3 class="font-bold text-3xl"><%= @total_errors  %> <span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>

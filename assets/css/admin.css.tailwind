@@ -6,6 +6,20 @@
   body.dark {
     background: theme("colors.primary-admin-dark");
   }
+
+  .nav_background {
+    background: theme("colors.primary-admin-navigation");
+  }
+  .nav_background.dark {
+    background: theme("colors.primary-admin-navigation-dark");
+  }
+
+  .user_menu {
+    background: theme("colors.primary-admin-navigation");
+  }
+  .user_menu.dark {
+    background: theme("colors.primary-admin-navigation-dark");
+  }
 }
 .navigation {
   @apply py-10 custom-scrollbar;

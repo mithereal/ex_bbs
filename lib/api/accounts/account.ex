@@ -4,6 +4,7 @@ defmodule Api.Accounts.Account do
 
   schema "bbs_accounts" do
     field(:email, :string)
+    field(:active, :boolean)
 
     has_one(:admin_user, Api.Accounts.User)
     has_many(:users, Api.Accounts.User)

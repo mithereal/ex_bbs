@@ -1,4 +1,4 @@
-
+<div class="container w-full mx-auto pt-20">
 <h1>Listing Accounts</h1>
 
 <%= if @live_action in [:new, :edit] do %>
@@ -17,8 +17,7 @@
 <table>
   <thead>
     <tr>
-      <th>Key</th>
-      <th>Type</th>
+      <th>Email</th>
       <th>Active</th>
 
       <th></th>
@@ -27,9 +26,8 @@
   <tbody id="accounts">
     <%= for account <- @accounts do %>
       <tr id={"account-#{account.id}"}>
-        <td><%= account.key %></td>
-        <td><%= account.type %></td>
-        <td><%= account.active %></td>
+        <td><%= account.email %></td>
+        <td><%= account.active || "FALSE" %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.account_show_path(@socket, :show, account) %></span>
@@ -42,3 +40,4 @@
 </table>
 
 <span><%= live_patch "New Account", to: Routes.account_index_path(@socket, :new) %></span>
+</div>

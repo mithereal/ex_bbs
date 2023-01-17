@@ -9,6 +9,22 @@
             background : theme('colors.primary-admin-dark')
             }
     }
+
+    .nav_background {
+    background : theme('colors.primary-admin-navigation');
+
+      &.dark {
+                background : theme('colors.primary-admin-navigation-dark');
+                }
+    }
+
+    .user_menu{
+    background : theme('colors.primary-admin-navigation');
+
+          &.dark {
+                    background : theme('colors.primary-admin-navigation-dark');
+                    }
+    }
 }
 
 .navigation{

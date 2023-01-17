@@ -2,9 +2,11 @@ defmodule Api.Terminator.Entities do
   use Api.Schema
   import Ecto.Changeset
 
-  schema "terminator_entities" do
+  schema "terminator_performers_entities" do
     field :abilities, :string
     field :assoc_type, :string
+
+    belongs_to(:performer, Terminator.Performer)
 
     timestamps()
   end

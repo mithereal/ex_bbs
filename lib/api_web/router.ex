@@ -143,9 +143,12 @@ defmodule ApiWeb.Router do
 
     resources "/performers", PerformerController
     resources "/roles", RoleController
+    resources "/abilities", AbilitiesController
+    resources "/entities", EntitiesController
 
     live("/", AdminDashboardLive)
     live("/analytics", AdminDashboardAnalyticsLive)
+    live("/errors", AdminFlamesLive)
     live("/accounts/online", AdminDashboardAccountsOnlineLive)
     live("/accounts/online/:email", AdminDashboardAccountsOnlineEmailLive)
 

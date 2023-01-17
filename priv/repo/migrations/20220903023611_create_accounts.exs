@@ -5,6 +5,7 @@ defmodule Api.Repo.Migrations.CreateAccounts do
     create table(:bbs_accounts, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :email, :string
+      add :active, :boolean
 
       add(:admin_user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
 

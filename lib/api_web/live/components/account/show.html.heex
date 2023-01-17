@@ -1,3 +1,4 @@
+<div class="container w-full mx-auto pt-20">
 <h1>Show Account</h1>
 
 <%= if @live_action in [:edit] do %>
@@ -16,21 +17,26 @@
 <ul>
 
   <li>
-    <strong>Key:</strong>
-    <%= @account.key %>
+    <strong>email:</strong>
+    <%= @account.email %>
   </li>
 
-  <li>
-    <strong>Type:</strong>
-    <%= @account.type %>
-  </li>
 
   <li>
     <strong>Active:</strong>
     <%= @account.active %>
   </li>
 
+
+    <li>
+        <strong>Admin User:</strong>
+        <%= if @account.admin_user do
+        @account.admin_user.email
+        end%>
+    </li>
+
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.account_show_path(@socket, :edit, @account), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.account_index_path(@socket, :index) %></span>
+</div>

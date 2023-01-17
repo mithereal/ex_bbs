@@ -5,12 +5,8 @@
     </div>
   <% end %>
 
-  <%= label f, :id %>
-  <%= text_input f, :id %>
-  <%= error_tag f, :id %>
-
   <%= label f, :abilities %>
-  <%= multiple_select f, :abilities, ["Option 1": "option1", "Option 2": "option2"] %>
+  <%= multiple_select f, :abilities, @abilities %>
   <%= error_tag f, :abilities %>
 
   <div>
