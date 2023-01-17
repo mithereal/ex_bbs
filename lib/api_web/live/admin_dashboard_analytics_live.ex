@@ -15,6 +15,7 @@ defmodule ApiWeb.AdminDashboardAnalyticsLive do
 
     socket = assign_defaults(session, socket)
     socket = assign(socket, :total_errors, 0)
+    socket = assign(socket, :errors, [])
     socket = assign(socket, :uptime, uptime)
     socket = assign(socket, :active_users, active_users)
     socket = assign(socket, :total_users, total_users)

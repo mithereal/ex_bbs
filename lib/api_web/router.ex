@@ -141,11 +141,6 @@ defmodule ApiWeb.Router do
   scope "/admin", ApiWeb do
     pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
-    resources "/performers", PerformerController
-    resources "/roles", RoleController
-    resources "/abilities", AbilitiesController
-    resources "/entities", EntitiesController
-
     live("/", AdminDashboardLive)
     live("/analytics", AdminDashboardAnalyticsLive)
     live("/errors", AdminFlamesLive)
@@ -176,6 +171,12 @@ defmodule ApiWeb.Router do
 
     resources "/system", SettingController
     resources "/terminator", PerformerController
+    resources "/categories", CategoriesController
+    resources "/performers", PerformerController
+    resources "/roles", RoleController
+    resources "/abilities", AbilitiesController
+    resources "/entities", EntitiesController
+    resources "/forums", ForumsController
   end
 
   scope "/", ApiWeb do
@@ -190,10 +191,8 @@ defmodule ApiWeb.Router do
     live("/", PageLive)
     get "/keep-alive", UserSessionController, :keep_alive
 
-    resources "/performers", PerformerController
-    resources "/roles", RoleController
-    resources "/abilities", AbilitiesController
-    resources "/entities", EntitiesController
+    get "/forums", ForumsController, :index
+    get "/forums/:id", ForumsController, :show
   end
 
   scope "/page", ApiWeb do
