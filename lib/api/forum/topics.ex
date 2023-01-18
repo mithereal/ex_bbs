@@ -1,10 +1,9 @@
 defmodule Api.Forum.Topics do
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.Changeset
 
   schema "topics" do
     field :description, :string
-    field :id, Ecto.UUID
     field :status, :integer
     field :title, :string
 

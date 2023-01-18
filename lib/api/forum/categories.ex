@@ -1,10 +1,9 @@
 defmodule Api.Forum.Categories do
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.Changeset
 
   schema "categories" do
     field :description, :string
-    field :id, Ecto.UUID
     field :order, :integer
     field :status, :integer
     field :title, :string
