@@ -374,7 +374,7 @@ defmodule Api.System do
     This will take a native DateTime and turn it into a js datetime
   ## Examples
 
-      iex> Stats.format_date(date)
+      iex> System.format_date(date)
   """
   def format_date(date) do
     {:ok, date_string} = Timex.format(date, "{ISOdate}")
@@ -383,6 +383,17 @@ defmodule Api.System do
     {:ok, m} = Timex.format(date, "{m}")
     {:ok, s} = Timex.format(date, "{s}")
 
-    sf_date_string = date_string <> "T" <> h <> ":" <> m <> ":" <> s <> "z"
+     date_string <> "T" <> h <> ":" <> m <> ":" <> s <> "z"
+  end
+
+  def format_time(date) do
+    {:ok, date_string} = Timex.format(date, "{ISOdate}")
+
+    {:ok, h} = Timex.format(date, "{h24}")
+    {:ok, m} = Timex.format(date, "{m}")
+    {:ok, t} = Timex.format(date, "{AM}")
+    {:ok, z} = Timex.format(date, "{Zabbr}")
+
+     h <> ":" <> m <> " " <>  t <> " (" <> z <> ")"
   end
 end

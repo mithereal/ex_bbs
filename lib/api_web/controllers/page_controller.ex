@@ -80,6 +80,10 @@ defmodule ApiWeb.PageController do
     |> redirect(to: Routes.page_path(conn, :index))
   end
 
+  def front_page(conn, _) do
+    render(conn, "front_page.html")
+    end
+
   def pwa(conn, _) do
     meta_attrs = [
       %{name: "og:title", content: "Websockets PWA"},

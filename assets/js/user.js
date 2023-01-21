@@ -15,7 +15,6 @@ import "phoenix_html"
 
 import topbar from "../vendor/topbar"
 import "../vendor/alpine_cdn"
-import "../vendor/hammer"
 
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"

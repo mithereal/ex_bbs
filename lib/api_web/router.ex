@@ -192,9 +192,9 @@ defmodule ApiWeb.Router do
   scope "/", ApiWeb do
     pipe_through([:browser, :default_assigns])
 
-    live("/", PageLive)
     get "/keep-alive", UserSessionController, :keep_alive
 
+    get "/", PageController, :front_page
     get "/forums", ForumsController, :index
     get "/forums/:id", ForumsController, :show
   end

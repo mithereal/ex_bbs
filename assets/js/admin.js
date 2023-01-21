@@ -44,19 +44,19 @@ Hooks.InitToast = InitToast
 Hooks.InitCopyright = InitCopyright
 
 Hooks.ConnectionStatus = {
-    mounted () {
+    mounted() {
         window.connected = true
     },
-    disconnected () {
+    disconnected() {
         window.connected = false
     },
-    reconnected () {
+    reconnected() {
         window.connected = true
     }
 }
 
 liveSocket = new LiveSocket("/live", Socket, {
-    params: { _csrf_token: csrfToken },
+    params: {_csrf_token: csrfToken},
     Hooks: Hooks,
     dom: {
         onBeforeElUpdated(from, to) {
