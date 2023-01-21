@@ -100,7 +100,6 @@
 
         <!-- start::Right side top menu -->
         <div class="menu_button_container">
-            <%= link "Contact", to: Routes.page_path(@conn, :contact), class: "contact", title: "Contact" %>
             <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
             <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Register" %>
         </div>
@@ -110,12 +109,6 @@
     <div class="header_link_bar">
         <%= link "FAQ", to: Routes.page_path(@conn, :faq), class: "faq", title: "FAQ" %>
     </div>
-
-    <div class="breadcrumbs">
-        <%= link "Board Index", to: "/", class: "board_index", title: "Board Index" %>
-    </div>
-
-    <div class="current_time">It is Currently <span id="current_time"><%= Api.System.format_time(DateTime.utc_now()) %></span></div>
 
 </header>
 <!-- end::Topbar -->

@@ -1,8 +1,11 @@
 defmodule ApiWeb.PageController do
   use ApiWeb, :controller
+  use Breadcrumble
 
   alias Api.Pages
   alias Api.Pages.Page
+
+  plug :add_breadcrumb, name: 'top', url: '/'
 
   def privacy(conn, _params) do
     page = Pages.get_page_by_slug("privacy")

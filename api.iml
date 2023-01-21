@@ -114,8 +114,9 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/floki" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/slugger" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_autoslug_field" />
-      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/timex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/tzdata" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/timex" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/breadcrumble" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bcrypt_elixir" level="project" />
@@ -249,5 +250,7 @@
     <orderEntry type="library" name="slugger" level="project" />
     <orderEntry type="library" name="timex" level="project" />
     <orderEntry type="library" name="tzdata" level="project" />
+    <orderEntry type="library" name="breadcrumble" level="project" />
+    <orderEntry type="library" name="power_assert" level="project" />
   </component>
 </module>

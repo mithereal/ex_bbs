@@ -20,6 +20,7 @@ defmodule ApiWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: ApiWeb
+      use Breadcrumble
 
       import Plug.Conn
       import ApiWeb.Gettext

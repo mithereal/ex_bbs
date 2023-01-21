@@ -6,6 +6,7 @@ defmodule ApiWeb.Router do
   alias ApiWeb.Plug.MetaAttrs
   alias ApiWeb.Plug.Pixel
   alias ApiWeb.Plug.Tagline
+  alias ApiWeb.Plug.Breadcrumbs
 
   pipeline :default_assigns do
     plug MetaAttrs
@@ -186,7 +187,6 @@ defmodule ApiWeb.Router do
   scope "/", ApiWeb do
     pipe_through([:browser, :default_assigns, :redirect_if_user_is_authenticated])
 
-    live("/", PageLive)
   end
 
   scope "/", ApiWeb do
