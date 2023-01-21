@@ -65,14 +65,12 @@
             <a href="/" ><img src="/images/logo.png" /> </a>
         </div>
 
-        <div class="header_domain">
-
+        <div class="site_info">
+            <%= ApiWeb.Endpoint.host() %>
+            <div class="site_header_tagline">
+                <%= @tagline %>
+            </div>
         </div>
-
-        <div class="header_search">
-
-        </div>
-
         <!-- start::Mobile menu button -->
         <div class="menu_container">
             <button
@@ -84,6 +82,17 @@
 
         </div>
         <!-- end::Mobile menu button -->
+
+
+        <div class="header_domain">
+
+        </div>
+
+        <div class="header_search">
+
+        </div>
+
+
 
         <!-- start::Right side top menu -->
         <div class="menu_button_container">
@@ -120,7 +129,7 @@
         </div>
 
         <div class="copyright">
-        &copy;2022-<script>document.write(/\d{4}/.exec(Date())[0] + '&nbsp;')</script>
+            &copy;2022-<span id="copyright-year"></span>
         <a href="/" > <%= ApiWeb.Endpoint.host() %></a>
         </div>
         <div class="footer_links">
@@ -131,7 +140,9 @@
 </footer>
 </body>
 
-
-
+<script>
+    const copyright = new Date();
+    document.getElementById('copyright-year').innerHTML=copyright.getFullYear();
+</script>
 
 </html>

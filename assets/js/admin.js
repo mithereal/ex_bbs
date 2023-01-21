@@ -23,6 +23,7 @@ import {LiveSocket} from "phoenix_live_view"
 
 import {keepAlive} from "./utils";
 import {InitToast} from "./init_toast";
+import {InitCopyright} from "./init_copyright";
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -40,6 +41,7 @@ let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToke
 let Hooks = {};
 
 Hooks.InitToast = InitToast
+Hooks.InitCopyright = InitCopyright
 
 Hooks.ConnectionStatus = {
     mounted () {

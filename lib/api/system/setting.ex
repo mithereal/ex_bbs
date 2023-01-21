@@ -101,7 +101,8 @@ defmodule Api.System.Setting do
       %{key: "posts_per_page", name: "posts_per_page", type: "integer", value: "20"},
       %{key: "require_activation", name: "require_activation", type: "boolean", value: "false"},
       %{key: "max_attachments", name: "max_attachments", type: "integer", value: "20"},
-      %{key: "max_attachments_pm", name: "max_attachments_pm", type: "integer", value: "20"}
+      %{key: "max_attachments_pm", name: "max_attachments_pm", type: "integer", value: "20"},
+      %{key: "site_tagline", name: "site_tagline", type: "string", value: "A Great BBS"}
     ]
   end
 end

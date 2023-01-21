@@ -77,14 +77,13 @@
      });
  }
 
- export function clearCookies()
- {
+ export function clearCookies() {
      let cookies = document.cookie.split(";");
-     for (let i = 0; i < cookies.length; i++)
-     {
-         let spcook =  cookies[i].split("=");
+     for (let i = 0; i < cookies.length; i++) {
+         let spcook = cookies[i].split("=");
          deleteCookie(spcook[0]);
      }
+ }
      export function deleteCookie(cookiename)
      {
          let d = new Date();
@@ -94,9 +93,9 @@
          //alert(name);
          let value="";
          document.cookie = name + "=" + value + expires + "; path=/acc/html";
+         window.location = ""; // TO REFRESH THE PAGE
      }
-     window.location = ""; // TO REFRESH THE PAGE
- }
+
 
  export function current_datetime()
  {

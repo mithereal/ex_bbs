@@ -5,10 +5,12 @@ defmodule ApiWeb.Router do
   alias ApiWeb.Plug.EnsureRole
   alias ApiWeb.Plug.MetaAttrs
   alias ApiWeb.Plug.Pixel
+  alias ApiWeb.Plug.Tagline
 
   pipeline :default_assigns do
     plug MetaAttrs
     plug Pixel
+    plug Tagline
   end
 
   pipeline :browser do

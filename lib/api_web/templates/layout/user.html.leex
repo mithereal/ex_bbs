@@ -226,7 +226,7 @@
         <footer>
             <div class="footer_container">
                 <div class="copyright">
-                    &copy;2022-<script>document.write(/\d{4}/.exec(Date())[0] + '&nbsp;')</script>
+                    &copy;2022-<span id="copyright-year"></span>
                     <a href="/" > <%= ApiWeb.Endpoint.host() %></a>
                 </div>
                 <div class="footer_links">
@@ -240,4 +240,10 @@
 </div>
 
 </body>
+
+<script>
+    const copyright = new Date();
+    document.getElementById('copyright-year').innerHTML=copyright.getFullYear();
+</script>
+
 </html>
