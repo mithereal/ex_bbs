@@ -10,7 +10,7 @@ defmodule Api.Forum.Topics do
     field :status, :integer
     field :title, :string
 
-    belongs_to :forum, Forums
+    belongs_to :forums, Forums
     has_many :posts, Posts
 
     timestamps()
@@ -21,7 +21,7 @@ defmodule Api.Forum.Topics do
     topics
     |> cast(attrs, [:id, :title, :description, :status])
     |> cast_assoc(:posts, required: false)
-    |> put_assoc(:forum, required: false)
+    |> put_assoc(:forums, required: false)
     |> validate_required([:id, :title, :description, :status])
   end
 end

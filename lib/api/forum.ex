@@ -118,6 +118,31 @@ defmodule Api.Forum do
   end
 
   @doc """
+  Returns the list of categories.
+
+  ## Examples
+
+      iex> online_categories()
+      [%Categories{}, ...]
+
+  """
+  def online_categories do
+    :ets.lookup(:bbs_categories, :id)
+  end
+  @doc """
+  Returns the list of categories.
+
+  ## Examples
+
+      iex> online_category_data()
+      [%Categories{}, ...]
+
+  """
+  def online_category_data do
+    :ets.lookup(:bbs_categories_data, :data)
+  end
+
+  @doc """
   Gets a single categories.
 
   Raises `Ecto.NoResultsError` if the Categories does not exist.

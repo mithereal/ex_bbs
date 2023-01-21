@@ -84,8 +84,8 @@ defmodule ApiWeb.PageController do
   end
 
   def front_page(conn, _) do
-    categories = Api.Forum.list_categories()
-    render(conn, "front_page.html", categories: categories)
+    data = Api.Forum.online_category_data()
+    render(conn, "front_page.html", category_data: data)
     end
 
   def pwa(conn, _) do

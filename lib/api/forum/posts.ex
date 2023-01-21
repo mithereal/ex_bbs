@@ -3,6 +3,7 @@ defmodule Api.Forum.Posts do
   import Ecto.Changeset
 
   alias  Api.Forum.Topics
+  alias  Api.Forum.Users
 
   schema "bbs_posts" do
     field :body, :string
@@ -12,7 +13,8 @@ defmodule Api.Forum.Posts do
     field :title, :string
     field :username, :string
 
-    belongs_to :topic, Topics
+    belongs_to :topics, Topics
+    belongs_to :users, Users
 
     timestamps()
   end
@@ -21,7 +23,8 @@ defmodule Api.Forum.Posts do
   def changeset(posts, attrs) do
     posts
     |> cast(attrs, [:id, :title, :description, :status, :username, :edit_count, :body])
-    |> put_assoc(:topic, required: false)
+    |> put_assoc(:topics, required: false)
+    |> put_assoc(:users, required: false)
     |> validate_required([:id, :title, :description, :status, :username, :edit_count, :body])
 
   end

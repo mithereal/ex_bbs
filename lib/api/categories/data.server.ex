@@ -1,4 +1,4 @@
-defmodule Api.Categories.Server do
+defmodule Api.Categories.Data.Server do
   use GenServer
 
   @moduledoc """
@@ -9,7 +9,7 @@ defmodule Api.Categories.Server do
   require Logger
 
   alias Api.Forum.Categories
-  @name :categories_server
+  @name :categories_data_server
 
   def child_spec(args) do
     %{
@@ -22,7 +22,7 @@ defmodule Api.Categories.Server do
   @impl true
   def init(init_arg) do
     ref =
-      :ets.new(:bbs_categories, [
+      :ets.new(:bbs_categories_data, [
         :set,
         :named_table,
         :public,
@@ -63,7 +63,7 @@ defmodule Api.Categories.Server do
         :load,
         state
       ) do
-    defaults = Categories.online_categories()
+    defaults = Categories.online_categories_data()
 
     for d <- defaults do
 

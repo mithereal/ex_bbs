@@ -1,8 +1,11 @@
 defmodule Api.Forum.Categories do
   use Api.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
+  alias Api.Forum.Categories
   alias Api.Forum.Forums
+  alias Api.Repo
 
   schema "bbs_categories" do
     field :description, :string
@@ -21,5 +24,13 @@ defmodule Api.Forum.Categories do
     |> cast(attrs, [:id, :title, :description, :status, :order])
     |> cast_assoc(:forums, required: false)
     |> validate_required([:title, :description])
+  end
+
+  def online_categories do
+    Categories |> order_by(desc: :order) |> Repo.all
+  end
+
+  def online_categories_data do
+    Categories |> order_by(desc: :order) |> Repo.all
   end
 end
