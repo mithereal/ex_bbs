@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale = 1, maximum-scale = 4"/>
+<meta name="author" content="@mithereal"/>
+    <meta name="description" content="<%= Application.get_env(:api, :description, ApiWeb.Endpoint.url() ) %>"/>
+    <meta name="keywords" content="<%= Application.get_env(:api, :keywords, ApiWeb.Endpoint.url() ) %>"/>
+    <meta name="robots" content="<%= Application.get_env(:api, :robots, "nofollow") %>"/>
+    <meta name="application-name" content="<%= Application.get_env(:api, :application_name, ApiWeb.Endpoint.url() )%>"/>
+    <meta name="msapplication-starturl" content="<%= ApiWeb.Endpoint.url() %>"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="theme-color" content="<%= Application.get_env(:api, :theme_color, "#4285f4") %>"/>
+
+    <meta property="og:type" content="<%= Application.get_env(:api, :og_type, "website") %>"/>
+    <meta property="og:title" content="<%= Application.get_env(:api, :og_title, ApiWeb.Endpoint.url() ) %>"/>
+    <meta property="og:url" content="<%= ApiWeb.Endpoint.url() %>"/>
+    <meta property="og:image" content="<%= ApiWeb.Endpoint.url() %>/images/api_richSnippet.png"/>
+    <meta property="og:description"
+          content="<%= Application.get_env(:api, :og_description, ApiWeb.Endpoint.url() ) %>"/>
+    <meta property="og:locale" content="<%= Application.get_env(:api, :og_locale, "en_US") %>"/>
+
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || ApiWeb.Endpoint.url() %>
+    <link defer phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/root.css") %>"/>
+
+    <%= render "_apple_touch_header.html", assigns %>
+
+
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/root.js") %>"></script>
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/service-worker.js") %>"></script>
+
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/applyTheme.js") %>"></script>
+
+    <link rel="manifest" href="<%= Routes.static_path(@conn, "/cache_manifest.json") %>">
+
+    <%= if @meta_pixel_id do %>
+    <%= render "_meta_pixel.html", meta_pixel_id: @meta_pixel_id %>
+     <% end %>
+
+    <script defer phx-track-static type="text/javascript"
+            src="<%= Routes.static_path(@conn, "/js/service-worker.js") %>"></script>
+
+</head>
+<body class="root_body">
+
+<!-- start::Topbar -->
+<header class="container">
+    <div class="root_menu_header">
+        <div class="root_logo">
+
+            <picture>
+                <a href="/">
+                    <source srcset="/images/logo.webp"  type="image/webp"/>
+                    <img src="/images/logo.png" alt="Logo" aria-label="Logo"/>
+                </a>
+            </picture>
+
+        </div>
+
+        <div class="site_info">
+            <%= ApiWeb.Endpoint.host() %>
+            <div class="site_header_tagline">
+                <%= @tagline %>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_search">
+
+    </div>
+</header>
+
+<header class="container">
+        <!-- start::Mobile menu button -->
+    <div class="menu_header_left">
+        <div class="menu_container">
+            <button
+                    @click="menuOpen = true"
+                    class="menu_container_button"
+                    aria-label="navigation menu button"
+            >
+                <svg class="menu_container_button_svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16M4 18h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- end::Mobile menu button -->
+    <div class="header_links">
+        <%= link "FAQ", to: Routes.page_path(@conn, :faq), class: "faq", title: "FAQ" %>
+    </div>
+    </div>
+
+        <!-- start::Right side top menu -->
+        <div class="menu_button_container">
+            <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
+            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Register" %>
+        </div>
+        <!-- end::Right side top menu -->
+</header>
+
+<header class="container">
+    <div class="header_container">
+    <div class="header_links">
+        <%= link "Board Index", to: "/", class: "board_index", title: "Board Index" %>
+    </div>
+    </div>
+</header>
+
+<!-- end::Topbar -->
+
+<%= @inner_content %>
+
+
+<footer>
+    <div class="footer_container">
+
+        <div class="footer_link_bar">
+            <button class="" aria-label="home navigation">Home</button>
+            <button class="" aria-label="delete cookies">Delete Cookies</button>
+        </div>
+
+        <div class="copyright">
+            &copy;2022-<span id="copyright-year"></span>
+            <a href="/"> <%= ApiWeb.Endpoint.host() %></a>
+        </div>
+        <div class="footer_links">
+            <span><%= link "Privacy", to: Routes.page_path(@conn, :privacy), title: "Privacy"  %></span>
+            <span><%= link "Terms", to: Routes.page_path(@conn, :terms), title: "Terms"  %></span>
+        </div>
+    </div>
+</footer>
+</body>
+
+<script>
+    const copyright = new Date();
+    document.getElementById('copyright-year').innerHTML = copyright.getFullYear();
+</script>
+
+</html>

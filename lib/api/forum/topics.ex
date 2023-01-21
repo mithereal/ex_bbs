@@ -2,10 +2,16 @@ defmodule Api.Forum.Topics do
   use Api.Schema
   import Ecto.Changeset
 
-  schema "topics" do
+  alias  Api.Forum.Forums
+  alias  Api.Forum.Posts
+
+  schema "bbs_topics" do
     field :description, :string
     field :status, :integer
     field :title, :string
+
+    belongs_to :forum, Forums
+    has_many :posts, Posts
 
     timestamps()
   end
@@ -14,6 +20,8 @@ defmodule Api.Forum.Topics do
   def changeset(topics, attrs) do
     topics
     |> cast(attrs, [:id, :title, :description, :status])
+    |> cast_assoc(:posts, required: false)
+    |> put_assoc(:forum, required: false)
     |> validate_required([:id, :title, :description, :status])
   end
 end
