@@ -20,6 +20,7 @@ defmodule Api.Application do
       # Start the User supervisor
       Api.User.Server.Supervisor,
       Api.Error.Server.Supervisor,
+      Api.Categories.Server,
       Api.System.Setting.Server,
       Api.System.HitCounter.Server,
       # Start user Registry
@@ -36,6 +37,7 @@ defmodule Api.Application do
     |> create_default_settings()
     |> create_default_users()
     |> load_settings()
+    |> load_categories()
     |> load_counters()
   end
 
@@ -86,6 +88,12 @@ defmodule Api.Application do
 
   def load_settings(response) do
     Api.System.Setting.Server.load()
+
+    response
+  end
+
+  def load_categories(response) do
+    Api.Categories.Server.load()
 
     response
   end
