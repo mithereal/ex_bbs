@@ -17,7 +17,7 @@ defmodule ApiWeb.Context do
 
   defp build_context(conn) do
     with ["" <> token] <- get_req_header(conn, "authorization"),
-         {:ok, user, _claims} <- Api.Guardian.resource_from_token(token) do
+         {:ok, user, _claims} <- ApiWeb.Guardian.resource_from_token(token) do
       {:ok, %{current_user: user}}
     end
   end
