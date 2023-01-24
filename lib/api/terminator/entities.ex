@@ -2,7 +2,7 @@ defmodule Api.Terminator.Entities do
   use Api.Schema
   import Ecto.Changeset
 
-  schema "terminator_performers_entities" do
+  schema "terminator_uuid_performers_entities" do
     field :abilities, :string
     field :assoc_type, :string
 

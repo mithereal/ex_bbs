@@ -19,7 +19,7 @@ defmodule Api.Accounts.User do
 
     belongs_to(:account, Api.Accounts.Account)
     has_one(:profile, Api.Accounts.User.Profile)
-    belongs_to(:performer, Terminator.Performer)
+    belongs_to(:performer, Terminator.UUID.Performer)
 
     timestamps()
   end

@@ -2,7 +2,7 @@ defmodule Api.Terminator.Abilities do
   use Api.Schema
   import Ecto.Changeset
 
-  schema "terminator_abilities" do
+  schema "terminator_uuid_abilities" do
     field :identifier, :string
     field :name, :string
 

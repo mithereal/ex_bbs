@@ -2,7 +2,7 @@ defmodule Api.Terminator.Performer do
   use Api.Schema
   import Ecto.Changeset
 
-  schema "terminator_performers" do
+  schema "terminator_uuid_performers" do
     field :abilities, {:array, :string}
 
     timestamps()
