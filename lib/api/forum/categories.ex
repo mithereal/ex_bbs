@@ -25,8 +25,6 @@ defmodule Api.Forum.Categories do
     |> cast(attrs, [:id, :title, :description, :status, :order])
     |> cast_assoc(:forums, required: false)
     |> unique_constraint(:title)
-    |> TitleSlug.maybe_generate_slug()
-    |> TitleSlug.unique_constraint()
     |> validate_required([:title, :description])
   end
 
