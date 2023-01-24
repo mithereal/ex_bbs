@@ -17,13 +17,14 @@ defmodule Api.Accounts.Account do
     account
     |> cast(attrs, [:email])
     |> validate_required([:email])
-#    |> cast_assoc(:admin_user)
-#    |> changeset_preload(:admin_user)
-#    |> put_assoc_nochange(:admin_user, %{})
+
+    #    |> cast_assoc(:admin_user)
+    #    |> changeset_preload(:admin_user)
+    #    |> put_assoc_nochange(:admin_user, %{})
   end
 
   def changeset_preload(ch, field),
-      do: update_in(ch.data, &Repo.preload(&1, field))
+    do: update_in(ch.data, &Repo.preload(&1, field))
 
   def put_assoc_nochange(ch, field, new_change) do
     case get_change(ch, field) do
@@ -31,5 +32,4 @@ defmodule Api.Accounts.Account do
       _ -> ch
     end
   end
-
 end

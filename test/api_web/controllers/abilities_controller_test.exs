@@ -3,8 +3,16 @@ defmodule ApiWeb.AbilitiesControllerTest do
 
   import Api.TerminatorFixtures
 
-  @create_attrs %{id: "7488a646-e31f-11e4-aace-600308960662", identifier: "some identifier", name: "some name"}
-  @update_attrs %{id: "7488a646-e31f-11e4-aace-600308960668", identifier: "some updated identifier", name: "some updated name"}
+  @create_attrs %{
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    identifier: "some identifier",
+    name: "some name"
+  }
+  @update_attrs %{
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    identifier: "some updated identifier",
+    name: "some updated name"
+  }
   @invalid_attrs %{id: nil, identifier: nil, name: nil}
 
   describe "index" do

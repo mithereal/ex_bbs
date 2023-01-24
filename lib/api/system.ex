@@ -383,7 +383,7 @@ defmodule Api.System do
     {:ok, m} = Timex.format(date, "{m}")
     {:ok, s} = Timex.format(date, "{s}")
 
-     date_string <> "T" <> h <> ":" <> m <> ":" <> s <> "z"
+    date_string <> "T" <> h <> ":" <> m <> ":" <> s <> "z"
   end
 
   def format_time(date) do
@@ -394,6 +394,6 @@ defmodule Api.System do
     {:ok, t} = Timex.format(date, "{AM}")
     {:ok, z} = Timex.format(date, "{Zabbr}")
 
-     h <> ":" <> m <> " " <>  t <> " (" <> z <> ")"
+    h <> ":" <> m <> " " <> t <> " (" <> z <> ")"
   end
 end

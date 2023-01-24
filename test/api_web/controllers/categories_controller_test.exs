@@ -3,8 +3,20 @@ defmodule ApiWeb.CategoriesControllerTest do
 
   import Api.ForumFixtures
 
-  @create_attrs %{description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", order: 42, status: 42, title: "some title"}
-  @update_attrs %{description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", order: 43, status: 43, title: "some updated title"}
+  @create_attrs %{
+    description: "some description",
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    order: 42,
+    status: 42,
+    title: "some title"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    order: 43,
+    status: 43,
+    title: "some updated title"
+  }
   @invalid_attrs %{description: nil, id: nil, order: nil, status: nil, title: nil}
 
   describe "index" do
@@ -51,7 +63,9 @@ defmodule ApiWeb.CategoriesControllerTest do
     setup [:create_categories]
 
     test "redirects when data is valid", %{conn: conn, categories: categories} do
-      conn = put(conn, Routes.categories_path(conn, :update, categories), categories: @update_attrs)
+      conn =
+        put(conn, Routes.categories_path(conn, :update, categories), categories: @update_attrs)
+
       assert redirected_to(conn) == Routes.categories_path(conn, :show, categories)
 
       conn = get(conn, Routes.categories_path(conn, :show, categories))
@@ -59,7 +73,9 @@ defmodule ApiWeb.CategoriesControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, categories: categories} do
-      conn = put(conn, Routes.categories_path(conn, :update, categories), categories: @invalid_attrs)
+      conn =
+        put(conn, Routes.categories_path(conn, :update, categories), categories: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Categories"
     end
   end

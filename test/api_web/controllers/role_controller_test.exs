@@ -3,8 +3,18 @@ defmodule ApiWeb.RoleControllerTest do
 
   import Api.TerminatorFixtures
 
-  @create_attrs %{abilities: [], id: "7488a646-e31f-11e4-aace-600308960662", identifier: "some identifier", name: "some name"}
-  @update_attrs %{abilities: [], id: "7488a646-e31f-11e4-aace-600308960668", identifier: "some updated identifier", name: "some updated name"}
+  @create_attrs %{
+    abilities: [],
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    identifier: "some identifier",
+    name: "some name"
+  }
+  @update_attrs %{
+    abilities: [],
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    identifier: "some updated identifier",
+    name: "some updated name"
+  }
   @invalid_attrs %{abilities: nil, id: nil, identifier: nil, name: nil}
 
   describe "index" do

@@ -2,8 +2,10 @@ defmodule Api.Forum.Topics do
   use Api.Schema
   import Ecto.Changeset
 
-  alias  Api.Forum.Forums
-  alias  Api.Forum.Posts
+  alias Api.Forum.Forums
+  alias Api.Forum.Posts
+
+  alias Api.Forum.Topics.TitleSlug
 
   schema "bbs_topics" do
     field :description, :string
@@ -12,6 +14,8 @@ defmodule Api.Forum.Topics do
 
     belongs_to :forums, Forums
     has_many :posts, Posts
+
+    field :slug, TitleSlug.Type
 
     timestamps()
   end
@@ -22,6 +26,9 @@ defmodule Api.Forum.Topics do
     |> cast(attrs, [:id, :title, :description, :status])
     |> cast_assoc(:posts, required: false)
     |> put_assoc(:forums, required: false)
+    |> unique_constraint(:title)
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
     |> validate_required([:id, :title, :description, :status])
   end
 end

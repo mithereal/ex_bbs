@@ -17,6 +17,7 @@ defmodule ApiWeb.UserRegistrationController do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         Accounts.create_account(user)
+
         {:ok, _} =
           Accounts.deliver_user_confirmation_instructions(
             user,

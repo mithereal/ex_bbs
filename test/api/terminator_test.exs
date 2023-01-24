@@ -36,7 +36,9 @@ defmodule Api.TerminatorTest do
       performer = performer_fixture()
       update_attrs = %{abilities: [], id: "7488a646-e31f-11e4-aace-600308960668"}
 
-      assert {:ok, %Performer{} = performer} = Terminator.update_performer(performer, update_attrs)
+      assert {:ok, %Performer{} = performer} =
+               Terminator.update_performer(performer, update_attrs)
+
       assert performer.abilities == []
       assert performer.id == "7488a646-e31f-11e4-aace-600308960668"
     end
@@ -77,7 +79,12 @@ defmodule Api.TerminatorTest do
     end
 
     test "create_role/1 with valid data creates a role" do
-      valid_attrs = %{abilities: [], id: "7488a646-e31f-11e4-aace-600308960662", identifier: "some identifier", name: "some name"}
+      valid_attrs = %{
+        abilities: [],
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        identifier: "some identifier",
+        name: "some name"
+      }
 
       assert {:ok, %Role{} = role} = Terminator.create_role(valid_attrs)
       assert role.abilities == []
@@ -92,7 +99,13 @@ defmodule Api.TerminatorTest do
 
     test "update_role/2 with valid data updates the role" do
       role = role_fixture()
-      update_attrs = %{abilities: [], id: "7488a646-e31f-11e4-aace-600308960668", identifier: "some updated identifier", name: "some updated name"}
+
+      update_attrs = %{
+        abilities: [],
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        identifier: "some updated identifier",
+        name: "some updated name"
+      }
 
       assert {:ok, %Role{} = role} = Terminator.update_role(role, update_attrs)
       assert role.abilities == []
@@ -137,7 +150,11 @@ defmodule Api.TerminatorTest do
     end
 
     test "create_abilities/1 with valid data creates a abilities" do
-      valid_attrs = %{id: "7488a646-e31f-11e4-aace-600308960662", identifier: "some identifier", name: "some name"}
+      valid_attrs = %{
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        identifier: "some identifier",
+        name: "some name"
+      }
 
       assert {:ok, %Abilities{} = abilities} = Terminator.create_abilities(valid_attrs)
       assert abilities.id == "7488a646-e31f-11e4-aace-600308960662"
@@ -151,9 +168,16 @@ defmodule Api.TerminatorTest do
 
     test "update_abilities/2 with valid data updates the abilities" do
       abilities = abilities_fixture()
-      update_attrs = %{id: "7488a646-e31f-11e4-aace-600308960668", identifier: "some updated identifier", name: "some updated name"}
 
-      assert {:ok, %Abilities{} = abilities} = Terminator.update_abilities(abilities, update_attrs)
+      update_attrs = %{
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        identifier: "some updated identifier",
+        name: "some updated name"
+      }
+
+      assert {:ok, %Abilities{} = abilities} =
+               Terminator.update_abilities(abilities, update_attrs)
+
       assert abilities.id == "7488a646-e31f-11e4-aace-600308960668"
       assert abilities.identifier == "some updated identifier"
       assert abilities.name == "some updated name"
@@ -195,7 +219,11 @@ defmodule Api.TerminatorTest do
     end
 
     test "create_entities/1 with valid data creates a entities" do
-      valid_attrs = %{abilities: "some abilities", assoc_type: "some assoc_type", id: "7488a646-e31f-11e4-aace-600308960662"}
+      valid_attrs = %{
+        abilities: "some abilities",
+        assoc_type: "some assoc_type",
+        id: "7488a646-e31f-11e4-aace-600308960662"
+      }
 
       assert {:ok, %Entities{} = entities} = Terminator.create_entities(valid_attrs)
       assert entities.abilities == "some abilities"
@@ -209,7 +237,12 @@ defmodule Api.TerminatorTest do
 
     test "update_entities/2 with valid data updates the entities" do
       entities = entities_fixture()
-      update_attrs = %{abilities: "some updated abilities", assoc_type: "some updated assoc_type", id: "7488a646-e31f-11e4-aace-600308960668"}
+
+      update_attrs = %{
+        abilities: "some updated abilities",
+        assoc_type: "some updated assoc_type",
+        id: "7488a646-e31f-11e4-aace-600308960668"
+      }
 
       assert {:ok, %Entities{} = entities} = Terminator.update_entities(entities, update_attrs)
       assert entities.abilities == "some updated abilities"

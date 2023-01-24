@@ -8,6 +8,7 @@ defmodule Api.Repo.Migrations.CreateTopics do
       add :description, :string
       add :status, :integer
       add :type, :integer
+      add :slug, :string
 
       add(:forum_id, references(:bbs_forums, on_delete: :nothing, type: :uuid))
       add(:poster_id, references(:bbs_users, on_delete: :nothing, type: :uuid))

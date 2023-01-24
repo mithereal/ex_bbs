@@ -66,7 +66,6 @@ defmodule Api.Categories.Server do
     defaults = Categories.online_categories()
 
     for d <- defaults do
-
       :ets.insert(state, {:id, d.id})
     end
 
@@ -83,7 +82,6 @@ defmodule Api.Categories.Server do
     GenServer.cast(pid, :load)
   end
 
-
   @doc """
   Looks up the bucket pid for `name` stored in `server`.
 
@@ -96,5 +94,4 @@ defmodule Api.Categories.Server do
       [] -> :error
     end
   end
-
 end

@@ -6,6 +6,7 @@ defmodule Api.Forum.Categories do
   alias Api.Forum.Categories
   alias Api.Forum.Forums
   alias Api.Repo
+  alias Api.Forum.Categories.TitleSlug
 
   schema "bbs_categories" do
     field :description, :string
@@ -15,6 +16,8 @@ defmodule Api.Forum.Categories do
 
     has_many :forums, Forums
 
+    field :slug, TitleSlug.Type
+
     timestamps()
   end
 
@@ -23,14 +26,17 @@ defmodule Api.Forum.Categories do
     categories
     |> cast(attrs, [:id, :title, :description, :status, :order])
     |> cast_assoc(:forums, required: false)
+    |> unique_constraint(:title)
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
     |> validate_required([:title, :description])
   end
 
   def online_categories do
-    Categories |> order_by(desc: :order) |> Repo.all
+    Categories |> order_by(desc: :order) |> Repo.all()
   end
 
   def online_categories_data do
-    Categories |> order_by(desc: :order) |> Repo.all
+    Categories |> order_by(desc: :order) |> Repo.all()
   end
 end

@@ -60,7 +60,6 @@ defmodule ApiWeb.TopicsController do
     |> redirect(to: Routes.topics_path(conn, :index))
   end
 
-
   alias Api.Forum
   alias Atomex.{Feed, Entry}
 
@@ -85,7 +84,11 @@ defmodule ApiWeb.TopicsController do
   end
 
   def build_feed(posts, conn, path \\ :rss) do
-    Feed.new(Routes.topics_path(conn, :index), DateTime.utc_now,  ApiWeb.Endpoint.host() <> " RSS")
+    Feed.new(
+      Routes.topics_path(conn, :index),
+      DateTime.utc_now(),
+      ApiWeb.Endpoint.host() <> " RSS"
+    )
     |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
     |> Feed.link(Routes.topics_path(conn, path), rel: "self")
     |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
@@ -94,7 +97,11 @@ defmodule ApiWeb.TopicsController do
   end
 
   defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
-    Entry.new(Routes.topics_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
+    Entry.new(
+      Routes.topics_url(conn, :show, slug),
+      DateTime.from_naive!(published_at, "Etc/UTC"),
+      name
+    )
     |> Entry.link(Routes.topics_url(conn, :show, slug))
     |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")

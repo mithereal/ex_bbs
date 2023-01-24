@@ -21,7 +21,13 @@ defmodule Api.ForumTest do
     end
 
     test "create_forums/1 with valid data creates a forums" do
-      valid_attrs = %{description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", order: 42, status: 42, title: "some title"}
+      valid_attrs = %{
+        description: "some description",
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        order: 42,
+        status: 42,
+        title: "some title"
+      }
 
       assert {:ok, %Forums{} = forums} = Forum.create_forums(valid_attrs)
       assert forums.description == "some description"
@@ -37,7 +43,14 @@ defmodule Api.ForumTest do
 
     test "update_forums/2 with valid data updates the forums" do
       forums = forums_fixture()
-      update_attrs = %{description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", order: 43, status: 43, title: "some updated title"}
+
+      update_attrs = %{
+        description: "some updated description",
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        order: 43,
+        status: 43,
+        title: "some updated title"
+      }
 
       assert {:ok, %Forums{} = forums} = Forum.update_forums(forums, update_attrs)
       assert forums.description == "some updated description"
@@ -83,7 +96,13 @@ defmodule Api.ForumTest do
     end
 
     test "create_categories/1 with valid data creates a categories" do
-      valid_attrs = %{description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", order: 42, status: 42, title: "some title"}
+      valid_attrs = %{
+        description: "some description",
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        order: 42,
+        status: 42,
+        title: "some title"
+      }
 
       assert {:ok, %Categories{} = categories} = Forum.create_categories(valid_attrs)
       assert categories.description == "some description"
@@ -99,7 +118,14 @@ defmodule Api.ForumTest do
 
     test "update_categories/2 with valid data updates the categories" do
       categories = categories_fixture()
-      update_attrs = %{description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", order: 43, status: 43, title: "some updated title"}
+
+      update_attrs = %{
+        description: "some updated description",
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        order: 43,
+        status: 43,
+        title: "some updated title"
+      }
 
       assert {:ok, %Categories{} = categories} = Forum.update_categories(categories, update_attrs)
       assert categories.description == "some updated description"
@@ -145,7 +171,12 @@ defmodule Api.ForumTest do
     end
 
     test "create_topics/1 with valid data creates a topics" do
-      valid_attrs = %{description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", status: 42, title: "some title"}
+      valid_attrs = %{
+        description: "some description",
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        status: 42,
+        title: "some title"
+      }
 
       assert {:ok, %Topics{} = topics} = Forum.create_topics(valid_attrs)
       assert topics.description == "some description"
@@ -160,7 +191,13 @@ defmodule Api.ForumTest do
 
     test "update_topics/2 with valid data updates the topics" do
       topics = topics_fixture()
-      update_attrs = %{description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", status: 43, title: "some updated title"}
+
+      update_attrs = %{
+        description: "some updated description",
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        status: 43,
+        title: "some updated title"
+      }
 
       assert {:ok, %Topics{} = topics} = Forum.update_topics(topics, update_attrs)
       assert topics.description == "some updated description"
@@ -192,7 +229,15 @@ defmodule Api.ForumTest do
 
     import Api.ForumFixtures
 
-    @invalid_attrs %{body: nil, description: nil, edit_count: nil, id: nil, status: nil, title: nil, username: nil}
+    @invalid_attrs %{
+      body: nil,
+      description: nil,
+      edit_count: nil,
+      id: nil,
+      status: nil,
+      title: nil,
+      username: nil
+    }
 
     test "list_posts/0 returns all posts" do
       posts = posts_fixture()
@@ -205,7 +250,15 @@ defmodule Api.ForumTest do
     end
 
     test "create_posts/1 with valid data creates a posts" do
-      valid_attrs = %{body: "some body", description: "some description", edit_count: 42, id: "7488a646-e31f-11e4-aace-600308960662", status: 42, title: "some title", username: "some username"}
+      valid_attrs = %{
+        body: "some body",
+        description: "some description",
+        edit_count: 42,
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        status: 42,
+        title: "some title",
+        username: "some username"
+      }
 
       assert {:ok, %Posts{} = posts} = Forum.create_posts(valid_attrs)
       assert posts.body == "some body"
@@ -223,7 +276,16 @@ defmodule Api.ForumTest do
 
     test "update_posts/2 with valid data updates the posts" do
       posts = posts_fixture()
-      update_attrs = %{body: "some updated body", description: "some updated description", edit_count: 43, id: "7488a646-e31f-11e4-aace-600308960668", status: 43, title: "some updated title", username: "some updated username"}
+
+      update_attrs = %{
+        body: "some updated body",
+        description: "some updated description",
+        edit_count: 43,
+        id: "7488a646-e31f-11e4-aace-600308960668",
+        status: 43,
+        title: "some updated title",
+        username: "some updated username"
+      }
 
       assert {:ok, %Posts{} = posts} = Forum.update_posts(posts, update_attrs)
       assert posts.body == "some updated body"

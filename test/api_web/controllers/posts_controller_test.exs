@@ -3,9 +3,33 @@ defmodule ApiWeb.PostsControllerTest do
 
   import Api.ForumFixtures
 
-  @create_attrs %{body: "some body", description: "some description", edit_count: 42, id: "7488a646-e31f-11e4-aace-600308960662", status: 42, title: "some title", username: "some username"}
-  @update_attrs %{body: "some updated body", description: "some updated description", edit_count: 43, id: "7488a646-e31f-11e4-aace-600308960668", status: 43, title: "some updated title", username: "some updated username"}
-  @invalid_attrs %{body: nil, description: nil, edit_count: nil, id: nil, status: nil, title: nil, username: nil}
+  @create_attrs %{
+    body: "some body",
+    description: "some description",
+    edit_count: 42,
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    status: 42,
+    title: "some title",
+    username: "some username"
+  }
+  @update_attrs %{
+    body: "some updated body",
+    description: "some updated description",
+    edit_count: 43,
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    status: 43,
+    title: "some updated title",
+    username: "some updated username"
+  }
+  @invalid_attrs %{
+    body: nil,
+    description: nil,
+    edit_count: nil,
+    id: nil,
+    status: nil,
+    title: nil,
+    username: nil
+  }
 
   describe "index" do
     test "lists all posts", %{conn: conn} do

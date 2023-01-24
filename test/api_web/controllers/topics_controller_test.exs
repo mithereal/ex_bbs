@@ -3,8 +3,18 @@ defmodule ApiWeb.TopicsControllerTest do
 
   import Api.ForumFixtures
 
-  @create_attrs %{description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", status: 42, title: "some title"}
-  @update_attrs %{description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", status: 43, title: "some updated title"}
+  @create_attrs %{
+    description: "some description",
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    status: 42,
+    title: "some title"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    status: 43,
+    title: "some updated title"
+  }
   @invalid_attrs %{description: nil, id: nil, status: nil, title: nil}
 
   describe "index" do

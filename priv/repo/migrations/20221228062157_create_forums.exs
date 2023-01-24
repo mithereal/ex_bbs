@@ -8,6 +8,7 @@ defmodule Api.Repo.Migrations.CreateForums do
       add :description, :string
       add :status, :integer
       add :order, :integer
+      add :slug, :string
 
       add(:user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
       add(:category_id, references(:bbs_categories, on_delete: :nothing, type: :uuid))

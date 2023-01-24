@@ -11,8 +11,11 @@ defmodule ApiWeb.PerformerController do
 
   def new(conn, _params) do
     changeset = Terminator.change_performer(%Performer{})
-    all_abilities = Terminator.list_abilities()
-    |> Enum.map(fn(x) -> {x.name, x.identifier} end)
+
+    all_abilities =
+      Terminator.list_abilities()
+      |> Enum.map(fn x -> {x.name, x.identifier} end)
+
     render(conn, "new.html", changeset: changeset, abilities: all_abilities)
   end
 

@@ -24,11 +24,10 @@ defmodule Api.Forum do
   def list_forums(limit) do
     import Ecto.Query
 
-    query = Forums  |> limit(^limit)
+    query = Forums |> limit(^limit)
 
     Repo.all(query)
   end
-
 
   @doc """
   Gets a single forums.
@@ -139,6 +138,7 @@ defmodule Api.Forum do
   def online_categories do
     :ets.lookup(:bbs_categories, :id)
   end
+
   @doc """
   Returns the list of categories.
 
@@ -251,7 +251,7 @@ defmodule Api.Forum do
   def list_topics(limit) do
     import Ecto.Query
 
-    query = Topics  |> limit(^limit)
+    query = Topics |> limit(^limit)
 
     Repo.all(query)
   end
@@ -356,7 +356,7 @@ defmodule Api.Forum do
   def list_posts(limit) do
     import Ecto.Query
 
-    query = Posts  |> limit(^limit)
+    query = Posts |> limit(^limit)
 
     Repo.all(query)
   end

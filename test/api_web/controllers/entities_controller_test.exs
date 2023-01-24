@@ -3,8 +3,16 @@ defmodule ApiWeb.EntitiesControllerTest do
 
   import Api.TerminatorFixtures
 
-  @create_attrs %{abilities: "some abilities", assoc_type: "some assoc_type", id: "7488a646-e31f-11e4-aace-600308960662"}
-  @update_attrs %{abilities: "some updated abilities", assoc_type: "some updated assoc_type", id: "7488a646-e31f-11e4-aace-600308960668"}
+  @create_attrs %{
+    abilities: "some abilities",
+    assoc_type: "some assoc_type",
+    id: "7488a646-e31f-11e4-aace-600308960662"
+  }
+  @update_attrs %{
+    abilities: "some updated abilities",
+    assoc_type: "some updated assoc_type",
+    id: "7488a646-e31f-11e4-aace-600308960668"
+  }
   @invalid_attrs %{abilities: nil, assoc_type: nil, id: nil}
 
   describe "index" do

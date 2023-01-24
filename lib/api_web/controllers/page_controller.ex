@@ -86,7 +86,7 @@ defmodule ApiWeb.PageController do
   def front_page(conn, _) do
     data = Api.Forum.online_category_data()
     render(conn, "front_page.html", category_data: data)
-    end
+  end
 
   def pwa(conn, _) do
     meta_attrs = [
@@ -104,5 +104,4 @@ defmodule ApiWeb.PageController do
 
     render(conn, "pwa.html")
   end
-
 end

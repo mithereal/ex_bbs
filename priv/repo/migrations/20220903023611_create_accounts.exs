@@ -14,8 +14,6 @@ defmodule Api.Repo.Migrations.CreateAccounts do
 
     alter table(:bbs_users) do
       add(:account_id, references(:bbs_accounts, on_delete: :nothing, type: :uuid))
-
     end
-
   end
 end

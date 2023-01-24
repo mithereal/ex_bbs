@@ -86,7 +86,8 @@ defmodule Api.MixProject do
       {:ecto_autoslug_field, "~> 3.0"},
       {:timex, "~> 3.7"},
       {:breadcrumble, "~> 1.0.0"},
-      {:plug_content_security_policy, git: "https://github.com/data-twister/plug_content_security_policy.git"},
+      {:plug_content_security_policy,
+       git: "https://github.com/data-twister/plug_content_security_policy.git"},
       {:atomex, "0.4.1"}
     ]
   end
