@@ -50,7 +50,7 @@
 
     <link rel="manifest" href="<%= Routes.static_path(@conn, "/cache_manifest.json") %>">
 
-    <%= if @meta_pixel_id do %>
+    <%= if assigns[:meta_pixel_id] do %>
     <%= render "_meta_pixel.html", meta_pixel_id: @meta_pixel_id %>
      <% end %>
 
@@ -58,11 +58,11 @@
             src="<%= Routes.static_path(@conn, "/js/service-worker.js") %>"></script>
 
 </head>
-<body class="root_body">
 
-<!-- start::Topbar -->
+<body class="root_body">
+<a id="top" class="top-anchor" accesskey="t"></a>
 <header class="container">
-    <div class="root_menu_header">
+    <div class="root_menu_header" role="banner">
         <div class="root_logo">
             <picture>
                 <a href="/">
@@ -75,10 +75,13 @@
 
         <div class="site_info">
             <%= ApiWeb.Endpoint.host() %>
+            <%= if assigns[:tagline] do %>
             <div class="site_header_tagline">
                 <%= @tagline %>
             </div>
+            <% end %>
         </div>
+
         <div class="header_search"></div>
         <!-- start::Mobile menu button -->
         <div class="menu_container">
@@ -106,13 +109,17 @@
         <!-- end::Right side top menu -->
 
     </div>
+
     <div class="header_link_bar">
+
         <span class="quicklinks">Quick Links</span>
+        <ul>
+            <li><%= link "test", to: Routes.page_path(@conn, :faq), class: "test", title: "test" %></li>
+        </ul>
+
         <%= link "FAQ", to: Routes.page_path(@conn, :faq), class: "faq", title: "FAQ" %>
     </div>
-
 </header>
-<!-- end::Topbar -->
 
 <%= @inner_content %>
 
@@ -128,7 +135,7 @@
         <div class="copyright">
             &copy;2022-<span id="copyright-year"><%= Date.utc_today.year %></span>
             <a href="/"> <%= ApiWeb.Endpoint.host() %></a>
-            <div class="powered_by">Powered by exBBS® Forum Software © mithereal</div>
+            <div class="powered_by">Powered by exBBS® Forum Software ©mithereal</div>
         </div>
 
         <div class="footer_links">

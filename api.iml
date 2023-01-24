@@ -117,6 +117,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/tzdata" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/timex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/breadcrumble" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_content_security_policy" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bcrypt_elixir" level="project" />
@@ -252,5 +253,7 @@
     <orderEntry type="library" name="tzdata" level="project" />
     <orderEntry type="library" name="breadcrumble" level="project" />
     <orderEntry type="library" name="power_assert" level="project" />
+    <orderEntry type="library" name="plug_content_security_policy" level="project" />
+    <orderEntry type="library" name="credo_contrib" level="project" />
   </component>
 </module>
