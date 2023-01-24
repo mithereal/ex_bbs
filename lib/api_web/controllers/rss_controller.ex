@@ -25,8 +25,8 @@ defmodule ApiWeb.RssController do
   end
 
   defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
-    Entry.new(Routes.post_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
-    |> Entry.link(Routes.post_url(conn, :show, slug))
+    Entry.new(Routes.posts_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
+    |> Entry.link(Routes.posts_url(conn, :show, slug))
     |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")
     |> Entry.build()
