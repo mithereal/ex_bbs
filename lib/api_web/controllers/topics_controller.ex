@@ -59,4 +59,45 @@ defmodule ApiWeb.TopicsController do
     |> put_flash(:info, "Topics deleted successfully.")
     |> redirect(to: Routes.topics_path(conn, :index))
   end
+
+
+  alias Api.Forum
+  alias Atomex.{Feed, Entry}
+
+  def thread_rss(conn, params) do
+    topic = Map.get(params, :topic_slug) || ""
+    posts = Forum.get_topic(topic)
+    feed = build_feed(posts, conn, :thread_rss)
+
+    conn
+    |> put_resp_content_type("text/xml")
+    |> send_resp(200, feed)
+  end
+
+  def rss(conn, params) do
+    number = Map.get(params, :forums_count) || 10
+    posts = Forum.list_topics(number)
+    feed = build_feed(posts, conn)
+
+    conn
+    |> put_resp_content_type("text/xml")
+    |> send_resp(200, feed)
+  end
+
+  def build_feed(posts, conn, path \\ :rss) do
+    Feed.new(Routes.topics_path(conn, :index), DateTime.utc_now,  ApiWeb.Endpoint.host() <> " RSS")
+    |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
+    |> Feed.link(Routes.topics_path(conn, path), rel: "self")
+    |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
+    |> Feed.build()
+    |> Atomex.generate_document()
+  end
+
+  defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
+    Entry.new(Routes.topics_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
+    |> Entry.link(Routes.topics_url(conn, :show, slug))
+    |> Entry.author(ApiWeb.Endpoint.host())
+    |> Entry.content(summary, type: "text")
+    |> Entry.build()
+  end
 end

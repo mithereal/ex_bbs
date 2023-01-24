@@ -21,6 +21,15 @@ defmodule Api.Forum do
     Repo.all(Forums)
   end
 
+  def list_forums(limit) do
+    import Ecto.Query
+
+    query = Forums  |> limit(^limit)
+
+    Repo.all(query)
+  end
+
+
   @doc """
   Gets a single forums.
 
@@ -36,6 +45,7 @@ defmodule Api.Forum do
 
   """
   def get_forums!(id), do: Repo.get!(Forums, id)
+  def get_forum(id), do: Repo.get_by(Forums, slug: id)
 
   @doc """
   Creates a forums.
@@ -238,6 +248,14 @@ defmodule Api.Forum do
     Repo.all(Topics)
   end
 
+  def list_topics(limit) do
+    import Ecto.Query
+
+    query = Topics  |> limit(^limit)
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single topics.
 
@@ -253,6 +271,7 @@ defmodule Api.Forum do
 
   """
   def get_topics!(id), do: Repo.get!(Topics, id)
+  def get_topic(slug), do: Repo.get_by(Topics, slug: slug)
 
   @doc """
   Creates a topics.

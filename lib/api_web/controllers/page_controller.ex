@@ -104,4 +104,5 @@ defmodule ApiWeb.PageController do
 
     render(conn, "pwa.html")
   end
+
 end

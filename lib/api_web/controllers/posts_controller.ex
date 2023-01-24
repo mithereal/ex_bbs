@@ -60,14 +60,12 @@ defmodule ApiWeb.PostsController do
     |> redirect(to: Routes.posts_path(conn, :index))
   end
 
-
-  alias Api.Forum, as: Posts
+  alias Api.Forum
   alias Atomex.{Feed, Entry}
 
-
   def rss(conn, params) do
-    number = Map.get(params, :posts_count)
-    posts = Posts.list_posts(number)
+    number = Map.get(params, :posts_count) || 10
+    posts = Forum.list_posts(number)
     feed = build_feed(posts, conn)
 
     conn
@@ -76,7 +74,11 @@ defmodule ApiWeb.PostsController do
   end
 
   def build_feed(posts, conn) do
-    Feed.new(Routes.posts_path(conn, :index), DateTime.utc_now,  ApiWeb.Endpoint.host() <> " RSS")
+    Feed.new(
+      Routes.posts_path(conn, :index),
+      DateTime.utc_now(),
+      ApiWeb.Endpoint.host() <> " RSS"
+    )
     |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
     |> Feed.link(Routes.posts_path(conn, :rss), rel: "self")
     |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
@@ -85,7 +87,11 @@ defmodule ApiWeb.PostsController do
   end
 
   defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
-    Entry.new(Routes.posts_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
+    Entry.new(
+      Routes.posts_url(conn, :show, slug),
+      DateTime.from_naive!(published_at, "Etc/UTC"),
+      name
+    )
     |> Entry.link(Routes.posts_url(conn, :show, slug))
     |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")

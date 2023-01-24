@@ -109,13 +109,12 @@ defmodule ApiWeb.Router do
     get("/", UserProfileController, :show)
     post("/", UserProfileController, :update)
     get("/:id", UserProfileController, :show)
-    end
+  end
 
   scope "/posts", ApiWeb do
     pipe_through([:browser, :default_assigns])
     get "/", PostsController, :index
   end
-
 
   scope "/gallery", ApiWeb do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
@@ -142,7 +141,6 @@ defmodule ApiWeb.Router do
 
     live("/", UserDashboardLive)
   end
-
 
   scope "/admin", ApiWeb do
     pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
@@ -189,7 +187,6 @@ defmodule ApiWeb.Router do
 
   scope "/", ApiWeb do
     pipe_through([:browser, :default_assigns, :redirect_if_user_is_authenticated])
-
   end
 
   scope "/", ApiWeb do
@@ -198,9 +195,26 @@ defmodule ApiWeb.Router do
     get "/keep-alive", UserSessionController, :keep_alive
 
     get "/", PageController, :front_page
-    get "/posts/rss.xml", PostsController, :rss
+    get "/rss.xml", RssController, :rss
+  end
+
+  scope "/forums", ApiWeb do
+    pipe_through([:browser, :default_assigns])
     get "/forums", ForumsController, :index
     get "/forums/:id", ForumsController, :show
+    get "/rss.xml", ForumsController, :rss
+    get "/:slug/rss.xml", ForumsController, :forum_rss
+  end
+
+  scope "/topic", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+    get "/rss.xml", TopicsController, :rss
+    get "/:slug/rss.xml", TopicsController, :thread_rss
+  end
+
+  scope "/posts", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+    get "/rss.xml", PostsController, :rss
   end
 
   scope "/page", ApiWeb do
