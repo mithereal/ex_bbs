@@ -4,8 +4,8 @@ defmodule ApiWeb.RssController do
   alias Api.Forum, as: Posts
   alias Atomex.{Feed, Entry}
 
-  @author "mithereal"
-  @email "mithereal@gmail.com"
+  @author ApiWeb.Endpoint.host()
+  @email "no-reply@" <> ApiWeb.Endpoint.host()
 
   def index(conn, params) do
     number = Map.get(params, :posts_count)
@@ -26,9 +26,9 @@ defmodule ApiWeb.RssController do
     |> Atomex.generate_document()
   end
 
-  defp get_entry(conn, %{name: name, kind: kind, slug: slug, summary: summary, published_at: published_at}) do
-    Entry.new(Routes.post_url(conn, :show, kind, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
-    |> Entry.link(Routes.post_url(conn, :show, kind, slug))
+  defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
+    Entry.new(Routes.post_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
+    |> Entry.link(Routes.post_url(conn, :show, slug))
     |> Entry.author(@author)
     |> Entry.content(summary, type: "text")
     |> Entry.build()

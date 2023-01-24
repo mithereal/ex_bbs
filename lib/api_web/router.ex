@@ -111,6 +111,11 @@ defmodule ApiWeb.Router do
     get("/:id", UserProfileController, :show)
     end
 
+  scope "/posts", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+    get "/", PostsController, :index
+  end
+
 
   scope "/gallery", ApiWeb do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
@@ -211,11 +216,6 @@ defmodule ApiWeb.Router do
     pipe_through([:pwa, :default_assigns])
 
     get("/pwa", PageController, :pwa)
-  end
-
-  scope "/posts", ApiWeb do
-    pipe_through([:browser, :default_assigns])
-    get "/", PostsController, :index
   end
 
   scope "/websockets", ApiWeb do
