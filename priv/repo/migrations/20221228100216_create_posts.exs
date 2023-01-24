@@ -7,11 +7,12 @@ defmodule Api.Repo.Migrations.CreatePosts do
       add :username, :string
       add :edit_count, :integer
       add :title, :string
+      add :status, :integer
       add :description, :string
       add :body, :string
 
       add(:forum_id, references(:bbs_forums, on_delete: :nothing, type: :uuid))
-      add(:poster_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
+      add(:users_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
 
       timestamps()
     end

@@ -18,7 +18,7 @@ defmodule Api.Repo.Migrations.CreateTopics do
     end
 
     alter table(:bbs_posts) do
-      add(:topic_id, references(:bbs_topics, on_delete: :nothing, type: :uuid))
+      add(:topics_id, references(:bbs_topics, on_delete: :nothing, type: :uuid))
     end
   end
 end

@@ -16,7 +16,7 @@ if config_env() == :prod do
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
-  config :terminator, Terminator.Repo,
+  config :terminator_uuid, Terminator.UUID.Repo,
     socket_options: [:inet6],
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")

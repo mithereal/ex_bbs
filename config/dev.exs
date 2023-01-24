@@ -20,7 +20,7 @@ config :api, Api.Repo,
   pool_size: 10,
   default_admin_password: "exbbs"
 
-config :terminator, Terminator.Repo,
+config :terminator_uuid, Terminator.UUID.Repo,
   username: "postgres",
   password: "postgres",
   database: "exbbs",

@@ -61,7 +61,7 @@ defmodule Api.MixProject do
       {:scrivener_ecto, "~> 2.0"},
       {:distillery, "~> 2.1"},
       {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false},
-      {:terminator, git: "https://github.com/data-twister/terminator.git", branch: "uuid"},
+      {:terminator_uuid, git: "https://github.com/mithereal/terminator_uuid.git"},
       {:open_api_spex, "~> 3.4"},
       {:unzip, "~> 0.7.1"},
       {:earmark, "~> 1.4.3"},

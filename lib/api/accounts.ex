@@ -3,7 +3,7 @@ defmodule Api.Accounts do
   The Accounts context.
   """
 
-  use Terminator
+  use Terminator.UUID
 
   import Ecto.Query, warn: false
   alias Api.Repo
@@ -157,7 +157,7 @@ defmodule Api.Accounts do
   end
 
   defp grant_role(user, role) do
-    role = Repo.get_by!(Terminator.Role, identifier: role)
+    role = Repo.get_by!(Terminator.UUID.Role, identifier: role)
 
     case user do
       {:error, msg} ->
@@ -187,11 +187,11 @@ defmodule Api.Accounts do
         nil
 
       {:ok, user} ->
-        performer = Terminator.Performer.grant(user, role)
+        performer = Terminator.UUID.Performer.grant(user, role)
         %{user | performer: performer}
 
       _ ->
-        performer = Terminator.Performer.grant(user, role)
+        performer = Terminator.UUID.Performer.grant(user, role)
         %{user | performer: performer}
     end
   end
@@ -199,7 +199,7 @@ defmodule Api.Accounts do
   defp maybe_load_and_authorize_performer(user) do
     case is_nil(user) do
       true ->
-        {:ok, %Terminator.Performer{}}
+        {:ok, %Terminator.UUID.Performer{}}
 
       false ->
         load_and_authorize_performer(user.performer)

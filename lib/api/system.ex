@@ -315,21 +315,21 @@ defmodule Api.System do
           |> Enum.map(fn x -> String.capitalize(x) end)
           |> Enum.join(" ")
 
-        Terminator.Role.build(x, [], title)
-        |> Terminator.Repo.insert()
+        Terminator.UUID.Role.build(x, [], title)
+        |> Terminator.UUID.Repo.insert()
       end)
 
-    all_abilities = Api.Repo.all(Terminator.Ability)
-    admin = Terminator.Repo.get_by(Terminator.Role, identifier: "full_admin")
-    user = Terminator.Repo.get_by(Terminator.Role, identifier: "user")
+    all_abilities = Api.Repo.all(Terminator.UUID.Ability)
+    admin = Terminator.UUID.Repo.get_by(Terminator.UUID.Role, identifier: "full_admin")
+    user = Terminator.UUID.Repo.get_by(Terminator.UUID.Role, identifier: "user")
 
     for ability <- all_abilities do
-      Terminator.Role.grant(admin, ability)
+      Terminator.UUID.Role.grant(admin, ability)
     end
 
     for ability <- @user_abilities do
-      ability = Terminator.Repo.get_by(Terminator.Ability, identifier: ability)
-      Terminator.Role.grant(user, ability)
+      ability = Terminator.UUID.Repo.get_by(Terminator.UUID.Ability, identifier: ability)
+      Terminator.UUID.Role.grant(user, ability)
     end
 
     roles
@@ -344,8 +344,8 @@ defmodule Api.System do
         |> Enum.map(fn x -> String.capitalize(x) end)
         |> Enum.join(" ")
 
-      Terminator.Ability.build(x, title)
-      |> Terminator.Repo.insert()
+      Terminator.UUID.Ability.build(x, title)
+      |> Terminator.UUID.Repo.insert()
     end)
   end
 

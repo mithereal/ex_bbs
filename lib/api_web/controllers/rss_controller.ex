@@ -4,8 +4,6 @@ defmodule ApiWeb.RssController do
   alias Api.Forum, as: Posts
   alias Atomex.{Feed, Entry}
 
-  @author ApiWeb.Endpoint.host()
-  @email "no-reply@" <> ApiWeb.Endpoint.host()
 
   def index(conn, params) do
     number = Map.get(params, :posts_count)
@@ -19,7 +17,7 @@ defmodule ApiWeb.RssController do
 
   def build_feed(posts, conn) do
     Feed.new(Routes.posts_path(conn, :index), DateTime.utc_now,  ApiWeb.Endpoint.host() <> " RSS")
-    |> Feed.author(@author, email: @email)
+    |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
     |> Feed.link(Routes.rss_url(conn, :index), rel: "self")
     |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
     |> Feed.build()
@@ -29,7 +27,7 @@ defmodule ApiWeb.RssController do
   defp get_entry(conn, %{title: name, slug: slug, description: summary, inserted_at: published_at}) do
     Entry.new(Routes.post_url(conn, :show, slug), DateTime.from_naive!(published_at, "Etc/UTC"), name)
     |> Entry.link(Routes.post_url(conn, :show, slug))
-    |> Entry.author(@author)
+    |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")
     |> Entry.build()
   end

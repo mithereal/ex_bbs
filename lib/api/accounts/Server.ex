@@ -1,7 +1,7 @@
 defmodule Api.User.Server do
   require Logger
 
-  use Terminator
+  use Terminator.UUID
   use GenServer
 
   alias Api.User.Server, as: SERVER

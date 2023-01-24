@@ -63,14 +63,14 @@ defmodule Api.Accounts.User do
   end
 
   defp create_performer(%{valid?: true} = changeset) do
-    {:ok, performer} = %Terminator.Performer{} |> Terminator.Repo.insert()
+    {:ok, performer} = %Terminator.UUID.Performer{} |> Terminator.UUID.Repo.insert()
 
     changeset
     |> put_change(:performer_id, performer.id)
   end
 
   defp create_role(%{valid?: true} = changeset) do
-    {:ok, performer} = %Terminator.Performer{} |> Terminator.Repo.insert()
+    {:ok, performer} = %Terminator.UUID.Performer{} |> Terminator.UUID.Repo.insert()
 
     changeset
     |> put_change(:performer_id, performer.id)

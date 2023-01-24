@@ -120,6 +120,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_content_security_policy" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/atomex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/xml_builder" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/terminator_uuid" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bcrypt_elixir" level="project" />
@@ -262,5 +263,60 @@
     <orderEntry type="library" name="xml_builder" level="project" />
     <orderEntry type="library" name="sweet_xml" level="project" />
     <orderEntry type="library" name="eliver" level="project" />
+    <orderEntry type="library" name="bcrypt_elixir" level="project" />
+    <orderEntry type="library" name="phoenix" level="project" />
+    <orderEntry type="library" name="phoenix_ecto" level="project" />
+    <orderEntry type="library" name="ecto_sql" level="project" />
+    <orderEntry type="library" name="postgrex" level="project" />
+    <orderEntry type="library" name="phoenix_html" level="project" />
+    <orderEntry type="library" name="phoenix_live_reload" level="project" />
+    <orderEntry type="library" name="phoenix_live_view" level="project" />
+    <orderEntry type="library" name="phoenix_live_dashboard" level="project" />
+    <orderEntry type="library" name="esbuild" level="project" />
+    <orderEntry type="library" name="tailwind" level="project" />
+    <orderEntry type="library" name="dart_sass" level="project" />
+    <orderEntry type="library" name="telemetry_metrics" level="project" />
+    <orderEntry type="library" name="telemetry_poller" level="project" />
+    <orderEntry type="library" name="gettext" level="project" />
+    <orderEntry type="library" name="jason" level="project" />
+    <orderEntry type="library" name="plug_cowboy" level="project" />
+    <orderEntry type="library" name="tesla" level="project" />
+    <orderEntry type="library" name="plug_attack" level="project" />
+    <orderEntry type="library" name="plug_secex" level="project" />
+    <orderEntry type="library" name="remote_ip" level="project" />
+    <orderEntry type="library" name="corsica" level="project" />
+    <orderEntry type="library" name="bypass" level="project" />
+    <orderEntry type="library" name="inch_ex" level="project" />
+    <orderEntry type="library" name="exgravatar" level="project" />
+    <orderEntry type="library" name="scrivener_ecto" level="project" />
+    <orderEntry type="library" name="distillery" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="open_api_spex" level="project" />
+    <orderEntry type="library" name="unzip" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="decimal" level="project" />
+    <orderEntry type="library" name="inflex" level="project" />
+    <orderEntry type="library" name="sobelow" level="project" />
+    <orderEntry type="library" name="ecto_soft_delete" level="project" />
+    <orderEntry type="library" name="webp" level="project" />
+    <orderEntry type="library" name="faker" level="project" />
+    <orderEntry type="library" name="ueberauth" level="project" />
+    <orderEntry type="library" name="guardian" level="project" />
+    <orderEntry type="library" name="guardian_db" level="project" />
+    <orderEntry type="library" name="guardian_phoenix" level="project" />
+    <orderEntry type="library" name="phoenix_copy" level="project" />
+    <orderEntry type="library" name="dictionary" level="project" />
+    <orderEntry type="library" name="swoosh" level="project" />
+    <orderEntry type="library" name="gen_smtp" level="project" />
+    <orderEntry type="library" name="phoenix_swoosh" level="project" />
+    <orderEntry type="library" name="nanoid" level="project" />
+    <orderEntry type="library" name="ice_cream" level="project" />
+    <orderEntry type="library" name="premailex" level="project" />
+    <orderEntry type="library" name="ecto_autoslug_field" level="project" />
+    <orderEntry type="library" name="timex" level="project" />
+    <orderEntry type="library" name="breadcrumble" level="project" />
+    <orderEntry type="library" name="plug_content_security_policy" level="project" />
+    <orderEntry type="library" name="atomex" level="project" />
+    <orderEntry type="library" name="terminator_uuid" level="project" />
   </component>
 </module>

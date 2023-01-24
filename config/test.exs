@@ -15,7 +15,7 @@ config :api, Api.Repo,
   port: 55_432,
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :terminator, Terminator.Repo,
+config :terminator_uuid, Terminator.Repo,
   username: "postgres",
   password: "postgres",
   database: "exbbs#{System.get_env("MIX_TEST_PARTITION")}",

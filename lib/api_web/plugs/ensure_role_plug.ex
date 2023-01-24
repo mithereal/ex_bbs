@@ -18,7 +18,7 @@ defmodule ApiWeb.Plug.EnsureRole do
   alias Phoenix.Controller
   alias Plug.Conn
 
-  use Terminator
+  use Terminator.UUID
 
   @doc false
   @spec init(any()) :: any()
