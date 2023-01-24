@@ -6,7 +6,6 @@ defmodule Api.Forum.Categories do
   alias Api.Forum.Categories
   alias Api.Forum.Forums
   alias Api.Repo
-  alias Api.Forum.Categories.TitleSlug
 
   schema "bbs_categories" do
     field :description, :string
@@ -16,7 +15,6 @@ defmodule Api.Forum.Categories do
 
     has_many :forums, Forums
 
-    field :slug, TitleSlug.Type
 
     timestamps()
   end

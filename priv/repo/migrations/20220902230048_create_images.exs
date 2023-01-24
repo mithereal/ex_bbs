@@ -10,6 +10,8 @@ defmodule Api.Repo.Migrations.CreateImages do
       add :width, :float
       add :height, :float
 
+      add :slug, :string
+
       add :user_id, references(:bbs_users, on_delete: :nothing, type: :uuid)
 
       timestamps()

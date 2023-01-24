@@ -14,8 +14,6 @@ defmodule Api.Forum.Forums do
     belongs_to :categories, Categories
     has_many :topics, Topics
 
-    field :slug, TitleSlug.Type
-
     timestamps()
   end
 

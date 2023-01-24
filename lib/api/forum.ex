@@ -44,7 +44,7 @@ defmodule Api.Forum do
 
   """
   def get_forums!(id), do: Repo.get!(Forums, id)
-  def get_forum(id), do: Repo.get_by(Forums, slug: id)
+  def get_forum(id), do: Repo.get_by(Forums, title: id)
 
   @doc """
   Creates a forums.
@@ -167,6 +167,7 @@ defmodule Api.Forum do
 
   """
   def get_categories!(id), do: Repo.get!(Categories, id)
+  def get_category(id), do: Repo.get_by(Categories, title: id)
 
   @doc """
   Creates a categories.
@@ -376,6 +377,7 @@ defmodule Api.Forum do
 
   """
   def get_posts!(id), do: Repo.get!(Posts, id)
+  def get_post(id), do: Repo.get_by(Posts, slug: id)
 
   @doc """
   Creates a posts.

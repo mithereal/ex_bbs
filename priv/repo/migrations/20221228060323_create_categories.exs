@@ -8,7 +8,6 @@ defmodule Api.Repo.Migrations.CreateCategories do
       add :description, :string
       add :order, :integer
       add :status, :integer
-      add :slug, :string
 
       timestamps()
     end

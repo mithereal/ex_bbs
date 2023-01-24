@@ -2,6 +2,8 @@ defmodule Api.Images.Image do
   use Api.Schema
   import Ecto.Changeset
 
+  alias Api.Images.Image.TitleSlug
+
   schema "bbs_images" do
     field(:height, :float)
     field(:description, :string)
@@ -9,6 +11,8 @@ defmodule Api.Images.Image do
     field(:size, :string)
     field(:type, :string)
     field(:width, :float)
+
+    field :slug, TitleSlug.Type
 
     timestamps()
   end
