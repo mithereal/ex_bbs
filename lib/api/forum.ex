@@ -334,6 +334,14 @@ defmodule Api.Forum do
     Repo.all(Posts)
   end
 
+  def list_posts(limit) do
+    import Ecto.Query
+
+    query = Posts  |> limit(^limit)
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single posts.
 

@@ -138,6 +138,7 @@ defmodule ApiWeb.Router do
     live("/", UserDashboardLive)
   end
 
+
   scope "/admin", ApiWeb do
     pipe_through([:admin_browser, :default_assigns, :require_authenticated_user, :admin])
 
@@ -192,6 +193,7 @@ defmodule ApiWeb.Router do
     get "/keep-alive", UserSessionController, :keep_alive
 
     get "/", PageController, :front_page
+    get "/posts/rss.xml", RssController, :index
     get "/forums", ForumsController, :index
     get "/forums/:id", ForumsController, :show
   end
@@ -209,6 +211,11 @@ defmodule ApiWeb.Router do
     pipe_through([:pwa, :default_assigns])
 
     get("/pwa", PageController, :pwa)
+  end
+
+  scope "/posts", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+    get "/", PostsController, :index
   end
 
   scope "/websockets", ApiWeb do

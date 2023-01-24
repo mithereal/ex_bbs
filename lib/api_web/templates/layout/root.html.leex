@@ -6,7 +6,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale = 1, maximum-scale = 4"/>
-<meta name="author" content="@mithereal"/>
+    <meta name="author" content="@mithereal"/>
     <meta name="description" content="<%= Application.get_env(:api, :description, ApiWeb.Endpoint.url() ) %>"/>
     <meta name="keywords" content="<%= Application.get_env(:api, :keywords, ApiWeb.Endpoint.url() ) %>"/>
     <meta name="robots" content="<%= Application.get_env(:api, :robots, "nofollow") %>"/>
@@ -26,6 +26,9 @@
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || ApiWeb.Endpoint.url() %>
     <link defer phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/root.css") %>"/>
+
+    <link defer rel="alternate" type="application/rss+xml" href={Routes.rss_url(@conn, :index)}>
+
 
     <%= render "_apple_touch_header.html", assigns %>
 
@@ -66,7 +69,7 @@
         <div class="root_logo">
             <picture>
                 <a href="/">
-                    <source srcset="/images/logo.webp"  type="image/webp"/>
+                    <source srcset="/images/logo.webp" type="image/webp"/>
                     <img src="/images/logo.png" alt="Logo" aria-label="Logo"/>
                 </a>
             </picture>
@@ -82,7 +85,19 @@
             <% end %>
         </div>
 
-        <div class="header_search"></div>
+
+        <!-- start::Right side top menu -->
+        <div class="menu_button_container">
+            <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
+            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Sign Up" %>
+            <div class="header_search"></div>
+        </div>
+        <!-- end::Right side top menu -->
+
+    </div>
+
+    <div class="header_link_bar">
+
         <!-- start::Mobile menu button -->
         <div class="menu_container">
             <button
@@ -101,23 +116,27 @@
         <!-- end::Mobile menu button -->
 
 
-        <!-- start::Right side top menu -->
-        <div class="menu_button_container">
-            <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
-            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Register" %>
+        <%= if assigns[:quick_links] do %>
+        <div class="quicklinks">
+            <h1>Quick Links</h1>
+            <ul>
+                <%= for link <- assigns[:quick_links] do %>
+                <li><a href="<%= link.url %>"><%= link.title %></a></li>
+                <% end %>
+            </ul>
         </div>
-        <!-- end::Right side top menu -->
+        <% end %>
 
-    </div>
+        <%= if assigns[:menu_links] do %>
+        <div class="menulinks">
+            <ul>
+                <%= for link <- assigns[:menu_links] do %>
+                <li><a href="<%= link.url %>"><%= link.title %></a></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
 
-    <div class="header_link_bar">
-
-        <span class="quicklinks">Quick Links</span>
-        <ul>
-            <li><%= link "test", to: Routes.page_path(@conn, :faq), class: "test", title: "test" %></li>
-        </ul>
-
-        <%= link "FAQ", to: Routes.page_path(@conn, :faq), class: "faq", title: "FAQ" %>
     </div>
 </header>
 
@@ -130,6 +149,11 @@
         <div class="footer_link_bar">
             <button class="">Home</button>
             <button class="">Delete Cookies</button>
+            <%= link to: Routes.rss_url(@conn, :index) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+            <% end %>
         </div>
 
         <div class="copyright">

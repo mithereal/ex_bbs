@@ -118,6 +118,8 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/timex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/breadcrumble" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_content_security_policy" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/atomex" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/xml_builder" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bcrypt_elixir" level="project" />
@@ -255,5 +257,10 @@
     <orderEntry type="library" name="power_assert" level="project" />
     <orderEntry type="library" name="plug_content_security_policy" level="project" />
     <orderEntry type="library" name="credo_contrib" level="project" />
+    <orderEntry type="library" name="rss" level="project" />
+    <orderEntry type="library" name="atomex" level="project" />
+    <orderEntry type="library" name="xml_builder" level="project" />
+    <orderEntry type="library" name="sweet_xml" level="project" />
+    <orderEntry type="library" name="eliver" level="project" />
   </component>
 </module>
