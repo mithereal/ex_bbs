@@ -198,7 +198,7 @@ defmodule ApiWeb.Router do
     get "/keep-alive", UserSessionController, :keep_alive
 
     get "/", PageController, :front_page
-    get "/posts/rss.xml", RssController, :index
+    get "/posts/rss.xml", PostsRssController, :index
     get "/forums", ForumsController, :index
     get "/forums/:id", ForumsController, :show
   end
