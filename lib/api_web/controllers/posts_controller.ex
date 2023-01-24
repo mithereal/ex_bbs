@@ -59,16 +59,13 @@ defmodule ApiWeb.PostsController do
     |> put_flash(:info, "Posts deleted successfully.")
     |> redirect(to: Routes.posts_path(conn, :index))
   end
-end
 
-defmodule ApiWeb.PostsRssController do
-  use ApiWeb, :controller
 
   alias Api.Forum, as: Posts
   alias Atomex.{Feed, Entry}
 
 
-  def index(conn, params) do
+  def rss(conn, params) do
     number = Map.get(params, :posts_count)
     posts = Posts.list_posts(number)
     feed = build_feed(posts, conn)
@@ -81,7 +78,7 @@ defmodule ApiWeb.PostsRssController do
   def build_feed(posts, conn) do
     Feed.new(Routes.posts_path(conn, :index), DateTime.utc_now,  ApiWeb.Endpoint.host() <> " RSS")
     |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
-    |> Feed.link(Routes.posts_rss_url(conn, :index), rel: "self")
+    |> Feed.link(Routes.posts_path(conn, :rss), rel: "self")
     |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
     |> Feed.build()
     |> Atomex.generate_document()
@@ -94,4 +91,4 @@ defmodule ApiWeb.PostsRssController do
     |> Entry.content(summary, type: "text")
     |> Entry.build()
   end
-  end
+end
