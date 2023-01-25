@@ -88,7 +88,11 @@ defmodule Api.MixProject do
       {:breadcrumble, "~> 1.0.0"},
       {:plug_content_security_policy,
        git: "https://github.com/data-twister/plug_content_security_policy.git"},
-      {:atomex, "0.4.1"}
+      {:atomex, "0.4.1"},
+      {:nebulex, "~> 2.4"},
+      {:shards, "~> 1.0"},      #=> When using :shards as backend
+      {:decorator, "~> 1.4"},   #=> When using Caching Annotations
+      {:telemetry, "~> 1.0"}    #=> When using the Telemetry events (Nebulex stats)
     ]
   end
 

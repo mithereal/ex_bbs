@@ -318,5 +318,10 @@
     <orderEntry type="library" name="plug_content_security_policy" level="project" />
     <orderEntry type="library" name="atomex" level="project" />
     <orderEntry type="library" name="terminator_uuid" level="project" />
+    <orderEntry type="library" name="nebulex" level="project" />
+    <orderEntry type="library" name="shards" level="project" />
+    <orderEntry type="library" name="decorator" level="project" />
+    <orderEntry type="library" name="ex2ms" level="project" />
+    <orderEntry type="library" name="benchee_html" level="project" />
   </component>
 </module>

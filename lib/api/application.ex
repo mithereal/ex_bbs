@@ -20,9 +20,7 @@ defmodule Api.Application do
       # Start the User supervisor
       Api.User.Server.Supervisor,
       Api.Error.Server.Supervisor,
-      Api.Categories.Data.Server,
-      Api.System.Setting.Server,
-      Api.System.HitCounter.Server,
+      {Api.ForumCache, []},
       # Start user Registry
       {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
     ]
@@ -37,17 +35,16 @@ defmodule Api.Application do
     |> create_default_settings()
     |> create_default_users()
     |> load_settings()
-    |> load_categories_data()
-    |> load_counters()
   end
 
   def setup_abilities(response) do
     Api.System.default_abilities()
+
     response
   end
 
   def setup_role_tables(response) do
-    default_roles = Api.System.default_roles()
+    Api.System.default_roles()
 
     response
   end
@@ -80,11 +77,6 @@ defmodule Api.Application do
     response
   end
 
-  def load_counters(response) do
-    Api.System.HitCounter.Server.load()
-
-    response
-  end
 
   def load_settings(response) do
     Api.System.Setting.Server.load()
@@ -92,11 +84,6 @@ defmodule Api.Application do
     response
   end
 
-  def load_categories_data(response) do
-    Api.Categories.Data.Server.load()
-
-    response
-  end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.

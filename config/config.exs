@@ -46,6 +46,14 @@ config :phoenix, :json_library, Jason
 config :phoenix,
   static_compressors: [Webp.Compressor]
 
+config :api, Api.ForumCache,
+       backend: :shards,
+       gc_interval: :timer.hours(12),
+       max_size: 1_000_000,
+       allocated_memory: 2_000_000_000,
+       gc_cleanup_min_timeout: :timer.seconds(10),
+       gc_cleanup_max_timeout: :timer.minutes(10)
+
 config :dart_sass,
   version: "1.49.11",
   default: [
