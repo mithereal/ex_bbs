@@ -84,7 +84,7 @@ defmodule ApiWeb.PageController do
   end
 
   def front_page(conn, _) do
-    data = Api.Forum.online_category_data()
+    data = Api.Forum.online_categories()
     render(conn, "front_page.html", category_data: data)
   end
 

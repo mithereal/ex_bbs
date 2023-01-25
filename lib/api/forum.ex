@@ -9,6 +9,9 @@ defmodule Api.Forum do
 
   alias Api.Forum.Forums
   alias Api.ForumCache
+  alias Api.CategoryCache
+  alias Api.PostCache
+  alias Api.TopicCache
 
   @ttl :timer.hours(1)
 
@@ -147,8 +150,9 @@ defmodule Api.Forum do
       [%Categories{}, ...]
 
   """
+  @decorate cacheable(cache: CategoryCache)
   def online_categories do
-    :ets.lookup(:bbs_categories, :id)
+    Repo.all(Categories)
   end
 
   @doc """
