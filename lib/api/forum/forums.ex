@@ -2,6 +2,7 @@ defmodule Api.Forum.Forums do
   use Api.Schema
   import Ecto.Changeset
   alias Api.Forum.Categories
+  alias Api.Forum.Forums.TitleSlug
   alias Api.Forum.Topics
 
   schema "bbs_forums" do
@@ -12,6 +13,8 @@ defmodule Api.Forum.Forums do
 
     belongs_to :categories, Categories
     has_many :topics, Topics
+
+    field :slug, TitleSlug.Type
 
     timestamps()
   end

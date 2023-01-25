@@ -52,11 +52,10 @@ defmodule Api.Forum do
       ** (Ecto.NoResultsError)
 
   """
-  @decorate cacheable(cache: ForumCache, key: id, opts: [ttl: @ttl])
   def get_forums!(id), do: Repo.get!(Forums, id)
 
-  @decorate cacheable(cache: ForumCache, key: id, opts: [ttl: @ttl])
-  def get_forum(id), do: Repo.get_by(Forums, title: id)
+  @decorate cacheable(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
+  def get_forum(slug), do: Repo.get_by(Forums, slug: slug)
 
   @doc """
   Creates a forums.
@@ -183,7 +182,9 @@ defmodule Api.Forum do
 
   """
   def get_categories!(id), do: Repo.get!(Categories, id)
-  def get_category(id), do: Repo.get_by(Categories, title: id)
+
+  @decorate cacheable(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
+  def get_category(slug), do: Repo.get_by(Categories, slug: slug)
 
   @doc """
   Creates a categories.
@@ -288,6 +289,8 @@ defmodule Api.Forum do
 
   """
   def get_topics!(id), do: Repo.get!(Topics, id)
+
+  @decorate cacheable(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def get_topic(slug), do: Repo.get_by(Topics, slug: slug)
 
   @doc """
@@ -393,7 +396,9 @@ defmodule Api.Forum do
 
   """
   def get_posts!(id), do: Repo.get!(Posts, id)
-  def get_post(id), do: Repo.get_by(Posts, slug: id)
+
+  @decorate cacheable(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
+  def get_post(slug), do: Repo.get_by(Posts, slug: slug)
 
   @doc """
   Creates a posts.

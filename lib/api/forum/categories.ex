@@ -4,6 +4,7 @@ defmodule Api.Forum.Categories do
   import Ecto.Query
 
   alias Api.Forum.Categories
+  alias Api.Forum.Categories.TitleSlug
   alias Api.Forum.Forums
   alias Api.Repo
 
@@ -14,6 +15,8 @@ defmodule Api.Forum.Categories do
     field :title, :string
 
     has_many :forums, Forums
+
+    field :slug, TitleSlug.Type
 
 
     timestamps()
