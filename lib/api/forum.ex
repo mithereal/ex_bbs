@@ -5,6 +5,7 @@ defmodule Api.Forum do
   use Nebulex.Caching
 
   import Ecto.Query, warn: false
+  alias Ecto.Multi
   alias Api.Repo
 
   alias Api.Forum.Forums
@@ -26,7 +27,24 @@ defmodule Api.Forum do
   """
   @decorate cacheable(cache: ForumCache)
   def list_forums do
-    Repo.all(Forums)
+    Repo.all(Forums) |> preload(:topics)
+
+    multi =
+      Multi.new()
+      |> Multi.run(:forums, Repo.all(Forums) |> preload(:topics))
+      |> Multi.run(:reply, &topics_data/2)
+
+    case Repo.transaction(multi) do
+      {:ok, response} ->
+        response
+
+      {:error, _step, code, _multi} ->
+        nil
+    end
+  end
+
+  def topics_data(_repo, %{forums: forums}) do
+    {:ok, forums}
   end
 
   @decorate cacheable(cache: ForumCache)
