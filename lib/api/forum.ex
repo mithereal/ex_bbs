@@ -2,11 +2,15 @@ defmodule Api.Forum do
   @moduledoc """
   The Forum context.
   """
+  use Nebulex.Caching
 
   import Ecto.Query, warn: false
   alias Api.Repo
 
   alias Api.Forum.Forums
+  alias Api.ForumCache
+
+  @ttl :timer.hours(1)
 
   @doc """
   Returns the list of forums.
@@ -17,10 +21,12 @@ defmodule Api.Forum do
       [%Forums{}, ...]
 
   """
+  @decorate cacheable(cache: ForumCache)
   def list_forums do
     Repo.all(Forums)
   end
 
+  @decorate cacheable(cache: ForumCache)
   def list_forums(limit) do
     import Ecto.Query
 
@@ -43,7 +49,10 @@ defmodule Api.Forum do
       ** (Ecto.NoResultsError)
 
   """
+  @decorate cacheable(cache: ForumCache, key: id, opts: [ttl: @ttl])
   def get_forums!(id), do: Repo.get!(Forums, id)
+
+  @decorate cacheable(cache: ForumCache, key: id, opts: [ttl: @ttl])
   def get_forum(id), do: Repo.get_by(Forums, title: id)
 
   @doc """
@@ -76,6 +85,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(ForumCache, key: forums.id)
   def update_forums(%Forums{} = forums, attrs) do
     forums
     |> Forums.changeset(attrs)
@@ -94,6 +104,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_evict(cache: ForumCache, key: forums.id)
   def delete_forums(%Forums{} = forums) do
     Repo.delete(forums)
   end
@@ -107,6 +118,7 @@ defmodule Api.Forum do
       %Ecto.Changeset{data: %Forums{}}
 
   """
+  @decorate cache_put(cache: Cache, key: forums.id)
   def change_forums(%Forums{} = forums, attrs \\ %{}) do
     Forums.changeset(forums, attrs)
   end
