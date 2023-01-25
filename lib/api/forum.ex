@@ -85,7 +85,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(ForumCache, key: forums.id)
+  @decorate cache_put(cache: ForumCache, key: forums.id)
   def update_forums(%Forums{} = forums, attrs) do
     forums
     |> Forums.changeset(attrs)
