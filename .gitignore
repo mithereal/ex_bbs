@@ -645,3 +645,4 @@ npm-debug.log
 /priv/static/images/flags/4x3/zm.svg
 /priv/static/images/flags/1x1/zw.svg
 /priv/static/images/flags/4x3/zw.svg
+!/api.iml
