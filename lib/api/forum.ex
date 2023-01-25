@@ -69,6 +69,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
   def create_forums(attrs \\ %{}) do
     %Forums{}
     |> Forums.changeset(attrs)
@@ -87,7 +88,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(cache: ForumCache, key: forums.id)
+  @decorate cache_put(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
   def update_forums(%Forums{} = forums, attrs) do
     forums
     |> Forums.changeset(attrs)
@@ -106,7 +107,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_evict(cache: ForumCache, key: forums.id)
+  @decorate cache_evict(cache: ForumCache, key: {Forums, slug})
   def delete_forums(%Forums{} = forums) do
     Repo.delete(forums)
   end
@@ -120,7 +121,7 @@ defmodule Api.Forum do
       %Ecto.Changeset{data: %Forums{}}
 
   """
-  @decorate cache_put(cache: Cache, key: forums.id)
+  @decorate cache_put(cache: Cache, key: {Forums, slug}, opts: [ttl: @ttl])
   def change_forums(%Forums{} = forums, attrs \\ %{}) do
     Forums.changeset(forums, attrs)
   end
@@ -155,19 +156,6 @@ defmodule Api.Forum do
   end
 
   @doc """
-  Returns the list of categories.
-
-  ## Examples
-
-      iex> online_category_data()
-      [%Categories{}, ...]
-
-  """
-  def online_category_data do
-    :ets.lookup(:bbs_categories_data, :data)
-  end
-
-  @doc """
   Gets a single categories.
 
   Raises `Ecto.NoResultsError` if the Categories does not exist.
@@ -198,6 +186,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
   def create_categories(attrs \\ %{}) do
     %Categories{}
     |> Categories.changeset(attrs)
@@ -216,6 +205,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: Cache, key: {Categories, slug}, opts: [ttl: @ttl])
   def update_categories(%Categories{} = categories, attrs) do
     categories
     |> Categories.changeset(attrs)
@@ -234,6 +224,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_evict(cache: CategoryCache, key: {Categories, slug})
   def delete_categories(%Categories{} = categories) do
     Repo.delete(categories)
   end
@@ -247,6 +238,7 @@ defmodule Api.Forum do
       %Ecto.Changeset{data: %Categories{}}
 
   """
+  @decorate cache_put(cache: Cache, key: {Categories, slug}, opts: [ttl: @ttl])
   def change_categories(%Categories{} = categories, attrs \\ %{}) do
     Categories.changeset(categories, attrs)
   end
@@ -305,6 +297,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def create_topics(attrs \\ %{}) do
     %Topics{}
     |> Topics.changeset(attrs)
@@ -323,6 +316,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def update_topics(%Topics{} = topics, attrs) do
     topics
     |> Topics.changeset(attrs)
@@ -341,6 +335,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_evict(cache: TopicCache, key: {Topics, slug})
   def delete_topics(%Topics{} = topics) do
     Repo.delete(topics)
   end
@@ -354,6 +349,7 @@ defmodule Api.Forum do
       %Ecto.Changeset{data: %Topics{}}
 
   """
+  @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def change_topics(%Topics{} = topics, attrs \\ %{}) do
     Topics.changeset(topics, attrs)
   end
@@ -412,6 +408,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
   def create_posts(attrs \\ %{}) do
     %Posts{}
     |> Posts.changeset(attrs)
@@ -430,6 +427,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
   def update_posts(%Posts{} = posts, attrs) do
     posts
     |> Posts.changeset(attrs)
@@ -448,6 +446,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_evict(cache: PostCache, key: {Posts, slug})
   def delete_posts(%Posts{} = posts) do
     Repo.delete(posts)
   end
@@ -461,6 +460,7 @@ defmodule Api.Forum do
       %Ecto.Changeset{data: %Posts{}}
 
   """
+  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
   def change_posts(%Posts{} = posts, attrs \\ %{}) do
     Posts.changeset(posts, attrs)
   end
