@@ -2,6 +2,7 @@ defmodule Api.Certs do
   use Api.Schema
 
   alias Api.Repo
+  alias Api.Certs
 
   schema "bbs_certs" do
     field :cert_pem_string, :string
@@ -34,6 +35,6 @@ defmodule Api.Certs do
   end
 
   def get_certs(domain) do
-    Repo.all(Certs, )
+    Repo.get_by(Certs, domain: domain)
   end
-  end
+end
