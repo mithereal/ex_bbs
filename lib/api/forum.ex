@@ -27,27 +27,20 @@ defmodule Api.Forum do
   """
   @decorate cacheable(cache: ForumCache)
   def list_forums do
-    Repo.all(Forums) |> preload(:topics)
+    query =
+      from f in Forums,
+        left_join: t in Topics,
+        left_join: c in Categories,
+        left_join: p in Posts,
+        left_join: p2 in Posts,
+        on: f.id == t.forum_id,
+        on: c.id == t.category_id,
+        on: t.id == p.topics_id,
+        on: p.inserted_at < p2.inserted_at,
+        where: is_nil(p2.id) or p.id == p2.id,
+        select: {f.slug, c.slug, t.slug, p2.slug}
 
-    multi =
-      Multi.new()
-      |> Multi.run(:forums, Repo.all(Forums))
-      |> Multi.run(:reply, &topics_data/2)
-
-    case Repo.transaction(multi) do
-      {:ok, response} ->
-        response
-
-      {:error, _step, code, _multi} ->
-        nil
-    end
-  end
-
-  def topics_data(_repo, %{forums: forums}) do
-   data =  Enum.map(forums, fn(x) ->
-
-    end)
-    {:ok, data}
+    Repo.all(query)
   end
 
   @decorate cacheable(cache: ForumCache)
@@ -90,7 +83,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
- # @decorate cache_put(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
+  # @decorate cache_put(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
   def create_forums(attrs \\ %{}) do
     %Forums{}
     |> Forums.changeset(attrs)
@@ -109,7 +102,12 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(cache: ForumCache, key: {Forums, forums.slug},match: &match_update/1, opts: [ttl: @ttl])
+  @decorate cache_put(
+              cache: ForumCache,
+              key: {Forums, forums.slug},
+              match: &match_update/1,
+              opts: [ttl: @ttl]
+            )
   def update_forums(%Forums{} = forums, attrs) do
     forums
     |> Forums.changeset(attrs)
@@ -128,7 +126,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-#  @decorate cache_evict(cache: ForumCache, key: {Forums, slug})
+  #  @decorate cache_evict(cache: ForumCache, key: {Forums, slug})
   def delete_forums(%Forums{} = forums) do
     Repo.delete(forums)
   end
@@ -207,7 +205,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-#  @decorate cache_put(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
+  #  @decorate cache_put(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
   def create_categories(attrs \\ %{}) do
     %Categories{}
     |> Categories.changeset(attrs)
@@ -226,7 +224,12 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(cache: Cache, key: {Categories, categories.slug}, match: &match_update/1,opts: [ttl: @ttl])
+  @decorate cache_put(
+              cache: Cache,
+              key: {Categories, categories.slug},
+              match: &match_update/1,
+              opts: [ttl: @ttl]
+            )
   def update_categories(%Categories{} = categories, attrs) do
     categories
     |> Categories.changeset(attrs)
@@ -303,7 +306,7 @@ defmodule Api.Forum do
   """
   def get_topics!(id), do: Repo.get!(Topics, id)
 
-  @decorate cacheable(cache: TopicCache, key:  {Topics, slug}, opts: [ttl: @ttl])
+  @decorate cacheable(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def get_topic(slug), do: Repo.get_by(Topics, slug: slug)
 
   @doc """
@@ -318,7 +321,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
- # @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
+  # @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
   def create_topics(attrs \\ %{}) do
     %Topics{}
     |> Topics.changeset(attrs)
@@ -429,7 +432,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-#  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
+  #  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
   def create_posts(attrs \\ %{}) do
     %Posts{}
     |> Posts.changeset(attrs)

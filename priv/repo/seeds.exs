@@ -41,3 +41,11 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     status: 1,
     title: "user3"
   })
+
+{:ok, forum1} =
+  Api.Forum.create_forums(%{
+    description: "desc",
+    order: 1,
+    status: 1,
+    title: "forum1"
+  })

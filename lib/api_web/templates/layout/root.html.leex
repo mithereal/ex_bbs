@@ -25,10 +25,10 @@
 
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || ApiWeb.Endpoint.url() %>
+    
     <link defer phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/root.css") %>"/>
 
     <link rel="alternate" type="application/rss+xml" href="<%= Routes.posts_url(@conn, :rss) %>" title="New Posts">
-
 
     <%= render "_apple_touch_header.html", assigns %>
 
@@ -39,9 +39,6 @@
     <script type="text/javascript">
         document.documentElement.classList.remove("no-js");
     </script>
-
-    <script phx-track-static type="text/javascript"
-            src="<%= Routes.static_path(@conn, "/js/modernizr_webp.js") %>"></script>
 
     <script defer phx-track-static type="text/javascript"
             src="<%= Routes.static_path(@conn, "/js/root.js") %>"></script>

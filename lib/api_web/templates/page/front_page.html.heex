@@ -12,20 +12,19 @@
             <div id="categories" class="flex flex-col xl:flex-row space-y-12 xl:space-y-0 xl:space-x-4">
                     <%= for categories <- @category_data do %>
                     <div>
-                        <span><%= categories.id %></span>
+                       <div> <span>Name</span>
                         <span>Topics</span>
                         <span>Posts</span>
                         <span>Last Post</span>
+                        ></div>
+                        <div>
+                            <span><%= categories.slug %> </span>
+                            <span><%= categories.slug %> </span>
+                            <span><%= categories.slug %> </span>
+                        </div>
                     </div>
                 <div>
-                    <%= for forum <- @categories.forums do %>
-                    <div>
-                        <span><%= forum.title %></span>
-                        <span>Topics</span>
-                        <span>Posts</span>
-                        <span>Last Post</span>
-                    </div>
-                    <% end %>
+
                 </div>
                     <% end %>
 
