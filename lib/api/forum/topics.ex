@@ -12,8 +12,8 @@ defmodule Api.Forum.Topics do
     field :status, :integer
     field :title, :string
 
-    belongs_to :forums, Forums
-    has_many :posts, Posts
+    belongs_to :forums, Forums,  foreign_key: :forum_id
+    has_many :posts, Posts, related_key: :post_id
 
     field :slug, TitleSlug.Type
 

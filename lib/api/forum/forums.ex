@@ -11,8 +11,8 @@ defmodule Api.Forum.Forums do
     field :status, :integer
     field :title, :string
 
-    belongs_to :categories, Categories
-    has_many :topics, Topics
+    belongs_to :categories, Categories, foreign_key: :category_id
+    has_many :topics, Topics, related_key: :topic_id
 
     field :slug, TitleSlug.Type
 
@@ -24,8 +24,10 @@ defmodule Api.Forum.Forums do
     forums
     |> cast(attrs, [:id, :title, :description, :status, :order])
     |> cast_assoc(:topics, required: false, with: &Topics.changeset/2)
-    |> put_assoc(:categories, :category)
+    |> put_assoc(:categories, attrs.category)
     |> unique_constraint(:title)
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
     |> validate_required([:title, :description])
   end
 end

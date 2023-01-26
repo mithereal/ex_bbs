@@ -16,8 +16,8 @@ defmodule Api.Forum.Posts do
 
     field :slug, TitleSlug.Type
 
-    belongs_to :topics, Topics
-    belongs_to :users, Users
+    belongs_to :topics, Topics, foreign_key: :topic_id
+    belongs_to :users, Users, foreign_key: :user_id
 
     timestamps()
   end
@@ -26,8 +26,8 @@ defmodule Api.Forum.Posts do
   def changeset(posts, attrs) do
     posts
     |> cast(attrs, [:id, :title, :description, :status, :username, :edit_count, :body])
-    |> put_assoc(:topics, required: false)
-    |> put_assoc(:users, required: false)
+    |> put_assoc(:topics, attrs.topic)
+    |> put_assoc(:users,  attrs.user)
     |> unique_constraint(:title)
     |> TitleSlug.maybe_generate_slug()
     |> TitleSlug.unique_constraint()

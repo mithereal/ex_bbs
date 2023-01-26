@@ -14,7 +14,7 @@ defmodule Api.Forum.Categories do
     field :status, :integer
     field :title, :string
 
-    has_many :forums, Forums
+    has_many :forums, Forums, related_key: :forum_id
 
     field :slug, TitleSlug.Type
 
@@ -28,6 +28,8 @@ defmodule Api.Forum.Categories do
     |> cast(attrs, [:id, :title, :description, :status, :order])
     |> cast_assoc(:forums, required: false)
     |> unique_constraint(:title)
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
     |> validate_required([:title, :description])
   end
 

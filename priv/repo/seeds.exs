@@ -34,18 +34,19 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     confirmed_at: DateTime.utc_now()
   })
 
-{:ok, category1} =
+{:ok, category} =
   Api.Forum.create_categories(%{
-    description: "desc",
+    description: "Test Category Description",
     order: 1,
     status: 1,
-    title: "user3"
+    title: "Test Category"
   })
 
 {:ok, forum1} =
   Api.Forum.create_forums(%{
-    description: "desc",
+    description: "Test Forum Description",
     order: 1,
     status: 1,
-    title: "forum1"
+    title: "Test Forum",
+    category: category
   })
