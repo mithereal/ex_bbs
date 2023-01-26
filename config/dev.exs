@@ -1,10 +1,12 @@
 import Config
 
+## multiple domains with their own ssl cert are supported by using sni_fun: &Api.Certs.sni_fun/1 by using certbot in database mode
+
 config :api, ApiWeb.Endpoint, url: [host: "localhost", port: 4000]
 #  http: [ip: {0, 0, 0, 0}, port: 4000]
 #       https: [
 #         port: 4001,
-#        sni_fun: &ApiWeb.sni_fun/1
+#        sni_fun: &Api.Certs.sni_fun/1
 #       ]
 
 # Configure your database
