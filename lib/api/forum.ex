@@ -126,7 +126,7 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  #  @decorate cache_evict(cache: ForumCache, key: {Forums, slug})
+  @decorate cache_evict(cache: ForumCache, key: {Forums, forums.slug})
   def delete_forums(%Forums{} = forums) do
     Repo.delete(forums)
   end
@@ -340,7 +340,12 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(cache: TopicCache, key: {Topics, topics.slug}, opts: [ttl: @ttl])
+  @decorate cache_put(
+              cache: TopicCache,
+              key: {Topics, topics.slug},
+              match: &match_update/1,
+              opts: [ttl: @ttl]
+            )
   def update_topics(%Topics{} = topics, attrs) do
     topics
     |> Topics.changeset(attrs)
@@ -451,7 +456,12 @@ defmodule Api.Forum do
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_put(cache: PostCache, key: {Posts, posts.slug}, opts: [ttl: @ttl])
+  @decorate cache_put(
+              cache: PostCache,
+              key: {Posts, posts.slug},
+              match: &match_update/1,
+              opts: [ttl: @ttl]
+            )
   def update_posts(%Posts{} = posts, attrs) do
     posts
     |> Posts.changeset(attrs)
