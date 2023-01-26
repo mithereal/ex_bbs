@@ -4,9 +4,7 @@ config :api, ApiWeb.Endpoint, url: [host: "localhost", port: 4000]
 #  http: [ip: {0, 0, 0, 0}, port: 4000]
 #       https: [
 #         port: 4001,
-#         cipher_suite: :strong,
-#         keyfile: "priv/certs/self_signed-key.pem",
-#         certfile: "priv/certs/self_signed.pem"
+#        sni_fun: &ApiWeb.sni_fun/1
 #       ]
 
 # Configure your database
