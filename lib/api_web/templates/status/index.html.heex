@@ -1,0 +1,30 @@
+<h1>Listing Status</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Type</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for status <- @status do %>
+    <tr>
+      <td><%= status.id %></td>
+      <td><%= status.title %></td>
+      <td><%= status.type %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.status_path(@conn, :show, status) %></span>
+        <span><%= link "Edit", to: Routes.status_path(@conn, :edit, status) %></span>
+        <span><%= link "Delete", to: Routes.status_path(@conn, :delete, status), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Status", to: Routes.status_path(@conn, :new) %></span>

@@ -1,0 +1,23 @@
+<h1>Show Status</h1>
+
+<ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= @status.id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @status.title %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @status.type %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.status_path(@conn, :edit, @status) %></span> |
+<span><%= link "Back", to: Routes.status_path(@conn, :index) %></span>
