@@ -8,7 +8,9 @@
                 </svg>
             </a>
         </div>
-        <%= for breadcrumb_trail <- @breadcrumb_trails do %>
+        <%=
+        [_|breadcrumb_trails]  = assigns[:breadcrumb_trails]
+        for breadcrumb_trail <- breadcrumb_trails do %>
         <div itemscope itemtype="http://schema.org/BreadcrumbList" class="flex items-center">
             <% trail_length = Enum.count(breadcrumb_trail) %>
 
