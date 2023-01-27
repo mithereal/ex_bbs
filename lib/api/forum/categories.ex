@@ -7,16 +7,18 @@ defmodule Api.Forum.Categories do
   alias Api.Forum.Categories.TitleSlug
   alias Api.Forum.Forums
   alias Api.Repo
+  alias Api.System.Status
 
   schema "bbs_categories" do
     field :description, :string
     field :order, :integer
-    field :status, :integer
     field :title, :string
 
-    has_many :forums, Forums, related_key: :forum_id
+    has_many :forums, Forums, foreign_key: :forum_id
 
     field :slug, TitleSlug.Type
+
+    belongs_to :status, Status, foreign_key: :status_id
 
 
     timestamps()
@@ -25,8 +27,9 @@ defmodule Api.Forum.Categories do
   @doc false
   def changeset(categories, attrs) do
     categories
-    |> cast(attrs, [:id, :title, :description, :status, :order])
+    |> cast(attrs, [ :title, :description,  :order])
     |> cast_assoc(:forums, required: false)
+    |> put_assoc(:status, attrs.status)
     |> unique_constraint(:title)
     |> TitleSlug.maybe_generate_slug()
     |> TitleSlug.unique_constraint()

@@ -7,7 +7,6 @@ defmodule Api.Repo.Migrations.CreateCategories do
       add :title, :string
       add :description, :string
       add :order, :integer
-      add :status, :integer
       add :slug, :string
 
 

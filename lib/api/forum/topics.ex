@@ -4,16 +4,19 @@ defmodule Api.Forum.Topics do
 
   alias Api.Forum.Forums
   alias Api.Forum.Posts
+  alias Api.Accounts.User
 
   alias Api.Forum.Topics.TitleSlug
+  alias Api.System.Status
 
   schema "bbs_topics" do
     field :description, :string
-    field :status, :integer
     field :title, :string
 
+    belongs_to :status, Status, foreign_key: :status_id
     belongs_to :forums, Forums,  foreign_key: :forum_id
-    has_many :posts, Posts, related_key: :post_id
+    has_many :posts, Posts, foreign_key: :post_id
+    belongs_to :users, User, foreign_key: :user_id
 
     field :slug, TitleSlug.Type
 
@@ -23,12 +26,14 @@ defmodule Api.Forum.Topics do
   @doc false
   def changeset(topics, attrs) do
     topics
-    |> cast(attrs, [:id, :title, :description, :status])
-    |> cast_assoc(:posts, required: false)
-    |> put_assoc(:forums, required: false)
+    |> cast(attrs, [ :title, :description, :status])
+    |> cast_assoc(:posts,  required: false, with: &Posts.changeset/2)
+    |> put_assoc(:forums, attrs.forum)
+    |> put_assoc(:status, attrs.status)
+    |> put_assoc(:users, attrs.user)
     |> unique_constraint(:title)
     |> TitleSlug.maybe_generate_slug()
     |> TitleSlug.unique_constraint()
-    |> validate_required([:id, :title, :description, :status])
+    |> validate_required([ :title, :description])
   end
 end

@@ -6,7 +6,6 @@ defmodule Api.Repo.Migrations.CreateForums do
       add :id, :uuid, primary_key: true
       add :title, :string
       add :description, :string
-      add :status, :integer
       add :order, :integer
       add :slug, :string
 
