@@ -1,6 +1,5 @@
 defmodule ApiWeb.PageController do
   use ApiWeb, :controller
-  use Breadcrumble
 
   alias Api.Pages
   alias Api.Pages.Page

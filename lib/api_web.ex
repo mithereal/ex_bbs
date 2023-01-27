@@ -22,6 +22,8 @@ defmodule ApiWeb do
       use Phoenix.Controller, namespace: ApiWeb
       use Breadcrumble
 
+      plug :add_breadcrumb, name: 'top', url: '/'
+
       import Plug.Conn
       import ApiWeb.Gettext
       alias ApiWeb.Router.Helpers, as: Routes

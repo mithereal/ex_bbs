@@ -122,12 +122,15 @@ main {
 .root_menu_container {
     justify-content: center;
     align-items: top;
+    gap: 0px;
 }
 .root_menu_container  ul {
+   alignment-baseline: bottom;
 }
 
 .block ul{
     display: block;
+    alignment-baseline: bottom;
 }
 
 .hidden ul{
