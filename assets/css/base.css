@@ -121,6 +121,7 @@ main {
 
 .root_menu_container {
     justify-content: center;
+    align-items: top;
 }
 .root_menu_container  ul {
 }

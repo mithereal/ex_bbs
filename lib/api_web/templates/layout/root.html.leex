@@ -118,8 +118,8 @@
             >
                 Forums
                 <ul :class="forumsMenuOpen ? 'block' : 'hidden'">
-                    <li>New Posts</li>
-                    <li>Search Forums</li>
+                    <li><%= link "New Posts", to: Routes.page_path(@conn, :privacy), title: "New Posts"  %></li>
+                    <li><%= link "New Posts", to: Routes.page_path(@conn, :privacy), title: "New Posts"  %></li>
                 </ul>
             </button>
             <button class="root_menu_button"
@@ -130,12 +130,14 @@
             >
                 Whats New
                 <ul :class="wMenuOpen ? 'block' : 'hidden'">
-                    <li>Posts</li>
-                    <li>Media</li>
-                    <li>Articles</li>
-                    <li>Article Comments</li>
-                    <li>Profile Posts</li>
-                    <li>Latest Activity</li>
+                    <li><%= link "New Posts", to: Routes.page_path(@conn, :privacy), title: "New Posts"  %></li>
+                    <li><%= link "New Media", to: Routes.page_path(@conn, :privacy), title: "New Media"  %></li>
+
+                    <li><%= link "New Articles", to: Routes.page_path(@conn, :privacy), title: "New Articles"  %></li>
+                    <li><%= link "New Article Comments", to: Routes.page_path(@conn, :privacy), title: "New Article Comments"  %></li>
+
+                    <li><%= link "New Profile Posts", to: Routes.page_path(@conn, :privacy), title: "New Profile Posts"  %></li>
+                    <li><%= link "Latest Activity", to: Routes.page_path(@conn, :privacy), title: "Latest Activity"  %></li>
                 </ul>
             </button>
             <button class="root_menu_button"
@@ -145,9 +147,9 @@
             >
                 Gallery
                 <ul :class="galleryMenuOpen ? 'block' : 'hidden'">
-                    <li>New Media</li>
-                    <li>New Comments</li>
-                    <li>Search</li>
+                    <li><%= link "New Media", to: Routes.page_path(@conn, :privacy), title: "New Media"  %></li>
+                    <li><%= link "New Comments", to: Routes.page_path(@conn, :privacy), title: "New Comments"  %></li>
+                    <li><%= link "Search", to: Routes.page_path(@conn, :privacy), title: "Search"  %></li>
                 </ul>
             </button>
             <button class="root_menu_button"
@@ -157,9 +159,9 @@
             >
                 Members
                 <ul :class="membersMenuOpen ? 'block' : 'hidden'">
-                    <li>Current Visitors</li>
-                    <li>New Profile Posts</li>
-                    <li>Search</li>
+                    <li><%= link "Current Visitors", to: Routes.page_path(@conn, :privacy), title: "Current Visitors"  %></li>
+                    <li><%= link "New Profile Posts", to: Routes.page_path(@conn, :privacy), title: "New Profile Posts"  %></li>
+                    <li><%= link "Search", to: Routes.page_path(@conn, :privacy), title: "Search"  %></li>
                 </ul>
             </button>
         </div>
