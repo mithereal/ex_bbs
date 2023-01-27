@@ -114,6 +114,8 @@ defmodule ApiWeb.Router do
   scope "/posts", ApiWeb do
     pipe_through([:browser, :default_assigns])
     get "/", PostsController, :index
+    get "/rss.xml", PostsController, :rss
+    get "/show/:slug", PostsController, :show
   end
 
   scope "/gallery", ApiWeb do
@@ -182,7 +184,7 @@ defmodule ApiWeb.Router do
     resources "/entities", EntitiesController
     resources "/forums", ForumsController
     resources "/topics", TopicsController
-    resources "/posts", PostsController
+   # resources "/posts", PostsController
   end
 
   scope "/", ApiWeb do
@@ -212,10 +214,6 @@ defmodule ApiWeb.Router do
     get "/:slug/rss.xml", TopicsController, :thread_rss
   end
 
-  scope "/posts", ApiWeb do
-    pipe_through([:browser, :default_assigns])
-    get "/rss.xml", PostsController, :rss
-  end
 
   scope "/page", ApiWeb do
     pipe_through([:browser, :default_assigns])

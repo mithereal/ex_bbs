@@ -80,7 +80,7 @@ defmodule ApiWeb.PostsController do
       ApiWeb.Endpoint.host() <> " RSS"
     )
     |> Feed.author(ApiWeb.Endpoint.host(), email: "no-reply@" <> ApiWeb.Endpoint.host())
-    |> Feed.link(Routes.posts_path(conn, :rss), rel: "self")
+    |> Feed.link(Routes.posts_path(conn, :rss), rel: "/")
     |> Feed.entries(Enum.map(posts, &get_entry(conn, &1)))
     |> Feed.build()
     |> Atomex.generate_document()
@@ -93,6 +93,7 @@ defmodule ApiWeb.PostsController do
       name
     )
     |> Entry.link(Routes.posts_url(conn, :show, slug))
+    |> IO.inspect(label: "fsfsdf")
     |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")
     |> Entry.build()
