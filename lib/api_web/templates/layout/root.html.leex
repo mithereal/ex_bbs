@@ -111,11 +111,13 @@
 
         <div id="header_links" class="root_menu_container flex items-center">
             <button class = "root_menu_button"
-                    @click="menuOpen = true"
+                    x-data="{ forumsMenuOpen: false }"
+                    @click="forumsMenuOpen = true"
                     aria-label="navigation menu button"
+
             >
                Forums
-                <ul>
+                <ul :class="forumsMenuOpen ? 'block' : 'hidden'">
                     <li>New Posts</li>
                     <li>Search Forums</li>
                 </ul>

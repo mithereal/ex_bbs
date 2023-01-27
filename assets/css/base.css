@@ -122,9 +122,13 @@ main {
 .root_menu_container {
     justify-content: center;
 }
-.root_menu_container  ul li {
-    display: none;
+.root_menu_container  ul {
 }
-.root_menu_container:hover  ul li {
+
+.block ul{
     display: block;
+}
+
+.hidden ul{
+    display: none;
 }
