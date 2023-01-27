@@ -420,6 +420,7 @@ defmodule Api.Forum do
 
   """
   def get_posts!(id), do: Repo.get!(Posts, id)
+  def get_posts(slug), do: Repo.get_by(Posts, slug: slug)
 
   @decorate cacheable(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
   def get_post(slug), do: Repo.get_by(Posts, slug: slug)

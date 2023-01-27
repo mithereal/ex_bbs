@@ -26,8 +26,8 @@ defmodule ApiWeb.PostsController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    posts = Forum.get_posts!(id)
+  def show(conn, %{"slug" => slug}) do
+    posts = Forum.get_posts!(slug)
     render(conn, "show.html", posts: posts)
   end
 
