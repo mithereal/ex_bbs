@@ -6,31 +6,18 @@
 >
     <!-- start::Black overlay -->
     <div class="lg:pl-16 w-full flex flex-col">
+    <div id="page_wrapper">
 
         <!-- start:Page content -->
         <div class="h-full bg-gray-200 p-8">
-            <div id="categories" class="flex flex-col xl:flex-row space-y-12 xl:space-y-0 xl:space-x-4">
-                    <%= for categories <- @category_data do %>
-                    <div>
-                       <div> <span>Name</span>
-                        <span>Topics</span>
-                        <span>Posts</span>
-                        <span>Last Post</span>
-                        ></div>
-                        <div>
-                            <span><%= categories.slug %> </span>
-                            <span><%= categories.slug %> </span>
-                            <span><%= categories.slug %> </span>
-                        </div>
-                    </div>
-                <div>
-
-                </div>
-                    <% end %>
-
-            </div>
+            <%= render "_featured.html", assigns %>
+            <%= render "_posts.html", assigns %>
+            <%= render "_welcome.html", assigns %>
 
         </div>
+        </div>
+        <%= render "_stats.html", assigns %>
+        <%= render "_share.html", assigns %>
         <!-- end:Page content -->
     </div>
 

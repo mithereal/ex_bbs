@@ -1,0 +1,19 @@
+<div id="posts" class="flex flex-col xl:flex-row space-y-12 xl:space-y-0 xl:space-x-4">
+
+
+    <div>
+        <span>Name</span>
+        <span>Topics</span>
+        <span>Posts</span>
+        <span>Last Post</span>
+    </div>
+
+    <%= for categories <- @category_data do %>
+    <div>
+        <span><%= categories.title %> </span>
+        <span><%= categories.slug %> </span>
+        <span><%= categories.slug %> </span>
+    </div>
+    <% end %>
+
+</div>
