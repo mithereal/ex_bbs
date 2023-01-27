@@ -2,7 +2,7 @@ defmodule Api.System do
   @moduledoc """
   The System context.
   """
-
+  use Nebulex.Caching
   import Ecto.Query, warn: false
   alias Api.Repo
 
@@ -211,6 +211,9 @@ defmodule Api.System do
     "forum"
   ]
 
+  alias Api.SettingCache
+  @ttl :timer.hours(1)
+
   @doc """
   Returns the list of settings.
 
@@ -220,6 +223,7 @@ defmodule Api.System do
       [%Setting{}, ...]
 
   """
+  @decorate cacheable(cache: SettingCache)
   def list_settings do
     Repo.all(Setting)
   end
@@ -239,6 +243,9 @@ defmodule Api.System do
 
   """
   def get_setting!(id), do: Repo.get!(Setting, id)
+
+  @decorate cacheable(cache: SettingCache, key: {Setting, title}, opts: [ttl: @ttl])
+  def get_setting(title), do: Repo.get_by(Setting, title: title)
 
   @doc """
   Creates a setting.
@@ -270,6 +277,12 @@ defmodule Api.System do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_put(
+              cache: SettingCache,
+              key: {Setting, setting.title},
+              match: &match_update/1,
+              opts: [ttl: @ttl]
+            )
   def update_setting(%Setting{} = setting, attrs) do
     setting
     |> Setting.changeset(attrs)
@@ -288,6 +301,7 @@ defmodule Api.System do
       {:error, %Ecto.Changeset{}}
 
   """
+  @decorate cache_evict(cache: SettingCache, key: {Setting, setting.title})
   def delete_setting(%Setting{} = setting) do
     Repo.delete(setting)
   end
@@ -301,6 +315,7 @@ defmodule Api.System do
       %Ecto.Changeset{data: %Setting{}}
 
   """
+  @decorate cache_put(cache: Cache, key: {Setting, setting.title}, opts: [ttl: @ttl])
   def change_setting(%Setting{} = setting, attrs \\ %{}) do
     Setting.changeset(setting, attrs)
   end
@@ -396,4 +411,7 @@ defmodule Api.System do
 
     h <> ":" <> m <> " " <> t <> " (" <> z <> ")"
   end
+
+  defp match_update({:ok, value}), do: {true, value}
+  defp match_update({:error, _}), do: false
 end

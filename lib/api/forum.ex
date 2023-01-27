@@ -5,7 +5,6 @@ defmodule Api.Forum do
   use Nebulex.Caching
 
   import Ecto.Query, warn: false
-  alias Ecto.Multi
   alias Api.Repo
 
   alias Api.Forum.Forums

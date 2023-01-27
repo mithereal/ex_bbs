@@ -24,6 +24,7 @@ defmodule Api.Application do
       {Api.TopicCache, []},
       {Api.PostCache, []},
       {Api.CategoryCache, []},
+      {Api.SettingCache, []},
       # Start user Registry
       {DynamicSupervisor, strategy: :one_for_one, name: :server_supervisor}
     ]
