@@ -83,7 +83,6 @@ defmodule Api.Application do
 
 
   def load_settings(response) do
-    Api.System.Setting.Server.load()
 
     response
   end
