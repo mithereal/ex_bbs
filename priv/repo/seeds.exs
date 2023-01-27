@@ -2,7 +2,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
 [host: hostname, port: port] = Keyword.get(url, :url)
 
 {:ok, status} =
-  Api.Accounts.create_status(%{
+  Api.Forum.create_status(%{
     title: "default",
     type: "system"
   })
@@ -44,7 +44,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
   Api.Forum.create_categories(%{
     description: "Test Category Description",
     order: 1,
-    status: 1,
+    status: status,
     title: "Test Category",
     user: user_3
   })
@@ -53,7 +53,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
   Api.Forum.create_forums(%{
     description: "Test Forum Description",
     order: 1,
-    status: 1,
+    status: status,
     title: "Test Forum",
     category: category_1,
     user: user_3
@@ -62,7 +62,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
 {:ok, topic_1} =
   Api.Forum.create_topics(%{
     description: "Test Topic Description",
-    status: 1,
+    status: status,
     title: "Test Topic",
     user: user_3,
     forum: forum_1
@@ -72,9 +72,9 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
   Api.Forum.create_posts(%{
     body: "Test Post Description",
     description: "Test Post Description",
+    status: status,
     title: "Test Post",
     user: user_3,
     forum: forum_1,
     topic: topic_1
   })
-

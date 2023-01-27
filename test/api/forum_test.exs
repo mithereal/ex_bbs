@@ -314,4 +314,62 @@ defmodule Api.ForumTest do
       assert %Ecto.Changeset{} = Forum.change_posts(posts)
     end
   end
+
+  describe "status" do
+    alias Api.Forum.Status
+
+    import Api.ForumFixtures
+
+    @invalid_attrs %{id: nil, title: nil, type: nil}
+
+    test "list_status/0 returns all status" do
+      status = status_fixture()
+      assert Forum.list_status() == [status]
+    end
+
+    test "get_status!/1 returns the status with given id" do
+      status = status_fixture()
+      assert Forum.get_status!(status.id) == status
+    end
+
+    test "create_status/1 with valid data creates a status" do
+      valid_attrs = %{id: "7488a646-e31f-11e4-aace-600308960662", title: "some title", type: "some type"}
+
+      assert {:ok, %Status{} = status} = Forum.create_status(valid_attrs)
+      assert status.id == "7488a646-e31f-11e4-aace-600308960662"
+      assert status.title == "some title"
+      assert status.type == "some type"
+    end
+
+    test "create_status/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Forum.create_status(@invalid_attrs)
+    end
+
+    test "update_status/2 with valid data updates the status" do
+      status = status_fixture()
+      update_attrs = %{id: "7488a646-e31f-11e4-aace-600308960668", title: "some updated title", type: "some updated type"}
+
+      assert {:ok, %Status{} = status} = Forum.update_status(status, update_attrs)
+      assert status.id == "7488a646-e31f-11e4-aace-600308960668"
+      assert status.title == "some updated title"
+      assert status.type == "some updated type"
+    end
+
+    test "update_status/2 with invalid data returns error changeset" do
+      status = status_fixture()
+      assert {:error, %Ecto.Changeset{}} = Forum.update_status(status, @invalid_attrs)
+      assert status == Forum.get_status!(status.id)
+    end
+
+    test "delete_status/1 deletes the status" do
+      status = status_fixture()
+      assert {:ok, %Status{}} = Forum.delete_status(status)
+      assert_raise Ecto.NoResultsError, fn -> Forum.get_status!(status.id) end
+    end
+
+    test "change_status/1 returns a status changeset" do
+      status = status_fixture()
+      assert %Ecto.Changeset{} = Forum.change_status(status)
+    end
+  end
 end

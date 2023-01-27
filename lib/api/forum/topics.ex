@@ -26,7 +26,7 @@ defmodule Api.Forum.Topics do
   @doc false
   def changeset(topics, attrs) do
     topics
-    |> cast(attrs, [ :title, :description, :status])
+    |> cast(attrs, [ :title, :description])
     |> cast_assoc(:posts,  required: false, with: &Posts.changeset/2)
     |> put_assoc(:forums, attrs.forum)
     |> put_assoc(:status, attrs.status)

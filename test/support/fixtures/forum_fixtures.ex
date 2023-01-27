@@ -76,4 +76,20 @@ defmodule Api.ForumFixtures do
 
     posts
   end
+
+  @doc """
+  Generate a status.
+  """
+  def status_fixture(attrs \\ %{}) do
+    {:ok, status} =
+      attrs
+      |> Enum.into(%{
+        id: "7488a646-e31f-11e4-aace-600308960662",
+        title: "some title",
+        type: "some type"
+      })
+      |> Api.Forum.create_status()
+
+    status
+  end
 end

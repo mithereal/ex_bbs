@@ -3,9 +3,14 @@ defmodule Api.System.Status do
   import Ecto.Changeset
 
   schema "bbs_status" do
-    field :key, :string
     field :title, :string
     field :type, :string
   end
 
+  @doc false
+  def changeset(status, attrs) do
+    status
+    |> cast(attrs, [:title, :type])
+    |> validate_required([:title, :type])
+  end
 end

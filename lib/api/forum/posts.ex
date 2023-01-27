@@ -29,7 +29,7 @@ defmodule Api.Forum.Posts do
   def changeset(posts, attrs) do
     posts
     |> cast(attrs, [:title, :description, :username, :edit_count, :body])
-    |> put_assoc(:username, attrs.user.username)
+    |> put_change(:username, attrs.user.username)
     |> put_assoc(:topics, attrs.topic)
     |> put_assoc(:users, attrs.user)
     |> put_assoc(:forums, attrs.forum)
