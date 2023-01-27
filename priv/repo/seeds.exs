@@ -1,6 +1,12 @@
 config = url = Application.get_env(:api, ApiWeb.Endpoint)
 [host: hostname, port: port] = Keyword.get(url, :url)
 
+{:ok, status} =
+  Api.Accounts.create_status(%{
+    title: "default",
+    type: "system"
+  })
+
 {:ok, user_1} =
   Api.Accounts.register_user(%{
     email: "user1@" <> hostname,
