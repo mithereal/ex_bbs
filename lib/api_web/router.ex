@@ -200,6 +200,12 @@ defmodule ApiWeb.Router do
     get "/rss.xml", RssController, :rss
   end
 
+  scope "/search", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+
+    get "/", SearchController, :index
+  end
+
   scope "/forums", ApiWeb do
     pipe_through([:browser, :default_assigns])
     get "/forums", ForumsController, :index
