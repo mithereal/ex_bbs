@@ -25,7 +25,7 @@
 
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || ApiWeb.Endpoint.url() %>
-    
+
     <link defer phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/root.css") %>"/>
 
     <link rel="alternate" type="application/rss+xml" href="<%= Routes.posts_url(@conn, :rss) %>" title="New Posts">
@@ -110,24 +110,26 @@
         </div>
 
         <div id="header_links" class="root_menu_container flex items-center">
-            <button class = "root_menu_button"
+            <button class="root_menu_button"
                     x-data="{ forumsMenuOpen: false }"
-                    @click="forumsMenuOpen = true"
+                    @click="forumsMenuOpen = !forumsMenuOpen"
                     aria-label="navigation menu button"
 
             >
-               Forums
+                Forums
                 <ul :class="forumsMenuOpen ? 'block' : 'hidden'">
                     <li>New Posts</li>
                     <li>Search Forums</li>
                 </ul>
             </button>
-            <button class = "root_menu_button"
-                    @click="menuOpen = true"
+            <button class="root_menu_button"
+                    x-data="{ wMenuOpen: false }"
+                    @click="wMenuOpen = !wMenuOpen"
                     aria-label="navigation menu button"
+
             >
                 Whats New
-                <ul>
+                <ul :class="wMenuOpen ? 'block' : 'hidden'">
                     <li>Posts</li>
                     <li>Media</li>
                     <li>Articles</li>
@@ -136,20 +138,25 @@
                     <li>Latest Activity</li>
                 </ul>
             </button>
-            <button class ="root_menu_button"
-            @click="menuOpen = true"
-            aria-label="navigation menu button"
+            <button class="root_menu_button"
+                    x-data="{ galleryMenuOpen: false }"
+                    @click="galleryMenuOpen = !galleryMenuOpen"
+                    aria-label="navigation menu button"
             >
                 Gallery
-                <ul>
+                <ul :class="galleryMenuOpen ? 'block' : 'hidden'">
                     <li>New Media</li>
                     <li>New Comments</li>
                     <li>Search</li>
                 </ul>
             </button>
-            <button class = "root_menu_button">
+            <button class="root_menu_button"
+                    x-data="{ membersMenuOpen: false }"
+                    @click="membersMenuOpen = !membersMenuOpen"
+                    aria-label="navigation menu button"
+            >
                 Members
-                <ul>
+                <ul :class="membersMenuOpen ? 'block' : 'hidden'">
                     <li>Current Visitors</li>
                     <li>New Profile Posts</li>
                     <li>Search</li>
@@ -157,8 +164,8 @@
             </button>
         </div>
 
-        </div>
-        <!-- end::Mobile menu button -->
+    </div>
+    <!-- end::Mobile menu button -->
 </header>
 
 <%= @inner_content %>
@@ -171,8 +178,10 @@
             <button class="">Home</button>
             <button class="">Delete Cookies</button>
             <%= link to: Routes.posts_url(@conn, :rss) do %>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"/>
             </svg>
             <% end %>
         </div>
