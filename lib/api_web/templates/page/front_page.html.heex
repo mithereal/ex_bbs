@@ -1,5 +1,6 @@
-<%= render ApiWeb.BreadcrumbleView, "breadcrumb.html", breadcrumb_trails: @breadcrumb_trails %>
-
+<div class="lg:pl-16 flex flex-col">
+    <%= render ApiWeb.BreadcrumbleView, "breadcrumb.html", breadcrumb_trails: @breadcrumb_trails %>
+</div>
 <div
         x-data="{ menuOpen: false }"
         class="flex min-h-screen custom-scrollbar"
@@ -17,7 +18,7 @@
         </div>
         </div>
         <%= render "_stats.html", assigns %>
-        <%= render "_share.html", assigns %>
+        <div class="social-share" data-social-share></div>
         <!-- end:Page content -->
     </div>
 

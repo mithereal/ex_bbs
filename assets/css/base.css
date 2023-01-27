@@ -133,3 +133,7 @@ main {
 .hidden ul{
     display: none;
 }
+.footer_link_bar{
+    width: 100%;
+    text-align: right;
+}

@@ -86,7 +86,7 @@
         <div class="menu_button_container">
             <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
             <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Sign Up" %>
-            <%= link "Search", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Search" %>
+            <%= link "Search", to: Routes.search_path(@conn, :index), class: "sign_up", title: "Search" %>
         </div>
         <!-- end::Right side top menu -->
     </div>
