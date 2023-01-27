@@ -82,15 +82,13 @@
             <% end %>
         </div>
 
-
         <!-- start::Right side top menu -->
         <div class="menu_button_container">
             <%= link "Sign In", to: Routes.user_session_path(@conn, :new), class: "sign_in", title: "Login" %>
             <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Sign Up" %>
-            <div class="header_search"></div>
+            <%= link "Search", to: Routes.user_registration_path(@conn, :new), class: "sign_up", title: "Search" %>
         </div>
         <!-- end::Right side top menu -->
-
     </div>
 
     <div class="header_link_bar">
@@ -110,31 +108,55 @@
             </button>
 
         </div>
+
+        <div id="header_links" class="root_menu_container flex items-center">
+            <button class = "root_menu_button"
+                    @click="menuOpen = true"
+                    aria-label="navigation menu button"
+            >
+               Forums
+                <ul>
+                    <li>New Posts</li>
+                    <li>Search Forums</li>
+                </ul>
+            </button>
+            <button class = "root_menu_button"
+                    @click="menuOpen = true"
+                    aria-label="navigation menu button"
+            >
+                Whats New
+                <ul>
+                    <li>Posts</li>
+                    <li>Media</li>
+                    <li>Articles</li>
+                    <li>Article Comments</li>
+                    <li>Profile Posts</li>
+                    <li>Latest Activity</li>
+                </ul>
+            </button>
+            <button class ="root_menu_button"
+            @click="menuOpen = true"
+            aria-label="navigation menu button"
+            >
+                Gallery
+                <ul>
+                    <li>New Media</li>
+                    <li>New Comments</li>
+                    <li>Search</li>
+                </ul>
+            </button>
+            <button class = "root_menu_button">
+                Members
+                <ul>
+                    <li>Current Visitors</li>
+                    <li>New Profile Posts</li>
+                    <li>Search</li>
+                </ul>
+            </button>
+        </div>
+
+        </div>
         <!-- end::Mobile menu button -->
-
-
-        <%= if assigns[:quick_links] do %>
-        <div class="quicklinks">
-            <h1>Quick Links</h1>
-            <ul>
-                <%= for link <- assigns[:quick_links] do %>
-                <li><a href="<%= link.url %>"><%= link.title %></a></li>
-                <% end %>
-            </ul>
-        </div>
-        <% end %>
-
-        <%= if assigns[:menu_links] do %>
-        <div class="menulinks">
-            <ul>
-                <%= for link <- assigns[:menu_links] do %>
-                <li><a href="<%= link.url %>"><%= link.title %></a></li>
-                <% end %>
-            </ul>
-        </div>
-        <% end %>
-
-    </div>
 </header>
 
 <%= @inner_content %>

@@ -57,6 +57,10 @@
   @apply flex  gap-2;
 }
 
+.root_menu_container {
+  @apply flex  gap-2;
+}
+
 .menu_button_container {
   @apply flex  gap-2;
 }
@@ -83,6 +87,10 @@
 
 .black_overlay {
   @apply lg:pl-16 w-full flex flex-col;
+}
+
+.root_menu_button {
+  @apply bg-primary hover:bg-primary-dark rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl  transition duration-150 uppercase;
 }
 
 /*# sourceMappingURL=root.css.tailwind.map */

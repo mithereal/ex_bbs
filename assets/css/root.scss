@@ -49,11 +49,17 @@
 .root_menu_items_header{
 @apply flex items-baseline h-8 py-4 bg-white
 }
+.root_breadcrumbs{
+
+}
 
 .root_logo{
 @apply w-1/2
 }
 .menu_container{
+@apply flex  gap-2
+}
+.root_menu_container{
 @apply flex  gap-2
 }
 .menu_button_container{
@@ -81,4 +87,8 @@
 
 .black_overlay{
 @apply lg:pl-16 w-full flex flex-col
+}
+
+.root_menu_button{
+@apply bg-primary hover:bg-primary-dark rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl  transition duration-150 uppercase
 }

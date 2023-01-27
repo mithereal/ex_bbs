@@ -1,5 +1,5 @@
 
-<div class="flex items-center">
+<div class="root_breadcrumbs flex items-center">
     <div class="bg-white flex items-center border border-primary rounded-r-full">
         <div class="bg-white flex items-center">
             <a href="#" class="bg-white text-primary py-3 px-6 rounded-r-full border-r border-primary hover:text-primary-dark">
