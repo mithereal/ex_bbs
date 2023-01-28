@@ -150,7 +150,16 @@ config :api, Api.Mailer,
   no_mx_lookups: false
 
 config :plug_content_security_policy,
-  nonces_for: []
+  nonces_for: [],
+  report_only: false,
+  directives: %{
+    default_src: ~w('self' 'unsafe-eval' 'unsafe-inline'),
+    connect_src: ~w('self'),
+    child_src: ~w('self'),
+    img_src: ~w('self'),
+    script_src: ~w('self' * 'unsafe-eval' 'unsafe-inline'),
+    style_src: ~w('self' 'unsafe-eval' 'unsafe-inline')
+  }
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
