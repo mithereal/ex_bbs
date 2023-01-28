@@ -109,12 +109,10 @@
 
         </div>
 
-        <div id="header_links" class="root_menu_container flex items-center">
+        <div id="header_links" class="root_menu_container flex items-center"  x-data="{ forumsMenuOpen: false,  wMenuOpen: false,  galleryMenuOpen: false,  membersMenuOpen: false }">
             <button class="root_menu_button"
-                    x-data="{ forumsMenuOpen: false }"
-                    @click="forumsMenuOpen = !forumsMenuOpen"
+                    @click="forumsMenuOpen = true"
                     aria-label="navigation menu button"
-
             >
                 Forums
                 <ul :class="forumsMenuOpen ? 'block' : 'hidden'">
@@ -123,8 +121,7 @@
                 </ul>
             </button>
             <button class="root_menu_button"
-                    x-data="{ wMenuOpen: false }"
-                    @click="wMenuOpen = !wMenuOpen"
+                    @click="wMenuOpen  = true"
                     aria-label="navigation menu button"
 
             >
@@ -141,8 +138,7 @@
                 </ul>
             </button>
             <button class="root_menu_button"
-                    x-data="{ galleryMenuOpen: false }"
-                    @click="galleryMenuOpen = !galleryMenuOpen"
+                    @click="galleryMenuOpen = true"
                     aria-label="navigation menu button"
             >
                 Gallery
@@ -153,8 +149,7 @@
                 </ul>
             </button>
             <button class="root_menu_button"
-                    x-data="{ membersMenuOpen: false }"
-                    @click="membersMenuOpen = !membersMenuOpen"
+                    @click="membersMenuOpen = true"
                     aria-label="navigation menu button"
             >
                 Members
