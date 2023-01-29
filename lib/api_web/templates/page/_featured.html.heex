@@ -1,3 +1,14 @@
 <div class="bg-gray-200 w-full min-h-screen flex items-center justify-center">
+    <div class="bg-slate-50">
+        <span class="bg-slate-300">Featured Content</span>
+        <div class="flex flex-wrap">
+            <% for i <- @featured do %>
+            <div class="flex-auto w-64">
+                <span class=""> <%= i.title %></span>
+            </div>
+            <% end %>
 
+        </div>
+
+    </div>
 </div>
