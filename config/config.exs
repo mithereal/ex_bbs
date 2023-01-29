@@ -161,6 +161,19 @@ config :plug_content_security_policy,
     style_src: ~w('self' 'unsafe-eval' 'unsafe-inline')
   }
 
+config :request_cache_plug,
+       enabled?: true,
+       verbose?: false,
+       graphql_paths: [],
+       conn_priv_key: :__shared_request_cache__,
+       request_cache_module: RequestCache.ConCacheStore,
+       default_ttl: :timer.hours(1),
+       default_concache_opts: [
+         ttl_check_interval: :timer.seconds(1),
+         acquire_lock_timeout: :timer.seconds(1),
+         ets_options: [write_concurrency: true, read_concurrency: true]
+       ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

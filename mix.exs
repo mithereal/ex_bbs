@@ -95,7 +95,9 @@ defmodule Api.MixProject do
       # => When using Caching Annotations
       {:decorator, "~> 1.4"},
       # => When using the Telemetry events (Nebulex stats)
-      {:telemetry, "~> 1.0"}
+      {:telemetry, "~> 1.0"},
+      {:request_cache_plug, "~> 0.2"},
+      {:con_cache, "~> 1.0", optional: true}
     ]
   end
 

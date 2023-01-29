@@ -84,6 +84,7 @@ defmodule ApiWeb.PageController do
 
   def front_page(conn, _) do
     data = Api.Forum.online_categories()
+    RequestCache.store(conn,:timer.seconds(60))
     render(conn, "front_page.html", category_data: data)
   end
 
