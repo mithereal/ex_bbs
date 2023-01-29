@@ -10,8 +10,8 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
 {:ok, user} =
   Api.Accounts.register_user(%{
     email: "demo@" <> hostname,
-    password: "demo",
-    password_confirmation: "demo",
+    password: "123456789abc",
+    password_confirmation: "123456789abc",
     username: "demo",
     terms: true,
     active: true,
@@ -49,6 +49,7 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     user: user
   })
 
+
 {:ok, forum} =
   Api.Forum.create_forums(%{
     description: "Description of your First Forum.",
@@ -68,13 +69,59 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     forum: forum
   })
 
-{:ok, post} =
-  Api.Forum.create_posts(%{
-    body: "This is an example post in your exBBS installation.",
-    description:  "Welcome to exBBS",
+for i <- 1 .. 100 do
+  {:ok, _post} =
+    Api.Forum.create_posts(%{
+      body: "This is an example post in your exBBS installation.  #{i}",
+      description:  "Welcome to exBBS  #{i}",
+      status: status,
+      title:  "Welcome to exBBS #{i}",
+      user: user,
+      forum: forum,
+      topic: topic
+    })
+end
+
+{:ok, category} =
+  Api.Forum.create_categories(%{
+    description: "Description of your Second Category",
+    order: 2,
     status: status,
-    title:  "Welcome to exBBS",
-    user: user,
-    forum: forum,
-    topic: topic
+    title: "Your Second Category",
+    user: user
   })
+
+
+{:ok, forum} =
+  Api.Forum.create_forums(%{
+    description: "Description of your Second Forum.",
+    order: 1,
+    status: status,
+    title: "Your Second Forum.",
+    category: category,
+    user: user
+  })
+
+{:ok, topic} =
+  Api.Forum.create_topics(%{
+    description: "Welcome to exBBS Topic2",
+    status: status,
+    title: "Welcome to exBBS Topic2",
+    user: user,
+    forum: forum
+  })
+
+for i <- 1 .. 100 do
+  {:ok, _post} =
+    Api.Forum.create_posts(%{
+      body: "This is an example post in your exBBS installation.  #{i}",
+      description:  "Welcome to exBBS  #{i}",
+      status: status,
+      title:  "Welcome to exBBS #{i}",
+      user: user,
+      forum: forum,
+      topic: topic
+    })
+end
+
+
