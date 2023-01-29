@@ -3,7 +3,6 @@ defmodule ApiWeb.Endpoint do
 
   plug PlugContentSecurityPolicy
   plug RequestCache.Plug
-  plug RequestCache.Plug
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
