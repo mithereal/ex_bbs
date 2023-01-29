@@ -34,7 +34,7 @@ defmodule Api.Forum do
         left_join: p2 in Posts,
         on: f.id == t.forum_id,
         on: c.id == t.category_id,
-        on: t.id == p.topics_id,
+        on: t.id == p.topic_id,
         on: p.inserted_at < p2.inserted_at,
         where: is_nil(p2.id) or p.id == p2.id,
         select: {f.slug, c.slug, t.slug, p2.slug}

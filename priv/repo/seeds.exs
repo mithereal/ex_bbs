@@ -49,6 +49,15 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     user: user
   })
 
+for i <- 1..100 do
+  Api.Forum.create_categories(%{
+    description: "Description of  #{i} Category",
+    order: 1,
+    status: status,
+    title: "Your  #{i} Category",
+    user: user
+  })
+end
 
 {:ok, forum} =
   Api.Forum.create_forums(%{
@@ -69,59 +78,73 @@ config = url = Application.get_env(:api, ApiWeb.Endpoint)
     forum: forum
   })
 
-for i <- 1 .. 100 do
+for i <- 2..10 do
   {:ok, _post} =
     Api.Forum.create_posts(%{
       body: "This is an example post in your exBBS installation.  #{i}",
-      description:  "Welcome to exBBS  #{i}",
+      description: "Welcome to exBBS  #{i}",
       status: status,
-      title:  "Welcome to exBBS #{i}",
+      title: "Welcome to exBBS #{i}",
       user: user,
       forum: forum,
       topic: topic
     })
 end
 
-{:ok, category} =
-  Api.Forum.create_categories(%{
-    description: "Description of your Second Category",
-    order: 2,
-    status: status,
-    title: "Your Second Category",
-    user: user
-  })
+categories =
+  for i <- 2..25 do
+    {:ok, category} =
+      Api.Forum.create_categories(%{
+        description: "Description of your #{i} Category",
+        order: i,
+        status: status,
+        title: "Your #{i} Category",
+        user: user
+      })
+    category
+  end
 
+forums =
+  for i <- 2..20 do
+    category = Enum.random(categories)
+    {:ok, forum} = Api.Forum.create_forums(%{
+      description: "Description of your  #{i} Forum.",
+      order: i,
+      status: status,
+      title: "Your #{i} Forum.",
+      category: category,
+      user: user
+    })
+    forum
+  end
 
-{:ok, forum} =
-  Api.Forum.create_forums(%{
-    description: "Description of your Second Forum.",
-    order: 1,
-    status: status,
-    title: "Your Second Forum.",
-    category: category,
-    user: user
-  })
+topics =
+  for i <- 2..100 do
+    category = Enum.random(categories)
+    forum = Enum.random(forums)
+    {:ok, topic} =
+      Api.Forum.create_topics(%{
+        description: "Welcome to Topic #{i}",
+        status: status,
+        title: "Topic #{i}",
+        user: user,
+        forum: forum
+      })
+    topic
+  end
 
-{:ok, topic} =
-  Api.Forum.create_topics(%{
-    description: "Welcome to exBBS Topic2",
-    status: status,
-    title: "Welcome to exBBS Topic2",
-    user: user,
-    forum: forum
-  })
-
-for i <- 1 .. 100 do
-  {:ok, _post} =
+for i <- 11..100 do
+  category = Enum.random(categories)
+  forum = Enum.random(forums)
+  topic = Enum.random(topics)
+  {:ok,_post} =
     Api.Forum.create_posts(%{
       body: "This is an example post in your exBBS installation.  #{i}",
-      description:  "Welcome to exBBS  #{i}",
+      description: "Welcome to exBBS  #{i}",
       status: status,
-      title:  "Welcome to exBBS #{i}",
+      title: "Welcome to exBBS #{i}",
       user: user,
       forum: forum,
       topic: topic
     })
 end
-
-

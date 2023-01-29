@@ -12,6 +12,7 @@ defmodule Api.Repo.Migrations.CreateForums do
 
       add(:user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
       add(:category_id, references(:bbs_categories, on_delete: :nothing, type: :uuid))
+      add :performer_id, references(Terminator.UUID.Performer.table(), type: :uuid)
 
       timestamps()
     end

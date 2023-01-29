@@ -22,6 +22,8 @@ defmodule Api.Forum.Posts do
     belongs_to :topics, Topics, foreign_key: :topic_id
     belongs_to :users, User, foreign_key: :user_id
 
+    belongs_to(:performer, Terminator.UUID.Performer)
+
     timestamps()
   end
 
@@ -37,5 +39,13 @@ defmodule Api.Forum.Posts do
     |> TitleSlug.maybe_generate_slug()
     |> TitleSlug.unique_constraint()
     |> validate_required([:title, :description, :body])
+
+  end
+
+  defp create_performer(%{valid?: true} = changeset) do
+    {:ok, performer} = %Terminator.UUID.Performer{} |> Terminator.UUID.Repo.insert()
+
+    changeset
+    |> put_change(:performer_id, performer.id)
   end
 end
