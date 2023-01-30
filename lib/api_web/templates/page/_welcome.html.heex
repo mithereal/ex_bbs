@@ -2,7 +2,9 @@
     <div class="bg-slate-50">
         <span class="bg-slate-300">Welcome</span>
         <div class="flex flex-wrap">
+            <% if( Map.has_key?(@conn.assigns,:welcome)) do %>
             <%= @welcome  %>
+            <% end  %>
 
         </div>
 
