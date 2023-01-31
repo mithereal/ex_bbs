@@ -1,0 +1,22 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <ul>
+      <li>
+        <strong>Name:</strong>
+        <%= @node.name %>
+      </li>
+      <li>
+        <strong>Summary:</strong>
+        <%= @node.summary %>
+      </li>
+      <li>
+        <strong>Position:</strong>
+        <%= @node.position %>
+      </li>
+      <li>
+        <strong>Parent:</strong>
+        <%= @node.parent_id %>
+      </li>
+    </ul>
+  </div>
+</div>

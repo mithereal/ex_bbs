@@ -6,8 +6,8 @@ defmodule Api.Accounts.UserNotifier do
   #   * Swoosh - https://hexdocs.pm/swoosh
   #   * Bamboo - https://hexdocs.pm/bamboo
   #
-  @app_name "data-twister.com"
-  @from "no-reply@data-twister.com"
+  @app_name "xxx.com"
+  @from "no-reply@xxx.com"
 
   import Swoosh.Email
   alias Api.Mailer

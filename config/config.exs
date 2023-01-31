@@ -43,6 +43,20 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+
+# Sentry
+config :sentry,
+       dsn: System.get_env("SENRTY_DSN"),
+       included_environments: [:prod],
+       environment_name: Mix.env(),
+       enable_source_code_context: true,
+       root_source_code_path: File.cwd!()
+
+config :turbo_ecto, Turbo.Ecto,
+       repo: Api.Repo
+
+config :gettext, :default_locale, "en"
+
 config :phoenix,
   static_compressors: [Webp.Compressor]
 

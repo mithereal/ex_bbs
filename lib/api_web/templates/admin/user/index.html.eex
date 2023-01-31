@@ -1,0 +1,39 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <div class="toolbar">
+      <%= form_for @conn, admin_user_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
+        <div class="form-group mr-sm-2">
+          <%= turbo_search_input f, "q[username_or_email_like]", class: "form-control btn-sm", placeholder: "用户名" %>
+        </div>
+        <button class="btn btn-primary btn-sm">搜索</button>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover table-sm text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>用户名</th>
+          <th>邮箱</th>
+          <th>注册时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for user <- @users do %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.inserted_at %></td>
+          <td>
+            <span><%= link "", to: user_path(@conn, :show, user.username), class: "fa fa-arrows-alt" %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+  </div>
+</div>

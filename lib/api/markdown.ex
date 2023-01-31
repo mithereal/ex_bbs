@@ -1,6 +1,6 @@
 defmodule Api.Markdown do
   @moduledoc """
-  Sanitize a string's HTML, then render the string as markdown in the Mipha style.
+  Sanitize a string's HTML, then render the string as markdown in the Api style.
   """
 
   def render(body) do

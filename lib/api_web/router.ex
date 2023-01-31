@@ -10,6 +10,7 @@ defmodule ApiWeb.Router do
   pipeline :default_assigns do
     plug MetaAttrs
     plug Pixel
+    plug ApiWeb.Plug.Locale
   end
 
   pipeline :browser do
@@ -215,8 +216,11 @@ defmodule ApiWeb.Router do
     get "/:slug/rss.xml", ForumsController, :forum_rss
   end
 
-  scope "/topic", ApiWeb do
+  scope "/topics", ApiWeb do
     pipe_through([:browser, :default_assigns])
+    get "/no_reply", TopicController, :no_reply
+    get "/popular", TopicController, :popular
+    get "/featured", TopicController, :featured
     get "/rss.xml", TopicsController, :rss
     get "/:slug/rss.xml", TopicsController, :thread_rss
   end

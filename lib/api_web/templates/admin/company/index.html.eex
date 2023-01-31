@@ -1,0 +1,41 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <div class="toolbar">
+      <%= form_for @conn, admin_company_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
+        <div class="form-group mr-sm-2">
+          <%= turbo_search_input f, "q[name_like]", class: "form-control btn-sm", placeholder: "名称" %>
+        </div>
+        <button class="btn btn-primary btn-sm">搜索</button>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover table-sm text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名称</th>
+          <th>所在城市</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for company <- @companies do %>
+        <tr>
+          <td><%= company.id %></td>
+          <td><%= company.name %></td>
+          <td><%= company.location_id %></td>
+          <td><%= company.inserted_at %></td>
+          <td>
+            <span><%= link "", to: company_path(@conn, :show, company), class: "fa fa-arrows-alt" %></span>
+            <span><%= link "", to: admin_company_path(@conn, :delete, company), method: :delete, data: [confirm: "Are you sure?"], class: "fa fa-trash" %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+  </div>
+</div>
+

@@ -23,7 +23,7 @@ defmodule ApiWeb.TagHelpers do
   Returns user level.
   """
   def user_level_tag(user) do
-    level_name = (user.is_admin && "管理员") || "会员"
+    level_name = (user.is_admin && "administrator") || "administrator"
     level_class = (user.is_admin && "badge-alert") || "badge-success"
     content_tag(:span, level_name, class: "badge #{level_class} role")
   end

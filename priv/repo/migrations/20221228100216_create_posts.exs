@@ -10,8 +10,10 @@ defmodule Api.Repo.Migrations.CreatePosts do
       add :description, :string
       add :body, :string
       add :slug, :string
+      add(:parent_id, :integer)
+      add(:star_count, :integer)
 
-      add(:forum_id, references(:bbs_forums, on_delete: :nothing, type: :uuid))
+      add(:topic_id, references(:bbs_topics, on_delete: :nothing, type: :uuid))
       add(:user_id, references(:bbs_users, on_delete: :nothing, type: :uuid))
 
       timestamps()

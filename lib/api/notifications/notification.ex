@@ -8,7 +8,7 @@ defmodule Api.Notifications.Notification do
   alias Api.Repo
   alias Api.Accounts.User
   alias Api.Topics.Topic
-  alias Api.Replies.Reply
+  alias Api.Posts.Post
   alias Api.Notifications.{Notification, UserNotification}
 
   @type t :: %Notification{}
@@ -39,7 +39,7 @@ defmodule Api.Notifications.Notification do
     field :action, NotificationAction
 
     belongs_to :actor, User, foreign_key: :actor_id
-    belongs_to :reply, Reply
+    belongs_to :reply, Post
     belongs_to :topic, Topic
     belongs_to :user, User
 

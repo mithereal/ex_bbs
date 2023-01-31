@@ -6,7 +6,7 @@ defmodule ApiWeb.Plug.Attack do
       throttle(conn.remote_ip,
         period: 120_000,
         limit: 10,
-        storage: {PlugAttack.Storage.Ets, Mipha.PlugAttack.Storage}
+        storage: {PlugAttack.Storage.Ets, Api.PlugAttack.Storage}
       )
     end
   end
@@ -16,7 +16,7 @@ defmodule ApiWeb.Plug.Attack do
       throttle(conn.remote_ip,
         period: 3_600_000,
         limit: 20,
-        storage: {PlugAttack.Storage.Ets, Mipha.PlugAttack.Storage}
+        storage: {PlugAttack.Storage.Ets, Api.PlugAttack.Storage}
       )
     end
   end
@@ -26,7 +26,7 @@ defmodule ApiWeb.Plug.Attack do
       throttle(conn.remote_ip,
         period: 120_000,
         limit: 20,
-        storage: {PlugAttack.Storage.Ets, Mipha.PlugAttack.Storage}
+        storage: {PlugAttack.Storage.Ets, Api.PlugAttack.Storage}
       )
     end
   end

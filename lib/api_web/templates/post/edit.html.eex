@@ -1,0 +1,23 @@
+<div>
+  <div class="edit-reply card">
+    <div class="card-header">
+      <%= gettext "Edit Reply" %>
+      <span class="pull-right">
+        <%= link @topic.title, to: topic_path(@conn, :show, @topic), title: @topic.title %>
+      </span>
+    </div>
+    <div class="card-body">
+      <%= form_for @changeset, topic_reply_path(@conn, :update, @topic, @reply), fn f -> %>
+        <%= render MiphaWeb.TopicView, "_editor_toolbar.html", assigns %>
+        <input name="utf8" type="hidden" value="&#x2713;" />
+        <div class="form-group">
+          <%= textarea f, :content, class: "form-control topic-editor closewarning", required: true, placeholder: "", rows: 10 %>
+        </div>
+        <div class="form-actions hide-ios">
+          <%= submit gettext("Save"), class: "btn btn-primary col-xs-2 hide-ios" %>
+          <%= link gettext("Delete"), to: topic_reply_path(@conn, :delete, @topic, @reply), class: "btn btn-danger", method: :delete, data: [confirm: "Are you sure？"] %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

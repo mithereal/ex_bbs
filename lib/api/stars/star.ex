@@ -7,7 +7,7 @@ defmodule Api.Stars.Star do
   alias Api.{
     Repo,
     Topics.Topic,
-    Replies.Reply,
+    Posts.Post,
     Accounts.User,
     Stars.Star
   }
@@ -15,7 +15,7 @@ defmodule Api.Stars.Star do
   @type t :: %Star{}
 
   schema "stars" do
-    belongs_to :reply, Reply
+    belongs_to :post, Post
     belongs_to :user, User
     belongs_to :topic, Topic
 
@@ -30,20 +30,20 @@ defmodule Api.Stars.Star do
     do: from(s in query, where: s.topic_id == ^topic_id)
 
   @doc """
-  Filters the reply by star.
+  Filters the post by star.
   """
-  @spec by_reply(Ecto.Queryable.t(), Reply.t()) :: Ecto.Query.t()
-  def by_reply(query \\ __MODULE__, %Reply{id: reply_id}),
-    do: from(s in query, where: s.reply_id == ^reply_id)
+  @spec by_post(Ecto.Queryable.t(), Post.t()) :: Ecto.Query.t()
+  def by_post(query \\ __MODULE__, %Post{id: post_id}),
+    do: from(s in query, where: s.post_id == ^post_id)
 
   @doc """
-  Preloads the reply of a topic.
+  Preloads the post of a topic.
   """
-  @spec preload_reply(t()) :: t()
-  def preload_reply(star), do: Repo.preload(star, :reply)
+  @spec preload_post(t()) :: t()
+  def preload_post(star), do: Repo.preload(star, :post)
 
   @doc """
-  Preloads the reply of a topic.
+  Preloads the post of a topic.
   """
   @spec preload_topic(t()) :: t()
   def preload_topic(star), do: Repo.preload(star, :topic)
@@ -52,7 +52,7 @@ defmodule Api.Stars.Star do
   def changeset(star, attrs) do
     permitted_attrs = ~w(
       user_id
-      reply_id
+      post_id
       topic_id
     )a
 

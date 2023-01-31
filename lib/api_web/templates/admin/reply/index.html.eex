@@ -1,0 +1,44 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <div class="toolbar">
+      <%= form_for @conn, admin_reply_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
+        <div class="form-group mr-sm-2">
+          <%= turbo_search_input f, "q[content_like]", class: "form-control btn-sm", placeholder: "内容" %>
+        </div>
+        <button class="btn btn-primary btn-sm">搜索</button>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover table-sm text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>用户</th>
+          <th>内容</th>
+          <th>帖子</th>
+          <th>父评论</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for reply <- @replies do %>
+        <tr>
+          <td><%= reply.id %></td>
+          <td><%= reply.user_id %></td>
+          <td><%= reply.content %></td>
+          <td><%= reply.topic_id %></td>
+          <td><%= reply.parent_id %></td>
+          <td><%= reply.inserted_at %></td>
+          <td>
+            <span><%= link "", to: admin_reply_path(@conn, :show, reply), class: "fa fa-arrows-alt" %></span>
+            <span><%= link "", to: admin_reply_path(@conn, :delete, reply), method: :delete, data: [confirm: "Are you sure?"], class: "fa fa-trash" %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+  </div>
+</div>

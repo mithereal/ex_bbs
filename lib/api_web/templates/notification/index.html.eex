@@ -1,0 +1,37 @@
+<div class="notifications card">
+  <div class="card-header hide-ios clearfix">
+    <%= gettext "Notifications" %>
+    <span class="pull-right">
+      <%= link gettext("Mark all readed"), to: notification_path(@conn, :make_read), method: :post, class: "btn btn-sm btn-default" %>
+      <%= link gettext("Clean all"), to: notification_path(@conn, :clean), method: :delete, class: "btn btn-sm btn-danger" %>
+    </span>
+  </div>
+  <div class="card-body list item-list">
+    <%= for {key, value} <- group_by(@notifications) do %>
+      <div class="notification-group">
+        <div class="group-title">
+          <i class="fa fa-clock-o"></i>
+          <%= key %>
+        </div>
+        <%= for item <- value do %>
+          <div class="media notification">
+            <div class="media-left mr-3">
+              <%= link to: user_path(@conn, :show, item.user.username), title: item.user.username do %>
+                <img src="<%= qn_url(item.user.avatar) %>" class="media-object avatar-48">
+              <% end %>
+            </div>
+            <div class="media-body">
+              <%= transfer_action(item.notification) %>
+            </div>
+            <div class="media-right">
+              <%= hour_format(item) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-footer hide-ios">
+    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+  </div>
+</div>
