@@ -42,13 +42,13 @@ defmodule Api.Application do
   end
 
   def setup_abilities(response) do
-    Api.System.default_abilities()
+    Api.Terminator.Permissions.default_abilities()
 
     response
   end
 
   def setup_role_tables(response) do
-    Api.System.default_roles()
+    Api.Terminator.Permissions.default_roles()
 
     response
   end
