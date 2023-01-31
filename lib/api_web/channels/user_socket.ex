@@ -1,6 +1,8 @@
 defmodule ApiWeb.UserSocket do
   use Phoenix.Socket
 
+  channel("topic:*", ApiWeb.TopicChannel)
+
   ## Channels
 
   # Socket params are passed from the client and can

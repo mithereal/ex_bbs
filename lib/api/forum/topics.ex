@@ -4,6 +4,7 @@ defmodule Api.Forum.Topics do
 
   alias Api.Forum.Forums
   alias Api.Forum.Posts
+  alias Api.Forum.Categories
   alias Api.Accounts.User
 
   alias Api.Forum.Topics.TitleSlug
@@ -17,6 +18,7 @@ defmodule Api.Forum.Topics do
     belongs_to :forums, Forums,  foreign_key: :forum_id
     has_many :posts, Posts, foreign_key: :post_id
     belongs_to :users, User, foreign_key: :user_id
+    belongs_to :categories, Categories, foreign_key: :category_id
 
     field :slug, TitleSlug.Type
 

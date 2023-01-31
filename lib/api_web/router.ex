@@ -1,6 +1,7 @@
 defmodule ApiWeb.Router do
   use ApiWeb, :router
   use ApiWeb, :user_auth
+  use Sentry.Plug
 
   alias ApiWeb.Plug.EnsureRole
   alias ApiWeb.Plug.MetaAttrs
@@ -182,7 +183,7 @@ defmodule ApiWeb.Router do
     resources "/roles", RoleController
     resources "/abilities", AbilitiesController
     resources "/entities", EntitiesController
-    resources "/forums", ForumsController
+   # resources "/forums", ForumsController
     resources "/topics", TopicsController
    # resources "/posts", PostsController
   end

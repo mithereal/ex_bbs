@@ -26,6 +26,7 @@ defmodule Api.Forum do
   """
   @decorate cacheable(cache: ForumCache)
   def list_forums do
+
     query =
       from f in Forums,
         left_join: t in Topics,
@@ -37,7 +38,8 @@ defmodule Api.Forum do
         on: t.id == p.topic_id,
         on: p.inserted_at < p2.inserted_at,
         where: is_nil(p2.id) or p.id == p2.id,
-        select: {f.slug, c.slug, t.slug, p2.slug}
+        select: {f.slug, c.slug, t.slug, p2.slug},
+        limit: 10
 
     Repo.all(query)
   end
