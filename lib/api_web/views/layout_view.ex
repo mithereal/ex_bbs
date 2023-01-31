@@ -8,4 +8,14 @@ defmodule ApiWeb.LayoutView do
   def meta_tag(attrs) do
     tag(:meta, Enum.into(attrs, []))
   end
+
+  alias Api.Notifications
+
+  def has_unread_notification?(user) do
+    Notifications.unread_notification_count(user) > 0
+  end
+
+  def unread_notification_count(user) do
+    Notifications.unread_notification_count(user)
+  end
 end

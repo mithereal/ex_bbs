@@ -122,6 +122,16 @@ defmodule ApiWeb do
       import ApiWeb.ErrorHelpers
       import ApiWeb.Gettext
       alias ApiWeb.Router.Helpers, as: Routes
+      import ApiWeb.TagHelpers
+      import Turbo.HTML
+
+      alias Api.Markdown
+
+      def markdown(body) do
+        body
+        |> Markdown.render()
+        |> raw()
+      end
     end
   end
 
