@@ -2,7 +2,7 @@ defmodule Mipha.Repo.Migrations.CreateFollows do
   use Ecto.Migration
 
   def change do
-    create table(:followers) do
+    create table(:bbs_followers) do
       add(:user_id, :integer)
       add(:follower_id, :integer)
 

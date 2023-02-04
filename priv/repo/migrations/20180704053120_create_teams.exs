@@ -2,7 +2,7 @@ defmodule Mipha.Repo.Migrations.CreateTeams do
   use Ecto.Migration
 
   def change do
-    create table(:teams) do
+    create table(:bbs_teams) do
       add(:owner_id, :integer)
       add(:github_handle, :string)
       add(:name, :string)
