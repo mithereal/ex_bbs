@@ -1,6 +1,7 @@
 defmodule ApiWeb.SearchController do
   use ApiWeb, :controller
   use Breadcrumble
+  import ApiWeb.Session
 
   plug :add_breadcrumb, name: 'top', url: '/'
 

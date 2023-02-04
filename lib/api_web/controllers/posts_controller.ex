@@ -2,7 +2,7 @@ defmodule ApiWeb.PostsController do
   use ApiWeb, :controller
 
   alias Api.Forum
-  alias Api.Posts
+  alias Api.Posts.Post
 
   def index(conn, _params) do
     posts = Forum.list_posts()
@@ -10,7 +10,7 @@ defmodule ApiWeb.PostsController do
   end
 
   def new(conn, _params) do
-    changeset = Forum.change_posts(%Posts{})
+    changeset = Forum.change_posts(%Post{})
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -93,7 +93,6 @@ defmodule ApiWeb.PostsController do
       name
     )
     |> Entry.link(Routes.posts_url(conn, :show, slug))
-    |> IO.inspect(label: "fsfsdf")
     |> Entry.author(ApiWeb.Endpoint.host())
     |> Entry.content(summary, type: "text")
     |> Entry.build()

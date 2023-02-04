@@ -16,10 +16,10 @@
           <%= for {topic, idx} <- Enum.with_index(@topics) do %>
             <tr class="topic <%= cycle_tag(idx) %> ">
               <td class="node hide-ios">
-                <%= link topic.node.name, to: topic_path(@conn, :index), class: "node" %>
+                <%= link topic.node.name, to: Routes.topic_path(@conn, :index), class: "node" %>
               </td>
               <td class="title">
-                <%= link topic.title, to: topic_path(@conn, :show, topic) %>
+                <%= link topic.title, to: Routes.topic_path(@conn, :show, topic) %>
                 <%= topic_featured_tag(topic) %>
                 <%= time_tag(topic.inserted_at) %>
               </td>

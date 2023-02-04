@@ -23,7 +23,7 @@ defmodule ApiWeb.NotificationController do
 
     conn
     |> put_flash(:info, gettext("Marked all notifications readed."))
-    |> redirect(to: notification_path(conn, :index))
+    |> redirect(to: Routes.notification_path(conn, :index))
   end
 
   def clean(conn, _params) do
@@ -33,6 +33,6 @@ defmodule ApiWeb.NotificationController do
 
     conn
     |> put_flash(:info, gettext("Cleaned notification successfully"))
-    |> redirect(to: notification_path(conn, :index))
+    |> redirect(to: Routes.notification_path(conn, :index))
   end
 end

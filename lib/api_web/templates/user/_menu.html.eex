@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs mi-nav">
-  <li class="nav-item"><%= link gettext("Info"), to: user_path(@conn, :show, @user.username), class: "nav-link" %></li>
-  <li class="nav-item"><%= link gettext("Topic"), to: user_topics_path(@conn, :topics, @user.username), class: "nav-link" %></li>
-  <li class="nav-item"><%= link gettext("Reply"), to: user_replies_path(@conn, :replies, @user.username), class: "nav-link" %></li>
-  <li class="nav-item"><%= link gettext("Collection"), to: user_collections_path(@conn, :collections, @user.username), class: "nav-link" %></li>
-  <li class="nav-item"><%= link gettext("Following"), to: user_following_path(@conn, :following, @user.username), class: "nav-link" %></li>
-  <li class="nav-item"><%= link gettext("Follower"), to: user_followers_path(@conn, :followers, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Info"), to: Routes.user_path(@conn, :show, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Topic"), to: Routes.user_topics_path(@conn, :topics, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Reply"), to: Routes.user_replies_path(@conn, :replies, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Collection"), to: Routes.user_collections_path(@conn, :collections, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Following"), to: Routes.user_following_path(@conn, :following, @user.username), class: "nav-link" %></li>
+  <li class="nav-item"><%= link gettext("Follower"), to: Routes.user_followers_path(@conn, :followers, @user.username), class: "nav-link" %></li>
 </ul>

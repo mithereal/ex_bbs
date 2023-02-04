@@ -4,16 +4,18 @@ defmodule Api.Topics.Topic do
   import EctoEnum, only: [defenum: 3]
 
   alias Api.Repo
-  alias Api.Forum.Forums
-  alias Api.Forum.Posts
-  alias Api.Forum.Topic
-  alias Api.Forum.Categories
+  alias Api.Forums
+  alias Api.Posts
+  alias Api.Topics.Topic
+  alias Api.Categories.Category
   alias Api.Accounts.User
   alias Api.Stars.Star
   alias Api.Collections.Collection
 
-  alias Api.Forum.Topics.TitleSlug
+  alias Api.Topics.TitleSlug
   alias Api.System.Status
+
+  @type t :: %Topic{}
 
   defenum(TopicType, :topic_type, [
     :normal,

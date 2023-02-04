@@ -2,7 +2,7 @@ defmodule ApiWeb.TopicsController do
   use ApiWeb, :controller
 
   alias Api.Forum
-  alias Api.Forum.Topics
+  alias Api.Topics.Topic
 
   def index(conn, _params) do
     topics = Forum.list_topics()
@@ -10,7 +10,7 @@ defmodule ApiWeb.TopicsController do
   end
 
   def new(conn, _params) do
-    changeset = Forum.change_topics(%Topics{})
+    changeset = Forum.change_topics(%Topic{})
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -18,7 +18,7 @@ defmodule ApiWeb.TopicsController do
     case Forum.create_topics(topics_params) do
       {:ok, topics} ->
         conn
-        |> put_flash(:info, "Topics created successfully.")
+        |> put_flash(:info, "Topic created successfully.")
         |> redirect(to: Routes.topics_path(conn, :show, topics))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -43,7 +43,7 @@ defmodule ApiWeb.TopicsController do
     case Forum.update_topics(topics, topics_params) do
       {:ok, topics} ->
         conn
-        |> put_flash(:info, "Topics updated successfully.")
+        |> put_flash(:info, "Topic updated successfully.")
         |> redirect(to: Routes.topics_path(conn, :show, topics))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -56,7 +56,7 @@ defmodule ApiWeb.TopicsController do
     {:ok, _topics} = Forum.delete_topics(topics)
 
     conn
-    |> put_flash(:info, "Topics deleted successfully.")
+    |> put_flash(:info, "Topic deleted successfully.")
     |> redirect(to: Routes.topics_path(conn, :index))
   end
 

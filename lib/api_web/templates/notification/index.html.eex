@@ -2,8 +2,8 @@
   <div class="card-header hide-ios clearfix">
     <%= gettext "Notifications" %>
     <span class="pull-right">
-      <%= link gettext("Mark all readed"), to: notification_path(@conn, :make_read), method: :post, class: "btn btn-sm btn-default" %>
-      <%= link gettext("Clean all"), to: notification_path(@conn, :clean), method: :delete, class: "btn btn-sm btn-danger" %>
+      <%= link gettext("Mark all readed"), to: Routes.notification_path(@conn, :make_read), method: :post, class: "btn btn-sm btn-default" %>
+      <%= link gettext("Clean all"), to: Routes.notification_path(@conn, :clean), method: :delete, class: "btn btn-sm btn-danger" %>
     </span>
   </div>
   <div class="card-body list item-list">
@@ -16,8 +16,8 @@
         <%= for item <- value do %>
           <div class="media notification">
             <div class="media-left mr-3">
-              <%= link to: user_path(@conn, :show, item.user.username), title: item.user.username do %>
-                <img src="<%= qn_url(item.user.avatar) %>" class="media-object avatar-48">
+              <%= link to: Routes.user_path(@conn, :show, item.user.username), title: item.user.username do %>
+                <img src="<%= item.user.avatar %>" class="media-object avatar-48">
               <% end %>
             </div>
             <div class="media-body">

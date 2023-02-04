@@ -1,4 +1,4 @@
-defmodule Api.Forum do
+defmodule Api.Forums.Query do
   @moduledoc """
   The Forum context.
   """
@@ -7,7 +7,9 @@ defmodule Api.Forum do
   import Ecto.Query, warn: false
   alias Api.Repo
 
-  alias Api.Forum.Forums
+  alias Api.Forums.Forum
+  alias Api.Posts.Post
+  alias Api.Categories.Category
   alias Api.ForumCache
   alias Api.CategoryCache
   alias Api.PostCache
@@ -21,18 +23,18 @@ defmodule Api.Forum do
   ## Examples
 
       iex> list_forums()
-      [%Forums{}, ...]
+      [%Forum{}, ...]
 
   """
   @decorate cacheable(cache: ForumCache)
   def list_forums do
 
     query =
-      from f in Forums,
-        left_join: t in Topics,
-        left_join: c in Categories,
-        left_join: p in Posts,
-        left_join: p2 in Posts,
+      from f in Forum,
+        left_join: t in Topic,
+        left_join: c in Category,
+        left_join: p in Post,
+        left_join: p2 in Post,
         on: f.id == t.forum_id,
         on: c.id == t.category_id,
         on: t.id == p.topic_id,
@@ -48,7 +50,7 @@ defmodule Api.Forum do
   def list_forums(limit) do
     import Ecto.Query
 
-    query = Forums |> limit(^limit)
+    query = Forum |> limit(^limit)
 
     Repo.all(query)
   end
@@ -56,21 +58,21 @@ defmodule Api.Forum do
   @doc """
   Gets a single forums.
 
-  Raises `Ecto.NoResultsError` if the Forums does not exist.
+  Raises `Ecto.NoResultsError` if the Forum does not exist.
 
   ## Examples
 
       iex> get_forums!(123)
-      %Forums{}
+      %Forum{}
 
       iex> get_forums!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_forums!(id), do: Repo.get!(Forums, id)
+  def get_forums!(id), do: Repo.get!(Forum, id)
 
-  @decorate cacheable(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
-  def get_forum(slug), do: Repo.get_by(Forums, slug: slug)
+  @decorate cacheable(cache: ForumCache, key: {Forum, slug}, opts: [ttl: @ttl])
+  def get_forum(slug), do: Repo.get_by(Forum, slug: slug)
 
   @doc """
   Creates a forums.
@@ -78,16 +80,16 @@ defmodule Api.Forum do
   ## Examples
 
       iex> create_forums(%{field: value})
-      {:ok, %Forums{}}
+      {:ok, %Forum{}}
 
       iex> create_forums(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  # @decorate cache_put(cache: ForumCache, key: {Forums, slug}, opts: [ttl: @ttl])
+  # @decorate cache_put(cache: ForumCache, key: {Forum, slug}, opts: [ttl: @ttl])
   def create_forums(attrs \\ %{}) do
-    %Forums{}
-    |> Forums.changeset(attrs)
+    %Forum{}
+    |> Forum.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -97,7 +99,7 @@ defmodule Api.Forum do
   ## Examples
 
       iex> update_forums(forums, %{field: new_value})
-      {:ok, %Forums{}}
+      {:ok, %Forum{}}
 
       iex> update_forums(forums, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -105,13 +107,13 @@ defmodule Api.Forum do
   """
   @decorate cache_put(
               cache: ForumCache,
-              key: {Forums, forums.slug},
+              key: {Forum, forums.slug},
               match: &match_update/1,
               opts: [ttl: @ttl]
             )
-  def update_forums(%Forums{} = forums, attrs) do
+  def update_forums(%Forum{} = forums, attrs) do
     forums
-    |> Forums.changeset(attrs)
+    |> Forum.changeset(attrs)
     |> Repo.update()
   end
 
@@ -121,14 +123,14 @@ defmodule Api.Forum do
   ## Examples
 
       iex> delete_forums(forums)
-      {:ok, %Forums{}}
+      {:ok, %Forum{}}
 
       iex> delete_forums(forums)
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_evict(cache: ForumCache, key: {Forums, forums.slug})
-  def delete_forums(%Forums{} = forums) do
+  @decorate cache_evict(cache: ForumCache, key: {Forum, forums.slug})
+  def delete_forums(%Forum{} = forums) do
     Repo.delete(forums)
   end
 
@@ -138,15 +140,13 @@ defmodule Api.Forum do
   ## Examples
 
       iex> change_forums(forums)
-      %Ecto.Changeset{data: %Forums{}}
+      %Ecto.Changeset{data: %Forum{}}
 
   """
-  @decorate cache_put(cache: Cache, key: {Forums, forums.slug}, opts: [ttl: @ttl])
-  def change_forums(%Forums{} = forums, attrs \\ %{}) do
-    Forums.changeset(forums, attrs)
+  @decorate cache_put(cache: Cache, key: {Forum, forums.slug}, opts: [ttl: @ttl])
+  def change_forums(%Forum{} = forums, attrs \\ %{}) do
+    Forum.changeset(forums, attrs)
   end
-
-  alias Api.Forum.Categories
 
   @doc """
   Returns the list of categories.
@@ -154,11 +154,11 @@ defmodule Api.Forum do
   ## Examples
 
       iex> list_categories()
-      [%Categories{}, ...]
+      [%Category{}, ...]
 
   """
   def list_categories do
-    Repo.all(Categories)
+    Repo.all(Category)
   end
 
   @doc """
@@ -167,32 +167,32 @@ defmodule Api.Forum do
   ## Examples
 
       iex> online_categories()
-      [%Categories{}, ...]
+      [%Category{}, ...]
 
   """
   @decorate cacheable(cache: CategoryCache)
   def online_categories do
-    Repo.all(Categories)
+    Repo.all(Category)
   end
 
   @doc """
   Gets a single categories.
 
-  Raises `Ecto.NoResultsError` if the Categories does not exist.
+  Raises `Ecto.NoResultsError` if the Category does not exist.
 
   ## Examples
 
       iex> get_categories!(123)
-      %Categories{}
+      %Category{}
 
       iex> get_categories!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_categories!(id), do: Repo.get!(Categories, id)
+  def get_categories!(id), do: Repo.get!(Category, id)
 
-  @decorate cacheable(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
-  def get_category(slug), do: Repo.get_by(Categories, slug: slug)
+  @decorate cacheable(cache: CategoryCache, key: {Category, slug}, opts: [ttl: @ttl])
+  def get_category(slug), do: Repo.get_by(Category, slug: slug)
 
   @doc """
   Creates a categories.
@@ -200,16 +200,16 @@ defmodule Api.Forum do
   ## Examples
 
       iex> create_categories(%{field: value})
-      {:ok, %Categories{}}
+      {:ok, %Category{}}
 
       iex> create_categories(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  #  @decorate cache_put(cache: CategoryCache, key: {Categories, slug}, opts: [ttl: @ttl])
+  #  @decorate cache_put(cache: CategoryCache, key: {Category, slug}, opts: [ttl: @ttl])
   def create_categories(attrs \\ %{}) do
-    %Categories{}
-    |> Categories.changeset(attrs)
+    %Category{}
+    |> Category.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -219,7 +219,7 @@ defmodule Api.Forum do
   ## Examples
 
       iex> update_categories(categories, %{field: new_value})
-      {:ok, %Categories{}}
+      {:ok, %Category{}}
 
       iex> update_categories(categories, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -227,13 +227,13 @@ defmodule Api.Forum do
   """
   @decorate cache_put(
               cache: Cache,
-              key: {Categories, categories.slug},
+              key: {Category, categories.slug},
               match: &match_update/1,
               opts: [ttl: @ttl]
             )
-  def update_categories(%Categories{} = categories, attrs) do
+  def update_categories(%Category{} = categories, attrs) do
     categories
-    |> Categories.changeset(attrs)
+    |> Category.changeset(attrs)
     |> Repo.update()
   end
 
@@ -243,14 +243,14 @@ defmodule Api.Forum do
   ## Examples
 
       iex> delete_categories(categories)
-      {:ok, %Categories{}}
+      {:ok, %Category{}}
 
       iex> delete_categories(categories)
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_evict(cache: CategoryCache, key: {Categories, categories.slug})
-  def delete_categories(%Categories{} = categories) do
+  @decorate cache_evict(cache: CategoryCache, key: {Category, categories.slug})
+  def delete_categories(%Category{} = categories) do
     Repo.delete(categories)
   end
 
@@ -260,15 +260,15 @@ defmodule Api.Forum do
   ## Examples
 
       iex> change_categories(categories)
-      %Ecto.Changeset{data: %Categories{}}
+      %Ecto.Changeset{data: %Category{}}
 
   """
-  @decorate cache_put(cache: Cache, key: {Categories, categories.slug}, opts: [ttl: @ttl])
-  def change_categories(%Categories{} = categories, attrs \\ %{}) do
-    Categories.changeset(categories, attrs)
+  @decorate cache_put(cache: Cache, key: {Category, categories.slug}, opts: [ttl: @ttl])
+  def change_categories(%Category{} = categories, attrs \\ %{}) do
+    Category.changeset(categories, attrs)
   end
 
-  alias Api.Forum.Topics
+  alias Api.Topics.Topic
 
   @doc """
   Returns the list of topics.
@@ -276,17 +276,17 @@ defmodule Api.Forum do
   ## Examples
 
       iex> list_topics()
-      [%Topics{}, ...]
+      [%Topic{}, ...]
 
   """
   def list_topics do
-    Repo.all(Topics)
+    Repo.all(Topic)
   end
 
   def list_topics(limit) do
     import Ecto.Query
 
-    query = Topics |> limit(^limit)
+    query = Topic |> limit(^limit)
 
     Repo.all(query)
   end
@@ -294,21 +294,21 @@ defmodule Api.Forum do
   @doc """
   Gets a single topics.
 
-  Raises `Ecto.NoResultsError` if the Topics does not exist.
+  Raises `Ecto.NoResultsError` if the Topic does not exist.
 
   ## Examples
 
       iex> get_topics!(123)
-      %Topics{}
+      %Topic{}
 
       iex> get_topics!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_topics!(id), do: Repo.get!(Topics, id)
+  def get_topics!(id), do: Repo.get!(Topic, id)
 
-  @decorate cacheable(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
-  def get_topic(slug), do: Repo.get_by(Topics, slug: slug)
+  @decorate cacheable(cache: TopicCache, key: {Topic, slug}, opts: [ttl: @ttl])
+  def get_topic(slug), do: Repo.get_by(Topic, slug: slug)
 
   @doc """
   Creates a topics.
@@ -316,16 +316,16 @@ defmodule Api.Forum do
   ## Examples
 
       iex> create_topics(%{field: value})
-      {:ok, %Topics{}}
+      {:ok, %Topic{}}
 
       iex> create_topics(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  # @decorate cache_put(cache: TopicCache, key: {Topics, slug}, opts: [ttl: @ttl])
+  # @decorate cache_put(cache: TopicCache, key: {Topic, slug}, opts: [ttl: @ttl])
   def create_topics(attrs \\ %{}) do
-    %Topics{}
-    |> Topics.changeset(attrs)
+    %Topic{}
+    |> Topic.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -335,7 +335,7 @@ defmodule Api.Forum do
   ## Examples
 
       iex> update_topics(topics, %{field: new_value})
-      {:ok, %Topics{}}
+      {:ok, %Topic{}}
 
       iex> update_topics(topics, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -343,13 +343,13 @@ defmodule Api.Forum do
   """
   @decorate cache_put(
               cache: TopicCache,
-              key: {Topics, topics.slug},
+              key: {Topic, topics.slug},
               match: &match_update/1,
               opts: [ttl: @ttl]
             )
-  def update_topics(%Topics{} = topics, attrs) do
+  def update_topics(%Topic{} = topics, attrs) do
     topics
-    |> Topics.changeset(attrs)
+    |> Topic.changeset(attrs)
     |> Repo.update()
   end
 
@@ -359,14 +359,14 @@ defmodule Api.Forum do
   ## Examples
 
       iex> delete_topics(topics)
-      {:ok, %Topics{}}
+      {:ok, %Topic{}}
 
       iex> delete_topics(topics)
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_evict(cache: TopicCache, key: {Topics, topics.slug})
-  def delete_topics(%Topics{} = topics) do
+  @decorate cache_evict(cache: TopicCache, key: {Topic, topics.slug})
+  def delete_topics(%Topic{} = topics) do
     Repo.delete(topics)
   end
 
@@ -376,15 +376,15 @@ defmodule Api.Forum do
   ## Examples
 
       iex> change_topics(topics)
-      %Ecto.Changeset{data: %Topics{}}
+      %Ecto.Changeset{data: %Topic{}}
 
   """
-  @decorate cache_put(cache: TopicCache, key: {Topics, topics.slug}, opts: [ttl: @ttl])
-  def change_topics(%Topics{} = topics, attrs \\ %{}) do
-    Topics.changeset(topics, attrs)
+  @decorate cache_put(cache: TopicCache, key: {Topic, topics.slug}, opts: [ttl: @ttl])
+  def change_topics(%Topic{} = topics, attrs \\ %{}) do
+    Topic.changeset(topics, attrs)
   end
 
-  alias Api.Forum.Posts
+  alias Api.Posts.Post
 
   @doc """
   Returns the list of posts.
@@ -392,17 +392,17 @@ defmodule Api.Forum do
   ## Examples
 
       iex> list_posts()
-      [%Posts{}, ...]
+      [%Post{}, ...]
 
   """
   def list_posts do
-    Repo.all(Posts)
+    Repo.all(Post)
   end
 
   def list_posts(limit) do
     import Ecto.Query
 
-    query = Posts |> limit(^limit)
+    query = Post |> limit(^limit)
 
     Repo.all(query)
   end
@@ -410,22 +410,22 @@ defmodule Api.Forum do
   @doc """
   Gets a single posts.
 
-  Raises `Ecto.NoResultsError` if the Posts does not exist.
+  Raises `Ecto.NoResultsError` if the Post does not exist.
 
   ## Examples
 
       iex> get_posts!(123)
-      %Posts{}
+      %Post{}
 
       iex> get_posts!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_posts!(id), do: Repo.get!(Posts, id)
-  def get_posts(slug), do: Repo.get_by(Posts, slug: slug)
+  def get_posts!(id), do: Repo.get!(Post, id)
+  def get_posts(slug), do: Repo.get_by(Post, slug: slug)
 
-  @decorate cacheable(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
-  def get_post(slug), do: Repo.get_by(Posts, slug: slug)
+  @decorate cacheable(cache: PostCache, key: {Post, slug}, opts: [ttl: @ttl])
+  def get_post(slug), do: Repo.get_by(Post, slug: slug)
 
   @doc """
   Creates a posts.
@@ -433,16 +433,16 @@ defmodule Api.Forum do
   ## Examples
 
       iex> create_posts(%{field: value})
-      {:ok, %Posts{}}
+      {:ok, %Post{}}
 
       iex> create_posts(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  #  @decorate cache_put(cache: PostCache, key: {Posts, slug}, opts: [ttl: @ttl])
+  #  @decorate cache_put(cache: PostCache, key: {Post, slug}, opts: [ttl: @ttl])
   def create_posts(attrs \\ %{}) do
-    %Posts{}
-    |> Posts.changeset(attrs)
+    %Post{}
+    |> Post.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -452,7 +452,7 @@ defmodule Api.Forum do
   ## Examples
 
       iex> update_posts(posts, %{field: new_value})
-      {:ok, %Posts{}}
+      {:ok, %Post{}}
 
       iex> update_posts(posts, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -460,13 +460,13 @@ defmodule Api.Forum do
   """
   @decorate cache_put(
               cache: PostCache,
-              key: {Posts, posts.slug},
+              key: {Post, posts.slug},
               match: &match_update/1,
               opts: [ttl: @ttl]
             )
-  def update_posts(%Posts{} = posts, attrs) do
+  def update_posts(%Post{} = posts, attrs) do
     posts
-    |> Posts.changeset(attrs)
+    |> Post.changeset(attrs)
     |> Repo.update()
   end
 
@@ -476,14 +476,14 @@ defmodule Api.Forum do
   ## Examples
 
       iex> delete_posts(posts)
-      {:ok, %Posts{}}
+      {:ok, %Post{}}
 
       iex> delete_posts(posts)
       {:error, %Ecto.Changeset{}}
 
   """
-  @decorate cache_evict(cache: PostCache, key: {Posts, posts.slug})
-  def delete_posts(%Posts{} = posts) do
+  @decorate cache_evict(cache: PostCache, key: {Post, posts.slug})
+  def delete_posts(%Post{} = posts) do
     Repo.delete(posts)
   end
 
@@ -493,12 +493,12 @@ defmodule Api.Forum do
   ## Examples
 
       iex> change_posts(posts)
-      %Ecto.Changeset{data: %Posts{}}
+      %Ecto.Changeset{data: %Post{}}
 
   """
-  @decorate cache_put(cache: PostCache, key: {Posts, posts.slug}, opts: [ttl: @ttl])
-  def change_posts(%Posts{} = posts, attrs \\ %{}) do
-    Posts.changeset(posts, attrs)
+  @decorate cache_put(cache: PostCache, key: {Post, posts.slug}, opts: [ttl: @ttl])
+  def change_posts(%Post{} = posts, attrs \\ %{}) do
+    Post.changeset(posts, attrs)
   end
 
   defp match_update({:ok, value}), do: {true, value}

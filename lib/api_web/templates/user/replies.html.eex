@@ -10,7 +10,7 @@
         <%= for item <- @replies do %>
           <li class="list-group-item">
             <div class="title">
-              <%= link item.topic.title, to: topic_path(@conn, :show, item.topic) %>
+              <%= link item.topic.title, to: Routes.topic_path(@conn, :show, item.topic) %>
               <span class="info">at <%= time_tag(item.updated_at) %></span>
             </div>
             <div class="body markdown">

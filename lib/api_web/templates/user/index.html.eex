@@ -10,23 +10,23 @@
           <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="media user-card">
               <div class="media-left mr-2">
-                <%= link to: user_path(@conn, :show, user.username), title: user.username do %>
-                  <img class="media-object avatar-48" src="<%= qn_url(user.avatar) %>" />
+                <%= link to: Routes.user_path(@conn, :show, user.username), title: user.username do %>
+                  <img class="media-object avatar-48" src="<%= img_url(user.avatar) %>" />
                 <% end %>
               </div>
               <div class="media-body">
                 <div class="media-heading">
-                  <%= link user.username, to: user_path(@conn, :show, user.username), title: user.username, class: "user-name" %>
+                  <%= link user.username, to: Routes.user_path(@conn, :show, user.username), title: user.username, class: "user-name" %>
                 </div>
                 <div class="infos">
                     <div class="item opts">
                       <%= if @current_user && @current_user.id != user.id do %>
                         <%= if has_followed?(@current_user, user) do %>
-                          <%= link to: user_unfollow_path(@conn, :unfollow, user.username), method: :post, class: "button-follow-user unactive" do %>
+                          <%= link to: Routes.user_unfollow_path(@conn, :unfollow, user.username), method: :post, class: "button-follow-user unactive" do %>
                             <i class="fa fa-user"></i> <span><%= gettext "Unfollow" %></span>
                           <% end %>
                         <% else %>
-                          <%= link to: user_follow_path(@conn, :follow, user.username), method: :post, class: "button-follow-user active" do %>
+                          <%= link to: Routes.user_follow_path(@conn, :follow, user.username), method: :post, class: "button-follow-user active" do %>
                             <i class="fa fa-user"></i> <span><%= gettext "Follow" %></span>
                           <% end %>
                         <% end %>

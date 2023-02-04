@@ -264,7 +264,7 @@ defmodule Api.Topics do
     |> Map.fetch!(:user)
   end
 
-  alias Api.Topics.Node
+  alias Api.Categories.Category
 
   @doc """
   Returns the list of categorys.
@@ -272,28 +272,28 @@ defmodule Api.Topics do
   ## Examples
 
       iex> list_categorys()
-      [%Node{}, ...]
+      [%Category{}, ...]
 
   """
   def list_categorys do
-    Repo.all(Node)
+    Repo.all(Category)
   end
 
   @doc """
   Gets a single category.
 
-  Raises `Ecto.NoResultsError` if the Node does not exist.
+  Raises `Ecto.NoResultsError` if the Category does not exist.
 
   ## Examples
 
       iex> get_category!(123)
-      %Node{}
+      %Category{}
 
       iex> get_category!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_category!(id), do: Repo.get!(Node, id)
+  def get_category!(id), do: Repo.get!(Category, id)
 
   @doc """
   Creates a category.
@@ -301,15 +301,15 @@ defmodule Api.Topics do
   ## Examples
 
       iex> create_category(%{field: value})
-      {:ok, %Node{}}
+      {:ok, %Category{}}
 
       iex> create_category(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
   def create_category(attrs \\ %{}) do
-    %Node{}
-    |> Node.changeset(attrs)
+    %Category{}
+    |> Category.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -319,31 +319,31 @@ defmodule Api.Topics do
   ## Examples
 
       iex> update_category(category, %{field: new_value})
-      {:ok, %Node{}}
+      {:ok, %Category{}}
 
       iex> update_category(category, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_category(%Node{} = category, attrs) do
+  def update_category(%Category{} = category, attrs) do
     category
-    |> Node.changeset(attrs)
+    |> Category.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a Node.
+  Deletes a Category.
 
   ## Examples
 
       iex> delete_category(category)
-      {:ok, %Node{}}
+      {:ok, %Category{}}
 
       iex> delete_category(category)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_category(%Node{} = category) do
+  def delete_category(%Category{} = category) do
     Repo.delete(category)
   end
 
@@ -353,19 +353,19 @@ defmodule Api.Topics do
   ## Examples
 
       iex> change_category(category)
-      %Ecto.Changeset{source: %Node{}}
+      %Ecto.Changeset{source: %Category{}}
 
   """
-  @spec change_category(Node.t()) :: Ecto.Changeset.t()
-  def change_category(%Node{} = category \\ %Node{}), do: Node.changeset(category, %{})
+  @spec change_category(Category.t()) :: Ecto.Changeset.t()
+  def change_category(%Category{} = category \\ %Category{}), do: Category.changeset(category, %{})
 
   @doc """
   Returns the parent of categorys
   """
-  @spec list_parent_categorys :: [Node.t()] | nil
+  @spec list_parent_categorys :: [Category.t()] | nil
   def list_parent_categorys do
-    Node.is_parent()
+    Category.is_parent()
     |> Repo.all()
-    |> Node.preload_children()
+    |> Category.preload_children()
   end
 end

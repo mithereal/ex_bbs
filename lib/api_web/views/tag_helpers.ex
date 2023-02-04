@@ -44,6 +44,9 @@ defmodule ApiWeb.TagHelpers do
     end
   end
 
+  def img_url(string) do
+    string
+  end
 
   def topic_title_tag(topic, reply \\ nil) do
     ahref =

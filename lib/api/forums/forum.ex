@@ -1,9 +1,9 @@
-defmodule Api.Forum.Forum do
+defmodule Api.Forums.Forum do
   use Api.Schema
   import Ecto.Changeset
-  alias Api.Forum.Categories
+  alias Api.Categories.Category
   alias Api.Forum.Forums.TitleSlug
-  alias Api.Topics
+  alias Api.Topics.Topic
   alias Api.Accounts.User
   alias Api.System.Status
 
@@ -14,7 +14,7 @@ defmodule Api.Forum.Forum do
 
     belongs_to :status, Status, foreign_key: :status_id
     belongs_to :users, User, foreign_key: :user_id
-    belongs_to :categories, Categories, foreign_key: :category_id
+    belongs_to :categories, Category, foreign_key: :category_id
     has_many :topics, Topics, foreign_key: :topic_id
 
     field :slug, TitleSlug.Type
@@ -28,7 +28,7 @@ defmodule Api.Forum.Forum do
   def changeset(forums, attrs) do
     forums
     |> cast(attrs, [ :title, :description, :order])
-    |> cast_assoc(:topics, required: false, with: &Topics.changeset/2)
+    |> cast_assoc(:topics, required: false, with: &Topic.changeset/2)
     |> put_assoc(:categories, attrs.category)
     |> put_assoc(:users, attrs.user)
     |> put_assoc(:status, attrs.status)

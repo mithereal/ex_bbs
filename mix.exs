@@ -64,7 +64,7 @@ defmodule Api.MixProject do
       {:terminator_uuid, git: "https://github.com/mithereal/terminator_uuid.git"},
       {:open_api_spex, "~> 3.4"},
       {:unzip, "~> 0.7.1"},
-      {:earmark, "~> 1.4.3"},
+      {:earmark, "~> 1.2.6"},
       {:decimal, "~> 2.0"},
       {:inflex, "~> 2.0.0"},
       {:sobelow, "~> 0.8", only: :dev},

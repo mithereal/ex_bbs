@@ -1,3 +1,3 @@
-defmodule Api.Forum.Topics.TitleSlug do
+defmodule Api.Topics.TitleSlug do
   use EctoAutoslugField.Slug, from: :title, to: :slug
 end

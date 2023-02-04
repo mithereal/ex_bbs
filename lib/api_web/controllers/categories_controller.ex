@@ -2,7 +2,7 @@ defmodule ApiWeb.CategoriesController do
   use ApiWeb, :controller
 
   alias Api.Forum
-  alias Api.Forum.Categories
+  alias Api.Categories.Category
 
   def index(conn, _params) do
     categories = Forum.list_categories()
@@ -10,15 +10,15 @@ defmodule ApiWeb.CategoriesController do
   end
 
   def new(conn, _params) do
-    changeset = Forum.change_categories(%Categories{})
+    changeset = Forum.change_categories(%Category{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"categories" => categories_params}) do
+  def create(conn, %{"Category" => categories_params}) do
     case Forum.create_categories(categories_params) do
       {:ok, categories} ->
         conn
-        |> put_flash(:info, "Categories created successfully.")
+        |> put_flash(:info, "Category created successfully.")
         |> redirect(to: Routes.categories_path(conn, :show, categories))
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -36,7 +36,7 @@
                 <li class="list-group-item">
                   <div class="title">
                     <a class="node" href="/topics?node_id=<%= item.node.id %>"><%= item.node.name %></a>
-                    <%= link item.title, to: topic_path(@conn, :show, item), title: item.title %>
+                    <%= link item.title, to: Routes.topic_path(@conn, :show, item), title: item.title %>
                     <%= if item.type == :featured do %>
                       <i title="" class="fa fa-diamond" data-toggle="tooltip"></i>
                     <% end %>
@@ -56,7 +56,7 @@
                 <%= unless is_nil(item.topic) do %>
                   <li class="list-group-item">
                     <div class="title">
-                      <%= link item.topic.title, to: topic_path(@conn, :show, item.topic) %>
+                      <%= link item.topic.title, to: Routes.topic_path(@conn, :show, item.topic) %>
                       <span class="info">at <%= time_tag(item.updated_at) %></span>
                     </div>
                     <div class="body markdown">
