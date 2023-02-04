@@ -1,5 +1,5 @@
 defmodule ApiWeb.AuthTokens do
-  use Guardian, otp_app: :api_web
+  use Guardian, otp_app: :api
 
   def subject_for_token(resource, _claims) do
     # You can use any value for the subject of your token but
