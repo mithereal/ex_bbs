@@ -1,0 +1,36 @@
+<%= if @current_user do %>
+  <%= if is_nil(@topic.closed_at) do %>
+    <div id="reply" class="card">
+      <div class="card-header hide-ios">
+        <%= gettext "Reply" %>
+      </div>
+      <div class="card-body">
+        <form id="new_reply" action="/topics/<%= @topic.id %>/replies" accept-charset="UTF-8" method="post">
+          <%= render "_editor_toolbar.html", assigns %>
+          <input type="hidden" name="_method" value="post" />>
+          <input type="hidden" name="reply[parent_id]" id="reply_parent_id" />
+          <input type="hidden" name="reply[topic_id]" id="reply_topic_id" value="<%= @topic.id %>" />
+          <div class="form-group">
+            <textarea class="topic-editor form-control" rows="4" tabindex="1" name="reply[content]" id="reply_content"></textarea>
+          </div>
+          <div class="submit-buttons">
+            <button type="submit" id="reply-button" class="btn btn-primary">
+              <%= gettext "Submit" %>
+            </button>
+            <span class="help-inline" style="padding-left: 5px;" title="或者 Ctrl + Enter">
+              <kbd>Command</kbd> +
+              <kbd>Enter</kbd>
+            </span>
+            <div class="pull-right">
+              <a href="/markdown" target="_blank">
+                <%= gettext "Markdown Guide" %>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= render "_need_register_or_login.html", assigns %>
+<% end %>

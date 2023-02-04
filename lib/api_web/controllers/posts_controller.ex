@@ -2,7 +2,7 @@ defmodule ApiWeb.PostsController do
   use ApiWeb, :controller
 
   alias Api.Forum
-  alias Api.Forum.Posts
+  alias Api.Posts
 
   def index(conn, _params) do
     posts = Forum.list_posts()

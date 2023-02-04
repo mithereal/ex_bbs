@@ -1,5 +1,5 @@
 <div class="card bg-light">
-  <span><%= link "新建节点", to: admin_node_path(@conn, :new), class: "btn btn-default btn-sm" %></span>
+  <span><%= link "新建节点", to: Routes.admin_node_path(@conn, :new), class: "btn btn-default btn-sm" %></span>
   <div class="toolbar">
     <%= form_for @conn, admin_node_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
       <div class="form-group mr-sm-2">
@@ -31,9 +31,9 @@
           <td><%= node.parent_id %></td>
           <td><%= node.inserted_at %></td>
           <td>
-            <span><%= link "", to: admin_node_path(@conn, :show, node), class: "fa fa-arrows-alt" %></span>
-            <span><%= link "", to: admin_node_path(@conn, :edit, node), class: "fa fa-pencil" %></span>
-            <span><%= link "", to: admin_node_path(@conn, :delete, node), method: :delete, data: [confirm: "Are you sure?"], class: "fa fa-trash" %></span>
+            <span><%= link "", to: Routes.admin_node_path(@conn, :show, node), class: "fa fa-arrows-alt" %></span>
+            <span><%= link "", to: Routes.admin_node_path(@conn, :edit, node), class: "fa fa-pencil" %></span>
+            <span><%= link "", to: Routes.admin_node_path(@conn, :delete, node), method: :delete, data: [confirm: "Are you sure?"], class: "fa fa-trash" %></span>
           </td>
         </tr>
         <% end %>
@@ -41,6 +41,6 @@
     </table>
   </div>
   <div class="card-footer">
-    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+    <%= render ApiWeb.SharedView, "_pagination.html", assigns %>
   </div>
 </div>

@@ -1,3 +1,3 @@
-defmodule ApiWeb.Admin.ReplyView do
+defmodule ApiWeb.Admin.PostView do
   use ApiWeb, :view
 end

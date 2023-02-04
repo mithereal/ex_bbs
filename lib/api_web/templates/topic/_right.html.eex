@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-body">
+    <a class="btn btn-primary btn-block" href="/topics/new"><%= gettext "New Topic" %></a>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header"><%= gettext "Note" %></div>
+  <div class="card-body">
+    <%= gettext "Api is open source elixir forum, for more information, please visit" %>
+    <a href="https://github.com/zven21/api" target="_blank">Api</a>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header"><%= gettext "Friendship community" %></div>
+  <ul class="list-group list-group-flush" style="text-align: center;">
+    <li class="list-group-item">
+      <a href="http://cnodejs.org" rel="nofollow" title="CNode 社区" target="_blank">
+        <img src="//l.ruby-china.com/photo/2016/d427ef3efd33b57721df152c2aa1735e.png" style="width:130px; ">
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://gocn.io" rel="nofollow" title="GoCN 社区" target="_blank">
+        <img src="//l.ruby-china.com/photo/2017/97b87be9-1375-40cb-8d56-29e203a31689.png" style="width:130px; ">
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://laravel-china.org" target="_blank" rel="nofollow">
+        <img src="//l.ruby-china.com/photo/2016/d7782871f3fac7e85a95d20c74046909.png" style="width:130px; ">
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://testerhome.com/" target="_blank" rel="nofollow">
+        <img src="//l.ruby-china.com/photo/2016/5cd78b730062ab3c768bcc2592c5c7fa.png" style="width: 150px;">
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://pythoncaff.com" target="_blank" rel="nofollow">
+        <img src="//l.ruby-china.com/photo/2018/00d4dd0a-188b-4c58-a524-46c99244659b.png" style="width: 150px;">
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-header"><%= gettext "Statistics" %></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= gettext "Users Count: %{user_count}", user_count: get_user_count() %></li>
+    <li class="list-group-item"><%= gettext "Topics Count: %{topic_count}", topic_count: get_topic_count() %></li>
+    <li class="list-group-item"><%= gettext "Replies Count: %{reply_count}", reply_count: get_reply_count() %></li>
+  </ul>
+</div>

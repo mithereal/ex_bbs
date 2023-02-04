@@ -1,0 +1,61 @@
+<div id="replies" class="card">
+  <div class="total card-header hide-ios">
+    <%= gettext "Total" %>
+    <b><%= @topic.reply_count %></b> <%= gettext "replies" %>
+  </div>
+  <div class="items card-body">
+    <%= for {item, idx} <- Enum.with_index(@topic.replies) do %>
+      <div class="reply <%= popular(item) %>" data-id="<%= item.id %>" id="reply<%= item.id %>">
+        <div id="reply-<%= item.id %>" data-floor="<%= idx + 1 %>">
+          <div class="avatar">
+            <%= link to: Routes.user_path(@conn, :show, item.user.username), title: item.user.username do %>
+              <img class="media-object avatar-48" src="<%= item.user.avatar %>" />
+            <% end %>
+          </div>
+          <div class="infos">
+            <div class="info">
+              <span class="name">
+                <%= link item.user.username, to: Routes.user_path(@conn, :show, item.user.username), class: "user-name" %>
+              </span>
+              <span class="sub-info">
+                <span class='floor'>#<%= idx + 1 %></span> ·
+                <%= time_tag(item.updated_at) %>
+              </span>
+              <span class="opts pull-right">
+                <span class="hideable">
+                  <%= link "", to: Routes.topic_reply_path(@conn, :edit, @topic, item), title: gettext("Edit reply"), class: "fa fa-pencil" %>
+                  <a data-id="<%= item.id %>" data-login="<%= item.user.username %>" title="" class="btn-reply fa fa-mail-reply" href="#"></a>
+                </span>
+                <%= if has_starred?(user: @current_user, reply: item) do %>
+                  <%= link to: Routes.topic_reply_reply_path(@conn, :unstar, @topic, item), method: :post, title: "", class: "likeable active" do %>
+                    <i class="fa fa-heart"></i>
+                    <span><%= item.star_count %> 个赞</span>
+                  <% end %>
+                <% else %>
+                  <%= link to: Routes.topic_reply_reply_path(@conn, :star, @topic, item), method: :post, title: "", class: "likeable deactive" do %>
+                    <i class="fa fa-heart"></i>
+                    <span><%= gettext "%{star_count} stars", star_count: item.star_count %></span>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+            <%= if item.parent_id do %>
+              <div class="reply-to-block">
+                <div class="info">
+                  <%= gettext "Replied to" %>
+                  <a>
+                    <img class="media-object avatar-16" src="<%= item.parent.user.avatar %>">
+                    <span class="user-name"><%= item.parent.user.username %></span>
+                  </a>
+                </div>
+              </div>
+            <% end %>
+            <div class="markdown">
+              <%= markdown(item.content) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

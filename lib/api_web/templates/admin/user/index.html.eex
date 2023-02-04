@@ -1,7 +1,7 @@
 <div class="card bg-light">
   <div class="card-body">
     <div class="toolbar">
-      <%= form_for @conn, admin_user_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
+      <%= form_for @conn, Routes.admin_user_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
         <div class="form-group mr-sm-2">
           <%= turbo_search_input f, "q[username_or_email_like]", class: "form-control btn-sm", placeholder: "用户名" %>
         </div>
@@ -26,7 +26,7 @@
           <td><%= user.email %></td>
           <td><%= user.inserted_at %></td>
           <td>
-            <span><%= link "", to: user_path(@conn, :show, user.username), class: "fa fa-arrows-alt" %></span>
+            <span><%= link "", to: Routes.user_path(@conn, :show, user.username), class: "fa fa-arrows-alt" %></span>
           </td>
         </tr>
         <% end %>
@@ -34,6 +34,6 @@
     </table>
   </div>
   <div class="card-footer">
-    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+    <%= render ApiWeb.SharedView, "_pagination.html", assigns %>
   </div>
 </div>

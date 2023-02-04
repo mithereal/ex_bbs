@@ -35,7 +35,7 @@
     </table>
   </div>
   <div class="card-footer">
-    <%= render MiphaWeb.SharedView, "_pagination.html", assigns %>
+    <%= render ApiWeb.SharedView, "_pagination.html", assigns %>
   </div>
 </div>
 

@@ -144,6 +144,10 @@ defmodule ApiWeb.Router do
     pipe_through([:user_browser, :default_assigns, :require_authenticated_user])
 
     live("/", UserDashboardLive)
+
+    resources("/notifications", NotificationController, only: ~w(index)a)
+    post "/notifications/make_read", NotificationController, :make_read
+    delete "/notifications/clean", NotificationController, :clean
   end
 
   scope "/admin", ApiWeb do
@@ -161,6 +165,14 @@ defmodule ApiWeb.Router do
 
     live "/accounts/:id", AccountLive.Show, :show
     live "/accounts/:id/show/edit", AccountLive.Show, :edit
+
+    resources("/users", UserController, only: ~w(index delete)a)
+    resources("/nodes", CategoryController)
+    resources("/topics", TopicController, only: ~w(index)a)
+    resources("/posts", PostController, only: ~w(index show delete)a)
+    resources("/companies", CompanyController, only: ~w(index delete)a)
+    resources("/teams", TeamController, only: ~w(index delete)a)
+    resources("/notifications", NotificationController, only: ~w(index show delete)a)
   end
 
   scope "/admin", ApiWeb do
@@ -184,9 +196,9 @@ defmodule ApiWeb.Router do
     resources "/roles", RoleController
     resources "/abilities", AbilitiesController
     resources "/entities", EntitiesController
-   # resources "/forums", ForumsController
+    # resources "/forums", ForumsController
     resources "/topics", TopicsController
-   # resources "/posts", PostsController
+    # resources "/posts", PostsController
   end
 
   scope "/", ApiWeb do
@@ -199,13 +211,19 @@ defmodule ApiWeb.Router do
     get "/keep-alive", UserSessionController, :keep_alive
 
     get "/", PageController, :front_page
+    get "/markdown", PageController, :markdown
     get "/rss.xml", RssController, :rss
+
+    resources("/locations", LocationController, only: ~w(index show)a)
+    resources("/companies", CompanyController, only: ~w(index show)a)
+
   end
 
   scope "/search", ApiWeb do
     pipe_through([:browser, :default_assigns])
 
     get "/", SearchController, :index
+    get "/users", SearchController, :users
   end
 
   scope "/forums", ApiWeb do
@@ -223,8 +241,23 @@ defmodule ApiWeb.Router do
     get "/featured", TopicController, :featured
     get "/rss.xml", TopicsController, :rss
     get "/:slug/rss.xml", TopicsController, :thread_rss
+
+    post "/:id/star", TopicController, :star
+    post "/:id/unstar", TopicController, :unstar
+    post "/:id/collection", TopicController, :collection
+    post "/:id/uncollection", TopicController, :uncollection
+    post "/:id/suggest", TopicController, :suggest
+    post "/:id/unsuggest", TopicController, :unsuggest
+    post "/:id/close", TopicController, :close
+    post "/:id/open", TopicController, :open
+    post "/:id/excellent", TopicController, :excellent
+    post "/:id/normal", TopicController, :normal
   end
 
+  scope "/post", ApiWeb do
+    post "/star", PostController, :star
+    post "/unstar", PostController, :unstar
+  end
 
   scope "/page", ApiWeb do
     pipe_through([:browser, :default_assigns])
@@ -233,6 +266,21 @@ defmodule ApiWeb.Router do
     get("/privacy", PageController, :privacy)
     get("/terms", PageController, :terms)
     get("/faq", PageController, :faq)
+  end
+
+  scope "/user", ApiWeb do
+    pipe_through([:browser, :default_assigns])
+
+    get "/:name", UserController, :show
+    get("/:name/topics", UserController, :topics, as: :user_topics)
+    get("/:name/replies", UserController, :replies, as: :user_replies)
+    get("/:name/stars", UserController, :stars, as: :user_stars)
+    get("/:name/collections", UserController, :collections, as: :user_collections)
+    post("/:name/follow", UserController, :follow, as: :user_follow)
+    post("/:name/unfollow", UserController, :unfollow, as: :user_unfollow)
+    get("/:name/followers", UserController, :followers, as: :user_followers)
+    get("/:name/following", UserController, :following, as: :user_following)
+    get("/:name/reward", UserController, :reward, as: :user_reward)
   end
 
   scope "/page", ApiWeb do
@@ -254,6 +302,11 @@ defmodule ApiWeb.Router do
   end
 
   # Other scopes may use custom stacks.
+  scope "/api", ApiWeb do
+    pipe_through(:api)
+
+    post "/topics/preview", TopicController, :preview
+  end
 
   # Enables LiveDashboard only for development
   #

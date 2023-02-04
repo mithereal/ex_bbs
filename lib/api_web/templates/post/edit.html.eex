@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
       <%= form_for @changeset, topic_reply_path(@conn, :update, @topic, @reply), fn f -> %>
-        <%= render MiphaWeb.TopicView, "_editor_toolbar.html", assigns %>
+        <%= render ApiWeb.TopicView, "_editor_toolbar.html", assigns %>
         <input name="utf8" type="hidden" value="&#x2713;" />
         <div class="form-group">
           <%= textarea f, :content, class: "form-control topic-editor closewarning", required: true, placeholder: "", rows: 10 %>

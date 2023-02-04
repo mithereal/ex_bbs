@@ -1,0 +1,44 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <div class="toolbar">
+      <%= form_for @conn, Routes.admin_post_path(@conn, :index), [method: :get, class: "form-inline"], fn f -> %>
+        <div class="form-group mr-sm-2">
+          <%= turbo_search_input f, "q[content_like]", class: "form-control btn-sm", placeholder: "内容" %>
+        </div>
+        <button class="btn btn-primary btn-sm">搜索</button>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover table-sm text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for post <- @posts do %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.user_id %></td>
+          <td><%= post.content %></td>
+          <td><%= post.topic_id %></td>
+          <td><%= post.parent_id %></td>
+          <td><%= post.inserted_at %></td>
+          <td>
+            <span><%= link "", to: Routes.admin_post_path(@conn, :show, post), class: "fa fa-arrows-alt" %></span>
+            <span><%= link "", to: Routes.admin_post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "fa fa-trash" %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render ApiWeb.SharedView, "_pagination.html", assigns %>
+  </div>
+</div>

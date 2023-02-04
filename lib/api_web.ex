@@ -54,6 +54,7 @@ defmodule ApiWeb do
 
       import ApiWeb.LiveHelpers
       import Phoenix.Component
+      import ApiWeb.SessionView
       alias Api.Accounts.User
 
       @impl true

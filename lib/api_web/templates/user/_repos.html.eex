@@ -1,0 +1,17 @@
+<div class="card" id="user_github_repos">
+  <div class="card-header">GitHub Public Repos</div>
+  <ul class="list-group list-group-flush">
+    <%= for item <- github_repos(@object) do %>
+      <li class="list-group-item">
+        <div class="title">
+          <a target="_blank" rel="nofollow" href="<%= item["html_url"] %>"><%= item["name"] %></a>
+          <span class="watchers"><%= item["watchers"] %></span>
+        </div>
+        <p class="desc"><%= item["description"] %></p>
+      </li>
+    <% end %>
+  </ul>
+  <div class="card-footer more">
+    <a target="_blank" rel="nofollow" href="https://github.com/<%= github_account(@object) %>">More on GitHub</a>
+  </div>
+</div>

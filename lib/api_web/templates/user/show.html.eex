@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="sidebar col-md-4" id='sidebar'>
+    <%= render "_left.html", assigns %>
+  </div>
+
+  <div class="col-md-8">
+    <%= render "_menu.html", assigns %>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-text">Placeholder</div>
+      </div>
+    </div>
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#topics" class="nav-link active" data-toggle="tab">
+            <%= gettext "Hot Topics" %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#replies" class="nav-link" data-toggle="tab">
+            <%= gettext "Recent Repleis" %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#description" class="nav-link" data-toggle="tab">
+            <%= gettext "Introduction" %>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active recent-topics" id="topics">
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <%= for item <- @topics do %>
+                <li class="list-group-item">
+                  <div class="title">
+                    <a class="node" href="/topics?node_id=<%= item.node.id %>"><%= item.node.name %></a>
+                    <%= link item.title, to: topic_path(@conn, :show, item), title: item.title %>
+                    <%= if item.type == :featured do %>
+                      <i title="" class="fa fa-diamond" data-toggle="tooltip"></i>
+                    <% end %>
+                  </div>
+                  <div class="info">
+                    <span class="counter"><%= item.star_count %> 个赞 • <%= item.reply_count %> 条回复</span>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-pane" id="replies">
+          <div class="card">
+            <ul class="list-group list-group-flush recent-replies">
+              <%= for item <- @replies do %>
+                <%= unless is_nil(item.topic) do %>
+                  <li class="list-group-item">
+                    <div class="title">
+                      <%= link item.topic.title, to: topic_path(@conn, :show, item.topic) %>
+                      <span class="info">at <%= time_tag(item.updated_at) %></span>
+                    </div>
+                    <div class="body markdown">
+                      <p><%= markdown(item.content) %></p>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-pane" id="description">
+          <div class="card bio">
+            <div class="card-body markdown">
+              <p><%= @user.bio %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

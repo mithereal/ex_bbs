@@ -103,7 +103,7 @@ defmodule Api.MixProject do
       {:ecto_enum, "~> 1.1"},
       {:turbo_ecto,  git: "https://github.com/data-twister/turbo_ecto"},
       {:turbo_html,  git: "https://github.com/data-twister/turbo_html"},
-      {:exmoji, "~> 0.3.0"}
+      {:exmoji, "~> 0.3.0"},
     ]
   end
 

@@ -1,7 +1,7 @@
 defmodule Api.Posts.Post do
   @moduledoc false
 
-  use Ecto.Schema
+  use Api.Schema
   import Ecto.{Changeset, Query}
 
   alias Api.{

@@ -45,3 +45,4 @@ defmodule Api.Forum.Forum do
     changeset
     |> put_change(:performer_id, performer.id)
   end
+  end

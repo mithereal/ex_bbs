@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="sidebar col-md-4" id='sidebar'>
+    <%= render "_left.html", assigns %>
+  </div>
+
+  <div class="col-md-8">
+    <%= render "_menu.html", assigns %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <%= for item <- @followers do %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="media user-card">
+                <div class="media-left mr-2">
+                  <%= link to: user_path(@conn, :show, item.follower.username), title: item.follower.username do %>
+                    <img class="media-object avatar-48" src="<%= qn_url(item.follower.avatar) %>" />
+                  <% end %>
+                </div>
+                <div class="media-body">
+                  <div class="media-heading">
+                    <%= link item.follower.username, to: user_path(@conn, :show, item.follower.username)%>
+                  </div>
+                  <div class="infos">
+                    <div class="item opts">
+                      <%= if @current_user && @current_user.id != item.follower.id do %>
+                        <%= if has_followed?(@current_user, item.follower) do %>
+                          <%= link to: user_unfollow_path(@conn, :unfollow, item.follower.username), method: :post, class: "button-follow-user unactive" do %>
+                            <i class="fa fa-user"></i> <span><%= gettext "Unfollow" %></span>
+                          <% end %>
+                        <% else %>
+                          <%= link to: user_follow_path(@conn, :follow, item.follower.username), method: :post, class: "button-follow-user active" do %>
+                            <i class="fa fa-user"></i> <span><%= gettext "Follow" %></span>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-footer clearfix">
+        <%= render ApiWeb.SharedView, "_pagination.html", assigns %>
+      </div>
+    </div>
+  </div>
+</div>

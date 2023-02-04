@@ -69,6 +69,6 @@ defmodule ApiWeb.Presence do
   original presence data.
   """
   use Phoenix.Presence,
-    otp_app: :mipha,
+    otp_app: :api,
     pubsub_server: Api.PubSub
 end

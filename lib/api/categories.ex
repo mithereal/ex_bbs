@@ -3,6 +3,7 @@ defmodule Api.Categories do
   The Categories context.
   """
   alias Api.Categories.Category
+  import Ecto.Query, warn: false
 
   def online_categories do
     Categories |> order_by(desc: :order) |> Repo.all()
